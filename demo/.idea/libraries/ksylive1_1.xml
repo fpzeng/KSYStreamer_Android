@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="ksylive1.1">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/libs/ksylive1.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

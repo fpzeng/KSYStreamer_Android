@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="30dp"
+    tools:context=".DemoActivity" >
+
+    <TextView
+        android:id="@+id/rtmpTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:text="请输入rtmp服务器的地址"
+        android:textSize="16sp" />
+
+    <EditText
+        android:id="@+id/rtmpUrl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/rtmpTxt"
+        android:text="rtmp://test.uplive.ksyun.com/live/androidtest" />
+
+    <CheckBox
+        android:id="@+id/resolution"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:checked="false"
+        android:layout_below="@id/rtmpUrl"
+        android:text="高分辨率" >
+    </CheckBox>
+
+    <LinearLayout
+        android:id="@+id/frameRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/resolution"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="采集帧率"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/frameRatePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/videoBitrate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/frameRate"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="视频码率"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/videoBitratePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="500" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/audioBitrate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/videoBitrate"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="音频码率"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/audioBitratePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="48" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/connectBT"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/audioBitrate"
+        android:layout_marginTop="10dp"
+        android:text="准备直播" />
+
+</RelativeLayout>
