@@ -69,6 +69,7 @@ KSYStreamerConfig采用了Builder模式，需先创建对应的Builder对象。B
 KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
 ```
 - Builder类中可配置的参数有：
+
 |        方法    	 |       功能      |
 |:------------------:|:---------------:|
 |setSampleAudioRateInHz|设置音频采样率|
