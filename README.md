@@ -50,7 +50,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
     
 ```
 ##代码示例
-1. 布局文件
+. 布局文件
 ```
 <android.opengl.GLSurfaceView
 	android:id="@+id/camera_preview"
@@ -59,11 +59,11 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 	android:layout_alignParentTop="true" 
 	android:layout_alignParentBottom="true"/>
 ```
-2. 初始化GLSurfaceView
+. 初始化GLSurfaceView
 ```
 GLSurfaceView mCameraPreview = (GLSurfaceView)findViewById(R.id.camera_preview)
 ```
-3. 实例化并初始化KSYStreamerConfig
+. 实例化并初始化KSYStreamerConfig
 KSYStreamerConfig采用了Builder模式，需先创建对应的Builder对象。Builder是类KSYStreamerConfig的内部静态公开类。
 ```
 KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
@@ -85,9 +85,11 @@ KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
 
 其中分辨率等级可以设置为RecorderConstants.VIDEO_RESOLUTION_LOW或RecorderConstants.VIDEO_RESOLUTION_MEDIUM，分别对应360P和480P。
 
-4. 创建监听器
+. 创建监听器
 在类KSYStreamer中定义了接口onStatusListener，开发者实现并设置给SDK之后，可通过onStatus回调收到相应的信息，其中SDK预定义的状态码如下所示。
-- SDK预定义的常量
+- SDK预定义的常量   
+
+
 |        名称    	 |       数值      |       含义      |
 |:------------------:|:----------:|:-------------------:|
 |KSYVIDEO_OPEN_STREAM_SUCC|0|推流成功|
@@ -128,39 +130,39 @@ public KSYStreamer.onStatusListener mOnStatusListener = new KSYStreamer.onStatus
 	};
 ```
 
-5. 实例化并创建KSYRecordClient
+. 实例化并创建KSYRecordClient
 ```
 mStreamer = new KSYStreamer(this);
 mStreamer.setDisplayPreview(mCameraPreview);
 mStremer.setConfig(builder.build());
 mStremer.setOnStatusListener(mOnStatusListener);
 ```
-6. 开始推流
+. 开始推流
 目前固定竖屏推流。如果需要横屏推流，可以联系我们。
 ```
 mStreamer.start();
 ```
-7. 切换前后摄像头
+. 切换前后摄像头
 ```
 mStreamer.switchCamera();
 ```
-8. 设置闪关灯
+. 设置闪关灯
 ```
 boolean flashSwitch = true; // true为打开闪光灯，false为关闭闪关灯
 mStreamer.toggleTorch(flashSwitch)
 ```
 
-9.  获取已上传数据量
+.  获取已上传数据量
 ```
 // 单位：KB
 mUploadedDataSize = mStreamer.getUploadedKBytes()
 ```
 
-10. 停止推流
+. 停止推流
 ```
 mStreamer.stop();
 ```
-11. 注意事项
+. 注意事项
 采集的状态依赖于Activity的生命周期，所以必须在Activity的生命周期中也调用SDK相应的接口，例如：onPause, onResume。
 预览区域默认全屏，暂不支持自定义分辨率。
 如有其它需求可以联系[我们](http://www.ksyun.com/)
