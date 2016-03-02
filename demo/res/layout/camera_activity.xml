@@ -5,12 +5,12 @@
     android:layout_height="match_parent"
     android:background="@color/recorder_bg_new" >
 
-        <android.opengl.GLSurfaceView
+    <android.opengl.GLSurfaceView
         android:id="@+id/camera_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentTop="true" 
-        android:layout_alignParentBottom="true"/>
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true" />
 
     <include
         android:id="@+id/actionbar"
@@ -18,6 +18,15 @@
         android:layout_height="@dimen/global_actionbar_height"
         android:layout_gravity="top"
         layout="@layout/camera_titlebar" />
+
+    <TextView
+        android:id="@+id/url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/actionbar"
+        android:gravity="center"
+        android:textColor="@color/font_color_35"
+        android:textSize="@dimen/font_size_38px" />
 
     <include
         android:id="@+id/bar_bottom"

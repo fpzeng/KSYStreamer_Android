@@ -5,7 +5,7 @@
     <string name="cannot_connect_camera">无法连接相机，请在系统设置里修改权限</string>
     <string name="camera_disabled">相机不可用</string>
     
-    <string name="app_name">直播Demo</string>
+    <string name="app_name">金山云推流Demo</string>
     <string name="hello_world">Hello world!</string>
     <string name="click_to_shoot">开始直播</string>
     <string name="flash">Flash</string>

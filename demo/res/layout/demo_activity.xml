@@ -22,21 +22,67 @@
         android:layout_below="@id/rtmpTxt"
         android:text="rtmp://test.uplive.ksyun.com/live/androidtest" />
 
-    <CheckBox
-        android:id="@+id/resolution"
+    <RadioGroup
+        android:id="@+id/resolution_group"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:checked="false"
         android:layout_below="@id/rtmpUrl"
-        android:text="高分辨率" >
-    </CheckBox>
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/radiobutton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="360P" />
+
+        <RadioButton
+            android:id="@+id/radiobutton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="480P" />
+
+        <RadioButton
+            android:id="@+id/radiobutton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="540P" />
+
+        <RadioButton
+            android:id="@+id/radiobutton4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="720P" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/orientation_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/resolution_group"
+        android:orientation="horizontal" >
+
+        <RadioButton
+            android:id="@+id/orientationbutton1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="横屏" />
+
+        <RadioButton
+            android:id="@+id/orientationbutton2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="竖屏" />
+    </RadioGroup>
 
     <LinearLayout
         android:id="@+id/frameRate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/resolution"
-        android:orientation="horizontal" >
+        android:layout_below="@id/orientation_group" >
 
         <TextView
             android:layout_width="wrap_content"
@@ -52,7 +98,7 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/videoBitrate"
+        android:id="@+id/initVideoBitrate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/frameRate"
@@ -61,21 +107,61 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="视频码率"
+            android:text="初始视频码率"
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/videoBitratePicker"
+            android:id="@+id/initVideoBitratePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="300" />
+    </LinearLayout>
+    
+        <LinearLayout
+        android:id="@+id/maxVideoBitrate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/initVideoBitrate"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最高视频码率"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/maxVideoBitratePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="500" />
+    </LinearLayout>
+    
+   <LinearLayout
+        android:id="@+id/minVideoBitrate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/maxVideoBitrate"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="最低视频码率"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/minVideoBitratePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="200" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/audioBitrate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/videoBitrate"
+        android:layout_below="@id/minVideoBitrate"
         android:orientation="horizontal" >
 
         <TextView
