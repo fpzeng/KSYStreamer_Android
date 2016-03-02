@@ -8,24 +8,26 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 
 ## 主要功能点
 
+* 自适应网络，根据实际网络情况动态调整目标码率，保证流畅性
 * 音频编码：AAC
 * 视频编码：H.264 
 * 推流协议：RTMP
-* 视频分辨率：640x360
-* 屏幕朝向： 竖屏
+* 视频分辨率：支持360P,480P,540P和720P
+* 屏幕朝向： 可支持固定横屏或固定竖屏推流
 * iOS摄像头：前, 后置摄像头（可动态切换）
 * 音视频目标码率：可设
 * 根据网络带宽自适应调整视频的码率
 * 闪光灯：开/关
+* 美颜功能和美颜接口（正在开发中）
 
 
 ##使用方法
 ### 配置项目
 使用金山云Android直播推流SDK需引入相应的资源，并在项目中添加依赖关系：
-- libs/armeabi-v7a/libpreview.so
-- libs/armeabi-v7a/librecorder.so
-- libs/armeabi-v7a/libyuv.so
-- libs/ksylive1.1.jar
+- libs/armeabi-v7a/libksypreview.so
+- libs/armeabi-v7a/libksyrecorder.so
+- libs/armeabi-v7a/libksyyuv.so
+- libs/ksylive1.3.jar
 
 其中jar包的包名是：
 - com.ksy.recordlib.service.core
@@ -74,9 +76,12 @@ KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
 |:------------------:|:---------------:|
 |setSampleAudioRateInHz|设置音频采样率|
 |setFrameRate|设置推流编码帧率|
-|setVideoBitrate|设置视频编码码率|
+|setInitVideoBitrate|设置初始视频编码平均码率|
+|setMaxVideoBitrate|设置最大视频编码平均码率|
+|setMinVideoBitrate|设置最小视频编码平均码率|
 |setAudioBitrate|设置音频编码码率|
 |setVideoResolution|设置分辨率等级|
+|setDefaultLandscape|是否以横屏推流，必须同时在manifest或代码里设置Activity为landscape|
 |setmUrl|设置推流地址|
 |setAppId|设置AppId，用于SDK鉴权|
 |setAccessKey|设置AccessKey，用于SDK鉴权|
@@ -84,7 +89,7 @@ KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
 |setTimeSecond|设置时间戳，用于SDK鉴权|
 |setAutoAdjustBitrate|是否打开自适应码率功能，默认打开|
 
-其中分辨率等级可以设置为RecorderConstants.VIDEO_RESOLUTION_LOW或RecorderConstants.VIDEO_RESOLUTION_MEDIUM，分别对应360P和480P。
+其中分辨率等级可以设置为RecorderConstants.VIDEO_RESOLUTION_360P,RecorderConstants.VIDEO_RESOLUTION_480P,RecorderConstants.VIDEO_RESOLUTION_540P或RecorderConstants.VIDEO_RESOLUTION_720P。
 
 . 创建监听器
 在类KSYStreamer中定义了接口onStatusListener，开发者实现并设置给SDK之后，可通过onStatus回调收到相应的信息，其中SDK预定义的状态码如下所示。
