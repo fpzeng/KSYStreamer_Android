@@ -76,7 +76,7 @@ KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
 |setSampleAudioRateInHz|设置音频采样率|
 |setFrameRate|设置推流编码帧率|
 |setInitVideoBitrate|设置初始视频编码平均码率|
-|setMaxVideoBitrate|设置最大视频编码平均码率|
+|setMaxVideoBitrate|设置最大视频编码平均码率(目标平均码率)|
 |setMinVideoBitrate|设置最小视频编码平均码率|
 |setAudioBitrate|设置音频编码码率|
 |setVideoResolution|设置分辨率等级|
