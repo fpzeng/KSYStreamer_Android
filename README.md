@@ -103,7 +103,7 @@ KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
 |        名称    	 |       数值      |       含义      |
 |:------------------:|:----------:|:-------------------:|
 |KSYVIDEO_OPEN_STREAM_SUCC|0|推流成功|
-|KSYVIDEO_INIT_DONE|1000|首次开启预览完成初始化的通知,表示可以进行推流，整个KSYStreamer生命周期只会回掉一次|
+|KSYVIDEO_INIT_DONE|1000|首次开启预览完成初始化的通知,表示可以进行推流，默认整个KSYStreamer生命周期只会回调一次|
 |KSYVIDEO_AUTH_FAILED|-1001|鉴权失败|
 |KSYVIDEO_ENCODED_FRAMES_THRESHOLD|-1002|鉴权失败后编码帧数达上限|
 |KSYVIDEO_ENCODED_FRAMES_FAILED|-1003|编码失败|
@@ -174,23 +174,14 @@ mUploadedDataSize = mStreamer.getUploadedKBytes()
 mStreamer.stop();
 ```
 
-. 启动预览
-仅当builder中setStartPreviewManual为true时有效，手动启动预览，推流中无效
-```
- mStreamer.startCameraPreview();
-```
-
-. 停止预览
-仅当builder中setStartPreviewManual为true时有效，手动停止预览，推流中无效，必须首先调用startCameraPrevie()启动预览
-```
- mStreamer.stopCameraPreview();
-```
-
 . 初始化完成的回调
-仅当builder中setStartPreviewManual为true时有效，手动停止预览，推流中无效，必须首先调用startCameraPrevie()启动预览
+
+首次开启预览完成初始化的通知,表示可以进行推流。通过OnStatusListener()发送，状态码为KSYVIDEO_INIT_DONE（1000）。
+默认整个KSYStreamer生命周期只会回调一次。如希望在摄像头reopen的场景继续得到回调（比如用户按Home键，KSYStreamer会关掉并释放摄像头，再次返回重新初始化摄像头）需要设置setInitDoneCallbackEnable(true)，这个调用仅对**下一次**初始化有效。
 ```
- mStreamer.stopCameraPreview();
+ mStreamer.setInitDoneCallbackEnable(true);
 ```
+
 . 注意事项
 采集的状态依赖于Activity的生命周期，所以必须在Activity的生命周期中也调用SDK相应的接口，例如：onPause, onResume。
 预览区域默认全屏，暂不支持自定义分辨率。
