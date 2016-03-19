@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_marginTop="30dp"
-    tools:context=".DemoActivity" >
+    tools:context=".DemoActivity">
 
     <TextView
         android:id="@+id/rtmpTxt"
@@ -27,12 +27,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/rtmpUrl"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/radiobutton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="false"
             android:text="360P" />
 
         <RadioButton
@@ -62,27 +63,73 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/resolution_group"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/orientationbutton1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:checked="true"
+            android:checked="false"
             android:text="横屏" />
 
         <RadioButton
             android:id="@+id/orientationbutton2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:checked="true"
             android:text="竖屏" />
     </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/encode_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/orientation_group"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/encode_hw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="硬编" />
+
+        <RadioButton
+            android:id="@+id/encode_sw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="软编" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/audio_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/encode_group"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/mute_audio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="静音开关" />
+    </RadioGroup>
+
+    <CheckBox
+        android:id="@+id/autoStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/audio_group"
+        android:text="初始化完成后启动推流（软编有效）"
+        android:checked="false" />
 
     <LinearLayout
         android:id="@+id/frameRate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/orientation_group" >
+        android:layout_below="@id/autoStart">
 
         <TextView
             android:layout_width="wrap_content"
@@ -98,71 +145,31 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/initVideoBitrate"
+        android:id="@+id/videoBitrate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/frameRate"
-        android:orientation="horizontal" >
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="初始视频码率"
+            android:text="视频码率"
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/initVideoBitratePicker"
+            android:id="@+id/videoBitratePicker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="300" />
-    </LinearLayout>
-    
-        <LinearLayout
-        android:id="@+id/maxVideoBitrate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/initVideoBitrate"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="最高视频码率"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/maxVideoBitratePicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="500" />
-    </LinearLayout>
-    
-   <LinearLayout
-        android:id="@+id/minVideoBitrate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/maxVideoBitrate"
-        android:orientation="horizontal" >
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="最低视频码率"
-            android:textSize="16sp" />
-
-        <EditText
-            android:id="@+id/minVideoBitratePicker"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="200" />
+            android:text="800" />
     </LinearLayout>
 
     <LinearLayout
         android:id="@+id/audioBitrate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/minVideoBitrate"
-        android:orientation="horizontal" >
+        android:layout_below="@id/videoBitrate"
+        android:orientation="horizontal">
 
         <TextView
             android:layout_width="wrap_content"
@@ -184,5 +191,6 @@
         android:layout_below="@id/audioBitrate"
         android:layout_marginTop="10dp"
         android:text="准备直播" />
+
 
 </RelativeLayout>

@@ -8,6 +8,7 @@
     <string name="app_name">金山云推流Demo</string>
     <string name="hello_world">Hello world!</string>
     <string name="click_to_shoot">开始直播</string>
+    <string name="beauty_switcher">美颜滤镜</string>
     <string name="flash">Flash</string>
 
 </resources>

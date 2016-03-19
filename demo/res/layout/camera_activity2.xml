@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/recorder_bg_new">
+
+    <com.ksy.recordlib.service.hardware.view.GLCameraEncoderView
+        android:id="@+id/cameraView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_centerInParent="true" />
+
+    <include
+        android:id="@+id/actionbar"
+        layout="@layout/camera_titlebar"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/global_actionbar_height"
+        android:layout_gravity="top" />
+
+    <include
+        android:id="@+id/bar_bottom"
+        layout="@layout/camera_bottombar"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

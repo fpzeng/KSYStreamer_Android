@@ -35,6 +35,10 @@
 -keepattributes InnerClasses, LineNumberTable, SourceFile
 
 
+
+-dontwarn org.apache.**
+-dontwarn demo.**
+
 #record
 
 -keepattributes *Annotation*
@@ -52,9 +56,6 @@
 -keep interface android.support.v4.app.** { *; }
 -keep public class * extends android.support.v4.**
 -keep public class * extends android.app.Fragment
-
-
-
  
 #native jni
 -keepclasseswithmembernames class * {
@@ -66,40 +67,15 @@
 }
 
 
--keep class com.ksy.recordlib.service.recorder.**{ *;}
-
-#filters
--keep class com.ksy.recordlib.service.filter.** {
-    *;
-}
-
-
--keep class com.ksy.recordlib.service.recorder.Buffer {
-    *;
-}
--keep class com.ksy.recordlib.service.recorder.FFmpegRecorder {
-    *;
-        private <methods>;
-}
--keep class com.ksy.recordlib.service.recorder.FFmpegException {
-    *;
-}
--keep class com.ksy.recordlib.service.recorder.Frame {
-    *;
-}
--keep class com.ksy.recordlib.service.recorder.KSImage {
-    *;
-}
--keep class com.ksy.recordlib.service.recorder.RecorderConstants {
-    *;
-}
--keep class com.ksy.recordlib.service.core.KSYStreamer {
+-keep class com.ksy.recordlib.service.streamer.**{ *;}
+-keep class com.ksy.recordlib.service.preview.** { *;}
+-keep class com.ksy.recordlib.service.streamer.FFStreamer { *;}
+-keep class com.ksy.recordlib.service.streamer.StreamerException { *;}
+-keep class com.ksy.recordlib.service.streamer.Frame { *;}
+-keep class com.ksy.recordlib.service.streamer.KSlImage { *;}
+-keep class com.ksy.recordlib.service.KSYStreamer {
     private <methods>;
 }
-
-
-
-
 
 
 -keep public class * extends android.view.View 
@@ -125,6 +101,9 @@
     public static <fields>;
 }
 
+-keep public class com.android.mydemo.R$*{
+    public static final int *;
+}
 
 -keepclassmembers class * implements java.io.Serializable {
     static final long serialVersionUID;

@@ -1,4 +1,5 @@
-package com.ksy.recordlib.demo;
+package com.ksy.recordlib.demo;//package com.ksy.recordlib.demo;
+//
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -7,128 +8,152 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
-import com.ksy.recordlib.service.recorder.RecorderConstants;
+import com.ksy.recordlib.service.core.KSYStreamerConfig;
+import com.ksy.recordlib.service.streamer.RecorderConstants;
 
-public class DemoActivity extends Activity implements OnClickListener {
+public class DemoActivity extends Activity implements OnClickListener, RadioGroup.OnCheckedChangeListener {
 
-	private Button connectBT;
-	private EditText urlET;
-	private EditText frameRateET;
-	private EditText initVideoBitrateET;
-	private EditText maxVideoBitrateET;
-	private EditText minVideoBitrateET;
-	private EditText audioBitRateET;
-	private RadioGroup resolutionCB;
-	private RadioButton resolution360button;
-	private RadioButton resolution480button;
-	private RadioButton resolution540button;
-	private RadioButton resolution720button;
-	
-	private RadioButton landscapeButton;
-	private RadioButton portraitButton;
+    private Button connectBT;
+    private EditText urlET;
+    private EditText frameRateET;
+    private EditText videoBitRateET;
+    private EditText audioBitRateET;
+    private RadioGroup resolutionCB;
+    private RadioGroup encodeMethod;
+    private RadioButton resolution360button;
+    private RadioButton resolution480button;
+    private RadioButton resolution540button;
+    private RadioButton resolution720button;
 
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
+    private RadioButton landscapeButton;
+    private RadioButton portraitButton;
 
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.demo_activity);
+    private RadioButton softwareEncoding;
+    private RadioButton hardwareEncoding;
+    private RadioButton muteAudio;
+    private CheckBox startPreviewAuto;
 
-		connectBT = (Button) findViewById(R.id.connectBT);
-		connectBT.setOnClickListener(this);
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
 
-		urlET = (EditText) findViewById(R.id.rtmpUrl);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.demo_activity);
 
-		frameRateET = (EditText) findViewById(R.id.frameRatePicker);
-		frameRateET.setInputType(InputType.TYPE_CLASS_NUMBER);
-		initVideoBitrateET = (EditText) findViewById(R.id.initVideoBitratePicker);
-		initVideoBitrateET.setInputType(InputType.TYPE_CLASS_NUMBER);
-		maxVideoBitrateET = (EditText) findViewById(R.id.maxVideoBitratePicker);
-		maxVideoBitrateET.setInputType(InputType.TYPE_CLASS_NUMBER);
-		minVideoBitrateET = (EditText) findViewById(R.id.minVideoBitratePicker);
-		minVideoBitrateET.setInputType(InputType.TYPE_CLASS_NUMBER);
-		audioBitRateET = (EditText) findViewById(R.id.audioBitratePicker);
-		audioBitRateET.setInputType(InputType.TYPE_CLASS_NUMBER);
-		resolutionCB = (RadioGroup) findViewById(R.id.resolution_group);
-		resolution360button = (RadioButton) findViewById(R.id.radiobutton1);
-		resolution480button = (RadioButton) findViewById(R.id.radiobutton2);
-		resolution540button = (RadioButton) findViewById(R.id.radiobutton3);
-		resolution720button = (RadioButton) findViewById(R.id.radiobutton4);
-		
-		landscapeButton = (RadioButton) findViewById(R.id.orientationbutton1);
-		portraitButton = (RadioButton) findViewById(R.id.orientationbutton2);
-	}
+        connectBT = (Button) findViewById(R.id.connectBT);
+        connectBT.setOnClickListener(this);
 
-	@Override
-	public void onClick(View view) {
-		switch (view.getId()) {
-		case R.id.connectBT:
-			int frameRate = 0;
-			int initVideoBitrate = 300;
-			int maxVideoBitrate = 500;
-			int minVideoBitrate = 200;
-			int audioBitRate = 0;
-			int videoResolution = 0;
-			boolean encodeWithHEVC = false;
-			boolean landscape = false;
+        urlET = (EditText) findViewById(R.id.rtmpUrl);
 
-			if (!TextUtils.isEmpty(urlET.getText())) {
+        frameRateET = (EditText) findViewById(R.id.frameRatePicker);
+        frameRateET.setInputType(InputType.TYPE_CLASS_NUMBER);
+        videoBitRateET = (EditText) findViewById(R.id.videoBitratePicker);
+        videoBitRateET.setInputType(InputType.TYPE_CLASS_NUMBER);
+        audioBitRateET = (EditText) findViewById(R.id.audioBitratePicker);
+        audioBitRateET.setInputType(InputType.TYPE_CLASS_NUMBER);
+        resolutionCB = (RadioGroup) findViewById(R.id.resolution_group);
+        resolution360button = (RadioButton) findViewById(R.id.radiobutton1);
+        resolution480button = (RadioButton) findViewById(R.id.radiobutton2);
+        resolution540button = (RadioButton) findViewById(R.id.radiobutton3);
+        resolution720button = (RadioButton) findViewById(R.id.radiobutton4);
+        resolutionCB.setOnCheckedChangeListener(this);
+        landscapeButton = (RadioButton) findViewById(R.id.orientationbutton1);
+        portraitButton = (RadioButton) findViewById(R.id.orientationbutton2);
+        softwareEncoding = (RadioButton) findViewById(R.id.encode_sw);
+        hardwareEncoding = (RadioButton) findViewById(R.id.encode_hw);
+        encodeMethod = (RadioGroup) findViewById(R.id.encode_group);
+        muteAudio = (RadioButton) findViewById(R.id.mute_audio);
+        startPreviewAuto = (CheckBox) findViewById(R.id.autoStart);
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.connectBT:
+                int frameRate = 0;
+                int videoBitRate = 0;
+                int audioBitRate = 0;
+                int videoResolution = 0;
+                boolean encodeWithHEVC = false;
+                boolean landscape = false;
+                boolean mute_audio = false;
+                boolean startAuto = false;
+
+                if (!TextUtils.isEmpty(urlET.getText())) {
 //					&& urlET.getText().toString().startsWith("rtmp")) {
-				if (!TextUtils.isEmpty(frameRateET.getText().toString())) {
-					frameRate = Integer.parseInt(frameRateET.getText()
-							.toString());
-				}
+                    if (!TextUtils.isEmpty(frameRateET.getText().toString())) {
+                        frameRate = Integer.parseInt(frameRateET.getText()
+                                .toString());
+                    }
 
-				if (!TextUtils.isEmpty(initVideoBitrateET.getText().toString())) {
-					initVideoBitrate = Integer.parseInt(initVideoBitrateET.getText()
-							.toString());
-				}
-				
-				if (!TextUtils.isEmpty(maxVideoBitrateET.getText().toString())) {
-					maxVideoBitrate = Integer.parseInt(maxVideoBitrateET.getText()
-							.toString());
-				}
-				
-				if (!TextUtils.isEmpty(minVideoBitrateET.getText().toString())) {
-					minVideoBitrate = Integer.parseInt(minVideoBitrateET.getText()
-							.toString());
-				}
+                    if (!TextUtils.isEmpty(videoBitRateET.getText().toString())) {
+                        videoBitRate = Integer.parseInt(videoBitRateET.getText()
+                                .toString());
+                    }
 
-				if (!TextUtils.isEmpty(audioBitRateET.getText().toString())) {
-					audioBitRate = Integer.parseInt(audioBitRateET.getText()
-							.toString());
-				}
+                    if (!TextUtils.isEmpty(audioBitRateET.getText().toString())) {
+                        audioBitRate = Integer.parseInt(audioBitRateET.getText()
+                                .toString());
+                    }
 
-				if (resolution360button.isChecked()) {
-					videoResolution = RecorderConstants.VIDEO_RESOLUTION_360P;
-				} else if (resolution480button.isChecked()){
-					videoResolution = RecorderConstants.VIDEO_RESOLUTION_480P;
-				} else if (resolution540button.isChecked()) {
-					videoResolution = RecorderConstants.VIDEO_RESOLUTION_540P;
-				} else {
-					videoResolution = RecorderConstants.VIDEO_RESOLUTION_720P;
-				}
+                    if (resolution360button.isChecked()) {
+                        videoResolution = RecorderConstants.VIDEO_RESOLUTION_360P;
+                    } else if (resolution480button.isChecked()) {
+                        videoResolution = RecorderConstants.VIDEO_RESOLUTION_480P;
+                    } else if (resolution540button.isChecked()) {
+                        videoResolution = RecorderConstants.VIDEO_RESOLUTION_540P;
+                    } else {
+                        videoResolution = RecorderConstants.VIDEO_RESOLUTION_720P;
+                    }
 
-				encodeWithHEVC = false;
-				
-				if (landscapeButton.isChecked()) {
-					landscape = true;
-				} else {
-					landscape = false;
-				}
-					
-				CameraActivity.startActivity(getApplicationContext(), 0, urlET.getText().toString(),
-							frameRate,initVideoBitrate,maxVideoBitrate, minVideoBitrate, audioBitRate,videoResolution,encodeWithHEVC, landscape);
+                    encodeWithHEVC = false;
+                    KSYStreamerConfig.ENCODE_METHOD encode_method;
+                    if (hardwareEncoding.isChecked()) {
+                        encode_method = KSYStreamerConfig.ENCODE_METHOD.HARDWARE;
+                    } else {
+                        encode_method = KSYStreamerConfig.ENCODE_METHOD.SOFTWARE;
+                    }
 
-			}
+                    if (landscapeButton.isChecked()) {
+                        landscape = true;
+                    } else {
+                        landscape = false;
+                    }
+                    if (muteAudio.isChecked()) {
+                        mute_audio = true;
+                    } else {
+                        mute_audio = false;
+                    }
+                    if (startPreviewAuto.isChecked()) {
+                        startAuto = true;
+                    } else {
+                        startAuto = false;
+                    }
 
-			break;
-		default:
-			break;
-		}
-	}
+                    CameraActivity.startActivity(getApplicationContext(), 0, urlET.getText().toString(),
+                            frameRate, videoBitRate, audioBitRate, videoResolution, encodeWithHEVC, landscape, mute_audio, encode_method, startAuto);
 
+                }
+
+                break;
+            default:
+                break;
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+//
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+    }
 }
