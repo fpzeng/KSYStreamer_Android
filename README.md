@@ -103,7 +103,7 @@ KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
 |        名称    	 |       数值      |       含义      |
 |:------------------:|:----------:|:-------------------:|
 |KSYVIDEO_OPEN_STREAM_SUCC|0|推流成功|
-|KSYVIDEO_INIT_DONE|1000|首次开启预览完成初始化的通知,表示可以进行推流，默认整个KSYStreamer生命周期只会回掉一次|
+|KSYVIDEO_INIT_DONE|1000|首次开启预览完成初始化的通知,表示可以进行推流，默认整个KSYStreamer生命周期只会回调一次|
 |KSYVIDEO_AUTH_FAILED|-1001|鉴权失败|
 |KSYVIDEO_ENCODED_FRAMES_THRESHOLD|-1002|鉴权失败后编码帧数达上限|
 |KSYVIDEO_ENCODED_FRAMES_FAILED|-1003|编码失败|
@@ -177,7 +177,7 @@ mStreamer.stop();
 . 初始化完成的回调
 
 首次开启预览完成初始化的通知,表示可以进行推流。通过OnStatusListener()发送，状态码为KSYVIDEO_INIT_DONE（1000）。
-默认整个KSYStreamer生命周期只会回掉一次。如希望在摄像头reopen的场景继续得到回调（比如用户按Home键，KSYStreamer会关掉并释放摄像头，再次返回重新初始化摄像头）需要设置setInitDoneCallbackEnable(true)，这个调用仅对**下一次**初始化有效。
+默认整个KSYStreamer生命周期只会回调一次。如希望在摄像头reopen的场景继续得到回调（比如用户按Home键，KSYStreamer会关掉并释放摄像头，再次返回重新初始化摄像头）需要设置setInitDoneCallbackEnable(true)，这个调用仅对**下一次**初始化有效。
 ```
  mStreamer.setInitDoneCallbackEnable(true);
 ```
