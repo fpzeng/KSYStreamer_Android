@@ -8,7 +8,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 
 ## 主要功能点
 
-* 自适应网络，根据实际网络情况动态调整目标码率，保证流畅性
+* 自适应网络，软编和硬编(new)都可根据实际网络情况动态调整目标码率，保证流畅性
 * 音频编码：AAC
 * 视频编码：H.264 
 * 推流协议：RTMP
@@ -17,9 +17,11 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * iOS摄像头：前, 后置摄像头（可动态切换）
 * 音视频目标码率：可设
 * 闪光灯：开/关
-* 美颜功能
+* 内置美颜选择功能
 * 支持软编和硬编
-* 美颜接口（正在开发中）
+* 美颜接口 (new)
+* 混音功能 (new)
+* 前置镜像功能 (new)
 
 
 ##使用方法
@@ -28,6 +30,8 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 - libs/armeabi-v7a/libDenoise_export.so
 - libs/armeabi-v7a/libksystreamer.so
 - libs/armeabi-v7a/libksyyuv.so
+- libs/armeabi-v7a/liblame.so  (new)
+- libs/armeabi-v7a/libreverb.so (new)
 - libs/ksylive3.0.jar
 
 其中jar包的包名是：
