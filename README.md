@@ -17,16 +17,18 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * iOS摄像头：前, 后置摄像头（可动态切换）
 * 音视频目标码率：可设
 * 闪光灯：开/关
-* 美颜功能和美颜接口（正在开发中）
+* 美颜功能
+* 支持软编和硬编
+* 美颜接口（正在开发中）
 
 
 ##使用方法
 ### 配置项目
 使用金山云Android直播推流SDK需引入相应的资源，并在项目中添加依赖关系：
-- libs/armeabi-v7a/libksypreview.so
-- libs/armeabi-v7a/libksyrecorder.so
+- libs/armeabi-v7a/libDenoise_export.so
+- libs/armeabi-v7a/libksystreamer.so
 - libs/armeabi-v7a/libksyyuv.so
-- libs/ksylive1.3.jar
+- libs/ksylive3.0.jar
 
 其中jar包的包名是：
 - com.ksy.recordlib.service.core
@@ -87,8 +89,11 @@ KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
 |setSecretKeySign|设置SecretKeySign，用于SDK鉴权|
 |setTimeSecond|设置时间戳，用于SDK鉴权|
 |setAutoAdjustBitrate|是否打开自适应码率功能，默认打开|
+|setStartPreviewManual|设置手动启动预览,除非调用startCameraPreview接口否则不自动预览，默认关闭|
+|setEnableCameraMirror|设置开启前置摄像头镜像，默认关闭|
+|setBeautyFilter|设置内置美颜类别(目前软编只支持一种)|
 
-其中分辨率等级可以设置为RecorderConstants.VIDEO_RESOLUTION_360P,RecorderConstants.VIDEO_RESOLUTION_480P,RecorderConstants.VIDEO_RESOLUTION_540P或RecorderConstants.VIDEO_RESOLUTION_720P。
+其中分辨率等级可以设置为RecorderConstants.VIDEO_RESOLUTION_360P,RecorderConstants.VIDEO_RESOLUTION_480P,RecorderConstants.VIDEO_RESOLUTION_540P或RecorderConstants.VIDEO_RESOLUTION_720P。内置美颜种类可以设置为FILTER_BEAUTY_DISABLE(不使用美颜)、FILTER_BEAUTY_DENOISE、FILTER_BEAUTY、FILTER_SKINWHITEN、FILTER_BEAUTY_PLUS或FILTER_BEAUTY_PLUS，其中软编只可以设置为FILTER_BEAUTY_DISABLE(不使用美颜)和FILTER_BEAUTY_DENOISE。
 
 . 创建监听器
 在类KSYStreamer中定义了接口onStatusListener，开发者实现并设置给SDK之后，可通过onStatus回调收到相应的信息，其中SDK预定义的状态码如下所示。
@@ -98,6 +103,7 @@ KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
 |        名称    	 |       数值      |       含义      |
 |:------------------:|:----------:|:-------------------:|
 |KSYVIDEO_OPEN_STREAM_SUCC|0|推流成功|
+|KSYVIDEO_INIT_DONE|1000|首次开启预览完成初始化的通知,表示可以进行推流，默认整个KSYStreamer生命周期只会回调一次|
 |KSYVIDEO_AUTH_FAILED|-1001|鉴权失败|
 |KSYVIDEO_ENCODED_FRAMES_THRESHOLD|-1002|鉴权失败后编码帧数达上限|
 |KSYVIDEO_ENCODED_FRAMES_FAILED|-1003|编码失败|
@@ -167,6 +173,15 @@ mUploadedDataSize = mStreamer.getUploadedKBytes()
 ```
 mStreamer.stop();
 ```
+
+. 初始化完成的回调
+
+首次开启预览完成初始化的通知,表示可以进行推流。通过OnStatusListener()发送，状态码为KSYVIDEO_INIT_DONE（1000）。
+默认整个KSYStreamer生命周期只会回调一次。如希望在摄像头reopen的场景继续得到回调（比如用户按Home键，KSYStreamer会关掉并释放摄像头，再次返回重新初始化摄像头）需要设置setInitDoneCallbackEnable(true)，这个调用仅对**下一次**初始化有效。
+```
+ mStreamer.setInitDoneCallbackEnable(true);
+```
+
 . 注意事项
 采集的状态依赖于Activity的生命周期，所以必须在Activity的生命周期中也调用SDK相应的接口，例如：onPause, onResume。
 预览区域默认全屏，暂不支持自定义分辨率。
