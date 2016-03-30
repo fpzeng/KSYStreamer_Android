@@ -35,22 +35,22 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_weight="1"
+                android:background="#11123456"
                 android:text="@string/click_to_shoot"
                 android:textColor="@color/font_color_35"
-                android:background="#11123456"
                 android:textSize="@dimen/font_size_38px"></TextView>
 
             <CheckBox
-                android:layout_marginLeft="20dp"
-                android:background="#11123456"
                 android:id="@+id/click_to_switch_beauty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:layout_marginLeft="20dp"
                 android:layout_weight="1"
+                android:background="#11123456"
+                android:checked="false"
                 android:text="@string/beauty_switcher"
                 android:textColor="@color/font_color_35"
-                android:checked="true"
                 android:textSize="@dimen/font_size_38px"></CheckBox>
         </LinearLayout>
     </RelativeLayout>

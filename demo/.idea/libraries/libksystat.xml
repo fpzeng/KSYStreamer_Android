@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="android-support-v4">
+  <library name="libksystat">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/android-support-v4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/libs/libksystat.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

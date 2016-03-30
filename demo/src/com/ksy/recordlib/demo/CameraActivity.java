@@ -25,12 +25,15 @@ import android.widget.Toast;
 
 import com.ksy.recordlib.service.core.KSYStreamer;
 import com.ksy.recordlib.service.core.KSYStreamerConfig;
+import com.ksy.recordlib.service.hardware.ksyfilter.KSYImageFilter;
 import com.ksy.recordlib.service.stats.OnLogEventListener;
+import com.ksy.recordlib.service.streamer.OnPreviewFrameListener;
 import com.ksy.recordlib.service.streamer.OnStatusListener;
 import com.ksy.recordlib.service.streamer.RecorderConstants;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Arrays;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -56,12 +59,13 @@ public class CameraActivity extends Activity {
     private boolean recording = false;
     private boolean isFlashOpened = false;
     private boolean startAuto = false;
+    private boolean audio_mix = false;
     private String mUrl;
     private static final String START_STRING = "开始直播";
     private static final String STOP_STRING = "停止直播";
     private TextView mUrlTextView;
     private volatile boolean mAcitivityResumed = false;
-
+    private KSYStreamerConfig.ENCODE_METHOD encode_method = KSYStreamerConfig.ENCODE_METHOD.SOFTWARE;
     public final static String URL = "url";
     public final static String FRAME_RATE = "framerate";
     public final static String VIDEO_BITRATE = "video_bitrate";
@@ -72,12 +76,18 @@ public class CameraActivity extends Activity {
     public final static String ENCDODE_METHOD = "ENCDODE_METHOD";
     public final static String MUTE_AUDIO = "mute_audio";
     public final static String START_ATUO = "start_auto";
+    public final static String AUDIO_MIX = "audio_mix";
+    public final static String FRONT_CAMERA_MIRROR = "front_camera_mirror";
+    public final static String TEST_SW_FILTER = "testSWFilterInterface";
 
     ExecutorService executorService = Executors.newSingleThreadExecutor();
+    private int frameCount;
+    private boolean testSWFilterInterface;
 
     public static void startActivity(Context context, int fromType,
                                      String rtmpUrl, int frameRate, int videoBitrate, int audioBitrate,
-                                     int videoResolution, boolean encodeWithHEVC, boolean isLandscape, boolean mute_audio, KSYStreamerConfig.ENCODE_METHOD encodeMethod, boolean startAuto) {
+                                     int videoResolution, boolean encodeWithHEVC, boolean isLandscape, boolean mute_audio, boolean audio_mix, boolean isFrontCameraMirror, KSYStreamerConfig.ENCODE_METHOD encodeMethod, boolean startAuto,
+                                     boolean testSWFilterInterface) {
         Intent intent = new Intent(context, CameraActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("type", fromType);
@@ -91,6 +101,9 @@ public class CameraActivity extends Activity {
         intent.putExtra(ENCDODE_METHOD, encodeMethod);
         intent.putExtra(MUTE_AUDIO, mute_audio);
         intent.putExtra(START_ATUO, startAuto);
+        intent.putExtra(AUDIO_MIX, audio_mix);
+        intent.putExtra(FRONT_CAMERA_MIRROR, isFrontCameraMirror);
+        intent.putExtra(TEST_SW_FILTER, testSWFilterInterface);
         context.startActivity(intent);
     }
 
@@ -108,16 +121,6 @@ public class CameraActivity extends Activity {
         mCameraPreview = (GLSurfaceView) findViewById(R.id.camera_preview);
         mUrlTextView = (TextView) findViewById(R.id.url);
         enable_beauty = (CheckBox) findViewById(R.id.click_to_switch_beauty);
-        enable_beauty.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-                    mStreamer.setBeautyFilter(RecorderConstants.FILTER_BEAUTY_DENOISE);
-                } else {
-                    mStreamer.setBeautyFilter(RecorderConstants.FILTER_BEAUTY_DISABLE);
-                }
-            }
-        });
         KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
         mHandler = new Handler() {
 
@@ -131,6 +134,7 @@ public class CameraActivity extends Activity {
                         case RecorderConstants.KSYVIDEO_CONNECT_BREAK:
                             Toast.makeText(CameraActivity.this, content,
                                     Toast.LENGTH_LONG).show();
+                            chronometer.stop();
                             mShootingText.setText(START_STRING);
                             mShootingText.postInvalidate();
                             break;
@@ -150,6 +154,8 @@ public class CameraActivity extends Activity {
                                     Toast.LENGTH_LONG).show();
                             break;
                         case RecorderConstants.KSYVIDEO_INIT_DONE:
+                            if (mShootingText != null)
+                                mShootingText.setEnabled(true);
                             Toast.makeText(getApplicationContext(), "初始化完成", Toast.LENGTH_SHORT).show();
                             Log.e(TAG, "---------KSYVIDEO_INIT_DONE");
 //							if(!checkoutPreviewStarted()){
@@ -165,7 +171,7 @@ public class CameraActivity extends Activity {
                             break;
                         default:
                             Toast.makeText(CameraActivity.this, content,
-                                    Toast.LENGTH_LONG).show();
+                                    Toast.LENGTH_SHORT).show();
                     }
                 }
             }
@@ -189,8 +195,8 @@ public class CameraActivity extends Activity {
             int videoBitrate = bundle.getInt(VIDEO_BITRATE, 0);
             if (videoBitrate > 0) {
                 builder.setMaxAverageVideoBitrate(videoBitrate);
-                builder.setMinAverageVideoBitrate(videoBitrate * 2 / 5);
-                builder.setInitAverageVideoBitrate(videoBitrate * 3 / 5);
+                builder.setMinAverageVideoBitrate(videoBitrate * 3 / 5);
+                builder.setInitAverageVideoBitrate(videoBitrate * 4 / 5);
             }
 
             int audioBitrate = bundle.getInt(AUDIO_BITRATE, 0);
@@ -201,7 +207,7 @@ public class CameraActivity extends Activity {
             int videoResolution = bundle.getInt(VIDEO_RESOLUTION, 0);
             builder.setVideoResolution(videoResolution);
 
-            KSYStreamerConfig.ENCODE_METHOD encode_method = (KSYStreamerConfig.ENCODE_METHOD) bundle.get(ENCDODE_METHOD);
+            encode_method = (KSYStreamerConfig.ENCODE_METHOD) bundle.get(ENCDODE_METHOD);
             builder.setEncodeMethod(encode_method);
 
             String timeSec = String.valueOf(System.currentTimeMillis() / 1000);
@@ -219,7 +225,7 @@ public class CameraActivity extends Activity {
 
             boolean landscape = bundle.getBoolean(LANDSCAPE, false);
             builder.setDefaultLandscape(landscape);
-            builder.setBeautyFilter(RecorderConstants.FILTER_BEAUTY_DENOISE);
+
             if (landscape) {
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
             } else {
@@ -228,6 +234,11 @@ public class CameraActivity extends Activity {
             boolean mute_audio = bundle.getBoolean(MUTE_AUDIO, false);
             builder.setMuteAudio(mute_audio);
             startAuto = bundle.getBoolean(START_ATUO, false);
+            audio_mix = bundle.getBoolean(AUDIO_MIX, false);
+
+            boolean isFrontCameraMirror = bundle.getBoolean(FRONT_CAMERA_MIRROR, false);
+            builder.setFrontCameraMirror(isFrontCameraMirror);
+            testSWFilterInterface = bundle.getBoolean(TEST_SW_FILTER, false);
 
         }
 
@@ -237,7 +248,34 @@ public class CameraActivity extends Activity {
         mStreamer.setOnStatusListener(mOnErrorListener);
         mStreamer.setOnLogListener(mOnLogListener);
         mStreamer.enableDebugLog(false);
+        if (testSWFilterInterface) {
+            mStreamer.setOnPreviewFrameListener(new OnPreviewFrameListener() {
+                @Override
+                public void onPreviewFrame(byte[] data, int width, int height) {
+                    frameCount++;
+                    Arrays.fill(data, width * height, data.length, (byte) 128);
+                }
+            });
+        }
 
+        enable_beauty.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (isChecked) {
+                    if (encode_method == KSYStreamerConfig.ENCODE_METHOD.SOFTWARE) {
+                        mStreamer.setBeautyFilter(RecorderConstants.FILTER_BEAUTY_DENOISE);
+                    } else {
+                        showChooseFilter();
+                    }
+                } else {
+                    if (encode_method == KSYStreamerConfig.ENCODE_METHOD.SOFTWARE) {
+                        mStreamer.setBeautyFilter(RecorderConstants.FILTER_BEAUTY_DISABLE);
+                    } else {
+                        mStreamer.setBeautyFilter(new KSYImageFilter());
+                    }
+                }
+            }
+        });
         mShootingText = (TextView) findViewById(R.id.click_to_shoot);
         mShootingText.setClickable(true);
         mShootingText.setOnClickListener(new View.OnClickListener() {
@@ -246,6 +284,9 @@ public class CameraActivity extends Activity {
             public void onClick(View arg0) {
                 if (recording) {
                     if (mStreamer.stopStream()) {
+                        if (audio_mix) {
+                            mStreamer.stopMusic();
+                        }
                         chronometer.stop();
                         mShootingText.setText(START_STRING);
                         mShootingText.postInvalidate();
@@ -258,6 +299,11 @@ public class CameraActivity extends Activity {
                         mShootingText.setText(STOP_STRING);
                         mShootingText.postInvalidate();
                         recording = true;
+
+                        if (audio_mix) {
+                            mStreamer.startMusic("/sdcard/test.mp3");
+                            mStreamer.setHeadsetPlugged(true);
+                        }
                     } else {
                         Log.e(TAG, "操作太频繁");
                     }
@@ -265,6 +311,9 @@ public class CameraActivity extends Activity {
 
             }
         });
+        if (startAuto) {
+            mShootingText.setEnabled(false);
+        }
 
         mDeleteView = findViewById(R.id.backoff);
         mDeleteView.setOnClickListener(mObserverButton);
@@ -280,6 +329,22 @@ public class CameraActivity extends Activity {
 
         chronometer = (Chronometer) this.findViewById(R.id.chronometer);
 
+    }
+
+
+    private void showChooseFilter() {
+        AlertDialog alertDialog;
+        alertDialog = new AlertDialog.Builder(this).setTitle("请选择美颜滤镜").setSingleChoiceItems(
+                new String[]{"BEAUTY", "SKIN_WHITEN", "BEAUTY_PLUS", "DENOISE",}, -1, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mStreamer.setBeautyFilter(which + 16);
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        alertDialog.setCancelable(false);
+        alertDialog.show();
     }
 
     @Override
@@ -385,7 +450,7 @@ public class CameraActivity extends Activity {
                                     boolean needReconnect = true;
                                     try {
                                         while (needReconnect) {
-                                            Thread.sleep(2000);
+                                            Thread.sleep(3000);
                                             //只在Activity对用户可见时重连
                                             if (mAcitivityResumed) {
                                                 if (mStreamer.startStream()) {

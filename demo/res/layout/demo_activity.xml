@@ -102,34 +102,65 @@
             android:text="软编" />
     </RadioGroup>
 
-    <RadioGroup
+    <LinearLayout
         android:id="@+id/audio_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/encode_group"
-        android:orientation="horizontal">
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@id/encode_group">
 
-        <RadioButton
+        <CheckBox
             android:id="@+id/mute_audio"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_below="@id/encode_group"
             android:checked="false"
             android:text="静音开关" />
-    </RadioGroup>
 
-    <CheckBox
-        android:id="@+id/autoStart"
-        android:layout_width="wrap_content"
+        <CheckBox
+            android:id="@+id/audio_mix"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/encode_group"
+            android:checked="false"
+            android:text="混音开关" />
+
+        <CheckBox
+            android:id="@+id/front_camera_mirror"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/encode_group"
+            android:checked="false"
+            android:text="前置摄像头镜像" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/init_group"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/audio_group"
-        android:text="初始化完成后启动推流（软编有效）"
-        android:checked="false" />
+        android:orientation="vertical"
+        android:layout_below="@id/audio_group">
+
+        <CheckBox
+            android:id="@+id/autoStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="初始化完成后启动推流（软编有效）" />
+
+        <CheckBox
+            android:id="@+id/testsw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="测试软编预处理(填充UV分量)" />
+    </LinearLayout>
 
     <LinearLayout
         android:id="@+id/frameRate"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/autoStart">
+        android:layout_below="@id/init_group">
 
         <TextView
             android:layout_width="wrap_content"
@@ -191,6 +222,5 @@
         android:layout_below="@id/audioBitrate"
         android:layout_marginTop="10dp"
         android:text="准备直播" />
-
 
 </RelativeLayout>
