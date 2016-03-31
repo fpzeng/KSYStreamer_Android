@@ -213,6 +213,27 @@ mStreamer.stop();
  
 ```
 
+    
+.   混音功能描述如下：
+
+-在耳机模式（接口自动对Mico采集的音频做了混响处理）：调用startMusic播放本地音乐和Mico声音开始混音，调用示例如下：
+```
+	mStreamer.startMusic("/sdcard/test.mp3");
+	mStreamer.setHeadsetPlugged(true);
+```
+
+-在非耳机模式（接口自动对Mico采集的音频做了混响处理）：调用startMusic播放本地音乐，或者其它应用播放的音乐和Mico的音频自动混音进去了，不需要额外处理。
+```
+    boolean startMusic(String path); // 播放音乐开始混音
+    boolean stopMusic();  // 停止播放音乐
+    
+    void setHeadsetPlugged(boolean isPlugged); // 支持耳机模式混音
+    void setMusicVolume(int volume); // 设置音乐音量
+
+    void setVoiceVolume(int volume); // 设置Mico音量
+    void setReverbLevel(int level); // 设置混响级别1，2，3，4，5（可以调整到一个合适的级别，默认为5）
+```
+
 . 注意事项
 采集的状态依赖于Activity的生命周期，所以必须在Activity的生命周期中也调用SDK相应的接口，例如：onPause, onResume。
 预览区域默认全屏，暂不支持自定义分辨率。
