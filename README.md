@@ -186,6 +186,33 @@ mStreamer.stop();
  mStreamer.setInitDoneCallbackEnable(true);
 ```
 
+. 自定义滤镜
+对于硬编，可以使用自定义OpenGL方式的滤镜，自定义的滤镜必须为[KSYImageFilter](https://github.com/ksvc/KSYStreamer_Android/blob/master/doc/KSYImageFilter.java)的子类，通过形如setBeautyFilter的方式设置：
+```
+ mStreamer.setInitDoneCallbackEnable(new KSYImageFilter());
+```
+
+[KSYImageFilter](https://github.com/ksvc/KSYStreamer_Android/blob/master/doc/KSYImageFilter.java)为分离出来用于OpenGL绘制的框架，主要方便您实现自定义Vertex和Fragment Shader的滤镜，下面为主要方法说明。
+
+```
+ //执行OpenGL绘制纹理时调用
+ public void onDraw(final int textureId, final float[] texMatrix) ;
+ 
+ //当获得输出纹理大小时回调
+ public void onInputSizeChanged(final int width, final int height) ；
+ 
+ //编译VertextShader和FragmentShader之前回调
+ Ipublic void onInit() ;
+ 
+ //编译VertextShader和FragmentShader之后，回调
+ public void onInitialized(); 
+ 
+ //销毁滤镜，主要用来清理texture和GLProgram，释放资源
+ public final void destroy() ;
+ 
+ 
+```
+
 . 注意事项
 采集的状态依赖于Activity的生命周期，所以必须在Activity的生命周期中也调用SDK相应的接口，例如：onPause, onResume。
 预览区域默认全屏，暂不支持自定义分辨率。
