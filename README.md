@@ -145,9 +145,9 @@ public KSYStreamer.onStatusListener mOnStatusListener = new KSYStreamer.onStatus
 	};
 ```
 
-. 实例化并创建KSYRecordClient
+. 实例化并创建KSYStreamer
 ```
-mStreamer = new KSYStreamer(this);
+mStreamer = new KSYStreamer(mContext);
 mStreamer.setDisplayPreview(mCameraPreview);
 mStremer.setConfig(builder.build());
 mStremer.setOnStatusListener(mOnStatusListener);
