@@ -117,9 +117,9 @@ KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
 |KSYVIDEO_WRITE_FRAME_FAILED|-1007|推流过程中断网|
 |KSYVIDEO_OPEN_CAMERA_FAIL|-2001|打开摄像头失败|
 |KSYVIDEO_CAMERA_DISABLED|-2002|打开摄像头失败|
-|KSYVIDEO_NETWORK_NOT_GOOD|-3001|网络状况不佳|
-|KSYVIDEO_EST_BW_RAISE|-3002|码率开始上调的通知|
-|KSYVIDEO_EST_BW_DROP|-3003|码率开始下调的通知|
+|KSYVIDEO_NETWORK_NOT_GOOD|3001|网络状况不佳|
+|KSYVIDEO_EST_BW_RAISE|3002|码率开始上调的通知|
+|KSYVIDEO_EST_BW_DROP|3003|码率开始下调的通知|
 
 在使用SDK开始推流之后，SDK会发起认证请求，如果鉴权失败会通过回调告知开发者出现**KSYVIDEO_AUTH_FAILED**，反之则没有。
 如果鉴权失败，则编码的帧数是会有上限，当编码帧率为15FPS时，可推流时间大约是在13分钟至26分钟之间。推流编码的帧数达到上限后会通过回调函数告知开发者出现**KSYVIDEO_ENCODED_FRAMES_THRESHOLD**，并且会**停止推流**。认证相关的设置请参照Demo。
