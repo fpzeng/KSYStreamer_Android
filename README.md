@@ -243,6 +243,33 @@ mStreamer.setEnableReverb(true);
 ```
 mStreamer.setReverbLevel(4);
 ```
+. 混音
+开启混音的时候调用如下接口：
+```
+mStreamer.startMixMusic(String path,OnProgressListener listener,boolean loop);
+```
+参数解释:
+path /*本地音乐文件路径，目前只支持mp3格式*/
+listener /*设置回调接口*/
+loop /*是否单曲循环*/
+
+调用示例：
+```
+mStreamer.startMixMusic("/sdcard/test.mp3", mListener,true);
+
+ public interface OnProgressListener {
+    /*音乐播放进度，实时返回已经播放的时长（毫秒）*/
+    void onMusicProgress(long currTime);
+    /*播放结束回调*/
+    void onMusicStopped();
+}
+```
+
+注意：播放下一首歌曲需要调用mStreamer.stopMixMusic()停止后，再开启下一首歌曲。
+```
+mStreamer.startMixMusic(String path,OnProgressListener listener,boolean loop)
+mStreamer.stopMixMusic()
+```
 
 . 注意事项
 采集的状态依赖于Activity的生命周期，所以必须在Activity的生命周期中也调用SDK相应的接口，例如：onPause, onResume。
