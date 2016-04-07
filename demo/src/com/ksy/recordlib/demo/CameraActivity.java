@@ -30,6 +30,7 @@ import com.ksy.recordlib.service.stats.OnLogEventListener;
 import com.ksy.recordlib.service.streamer.OnPreviewFrameListener;
 import com.ksy.recordlib.service.streamer.OnStatusListener;
 import com.ksy.recordlib.service.streamer.RecorderConstants;
+import com.ksy.recordlib.service.util.audio.OnProgressListener;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -165,6 +166,10 @@ public class CameraActivity extends Activity {
                                 mShootingText.setText(STOP_STRING);
                                 mShootingText.postInvalidate();
                                 recording = true;
+                                if (audio_mix) {
+                                    mStreamer.startMixMusic("/sdcard/test.mp3", mListener,true);
+                                    mStreamer.setHeadsetPlugged(true);
+                                }
                             } else {
                                 Log.e(TAG, "操作太频繁");
                             }
@@ -248,6 +253,7 @@ public class CameraActivity extends Activity {
         mStreamer.setOnStatusListener(mOnErrorListener);
         mStreamer.setOnLogListener(mOnLogListener);
         mStreamer.enableDebugLog(false);
+
         if (testSWFilterInterface) {
             mStreamer.setOnPreviewFrameListener(new OnPreviewFrameListener() {
                 @Override
@@ -285,7 +291,7 @@ public class CameraActivity extends Activity {
                 if (recording) {
                     if (mStreamer.stopStream()) {
                         if (audio_mix) {
-                            mStreamer.stopMusic();
+                            mStreamer.stopMixMusic();
                         }
                         chronometer.stop();
                         mShootingText.setText(START_STRING);
@@ -300,8 +306,11 @@ public class CameraActivity extends Activity {
                         mShootingText.postInvalidate();
                         recording = true;
 
+                        mStreamer.setEnableReverb(true);
+                        mStreamer.setReverbLevel(4);
+
                         if (audio_mix) {
-                            mStreamer.startMusic("/sdcard/test.mp3");
+                            mStreamer.startMixMusic("/sdcard/test.mp3", mListener,true);
                             mStreamer.setHeadsetPlugged(true);
                         }
                     } else {
@@ -381,6 +390,9 @@ public class CameraActivity extends Activity {
                                 chronometer.stop();
                                 recording = false;
                                 CameraActivity.this.finish();
+                                if (audio_mix) {
+                                    mStreamer.stopMixMusic();
+                                }
 
                             }
                         }).show();
@@ -456,6 +468,11 @@ public class CameraActivity extends Activity {
                                                 if (mStreamer.startStream()) {
                                                     recording = true;
                                                     needReconnect = false;
+
+                                                    if (audio_mix) {
+                                                       mStreamer.startMixMusic("/sdcard/test.mp3", mListener,true);
+                                                       mStreamer.setHeadsetPlugged(true);
+                                                    }
                                                 }
                                             }
                                         }
@@ -474,6 +491,18 @@ public class CameraActivity extends Activity {
         }
 
     };
+
+    private OnProgressListener mListener = new OnProgressListener() {
+        @Override
+        public void onMusicProgress(long currTimeMsec) {
+            Log.d(TAG, "The progress of the currently playing music:" + currTimeMsec);
+        }
+        @Override
+        public  void onMusicStopped() {
+            Log.d(TAG, "End of the currently playing music");
+        }
+    };
+
 
     private OnLogEventListener mOnLogListener = new OnLogEventListener() {
         @Override
@@ -553,6 +582,9 @@ public class CameraActivity extends Activity {
                         chronometer.stop();
                         recording = false;
                         CameraActivity.this.finish();
+                        if (audio_mix) {
+                            mStreamer.stopMixMusic();
+                        }
 
                     }
                 }).show();
