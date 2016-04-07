@@ -237,19 +237,16 @@ mStreamer.stop();
 . 混响
 在调用mStreamer.startStream()开始推流后调用以下接口可以激活混响功能支持：
 ```
-：
 mStreamer.setEnableReverb(true);
 ```
 设置混响级别（1 - 4 )
 ```
-：
 mStreamer.setReverbLevel(4);
 ```
 
 . 注意事项
 采集的状态依赖于Activity的生命周期，所以必须在Activity的生命周期中也调用SDK相应的接口，例如：onPause, onResume。
 ```
-：
 public class CameraActivity extends Activity {
 
     @Override
