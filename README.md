@@ -20,7 +20,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * 闪光灯：开/关
 * 内置美颜选择功能
 * 美颜接口 (new)
-* 混音功能 (new)
+* 混音功能 (new) 目前仅支持44100,mono,mp3格式,正在完善中
 * 前置镜像功能 (new)
 
 
@@ -234,8 +234,67 @@ mStreamer.stop();
     void setReverbLevel(int level); // 设置混响级别1，2，3，4，5（可以调整到一个合适的级别，默认为5）
 ```
 
+. 混响
+在调用mStreamer.startStream()开始推流后调用以下接口可以激活混响功能支持：
+```
+mStreamer.setEnableReverb(true);
+```
+设置混响级别（1 - 4 )
+```
+mStreamer.setReverbLevel(4);
+```
+. 混音
+开启混音的时候调用如下接口：
+```
+mStreamer.startMixMusic(String path,OnProgressListener listener,boolean loop);
+```
+参数解释:
+path /*本地音乐文件路径，目前只支持mp3格式*/
+listener /*设置回调接口*/
+loop /*是否单曲循环*/
+
+调用示例：
+```
+mStreamer.startMixMusic("/sdcard/test.mp3", mListener,true);
+
+ public interface OnProgressListener {
+    /*音乐播放进度，实时返回已经播放的时长（毫秒）*/
+    void onMusicProgress(long currTime);
+    /*播放结束回调*/
+    void onMusicStopped();
+}
+```
+
+注意：播放下一首歌曲需要调用mStreamer.stopMixMusic()停止后，再开启下一首歌曲。
+```
+mStreamer.startMixMusic(String path,OnProgressListener listener,boolean loop)
+mStreamer.stopMixMusic()
+```
+
 . 注意事项
 采集的状态依赖于Activity的生命周期，所以必须在Activity的生命周期中也调用SDK相应的接口，例如：onPause, onResume。
+```
+public class CameraActivity extends Activity {
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mStreamer.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mStreamer.onPause();
+    }
+    
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mStreamer.onDestroy();
+    }
+}
+```
 预览区域默认全屏，暂不支持自定义分辨率。
 如有其它需求可以联系[我们](http://www.ksyun.com/)
 ##反馈与建议
