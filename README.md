@@ -20,26 +20,25 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * 闪光灯：开/关
 * 内置美颜选择功能
 * 美颜接口 (new)
-* 混音功能 (new) 目前仅支持44100,mono,mp3格式,正在完善中
+* 混音功能 (new) 可支持本地mp3,aac等格式
 * 前置镜像功能 (new)
-
+* 手动指定自动对焦测光区域 (new)
 
 ##使用方法
-### 配置项目
+### 配置项目  
 使用金山云Android直播推流SDK需引入相应的资源，并在项目中添加依赖关系：
-- libs/armeabi-v7a/libDenoise_export.so
-- libs/armeabi-v7a/libksystreamer.so
-- libs/armeabi-v7a/libksyyuv.so
-- libs/armeabi-v7a/liblame.so  (new)
-- libs/armeabi-v7a/libreverb.so (new)
+- libs/armeabi-v7a/libDenoise_export.so  
+- libs/armeabi-v7a/libksystreamer.so  
+- libs/armeabi-v7a/libksyyuv.so  
+- libs/armeabi-v7a/libreverb.so (new)  
 - libs/ksylive3.0.jar
 
-其中jar包的包名是：
+其中jar包的包名是：  
 - com.ksy.recordlib.service.core
 
 ###系统权限
 使用本SDK时需要在AndroidManifest.xml里申请相应权限
-```
+```xml
 <!-- 使用权限 -->
 <uses-permission android:name="android.permission.READ_PHONE_STATE" />
 <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -58,7 +57,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 ```
 ##代码示例
 . 布局文件
-```
+```xml
 <android.opengl.GLSurfaceView
 	android:id="@+id/camera_preview"
 	android:layout_width="match_parent"
@@ -96,11 +95,13 @@ KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
 |setStartPreviewManual|设置手动启动预览,除非调用startCameraPreview接口否则不自动预览，默认关闭|
 |setEnableCameraMirror|设置开启前置摄像头镜像，默认关闭|
 |setBeautyFilter|设置内置美颜类别(目前软编只支持一种)|
+|setManualFocus|设置开启手动指定对焦测光区域，默认关闭|
 
-其中分辨率等级可以设置为RecorderConstants.VIDEO_RESOLUTION_360P,RecorderConstants.VIDEO_RESOLUTION_480P,RecorderConstants.VIDEO_RESOLUTION_540P或RecorderConstants.VIDEO_RESOLUTION_720P。内置美颜种类可以设置为FILTER_BEAUTY_DISABLE(不使用美颜)、FILTER_BEAUTY_DENOISE、FILTER_BEAUTY、FILTER_SKINWHITEN、FILTER_BEAUTY_PLUS或FILTER_BEAUTY_PLUS，其中软编只可以设置为FILTER_BEAUTY_DISABLE(不使用美颜)和FILTER_BEAUTY_DENOISE。
+其中分辨率等级可以设置为	RecorderConstants.VIDEO_RESOLUTION_360P,RecorderConstants.VIDEO_RESOLUTION_480P,RecorderConstants.VIDEO_RESOLUTION_540P或RecorderConstants.VIDEO_RESOLUTION_720P。内置美颜种类可以设置为FILTER_BEAUTY_DISABLE(不使用美颜)、FILTER_BEAUTY_DENOISE、FILTER_BEAUTY、FILTER_SKINWHITEN、FILTER_BEAUTY_PLUS或FILTER_BEAUTY_PLUS，其中软编只可以设置为FILTER_BEAUTY_DISABLE(不使用美颜)和FILTER_BEAUTY_DENOISE。
 
 . 创建监听器
 在类KSYStreamer中定义了接口onStatusListener，开发者实现并设置给SDK之后，可通过onStatus回调收到相应的信息，其中SDK预定义的状态码如下所示。
+
 - SDK预定义的常量   
 
 
@@ -123,8 +124,9 @@ KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
 
 在使用SDK开始推流之后，SDK会发起认证请求，如果鉴权失败会通过回调告知开发者出现**KSYVIDEO_AUTH_FAILED**，反之则没有。
 如果鉴权失败，则编码的帧数是会有上限，当编码帧率为15FPS时，可推流时间大约是在13分钟至26分钟之间。推流编码的帧数达到上限后会通过回调函数告知开发者出现**KSYVIDEO_ENCODED_FRAMES_THRESHOLD**，并且会**停止推流**。认证相关的设置请参照Demo。
+
 - 创建onStatusListener
-```
+```java
 public KSYStreamer.onStatusListener mOnStatusListener = new KSYStreamer.onStatusListener() {
 		@Override
 		public void onStatus(int what, int arg1, int arg2) 
@@ -146,7 +148,7 @@ public KSYStreamer.onStatusListener mOnStatusListener = new KSYStreamer.onStatus
 ```
 
 . 实例化并创建KSYStreamer
-```
+```java
 mStreamer = new KSYStreamer(mContext);
 mStreamer.setDisplayPreview(mCameraPreview);
 mStremer.setConfig(builder.build());
@@ -187,43 +189,80 @@ mStreamer.stop();
 ```
 
 . 自定义滤镜
-对于硬编，可以使用自定义OpenGL方式的滤镜，自定义的滤镜必须为[KSYImageFilter](https://github.com/ksvc/KSYStreamer_Android/blob/master/doc/KSYImageFilter.java)的子类，通过形如setBeautyFilter的方式设置：
+
+对于硬编，可以使用自定义OpenGL方式的滤镜，自定义的滤镜必须为KSYImageFilter的子类，自定义的滤镜需要继承KSYImageFilter并通过形如setBeautyFilter的方式设置，该接口支持推流中的动态调用：
 ```
  mStreamer.setInitDoneCallbackEnable(new KSYImageFilter());
 ```
 
-[KSYImageFilter](https://github.com/ksvc/KSYStreamer_Android/blob/master/doc/KSYImageFilter.java)为分离出来用于OpenGL绘制的框架，主要方便您实现自定义Vertex和Fragment Shader的滤镜，下面为主要方法说明。
+KSYImageFilter为分离出来用于OpenGL绘制的框架，主要方便您实现自定义Vertex和Fragment Shader的滤镜，下面为主要方法和变量说明。  
+**注意：自定义的滤镜必须有public的无参构造器，并且调用KSYImageFilter(String vertexShader, String fragmentShader) 进行初始化**
+
+```java
+
+//构造方法，此处需要传入定点和片元着色器
+public KSYImageFilter(String vertexShader, String fragmentShader) ;
+
+//注意：默认必须有public的无参构造器，必须在无参构造器里显式的调用上面的构造方法，初始化着色器
+public KSYImageFilter() {
+       super(vertexShader,fragmentShader);
+}
+
+//默认的定点着色器
+protected static final String NO_FILTER_VERTEX_SHADER ;
+
+//默认的片元着色器
+protected static final String NO_FILTER_FRAGMENT_SHADER ;
+ 
+//输入纹理宽度
+protected int mTexWidth;
+
+//输入纹理高度
+protected int mTexHeight;
+ 
+//编译VertextShader和FragmentShader之前回调
+public void onInit() ;
+ 
+//编译VertextShader和FragmentShader之后，回调
+public void onInitialized(); 
+ 
+//销毁滤镜，主要用来清理texture和GLProgram，释放资源
+public final void destroy() ;
+
+//glDrawArrays之前调用
+protected void onDrawArraysAfter() ;
+
+//glDrawArrays之后调用
+protected void onDrawArraysPre() ;
+
+//获得uniform在shader中的位置指针
+protected int getUniformLocation(java.lang.String) ;
+
+//设置Uniform变量,location为uniform在shader中的位置指针
+protected void set* (int location , ...) ;
+```
+
+fragment的shader传入参数
 
 ```
- //执行OpenGL绘制纹理时调用
- public void onDraw(final int textureId, final float[] texMatrix) ;
- 
- //当获得输出纹理大小时回调
- public void onInputSizeChanged(final int width, final int height) ；
- 
- //编译VertextShader和FragmentShader之前回调
- Ipublic void onInit() ;
- 
- //编译VertextShader和FragmentShader之后，回调
- public void onInitialized(); 
- 
- //销毁滤镜，主要用来清理texture和GLProgram，释放资源
- public final void destroy() ;
- 
- 
+//定点着色器处理后的纹理采样坐标
+varying vec2 vTextureCoord;
+//Camera 预览的纹理（YUV格式）
+uniform samplerExternalOES sTexture;
 ```
 
+具体的，可以参考示例的滤镜[DEMOFILTER](https://github.com/ksvc/KSYStreamer_Android/blob/master/demo/src/com/ksy/recordlib/demo/DEMOFILTER.java)。
     
 .   混音功能描述如下：
 
--在耳机模式（接口自动对Mico采集的音频做了混响处理）：调用startMusic播放本地音乐和Mico声音开始混音，调用示例如下：
-```
+- 在耳机模式（接口自动对Mico采集的音频做了混响处理）：调用startMusic播放本地音乐和Mico声音开始混音，调用示例如下：
+```java
 	mStreamer.startMusic("/sdcard/test.mp3");
 	mStreamer.setHeadsetPlugged(true);
 ```
 
--在非耳机模式（接口自动对Mico采集的音频做了混响处理）：调用startMusic播放本地音乐，或者其它应用播放的音乐和Mico的音频自动混音进去了，不需要额外处理。
-```
+- 在非耳机模式（接口自动对Mico采集的音频做了混响处理）：调用startMusic播放本地音乐，或者其它应用播放的音乐和Mico的音频自动混音进去了，不需要额外处理。
+```java
     boolean startMusic(String path); // 播放音乐开始混音
     boolean stopMusic();  // 停止播放音乐
     
@@ -249,12 +288,12 @@ mStreamer.setReverbLevel(4);
 mStreamer.startMixMusic(String path,OnProgressListener listener,boolean loop);
 ```
 参数解释:
-path /*本地音乐文件路径，目前只支持mp3格式*/
-listener /*设置回调接口*/
-loop /*是否单曲循环*/
+path /*本地音乐文件路径，支持mp3, aac等*/  
+listener /*设置回调接口*/  
+loop /*是否单曲循环*/  
 
 调用示例：
-```
+```java
 mStreamer.startMixMusic("/sdcard/test.mp3", mListener,true);
 
  public interface OnProgressListener {
@@ -266,14 +305,21 @@ mStreamer.startMixMusic("/sdcard/test.mp3", mListener,true);
 ```
 
 注意：播放下一首歌曲需要调用mStreamer.stopMixMusic()停止后，再开启下一首歌曲。
-```
+```java
 mStreamer.startMixMusic(String path,OnProgressListener listener,boolean loop)
 mStreamer.stopMixMusic()
 ```
 
-. 注意事项
-采集的状态依赖于Activity的生命周期，所以必须在Activity的生命周期中也调用SDK相应的接口，例如：onPause, onResume。
+. 手动指定自动对焦测光区域  
+需要指定com.ksy.recordlib.service.view.CameraGLSurfaceView为预览的View，同时设置CameraGLSurfaceView
 ```
+builder.setManualFocus(true);
+mStreamer.setDisplayPreview(* extends com.ksy.recordlib.service.view.CameraGLSurfaceView);
+```
+
+. 注意事项  
+采集的状态依赖于Activity的生命周期，所以必须在Activity的生命周期中也调用SDK相应的接口，例如：onPause, onResume。
+```java
 public class CameraActivity extends Activity {
 
     @Override
@@ -295,7 +341,7 @@ public class CameraActivity extends Activity {
     }
 }
 ```
-预览区域默认全屏，暂不支持自定义分辨率。
+预览区域默认全屏，暂不支持自定义分辨率。  
 如有其它需求可以联系[我们](http://www.ksyun.com/)
 ##反馈与建议
 - 主页：[金山云](http://www.ksyun.com/)
