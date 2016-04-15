@@ -31,6 +31,7 @@ import com.ksy.recordlib.service.streamer.OnPreviewFrameListener;
 import com.ksy.recordlib.service.streamer.OnStatusListener;
 import com.ksy.recordlib.service.streamer.RecorderConstants;
 import com.ksy.recordlib.service.util.audio.OnProgressListener;
+import com.ksy.recordlib.service.util.audio.OnNoiseSuppressionListener;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
@@ -62,6 +63,7 @@ public class CameraActivity extends Activity {
     private boolean startAuto = false;
     private boolean audio_mix = false;
     private String mUrl;
+    private String mBgmPath = "/sdcard/test.mp3";
     private static final String START_STRING = "开始直播";
     private static final String STOP_STRING = "停止直播";
     private TextView mUrlTextView;
@@ -80,6 +82,7 @@ public class CameraActivity extends Activity {
     public final static String AUDIO_MIX = "audio_mix";
     public final static String FRONT_CAMERA_MIRROR = "front_camera_mirror";
     public final static String TEST_SW_FILTER = "testSWFilterInterface";
+    public final static String MANUAL_FOCUS = "manual_focus";
 
     ExecutorService executorService = Executors.newSingleThreadExecutor();
     private int frameCount;
@@ -88,7 +91,7 @@ public class CameraActivity extends Activity {
     public static void startActivity(Context context, int fromType,
                                      String rtmpUrl, int frameRate, int videoBitrate, int audioBitrate,
                                      int videoResolution, boolean encodeWithHEVC, boolean isLandscape, boolean mute_audio, boolean audio_mix, boolean isFrontCameraMirror, KSYStreamerConfig.ENCODE_METHOD encodeMethod, boolean startAuto,
-                                     boolean testSWFilterInterface) {
+                                     boolean testSWFilterInterface, boolean manualFocus) {
         Intent intent = new Intent(context, CameraActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("type", fromType);
@@ -105,6 +108,7 @@ public class CameraActivity extends Activity {
         intent.putExtra(AUDIO_MIX, audio_mix);
         intent.putExtra(FRONT_CAMERA_MIRROR, isFrontCameraMirror);
         intent.putExtra(TEST_SW_FILTER, testSWFilterInterface);
+        intent.putExtra(MANUAL_FOCUS, manualFocus);
         context.startActivity(intent);
     }
 
@@ -167,7 +171,7 @@ public class CameraActivity extends Activity {
                                 mShootingText.postInvalidate();
                                 recording = true;
                                 if (audio_mix) {
-                                    mStreamer.startMixMusic("/sdcard/test.mp3", mListener,true);
+                                    mStreamer.startMixMusic(mBgmPath, mListener, true);
                                     mStreamer.setHeadsetPlugged(true);
                                 }
                             } else {
@@ -244,7 +248,8 @@ public class CameraActivity extends Activity {
             boolean isFrontCameraMirror = bundle.getBoolean(FRONT_CAMERA_MIRROR, false);
             builder.setFrontCameraMirror(isFrontCameraMirror);
             testSWFilterInterface = bundle.getBoolean(TEST_SW_FILTER, false);
-
+            boolean focus_manual = bundle.getBoolean(MANUAL_FOCUS, false);
+            builder.setManualFocus(focus_manual);
         }
 
         mStreamer = new KSYStreamer(this);
@@ -252,6 +257,7 @@ public class CameraActivity extends Activity {
         mStreamer.setDisplayPreview(mCameraPreview);
         mStreamer.setOnStatusListener(mOnErrorListener);
         mStreamer.setOnLogListener(mOnLogListener);
+        mStreamer.setOnNoiseSuppressionListener(mOnNsListener);
         mStreamer.enableDebugLog(false);
 
         if (testSWFilterInterface) {
@@ -310,7 +316,7 @@ public class CameraActivity extends Activity {
                         mStreamer.setReverbLevel(4);
 
                         if (audio_mix) {
-                            mStreamer.startMixMusic("/sdcard/test.mp3", mListener,true);
+                            mStreamer.startMixMusic(mBgmPath, mListener, true);
                             mStreamer.setHeadsetPlugged(true);
                         }
                     } else {
@@ -344,10 +350,14 @@ public class CameraActivity extends Activity {
     private void showChooseFilter() {
         AlertDialog alertDialog;
         alertDialog = new AlertDialog.Builder(this).setTitle("请选择美颜滤镜").setSingleChoiceItems(
-                new String[]{"BEAUTY", "SKIN_WHITEN", "BEAUTY_PLUS", "DENOISE",}, -1, new DialogInterface.OnClickListener() {
+                new String[]{"BEAUTY", "SKIN_WHITEN", "BEAUTY_PLUS", "DENOISE", "DEMOFILTER"}, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        mStreamer.setBeautyFilter(which + 16);
+                        if (which < 4) {
+                            mStreamer.setBeautyFilter(which + 16);
+                        } else {
+                            mStreamer.setBeautyFilter(new DEMOFILTER());
+                        }
                         dialog.dismiss();
                     }
                 })
@@ -470,8 +480,8 @@ public class CameraActivity extends Activity {
                                                     needReconnect = false;
 
                                                     if (audio_mix) {
-                                                       mStreamer.startMixMusic("/sdcard/test.mp3", mListener,true);
-                                                       mStreamer.setHeadsetPlugged(true);
+                                                        mStreamer.startMixMusic(mBgmPath, mListener, true);
+                                                        mStreamer.setHeadsetPlugged(true);
                                                     }
                                                 }
                                             }
@@ -497,8 +507,9 @@ public class CameraActivity extends Activity {
         public void onMusicProgress(long currTimeMsec) {
             Log.d(TAG, "The progress of the currently playing music:" + currTimeMsec);
         }
+
         @Override
-        public  void onMusicStopped() {
+        public void onMusicStopped() {
             Log.d(TAG, "End of the currently playing music");
         }
     };
@@ -508,6 +519,14 @@ public class CameraActivity extends Activity {
         @Override
         public void onLogEvent(StringBuffer singleLogContent) {
             Log.d(TAG, "***onLogEvent : " + singleLogContent.toString());
+        }
+    };
+
+    private OnNoiseSuppressionListener mOnNsListener = new OnNoiseSuppressionListener() {
+        @Override
+        public short[] OnFilterNosie(short[] data, int count) {
+            //NoiseSuppression data
+            return data;
         }
     };
 

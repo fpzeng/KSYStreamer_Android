@@ -1,226 +1,236 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginTop="30dp"
     tools:context=".DemoActivity">
 
-    <TextView
-        android:id="@+id/rtmpTxt"
+    <RelativeLayout
+        android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="请输入rtmp服务器的地址"
-        android:textSize="16sp" />
-
-    <EditText
-        android:id="@+id/rtmpUrl"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rtmpTxt"
-        android:text="rtmp://test.uplive.ksyun.com/live/androidtest" />
-
-    <RadioGroup
-        android:id="@+id/resolution_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/rtmpUrl"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/radiobutton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="360P" />
-
-        <RadioButton
-            android:id="@+id/radiobutton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="480P" />
-
-        <RadioButton
-            android:id="@+id/radiobutton3"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="540P" />
-
-        <RadioButton
-            android:id="@+id/radiobutton4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="720P" />
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/orientation_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/resolution_group"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/orientationbutton1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="横屏" />
-
-        <RadioButton
-            android:id="@+id/orientationbutton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="竖屏" />
-    </RadioGroup>
-
-    <RadioGroup
-        android:id="@+id/encode_group"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/orientation_group"
-        android:orientation="horizontal">
-
-        <RadioButton
-            android:id="@+id/encode_hw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="硬编" />
-
-        <RadioButton
-            android:id="@+id/encode_sw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="true"
-            android:text="软编" />
-    </RadioGroup>
-
-    <LinearLayout
-        android:id="@+id/audio_group"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_below="@id/encode_group">
-
-        <CheckBox
-            android:id="@+id/mute_audio"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/encode_group"
-            android:checked="false"
-            android:text="静音开关" />
-
-        <CheckBox
-            android:id="@+id/audio_mix"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/encode_group"
-            android:checked="false"
-            android:text="混音开关" />
-
-        <CheckBox
-            android:id="@+id/front_camera_mirror"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/encode_group"
-            android:checked="false"
-            android:text="前置摄像头镜像" />
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/init_group"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_below="@id/audio_group">
-
-        <CheckBox
-            android:id="@+id/autoStart"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="初始化完成后启动推流（软编有效）" />
-
-        <CheckBox
-            android:id="@+id/testsw"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="测试软编预处理(填充UV分量)" />
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/frameRate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/init_group">
+        android:layout_height="match_parent">
 
         <TextView
-            android:layout_width="wrap_content"
+            android:id="@+id/rtmpTxt"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="采集帧率"
+            android:layout_marginBottom="5dp"
+            android:text="请输入rtmp服务器的地址"
             android:textSize="16sp" />
 
         <EditText
-            android:id="@+id/frameRatePicker"
+            android:id="@+id/rtmpUrl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rtmpTxt"
+            android:text="rtmp://test.uplive.ksyun.com/live/androidtest" />
+
+        <RadioGroup
+            android:id="@+id/resolution_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="15" />
-    </LinearLayout>
+            android:layout_below="@id/rtmpUrl"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:id="@+id/videoBitrate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/frameRate"
-        android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/radiobutton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="360P" />
 
-        <TextView
+            <RadioButton
+                android:id="@+id/radiobutton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="480P" />
+
+            <RadioButton
+                android:id="@+id/radiobutton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="540P" />
+
+            <RadioButton
+                android:id="@+id/radiobutton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="720P" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/orientation_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="视频码率"
-            android:textSize="16sp" />
+            android:layout_below="@id/resolution_group"
+            android:orientation="horizontal">
 
-        <EditText
-            android:id="@+id/videoBitratePicker"
+            <RadioButton
+                android:id="@+id/orientationbutton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="横屏" />
+
+            <RadioButton
+                android:id="@+id/orientationbutton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="竖屏" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/encode_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="800" />
-    </LinearLayout>
+            android:layout_below="@id/orientation_group"
+            android:orientation="horizontal">
 
-    <LinearLayout
-        android:id="@+id/audioBitrate"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/videoBitrate"
-        android:orientation="horizontal">
+            <RadioButton
+                android:id="@+id/encode_hw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="硬编" />
 
-        <TextView
-            android:layout_width="wrap_content"
+            <RadioButton
+                android:id="@+id/encode_sw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="软编" />
+        </RadioGroup>
+
+        <LinearLayout
+            android:id="@+id/audio_group"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_below="@id/encode_group">
+
+            <CheckBox
+                android:id="@+id/mute_audio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/encode_group"
+                android:checked="false"
+                android:text="静音开关" />
+
+            <CheckBox
+                android:id="@+id/audio_mix"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/encode_group"
+                android:checked="false"
+                android:text="混音开关" />
+
+            <CheckBox
+                android:id="@+id/front_camera_mirror"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/encode_group"
+                android:checked="false"
+                android:text="前置摄像头镜像" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/init_group"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="音频码率"
-            android:textSize="16sp" />
+            android:layout_below="@id/audio_group"
+            android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/audioBitratePicker"
-            android:layout_width="wrap_content"
+            <CheckBox
+                android:id="@+id/autoStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="初始化完成后启动推流（软编有效）" />
+
+            <CheckBox
+                android:id="@+id/testsw"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="测试软编预处理(填充UV分量)" />
+            <CheckBox
+                android:id="@+id/manual_focus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="手动指定对焦测光区" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/frameRate"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="48" />
-    </LinearLayout>
+            android:layout_below="@id/init_group">
 
-    <Button
-        android:id="@+id/connectBT"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/audioBitrate"
-        android:layout_marginTop="10dp"
-        android:text="准备直播" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="采集帧率"
+                android:textSize="16sp" />
 
-</RelativeLayout>
+            <EditText
+                android:id="@+id/frameRatePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="15" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/videoBitrate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/frameRate"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="视频码率"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/videoBitratePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="800" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/audioBitrate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/videoBitrate"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="音频码率"
+                android:textSize="16sp" />
+
+            <EditText
+                android:id="@+id/audioBitratePicker"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="48" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/connectBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/audioBitrate"
+            android:layout_marginTop="10dp"
+            android:text="准备直播" />
+
+    </RelativeLayout>
+</ScrollView>

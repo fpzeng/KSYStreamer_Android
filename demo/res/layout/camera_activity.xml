@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:background="@color/recorder_bg_new" >
 
-    <android.opengl.GLSurfaceView
+    <com.ksy.recordlib.service.view.CameraGLSurfaceView
         android:id="@+id/camera_preview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
