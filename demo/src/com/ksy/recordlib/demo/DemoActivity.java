@@ -14,7 +14,6 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 
-
 import com.ksy.recordlib.service.core.KSYStreamerConfig;
 import com.ksy.recordlib.service.streamer.RecorderConstants;
 
@@ -40,7 +39,7 @@ public class DemoActivity extends Activity implements OnClickListener, RadioGrou
     private CheckBox muteAudio;
     private CheckBox startPreviewAuto;
     private CheckBox audioMix;
-    private CheckBox frontCameraMirror, cKtestSWInterface,ckManual_focus;
+    private CheckBox frontCameraMirror, cKtestSWInterface, ckManual_focus, show_debug_info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +74,8 @@ public class DemoActivity extends Activity implements OnClickListener, RadioGrou
         audioMix = (CheckBox) findViewById(R.id.audio_mix);
         frontCameraMirror = (CheckBox) findViewById(R.id.front_camera_mirror);
         cKtestSWInterface = (CheckBox) findViewById(R.id.testsw);
-        ckManual_focus =  (CheckBox) findViewById(R.id.manual_focus);
+        ckManual_focus = (CheckBox) findViewById(R.id.manual_focus);
+        show_debug_info = (CheckBox) findViewById(R.id.print_debug_info);
 
     }
 
@@ -161,12 +161,16 @@ public class DemoActivity extends Activity implements OnClickListener, RadioGrou
                         testSWInterface = false;
                     }
                     boolean manual_focus = false;
-                    if(ckManual_focus.isChecked()){
+                    if (ckManual_focus.isChecked()) {
                         manual_focus = true;
+                    }
+                    boolean debug_info = false;
+                    if (show_debug_info.isChecked()) {
+                        debug_info = true;
                     }
 
                     CameraActivity.startActivity(getApplicationContext(), 0, urlET.getText().toString(),
-                            frameRate, videoBitRate, audioBitRate, videoResolution, encodeWithHEVC, landscape, mute_audio, audio_mix, isFrontCameraMirror, encode_method, startAuto, testSWInterface,manual_focus);
+                            frameRate, videoBitRate, audioBitRate, videoResolution, encodeWithHEVC, landscape, mute_audio, audio_mix, isFrontCameraMirror, encode_method, startAuto, testSWInterface, manual_focus, debug_info);
 
                 }
 

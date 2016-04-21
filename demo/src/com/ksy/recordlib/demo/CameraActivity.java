@@ -36,6 +36,8 @@ import com.ksy.recordlib.service.util.audio.OnNoiseSuppressionListener;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Arrays;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -43,6 +45,7 @@ import java.util.concurrent.Executors;
 public class CameraActivity extends Activity {
 
     private static final String TAG = "CameraActivity";
+
 
     private GLSurfaceView mCameraPreview;
 
@@ -62,11 +65,12 @@ public class CameraActivity extends Activity {
     private boolean isFlashOpened = false;
     private boolean startAuto = false;
     private boolean audio_mix = false;
-    private String mUrl;
+    private boolean printDebugInfo = false;
+    private String mUrl, mDebugInfo = "";
     private String mBgmPath = "/sdcard/test.mp3";
     private static final String START_STRING = "开始直播";
     private static final String STOP_STRING = "停止直播";
-    private TextView mUrlTextView;
+    private TextView mUrlTextView, mDebugInfoTextView;
     private volatile boolean mAcitivityResumed = false;
     private KSYStreamerConfig.ENCODE_METHOD encode_method = KSYStreamerConfig.ENCODE_METHOD.SOFTWARE;
     public final static String URL = "url";
@@ -83,15 +87,18 @@ public class CameraActivity extends Activity {
     public final static String FRONT_CAMERA_MIRROR = "front_camera_mirror";
     public final static String TEST_SW_FILTER = "testSWFilterInterface";
     public final static String MANUAL_FOCUS = "manual_focus";
+    public static final String SHOW_DEBUGINFO = "SHOW_DEBUGINFO";
 
+    Timer timer;
     ExecutorService executorService = Executors.newSingleThreadExecutor();
+
     private int frameCount;
     private boolean testSWFilterInterface;
 
     public static void startActivity(Context context, int fromType,
                                      String rtmpUrl, int frameRate, int videoBitrate, int audioBitrate,
                                      int videoResolution, boolean encodeWithHEVC, boolean isLandscape, boolean mute_audio, boolean audio_mix, boolean isFrontCameraMirror, KSYStreamerConfig.ENCODE_METHOD encodeMethod, boolean startAuto,
-                                     boolean testSWFilterInterface, boolean manualFocus) {
+                                     boolean testSWFilterInterface, boolean manualFocus, boolean showDebugInfo) {
         Intent intent = new Intent(context, CameraActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("type", fromType);
@@ -109,6 +116,7 @@ public class CameraActivity extends Activity {
         intent.putExtra(FRONT_CAMERA_MIRROR, isFrontCameraMirror);
         intent.putExtra(TEST_SW_FILTER, testSWFilterInterface);
         intent.putExtra(MANUAL_FOCUS, manualFocus);
+        intent.putExtra(SHOW_DEBUGINFO, showDebugInfo);
         context.startActivity(intent);
     }
 
@@ -149,6 +157,7 @@ public class CameraActivity extends Activity {
                             chronometer.start();
                             mShootingText.setText(STOP_STRING);
                             mShootingText.postInvalidate();
+                            beginInfoUploadTimer();
                             break;
                         case RecorderConstants.KSYVIDEO_ENCODED_FRAMES_THRESHOLD:
                             chronometer.stop();
@@ -204,8 +213,8 @@ public class CameraActivity extends Activity {
             int videoBitrate = bundle.getInt(VIDEO_BITRATE, 0);
             if (videoBitrate > 0) {
                 builder.setMaxAverageVideoBitrate(videoBitrate);
-                builder.setMinAverageVideoBitrate(videoBitrate * 3 / 5);
-                builder.setInitAverageVideoBitrate(videoBitrate * 4 / 5);
+                builder.setMinAverageVideoBitrate(videoBitrate * 2 / 8);
+                builder.setInitAverageVideoBitrate(videoBitrate * 5 / 8);
             }
 
             int audioBitrate = bundle.getInt(AUDIO_BITRATE, 0);
@@ -228,9 +237,8 @@ public class CameraActivity extends Activity {
             builder.setSecretKeySign(skSign);
             builder.setTimeSecond(timeSec);
 
-            builder.setAudioChannels(1);
             builder.setSampleAudioRateInHz(44100);
-            //builder.setEnableStreamStatModule(false);
+            builder.setEnableStreamStatModule(true);
 
             boolean landscape = bundle.getBoolean(LANDSCAPE, false);
             builder.setDefaultLandscape(landscape);
@@ -250,6 +258,7 @@ public class CameraActivity extends Activity {
             testSWFilterInterface = bundle.getBoolean(TEST_SW_FILTER, false);
             boolean focus_manual = bundle.getBoolean(MANUAL_FOCUS, false);
             builder.setManualFocus(focus_manual);
+            printDebugInfo = bundle.getBoolean(SHOW_DEBUGINFO, false);
         }
 
         mStreamer = new KSYStreamer(this);
@@ -258,8 +267,8 @@ public class CameraActivity extends Activity {
         mStreamer.setOnStatusListener(mOnErrorListener);
         mStreamer.setOnLogListener(mOnLogListener);
         mStreamer.setOnNoiseSuppressionListener(mOnNsListener);
-        mStreamer.enableDebugLog(false);
-
+        mStreamer.enableDebugLog(true);
+        mStreamer.setBeautyFilter(RecorderConstants.FILTER_BEAUTY_DENOISE);
         if (testSWFilterInterface) {
             mStreamer.setOnPreviewFrameListener(new OnPreviewFrameListener() {
                 @Override
@@ -343,7 +352,39 @@ public class CameraActivity extends Activity {
         mFlashView.setEnabled(true);
 
         chronometer = (Chronometer) this.findViewById(R.id.chronometer);
+        mDebugInfoTextView = (TextView) this.findViewById(R.id.debuginfo);
 
+
+    }
+
+    private void beginInfoUploadTimer() {
+        if (printDebugInfo && timer == null) {
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    updateDebugInfo();
+                    runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            mDebugInfoTextView.setText(mDebugInfo);
+                        }
+                    });
+                }
+            }, 100, 3000);
+        }
+    }
+
+    private void updateDebugInfo() {
+        if (mStreamer == null) return;
+        mDebugInfo = String.format("RtmpHostIP()=%s DroppedFrameCount()=%d \n " +
+                        "ConnectTime()=%d DnsParseTime()=%d \n " +
+                        "UploadedKB()=%d EncodedFrames()=%d \n" +
+                        "CurrentBitrate=%f Version()=%s",
+                mStreamer.getRtmpHostIP(), mStreamer.getDroppedFrameCount(),
+                mStreamer.getConnectTime(), mStreamer.getDnsParseTime(),
+                mStreamer.getUploadedKBytes(), mStreamer.getEncodedFrames(),
+                mStreamer.getCurrentBitrate(), mStreamer.getVersion());
     }
 
 
@@ -539,6 +580,9 @@ public class CameraActivity extends Activity {
             mHandler.removeCallbacksAndMessages(null);
             mHandler = null;
         }
+        if (timer != null) {
+            timer.cancel();
+        }
     }
 
     protected int mStopTime = 0;
@@ -628,9 +672,6 @@ public class CameraActivity extends Activity {
         }
     }
 
-    private void printLog() {
-        Log.e(TAG, String.format("getRtmpHostIP()=%s getDroppedFrameCount()=%d getConnectTime()=%d getDnsParseTime()=%d ", mStreamer.getRtmpHostIP(), mStreamer.getDroppedFrameCount(), mStreamer.getConnectTime(), mStreamer.getDnsParseTime()));
-    }
 
     private String md5(String string) {
         byte[] hash;

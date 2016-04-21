@@ -8,7 +8,9 @@
     <RelativeLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true">
 
         <TextView
             android:id="@+id/rtmpTxt"
@@ -23,27 +25,35 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@id/rtmpTxt"
-            android:text="rtmp://test.uplive.ksyun.com/live/androidtest" />
+            android:text="rtmp://test.uplive.ks-cdn.com/live/androidtest" />
+
+        <Button
+            android:id="@+id/connectBT"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_below="@id/rtmpUrl"
+            android:text="准备直播" />
 
         <RadioGroup
             android:id="@+id/resolution_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rtmpUrl"
+            android:layout_below="@id/connectBT"
             android:orientation="horizontal">
 
             <RadioButton
                 android:id="@+id/radiobutton1"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="false"
+                android:checked="true"
                 android:text="360P" />
 
             <RadioButton
                 android:id="@+id/radiobutton2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:text="480P" />
 
             <RadioButton
@@ -149,7 +159,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
-                android:text="初始化完成后启动推流（软编有效）" />
+                android:text="初始化完成后启动推流" />
 
             <CheckBox
                 android:id="@+id/testsw"
@@ -157,12 +167,19 @@
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="测试软编预处理(填充UV分量)" />
+
             <CheckBox
                 android:id="@+id/manual_focus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="手动指定对焦测光区" />
+            <CheckBox
+                android:id="@+id/print_debug_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="显示调试信息" />
         </LinearLayout>
 
         <LinearLayout
@@ -194,7 +211,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="视频码率"
+                android:text="视频码率(Max)"
                 android:textSize="16sp" />
 
             <EditText
@@ -221,16 +238,9 @@
                 android:id="@+id/audioBitratePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="48" />
+                android:text="32" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/connectBT"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/audioBitrate"
-            android:layout_marginTop="10dp"
-            android:text="准备直播" />
 
     </RelativeLayout>
 </ScrollView>

@@ -48,7 +48,7 @@
                 android:layout_marginLeft="20dp"
                 android:layout_weight="1"
                 android:background="#11123456"
-                android:checked="false"
+                android:checked="true"
                 android:text="@string/beauty_switcher"
                 android:textColor="@color/font_color_35"
                 android:textSize="@dimen/font_size_38px"></CheckBox>
