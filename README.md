@@ -342,7 +342,7 @@ public class CameraActivity extends Activity {
 }
 ```
 预览区域默认全屏，暂不支持自定义分辨率。  
-Demo下载地址[http://ksy.vcloud.sdk.ks3-cn-beijing.ksyun.com/Android/streamer/streamer_20160420.apk](http://ksy.vcloud.sdk.ks3-cn-beijing.ksyun.com/Android/streamer/streamer_20160420.apk)
+Demo下载地址[http://ksy.vcloud.sdk.ks3-cn-beijing.ksyun.com/Android/streamer/streamer_20160420.apk](http://ksy.vcloud.sdk.ks3-cn-beijing.ksyun.com/Android/streamer/streamer_20160420.apk)  
 如有其它需求可以联系[我们](http://www.ksyun.com/)
 ##反馈与建议
 - 主页：[金山云](http://www.ksyun.com/)
