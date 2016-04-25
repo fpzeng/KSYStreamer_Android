@@ -28,11 +28,7 @@ public class DEMOFILTER extends KSYImageFilter {
 
     public void onInitialized() {
         greenplusLocation = getUniformLocation("greenplus");
-    }
-
-    protected void onDrawArraysPre() {
         setFloat(greenplusLocation, 0.3f);
 
     }
-
 }
