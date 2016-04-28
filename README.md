@@ -23,6 +23,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * 混音功能 (new) 可支持本地mp3,aac等格式
 * 前置镜像功能 (new)
 * 手动指定自动对焦测光区域 (new)
+* 软编模式下可添加图片及时间水印 (new)
 
 ##使用方法
 ### 配置项目  
@@ -55,6 +56,9 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 <uses-feature android:name="android.hardware.camera.autofocus" />
     
 ```
+## proguard文件：
+需要保护 com.ksy.recordlib下的所有类：
+-keep  class com.ksy.recordlib.** { *;}
 ##代码示例
 . 布局文件
 ```xml
@@ -188,11 +192,42 @@ mStreamer.stop();
  mStreamer.setInitDoneCallbackEnable(true);
 ```
 
+. 相机YUV数据回调，可以通过过下面的接口增加相机预览数据的回掉，具体的
+
+```
+ ksyStreamer.setOnPreviewFrameListener(listener);
+```
+listener为OnPreviewFrameListener，***对于软编，如果想处理推出去的流数据，可以直接修改data数组，修改后的data数组会切仅会作用于软编推出去的流。***
+```
+   /**
+     * @param  NV21格式的YUV数据，对于软编，如果对data进行处理，将作用到推出去的流
+     * @param width 预览的宽度（未旋转）
+     * @param height 预览的高度（未旋转）
+     * @param isRecording 是否正在推流
+     */
+    void onPreviewFrame(byte[] data, int width, int height,boolean isRecording);
+```
+
 . 自定义滤镜
 
-对于硬编，可以使用自定义OpenGL方式的滤镜，自定义的滤镜必须为KSYImageFilter的子类，自定义的滤镜需要继承KSYImageFilter并通过形如setBeautyFilter的方式设置，该接口支持推流中的动态调用：
+对于硬编，可以使用自定义OpenGL方式的滤镜，自定义的滤镜必须为KSYImageFilter的子类，自定义的滤镜需要继承KSYImageFilter并通过形如setBeautyFilter的方式设置，该接口支持推流中的动态调用，例如：
 ```
- mStreamer.setInitDoneCallbackEnable(new KSYImageFilter());
+ mStreamer.setBeautyFilter(new KSYImageFilter());
+
+```
+这个接口有几种重载，具体如下：
+另外，对于硬编可以选择分别指定编码和预览的滤镜实例，或者让SDK通过反射使用无参构造方法自己构造。
+```
+/**
+使用内置滤镜，int为内置美颜种类可以设置为FILTER_BEAUTY_DISABLE(不使用美颜)、FILTER_BEAUTY_DENOISE、FILTER_BEAUTY、FILTER_SKINWHITEN、FILTER_BEAUTY_PLUS或FILTER_BEAUTY_PLUS，其中软编只可以设置为FILTER_BEAUTY_DISABLE(不使用美颜)和FILTER_BEAUTY_DENOISE。
+**/
+ void setBeautyFilter(int beautyFilter);
+//编码和预览使用SDK通过反射使用无参构造方法自己构造的滤镜实例。
+ void setBeautyFilter(KSYImageFilter filter);
+/**
+分别指定编码和预览的滤镜实例，SDK将不会使用反射重新构造。（！）注意对于硬编码，使用此方法需要分别传入编码和预览的滤镜实例，usage为RecorderConstants::FILTER_USAGE_PREVIEW,FILTER_USAGE_ENCODE ;
+**/
+ void setBeautyFilter(KSYImageFilter filter, int usage);
 ```
 
 KSYImageFilter为分离出来用于OpenGL绘制的框架，主要方便您实现自定义Vertex和Fragment Shader的滤镜，下面为主要方法和变量说明。  
@@ -200,7 +235,7 @@ KSYImageFilter为分离出来用于OpenGL绘制的框架，主要方便您实现
 
 ```java
 
-//构造方法，此处需要传入定点和片元着色器
+//构造方法，此处需要传入顶点和片元着色器
 public KSYImageFilter(String vertexShader, String fragmentShader) ;
 
 //注意：默认必须有public的无参构造器，必须在无参构造器里显式的调用上面的构造方法，初始化着色器
@@ -208,7 +243,7 @@ public KSYImageFilter() {
        super(vertexShader,fragmentShader);
 }
 
-//默认的定点着色器
+//默认的顶点着色器
 protected static final String NO_FILTER_VERTEX_SHADER ;
 
 //默认的片元着色器
@@ -219,6 +254,9 @@ protected int mTexWidth;
 
 //输入纹理高度
 protected int mTexHeight;
+
+//是否完成初始化
+protected boolean mIsInitialized;
  
 //编译VertextShader和FragmentShader之前回调
 public void onInit() ;
@@ -240,12 +278,15 @@ protected int getUniformLocation(java.lang.String) ;
 
 //设置Uniform变量,location为uniform在shader中的位置指针
 protected void set* (int location , ...) ;
+
+添加runable，会在onDraw时候的GLUSEPROGRAM之后调用。
+protected void runOnDraw(final Runnable runnable) ；
 ```
 
 fragment的shader传入参数
 
 ```
-//定点着色器处理后的纹理采样坐标
+//顶点着色器处理后的纹理采样坐标
 varying vec2 vTextureCoord;
 //Camera 预览的纹理（YUV格式）
 uniform samplerExternalOES sTexture;
@@ -297,10 +338,18 @@ loop /*是否单曲循环*/
 mStreamer.startMixMusic("/sdcard/test.mp3", mListener,true);
 
  public interface OnProgressListener {
-    /*音乐播放进度，实时返回已经播放的时长（毫秒）*/
-    void onMusicProgress(long currTime);
+    int BGM_ERROR_NONE = 0;
+    int BGM_ERROR_UNKNOWN = 1;
+    int BGM_ERROR_NOT_SUPPORTED = 2;
+    int BGM_ERROR_IO = 3;
+    int BGM_ERROR_MALFORMED = 4;
+    
+    /*音乐播放进度，实时返回已经播放的时长（毫秒）以及音乐总时长（毫秒）*/
+    void onMusicProgress(long currTime, long duration);
     /*播放结束回调*/
     void onMusicStopped();
+    /*播放出错回调, err为如上所定义的错误号*/
+    void onMusicError(int err);
 }
 ```
 
@@ -315,6 +364,50 @@ mStreamer.stopMixMusic()
 ```
 builder.setManualFocus(true);
 mStreamer.setDisplayPreview(* extends com.ksy.recordlib.service.view.CameraGLSurfaceView);
+```
+
+. 添加图片及时间戳水印  
+显示、隐藏图片水印时调用如下接口：  
+```java
+/**
+ * 设置并显示logo水印
+ * @param path logo图片文件的路径
+ * @param x logo的显示位置，相对于视频
+ * @param y logo的显示位置，相对于视频
+ * @param w logo的显示宽度
+ * @param h logo的显示高度
+ * @param alpha logo的透明度，0-1之间
+ */
+void showWaterMarkLogo(String path, int x, int y, int w, int h, float alpha);
+
+/**
+ * 隐藏logo水印
+ */
+void hideWaterMarkLogo();
+```
+
+显示、隐藏时间戳水印时调用如下接口：  
+```java
+/**
+ * 在推流视频中显示时间水印
+ * @param x 时间显示位置，相对于视频
+ * @param y 时间显示位置，相对于视频
+ * @param fontColor 显示时间的字体颜色
+ * @param fontSize 显示时间的字体大小
+ * @param alpha 显示时间的透明度
+ */
+void showWaterMarkTime(int x, int y, int fontColor, float fontSize, float alpha);
+
+/**
+ * 隐藏推流视频中的时间水印
+ */
+void hideWaterMarkTime();
+```
+
+例如：  
+```java
+mStreamer.showWaterMarkLogo(mLogoPath, 30, 40, 96, 96, 0.8f);
+mStreamer.showWaterMarkTime(10, 10, Color.RED, 16, 1.0f);
 ```
 
 . 注意事项  
@@ -342,7 +435,19 @@ public class CameraActivity extends Activity {
 }
 ```
 预览区域默认全屏，暂不支持自定义分辨率。  
-Demo下载地址[http://ksy.vcloud.sdk.ks3-cn-beijing.ksyun.com/Android/streamer/streamer_20160420.apk](http://ksy.vcloud.sdk.ks3-cn-beijing.ksyun.com/Android/streamer/streamer_20160420.apk)  
+
+. 接口变更  
+下面的接口成员被标记为Deprecated,将在不久后去掉
+
+### KSYStreamer::updateUrl();
+使用`KSYStreamerConfig::setUrl();`代替
+
+### KSYStreamer::setEnableCameraMirror();
+使用`KSYStreamerConfig::setFrontCameraMirror();`代替
+
+### KSYStreamerConfig::mAudioChannels改成final暂时不用设置
+
+
 如有其它需求可以联系[我们](http://www.ksyun.com/)
 ##反馈与建议
 - 主页：[金山云](http://www.ksyun.com/)

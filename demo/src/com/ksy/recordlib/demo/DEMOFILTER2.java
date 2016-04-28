@@ -4,9 +4,9 @@ package com.ksy.recordlib.demo;
 import com.ksy.recordlib.service.hardware.ksyfilter.KSYImageFilter;
 
 /**
- * Created by hansentian on 4/8/16.
+ * Created by hansentian on 4/8/28.
  */
-public class DEMOFILTER extends KSYImageFilter {
+public class DEMOFILTER2 extends KSYImageFilter {
     // Fragment shader that attempts to produce a high contrast image
     private static final String FRAGMENT_SHADER =
             "#extension GL_OES_EGL_image_external : require\n" +
@@ -20,7 +20,7 @@ public class DEMOFILTER extends KSYImageFilter {
                     "    gl_FragColor = vec4(color, color + greenplus, color, 1.0);\n" +
                     "}\n";
 
-    public DEMOFILTER() {
+    public DEMOFILTER2() {
         super(NO_FILTER_VERTEX_SHADER, FRAGMENT_SHADER);
     }
 
@@ -28,7 +28,7 @@ public class DEMOFILTER extends KSYImageFilter {
 
     public void onInitialized() {
         greenplusLocation = getUniformLocation("greenplus");
-        setFloat(greenplusLocation, 0.3f);
+        setFloat(greenplusLocation, -0.3f);
     }
 
 }

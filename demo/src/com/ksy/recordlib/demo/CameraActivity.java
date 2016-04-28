@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.graphics.Color;
 import android.opengl.GLSurfaceView;
 import android.os.Bundle;
 import android.os.Handler;
@@ -68,6 +69,7 @@ public class CameraActivity extends Activity {
     private boolean printDebugInfo = false;
     private String mUrl, mDebugInfo = "";
     private String mBgmPath = "/sdcard/test.mp3";
+    private String mLogoPath = "/sdcard/test.png";
     private static final String START_STRING = "开始直播";
     private static final String STOP_STRING = "停止直播";
     private TextView mUrlTextView, mDebugInfoTextView;
@@ -183,8 +185,6 @@ public class CameraActivity extends Activity {
                                     mStreamer.startMixMusic(mBgmPath, mListener, true);
                                     mStreamer.setHeadsetPlugged(true);
                                 }
-                            } else {
-                                Log.e(TAG, "操作太频繁");
                             }
                             break;
                         default:
@@ -269,12 +269,19 @@ public class CameraActivity extends Activity {
         mStreamer.setOnNoiseSuppressionListener(mOnNsListener);
         mStreamer.enableDebugLog(true);
         mStreamer.setBeautyFilter(RecorderConstants.FILTER_BEAUTY_DENOISE);
+        mStreamer.showWaterMarkLogo(mLogoPath, 30, 40, 96, 96, 0.8f);
+        mStreamer.showWaterMarkTime(10, 10, Color.RED, 16, 1.0f);
         if (testSWFilterInterface) {
             mStreamer.setOnPreviewFrameListener(new OnPreviewFrameListener() {
                 @Override
-                public void onPreviewFrame(byte[] data, int width, int height) {
+                public void onPreviewFrame(byte[] data, int width, int height, boolean isRecording) {
                     frameCount++;
-                    Arrays.fill(data, width * height, data.length, (byte) 128);
+                    if (isRecording) {
+                        Arrays.fill(data, width * height, data.length, (byte) 128);
+                    }
+                    if (frameCount % 60 == 0) {
+                        Log.e(TAG, "setOnPreviewFrameListener" + isRecording);
+                    }
                 }
             });
         }
@@ -391,13 +398,16 @@ public class CameraActivity extends Activity {
     private void showChooseFilter() {
         AlertDialog alertDialog;
         alertDialog = new AlertDialog.Builder(this).setTitle("请选择美颜滤镜").setSingleChoiceItems(
-                new String[]{"BEAUTY", "SKIN_WHITEN", "BEAUTY_PLUS", "DENOISE", "DEMOFILTER"}, -1, new DialogInterface.OnClickListener() {
+                new String[]{"BEAUTY", "SKIN_WHITEN", "BEAUTY_PLUS", "DENOISE", "DEMOFILTER", "SPLIT_E/P_FILTER"}, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (which < 4) {
                             mStreamer.setBeautyFilter(which + 16);
-                        } else {
+                        } else if (which == 4) {
                             mStreamer.setBeautyFilter(new DEMOFILTER());
+                        } else if (which == 5) {
+                            mStreamer.setBeautyFilter(new DEMOFILTER(), RecorderConstants.FILTER_USAGE_ENCODE);
+                            mStreamer.setBeautyFilter(new DEMOFILTER2(), RecorderConstants.FILTER_USAGE_PREVIEW);
                         }
                         dialog.dismiss();
                     }
@@ -490,7 +500,6 @@ public class CameraActivity extends Activity {
                 case RecorderConstants.KSYVIDEO_EST_BW_DROP:
                 case RecorderConstants.KSYVIDEO_EST_BW_RAISE:
                 case RecorderConstants.KSYVIDEO_AUDIO_INIT_FAILED:
-
                     break;
                 case RecorderConstants.KSYVIDEO_INIT_DONE:
                     mHandler.obtainMessage(what, "init done")
@@ -545,13 +554,18 @@ public class CameraActivity extends Activity {
 
     private OnProgressListener mListener = new OnProgressListener() {
         @Override
-        public void onMusicProgress(long currTimeMsec) {
-            Log.d(TAG, "The progress of the currently playing music:" + currTimeMsec);
+        public void onMusicProgress(long currTimeMsec, long durationMsec) {
+            Log.d(TAG, "The progress of the currently playing music:" + currTimeMsec + " duration:" + durationMsec);
         }
 
         @Override
         public void onMusicStopped() {
             Log.d(TAG, "End of the currently playing music");
+        }
+
+        @Override
+        public void onMusicError(int err) {
+            Log.e(TAG, "onMusicError: " + err);
         }
     };
 
