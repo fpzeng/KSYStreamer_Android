@@ -67,16 +67,7 @@
 }
 
 
--keep class com.ksy.recordlib.service.streamer.**{ *;}
--keep class com.ksy.recordlib.service.preview.** { *;}
--keep class com.ksy.recordlib.service.streamer.FFStreamer { *;}
--keep class com.ksy.recordlib.service.streamer.StreamerException { *;}
--keep class com.ksy.recordlib.service.streamer.Frame { *;}
--keep class com.ksy.recordlib.service.streamer.KSlImage { *;}
--keep class com.ksy.recordlib.service.KSYStreamer {
-    private <methods>;
-}
-
+-keep  class com.ksy.recordlib.** { *;}
 
 -keep public class * extends android.view.View 
 
