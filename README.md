@@ -439,13 +439,13 @@ public class CameraActivity extends Activity {
 . 接口变更  
 下面的接口成员被标记为Deprecated,将在不久后去掉
 
-### KSYStreamer::updateUrl();
+KSYStreamer::updateUrl();
 使用`KSYStreamerConfig::setUrl();`代替
 
-### KSYStreamer::setEnableCameraMirror();
+KSYStreamer::setEnableCameraMirror();
 使用`KSYStreamerConfig::setFrontCameraMirror();`代替
 
-### KSYStreamerConfig::mAudioChannels改成final暂时不用设置
+KSYStreamerConfig::mAudioChannels改成final暂时不用设置
 
 
 如有其它需求可以联系[我们](http://www.ksyun.com/)
