@@ -448,6 +448,8 @@ KSYStreamer::setEnableCameraMirror();
 KSYStreamerConfig::mAudioChannels改成final暂时不用设置
 
 
+最新Demo下载地址 [点我](http://ksy.vcloud.sdk.ks3-cn-beijing.ksyun.com/Android/streamer/apk/streamer_demo_20160429.apk)
+
 如有其它需求可以联系[我们](http://www.ksyun.com/)
 ##反馈与建议
 - 主页：[金山云](http://www.ksyun.com/)
