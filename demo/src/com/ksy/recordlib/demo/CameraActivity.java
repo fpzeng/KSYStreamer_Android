@@ -498,7 +498,9 @@ public class CameraActivity extends Activity {
                     }
                     break;
                 case RecorderConstants.KSYVIDEO_EST_BW_DROP:
+                    break;
                 case RecorderConstants.KSYVIDEO_EST_BW_RAISE:
+                    break;
                 case RecorderConstants.KSYVIDEO_AUDIO_INIT_FAILED:
                     break;
                 case RecorderConstants.KSYVIDEO_INIT_DONE:
