@@ -23,7 +23,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * 混音功能 (new) 可支持本地mp3,aac等格式
 * 前置镜像功能 (new)
 * 手动指定自动对焦测光区域 (new)
-* 软编模式下可添加图片及时间水印 (new)
+* 可添加图片及时间水印 (new)
 
 ##使用方法
 ### 配置项目  
@@ -100,6 +100,7 @@ KSYStreamerConfig.Builder builder = new KSYStreamerConfig.Builder();
 |setEnableCameraMirror|设置开启前置摄像头镜像，默认关闭|
 |setBeautyFilter|设置内置美颜类别(目前软编只支持一种)|
 |setManualFocus|设置开启手动指定对焦测光区域，默认关闭|
+|setIFrameIntervalSec|设置视频编码时的I帧间隔，单位为秒，float型|
 
 其中分辨率等级可以设置为	RecorderConstants.VIDEO_RESOLUTION_360P,RecorderConstants.VIDEO_RESOLUTION_480P,RecorderConstants.VIDEO_RESOLUTION_540P或RecorderConstants.VIDEO_RESOLUTION_720P。内置美颜种类可以设置为FILTER_BEAUTY_DISABLE(不使用美颜)、FILTER_BEAUTY_DENOISE、FILTER_BEAUTY、FILTER_SKINWHITEN、FILTER_BEAUTY_PLUS或FILTER_BEAUTY_PLUS，其中软编只可以设置为FILTER_BEAUTY_DISABLE(不使用美颜)和FILTER_BEAUTY_DENOISE。
 
@@ -292,8 +293,14 @@ varying vec2 vTextureCoord;
 uniform samplerExternalOES sTexture;
 ```
 
+
 具体的，可以参考示例的滤镜[DEMOFILTER](https://github.com/ksvc/KSYStreamer_Android/blob/master/demo/src/com/ksy/recordlib/demo/DEMOFILTER.java)。
-    
+
+.  GroupFilter模式
+支持GroupFilter的模式，可以嵌套多个滤镜实现一个材质的滤镜组处理，关于GroupFilter的模式例子可以参看[GroupFilterDemo] (https://github.com/ksvc/KSYStreamer_Android/blob/master/demo/src/com/ksy/recordlib/demo/KSYImageGroupFilter.java)。
+注意：GroupFilter嵌套的滤镜第一个同普通KSYImageGroupFilter相同。
+***从第二个滤镜一直到最后一个滤镜由于不需要进行texture vertex变换，故需要使用NO_TRANSFORMER_VERTEX_SHADER的VERTEX_SHADER；同时在Fragment Shader中使用sampler2D格式纹理作为输入纹理，具体请参考[GroupFilterDemo] (https://github.com/ksvc/KSYStreamer_Android/blob/master/demo/src/com/ksy/recordlib/demo/KSYImageGroupFilter.java)***
+
 .   混音功能描述如下：
 
 - 在耳机模式（接口自动对Mico采集的音频做了混响处理）：调用startMusic播放本地音乐和Mico声音开始混音，调用示例如下：
@@ -371,43 +378,46 @@ mStreamer.setDisplayPreview(* extends com.ksy.recordlib.service.view.CameraGLSur
 ```java
 /**
  * 设置并显示logo水印
- * @param path logo图片文件的路径
- * @param x logo的显示位置，相对于视频
- * @param y logo的显示位置，相对于视频
- * @param w logo的显示宽度
- * @param h logo的显示高度
+ *
+ * @param path  logo图片文件的路径
+ * @param x     logo的显示位置，0-1之间，相对于视频
+ * @param y     logo的显示位置，0-1之间，相对于视频
+ * @param w     logo的显示宽度，0-1之间，相对于视频
+ * @param h     logo的显示高度，0-1之间，相对于视频
  * @param alpha logo的透明度，0-1之间
  */
-void showWaterMarkLogo(String path, int x, int y, int w, int h, float alpha);
+public void showWaterMarkLogo(String path, float x, float y, float w, float h, float alpha);
 
 /**
  * 隐藏logo水印
  */
-void hideWaterMarkLogo();
+public void hideWaterMarkLogo();
 ```
 
 显示、隐藏时间戳水印时调用如下接口：  
 ```java
 /**
  * 在推流视频中显示时间水印
- * @param x 时间显示位置，相对于视频
- * @param y 时间显示位置，相对于视频
- * @param fontColor 显示时间的字体颜色
- * @param fontSize 显示时间的字体大小
- * @param alpha 显示时间的透明度
+ *
+ * @param x     时间戳的显示位置，0-1之间，相对于视频
+ * @param y     时间戳的显示位置，0-1之间，相对于视频
+ * @param w     时间戳的显示宽度，0-1之间，相对于视频，高度会自适应
+ * @param color 时间戳的颜色
+ * @param alpha 时间戳的显示透明度，0-1之间
  */
-void showWaterMarkTime(int x, int y, int fontColor, float fontSize, float alpha);
+public void showWaterMarkTime(float x, float y, float w, int color, float alpha);
+}
 
 /**
  * 隐藏推流视频中的时间水印
  */
-void hideWaterMarkTime();
+public void hideWaterMarkTime();
 ```
 
 例如：  
 ```java
-mStreamer.showWaterMarkLogo(mLogoPath, 30, 40, 96, 96, 0.8f);
-mStreamer.showWaterMarkTime(10, 10, Color.RED, 16, 1.0f);
+mStreamer.showWaterMarkLogo(mLogoPath, 0.08f, 0.06f, 0.27f, 0.15f, 0.8f);
+mStreamer.showWaterMarkTime(0.02f, 0.015f, 0.4f, Color.RED, 1.0f);
 ```
 
 . 注意事项  

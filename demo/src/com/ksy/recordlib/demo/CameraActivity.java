@@ -196,6 +196,7 @@ public class CameraActivity extends Activity {
 
         };
 
+        boolean landscape = false;
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             String url = bundle.getString(URL);
@@ -240,7 +241,7 @@ public class CameraActivity extends Activity {
             builder.setSampleAudioRateInHz(44100);
             builder.setEnableStreamStatModule(true);
 
-            boolean landscape = bundle.getBoolean(LANDSCAPE, false);
+            landscape = bundle.getBoolean(LANDSCAPE, false);
             builder.setDefaultLandscape(landscape);
 
             if (landscape) {
@@ -269,8 +270,13 @@ public class CameraActivity extends Activity {
         mStreamer.setOnNoiseSuppressionListener(mOnNsListener);
         mStreamer.enableDebugLog(true);
         mStreamer.setBeautyFilter(RecorderConstants.FILTER_BEAUTY_DENOISE);
-        mStreamer.showWaterMarkLogo(mLogoPath, 30, 40, 96, 96, 0.8f);
-        mStreamer.showWaterMarkTime(10, 10, Color.RED, 16, 1.0f);
+        if (!landscape) {
+            mStreamer.showWaterMarkLogo(mLogoPath, 0.08f, 0.06f, 0.27f, 0.15f, 0.8f);
+            mStreamer.showWaterMarkTime(0.02f, 0.015f, 0.4f, Color.RED, 1.0f);
+        } else {
+            mStreamer.showWaterMarkLogo(mLogoPath, 0.06f, 0.08f, 0.15f, 0.27f, 0.8f);
+            mStreamer.showWaterMarkTime(0.015f, 0.02f, 0.25f, Color.RED, 1.0f);
+        }
         if (testSWFilterInterface) {
             mStreamer.setOnPreviewFrameListener(new OnPreviewFrameListener() {
                 @Override
@@ -398,16 +404,18 @@ public class CameraActivity extends Activity {
     private void showChooseFilter() {
         AlertDialog alertDialog;
         alertDialog = new AlertDialog.Builder(this).setTitle("请选择美颜滤镜").setSingleChoiceItems(
-                new String[]{"BEAUTY", "SKIN_WHITEN", "BEAUTY_PLUS", "DENOISE", "DEMOFILTER", "SPLIT_E/P_FILTER"}, -1, new DialogInterface.OnClickListener() {
+                new String[]{"BEAUTY", "SKIN_WHITEN", "BEAUTY_PLUS", "DENOISE", "DEMOFILTER", "SPLIT_E/P_FILTER", "GROUP_FILTER"}, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (which < 4) {
                             mStreamer.setBeautyFilter(which + 16);
                         } else if (which == 4) {
-                            mStreamer.setBeautyFilter(new DEMOFILTER());
+
                         } else if (which == 5) {
                             mStreamer.setBeautyFilter(new DEMOFILTER(), RecorderConstants.FILTER_USAGE_ENCODE);
                             mStreamer.setBeautyFilter(new DEMOFILTER2(), RecorderConstants.FILTER_USAGE_PREVIEW);
+                        } else if (which == 6) {
+                            mStreamer.setBeautyFilter(new GroupFilterDemo());
                         }
                         dialog.dismiss();
                     }

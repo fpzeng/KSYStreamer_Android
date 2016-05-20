@@ -166,7 +166,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
-                android:text="测试软编预处理(填充UV分量)" />
+                android:text="测试onPreviewFrame(软编预处理填充UV分量)" />
 
             <CheckBox
                 android:id="@+id/manual_focus"

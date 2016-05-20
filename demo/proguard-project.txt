@@ -23,6 +23,7 @@
 #-optimizations !code/simplification/arithmetic,!field/*,!class/merging/*
 #-overloadaggressively
 -dontskipnonpubliclibraryclassmembers 
+-libraryjars libs/libksystat.jar
 
 -dontusemixedcaseclassnames
 -dontskipnonpubliclibraryclasses
@@ -67,19 +68,46 @@
 }
 
 
--keep class com.ksy.recordlib.service.streamer.**{ *;}
--keep class com.ksy.recordlib.service.preview.** { *;}
+
+
 -keep class com.ksy.recordlib.service.streamer.FFStreamer { *;}
+-keep class com.ksy.recordlib.service.hardware.FFmpegWrapper  { *;}
+-keep class com.ksy.recordlib.service.hardware.FFmpegWrapper$AVOptions { *;}
+
 -keep class com.ksy.recordlib.service.streamer.StreamerException { *;}
--keep class com.ksy.recordlib.service.streamer.Frame { *;}
--keep class com.ksy.recordlib.service.streamer.KSlImage { *;}
--keep class com.ksy.recordlib.service.KSYStreamer {
-    private <methods>;
-}
+-keep class com.ksy.recordlib.service.streamer.VideoFrame   { *;}
+-keep  class com.ksy.recordlib.service.core.KSYStreamer { *;}
+-keep  class com.ksy.recordlib.service.core.KSYStreamerConfig.** { *;}
+-keep  class com.ksy.recordlib.service.core.KSYStreamerConfig$Builder { *;}
+-keep  class com.ksy.recordlib.service.stats.OnLogEventListener { *;}
+-keep  class com.ksy.recordlib.service.streamer.OnStatusListener { *;}
+-keep  class com.ksy.recordlib.service.streamer.RecorderConstants { *;}
+-keep  class com.ksy.recordlib.service.core.KSYStreamerConfig { *;}
+-keep  class com.ksy.recordlib.service.streamer.RecorderConstants { *;}
+-keep  class com.ksy.recordlib.service.util.audio.** { *;}
+-keep  class com.ksy.recordlib.service.streamer.OnPreviewFrameListener { *;}
+-keep class com.ksy.recordlib.service.hardware.ksyfilter.KSYImageFilter {
+     public <init>();
+     public void onInit();
+     public void onInitialized() ;
+     public void onDestroy();
+     protected void onDrawArraysAfter() ;
+     protected void onDrawArraysPre() ;
+     protected int getUniformLocation(java.lang.String) ;
+     protected static final java.lang.String  *;
+     protected void set* (...) ;
+     protected void get* (...) ;
+     protected int mTex*;
+     protected void runOnDraw(...) ;
+     protected int mGLProgId;
+     protected boolean mIsInitialized;
+     }
+-keep class com.ksy.recordlib.service.hardware.filter.KSYImageGroupFilter {
+     public <init>(...);
+     }
 
-
--keep public class * extends android.view.View 
-
+-keep public class * extends android.view.View  { *;}
+-keep public class com.ksy.recordlib.service.view.CameraGLSurfaceView { *;}
 -keepclasseswithmembernames class * {
      public <init>(android.content.Context, android.util.AttributeSet);
 }
@@ -99,10 +127,6 @@
 
 -keepclassmembers class **.R$* {
     public static <fields>;
-}
-
--keep public class com.android.mydemo.R$*{
-    public static final int *;
 }
 
 -keepclassmembers class * implements java.io.Serializable {
@@ -131,4 +155,8 @@
    public void *(android.view.View);
 }
 
--keep  class com.ksy.recordlib.** { *;}
+-keep class com.ksy.statlibrary.** {
+
+  *;
+
+}
