@@ -220,13 +220,10 @@ public class CameraActivity extends Activity {
 - [[美声|美声]]
 - [[水印|水印]]
 - [[手动对焦|手动对焦]]
+- [[画中画|画中画]]
 
 ## [[API接口速查 |API接口速查]]  
 
 ## [[接口变更 |接口变更]]
 
 ## [[常见问题 |常见问题]]
-如有其它需求可以联系[我们](http://www.ksyun.com/)
-##反馈与建议
-- 主页：[金山云](http://www.ksyun.com/)
-- 邮箱：<linsong2@kingsoft.com>
