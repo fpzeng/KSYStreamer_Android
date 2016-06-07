@@ -212,19 +212,19 @@ public class CameraActivity extends Activity {
 
 ## 功能详细使用说明
 * [推流初始化参数](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%8E%A8%E6%B5%81%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%82%E6%95%B0)
-* [状态和错误回调](#状态和错误回调)
-* [内置美颜](#内置美颜)
-* [自定义滤镜](#自定义滤镜)
-* [混音](#混音)
-* [美声](#美声)
-* [水印](#水印)
-* [手动对焦](#手动对焦)
+* [状态和错误回调](https://github.com/ksvc/KSYStreamer_Android/wiki/%E7%8A%B6%E6%80%81%E5%92%8C%E9%94%99%E8%AF%AF%E5%9B%9E%E8%B0%83)
+* [内置美颜](https://github.com/ksvc/KSYStreamer_Android/wiki/%E5%86%85%E7%BD%AE%E7%BE%8E%E9%A2%9C)
+* [自定义滤镜](https://github.com/ksvc/KSYStreamer_Android/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%A4%E9%95%9C)
+* [混音](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%B7%B7%E9%9F%B3)
+* [美声](https://github.com/ksvc/KSYStreamer_Android/wiki/%E7%BE%8E%E5%A3%B0)
+* [水印](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%B0%B4%E5%8D%B0)
+* [手动对焦](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%89%8B%E5%8A%A8%E5%AF%B9%E7%84%A6)
 
-## [[API接口速查 |API接口速查]]  
+## [API接口速查](https://github.com/ksvc/KSYStreamer_Android/wiki/API%E6%8E%A5%E5%8F%A3%E9%80%9F%E6%9F%A5)  
 
-## [[接口变更 |接口变更]]
+## [接口变更](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%8E%A5%E5%8F%A3%E5%8F%98%E6%9B%B4)
 
-## [[常见问题 |常见问题]]
+## [常见问题](https://github.com/ksvc/KSYStreamer_Android/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
 如有其它需求可以联系[我们](http://www.ksyun.com/)
 ##反馈与建议
 - 主页：[金山云](http://www.ksyun.com/)
