@@ -211,8 +211,7 @@ public class CameraActivity extends Activity {
 ```
 
 ## 功能详细使用说明
-
-* [推流初始化参数](#推流初始化参数)
+* [推流初始化参数](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%8E%A8%E6%B5%81%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%82%E6%95%B0)
 * [状态和错误回调](#状态和错误回调)
 * [内置美颜](#内置美颜)
 * [自定义滤镜](#自定义滤镜)
