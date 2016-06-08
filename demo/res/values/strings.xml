@@ -9,6 +9,14 @@
     <string name="hello_world">Hello world!</string>
     <string name="click_to_shoot">开始直播</string>
     <string name="beauty_switcher">美颜滤镜</string>
+    <string name="watermark">水印</string>
+    <string name="mute">静音</string>
+    <string name="bgm">背景音乐</string>
+    <string name="ear_mirror">耳返</string>
+    <string name="pip">开始画中画</string>
+    <string name="stop_pip">停止画中画</string>
     <string name="flash">Flash</string>
+    <string name="picture_pip">开始图片画中画</string>
+    <string name="stop_picture_pip">停止图片画中画</string>
 
 </resources>

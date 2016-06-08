@@ -1,5 +1,4 @@
-package com.ksy.recordlib.demo;//package com.ksy.recordlib.demo;
-//
+package com.ksy.recordlib.demo;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -36,9 +35,7 @@ public class DemoActivity extends Activity implements OnClickListener, RadioGrou
 
     private RadioButton softwareEncoding;
     private RadioButton hardwareEncoding;
-    private CheckBox muteAudio;
     private CheckBox startPreviewAuto;
-    private CheckBox audioMix;
     private CheckBox frontCameraMirror, cKtestSWInterface, ckManual_focus, show_debug_info;
 
     @Override
@@ -69,9 +66,7 @@ public class DemoActivity extends Activity implements OnClickListener, RadioGrou
         softwareEncoding = (RadioButton) findViewById(R.id.encode_sw);
         hardwareEncoding = (RadioButton) findViewById(R.id.encode_hw);
         encodeMethod = (RadioGroup) findViewById(R.id.encode_group);
-        muteAudio = (CheckBox) findViewById(R.id.mute_audio);
         startPreviewAuto = (CheckBox) findViewById(R.id.autoStart);
-        audioMix = (CheckBox) findViewById(R.id.audio_mix);
         frontCameraMirror = (CheckBox) findViewById(R.id.front_camera_mirror);
         cKtestSWInterface = (CheckBox) findViewById(R.id.testsw);
         ckManual_focus = (CheckBox) findViewById(R.id.manual_focus);
@@ -89,13 +84,11 @@ public class DemoActivity extends Activity implements OnClickListener, RadioGrou
                 int videoResolution = 0;
                 boolean encodeWithHEVC = false;
                 boolean landscape = false;
-                boolean mute_audio = false;
                 boolean startAuto = false;
-                boolean audio_mix = false;
                 boolean isFrontCameraMirror = false;
 
-                if (!TextUtils.isEmpty(urlET.getText())) {
-//					&& urlET.getText().toString().startsWith("rtmp")) {
+                if (!TextUtils.isEmpty(urlET.getText())
+					&& urlET.getText().toString().startsWith("rtmp")) {
                     if (!TextUtils.isEmpty(frameRateET.getText().toString())) {
                         frameRate = Integer.parseInt(frameRateET.getText()
                                 .toString());
@@ -134,20 +127,10 @@ public class DemoActivity extends Activity implements OnClickListener, RadioGrou
                     } else {
                         landscape = false;
                     }
-                    if (muteAudio.isChecked()) {
-                        mute_audio = true;
-                    } else {
-                        mute_audio = false;
-                    }
                     if (startPreviewAuto.isChecked()) {
                         startAuto = true;
                     } else {
                         startAuto = false;
-                    }
-                    if (audioMix.isChecked()) {
-                        audio_mix = true;
-                    } else {
-                        audio_mix = false;
                     }
                     if (frontCameraMirror.isChecked()) {
                         isFrontCameraMirror = true;
@@ -170,7 +153,7 @@ public class DemoActivity extends Activity implements OnClickListener, RadioGrou
                     }
 
                     CameraActivity.startActivity(getApplicationContext(), 0, urlET.getText().toString(),
-                            frameRate, videoBitRate, audioBitRate, videoResolution, encodeWithHEVC, landscape, mute_audio, audio_mix, isFrontCameraMirror, encode_method, startAuto, testSWInterface, manual_focus, debug_info);
+                            frameRate, videoBitRate, audioBitRate, videoResolution, encodeWithHEVC, landscape, isFrontCameraMirror, encode_method, startAuto, testSWInterface, manual_focus, debug_info);
 
                 }
 
@@ -182,8 +165,6 @@ public class DemoActivity extends Activity implements OnClickListener, RadioGrou
 
     @Override
     public void onCheckedChanged(RadioGroup group, int checkedId) {
-
-//
 
     }
 

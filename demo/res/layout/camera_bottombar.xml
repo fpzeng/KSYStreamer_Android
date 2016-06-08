@@ -5,28 +5,89 @@
     android:background="#00000000">
 
 
-    <RelativeLayout
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="120dp"
+        android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:orientation="vertical"
         android:background="#00000000"
-        android:paddingLeft="15dp">
-
+        android:paddingLeft="5dp">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
+            android:orientation="horizontal">
+
+            <CheckBox
+                android:id="@+id/watermark"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#11123456"
+                android:checked="true"
+                android:text="@string/watermark"
+                android:textColor="@color/font_color_35"
+                android:textSize="@dimen/font_size_28px">
+            </CheckBox>
+
+            <CheckBox
+                android:id="@+id/mute"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#11123456"
+                android:checked="false"
+                android:text="@string/mute"
+                android:textColor="@color/font_color_35"
+                android:textSize="@dimen/font_size_28px">
+            </CheckBox>
+
+            <CheckBox
+                android:id="@+id/bgm"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#11123456"
+                android:checked="false"
+                android:text="@string/bgm"
+                android:textColor="@color/font_color_35"
+                android:textSize="@dimen/font_size_28px">
+            </CheckBox>
+
+            <CheckBox
+                android:id="@+id/ear_mirror"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#11123456"
+                android:checked="false"
+                android:text="@string/ear_mirror"
+                android:textColor="@color/font_color_35"
+                android:textSize="@dimen/font_size_28px">
+            </CheckBox>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="10dp"
             android:orientation="horizontal">
 
             <ImageView
                 android:id="@+id/backoff"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
                 android:layout_gravity="center_vertical"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="10dp"
                 android:background="@drawable/recorder_delete_icon" />
 
             <TextView
@@ -38,21 +99,49 @@
                 android:background="#11123456"
                 android:text="@string/click_to_shoot"
                 android:textColor="@color/font_color_35"
-                android:textSize="@dimen/font_size_38px"></TextView>
+                android:textSize="@dimen/font_size_28px">
+            </TextView>
+
+            <TextView
+                android:id="@+id/picture_pip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#11123456"
+                android:text="@string/picture_pip"
+                android:textColor="@color/font_color_35"
+                android:textSize="@dimen/font_size_28px">
+            </TextView>
+
+            <TextView
+                android:id="@+id/pip"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#11123456"
+                android:text="@string/pip"
+                android:textColor="@color/font_color_35"
+                android:textSize="@dimen/font_size_28px">
+            </TextView>
 
             <CheckBox
                 android:id="@+id/click_to_switch_beauty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:background="#11123456"
                 android:checked="true"
                 android:text="@string/beauty_switcher"
                 android:textColor="@color/font_color_35"
-                android:textSize="@dimen/font_size_38px"></CheckBox>
+                android:textSize="@dimen/font_size_28px">
+            </CheckBox>
         </LinearLayout>
-    </RelativeLayout>
+    </LinearLayout>
 
 </RelativeLayout>

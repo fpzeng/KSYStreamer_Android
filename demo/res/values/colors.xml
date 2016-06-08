@@ -4,9 +4,6 @@
     <color name="bg_color_2">#ffe8e8e8</color>
     <color name="recorder_bg_new">#00000000</color>
     <color name="transparent">#00ffffff</color><!--透明白色 -->
-
-
-    <color name="record_black">#131313</color><!--黑色 -->
     
     <color name="TextColorComLike">#668a3d</color>
     <color name="TextColorUserAccount">#006a92</color>
@@ -80,14 +77,7 @@
     <color name="font_color_42">#4facf3</color>
     <color name="font_color_43">#bebebe</color>
     <color name="font_color_44">#f2a93f</color>
-    
-    <color name="unable_color">#FF64D0D8</color>
-    <color name="yello_box_text_color">#FFE07F0E</color>
-    <color name="bg_color_1">#646464</color>
-    <color name="bg_color_3">#2589c3</color>
-    <color name="bg_color_4">#262626</color>
-    <color name="bg_color_5">#f7f7f7</color>
-    <color name="trans_bg_color_4">#7f262626</color>
+
     <color name="trans_parent">#00000000</color>
 
 </resources>

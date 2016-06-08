@@ -116,26 +116,11 @@
         </RadioGroup>
 
         <LinearLayout
-            android:id="@+id/audio_group"
+            android:id="@+id/init_group"
             android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_below="@id/encode_group">
-
-            <CheckBox
-                android:id="@+id/mute_audio"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/encode_group"
-                android:checked="false"
-                android:text="静音开关" />
-
-            <CheckBox
-                android:id="@+id/audio_mix"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/encode_group"
-                android:checked="false"
-                android:text="混音开关" />
+            android:layout_height="wrap_content"
+            android:layout_below="@id/encode_group"
+            android:orientation="vertical">
 
             <CheckBox
                 android:id="@+id/front_camera_mirror"
@@ -144,15 +129,6 @@
                 android:layout_below="@id/encode_group"
                 android:checked="false"
                 android:text="前置摄像头镜像" />
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/init_group"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/audio_group"
-            android:orientation="vertical">
 
             <CheckBox
                 android:id="@+id/autoStart"
