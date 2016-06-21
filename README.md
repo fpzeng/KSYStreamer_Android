@@ -37,7 +37,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 
 ## 快速集成
 
-本章节提供一个快速集成金山云推流SDK基础功能的示例。  
+本章节提供一个快速集成金山云推流SDK基础功能的示例。更详细的文档地址：[https://github.com/ksvc/KSYStreamer_Android/wiki](https://github.com/ksvc/KSYStreamer_Android/wiki)  
 具体可以参考demo工程中的相应文件。
 
 ### 下载工程
