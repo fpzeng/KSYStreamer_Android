@@ -1,19 +1,23 @@
 package com.ksy.recordlib.demo;
 
+import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.opengl.GLSurfaceView;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
 import android.os.SystemClock;
+import android.support.v4.content.PermissionChecker;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
@@ -43,7 +47,6 @@ import java.util.Timer;
 import java.util.TimerTask;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
-
 
 public class CameraActivity extends Activity {
 
@@ -212,6 +215,7 @@ public class CameraActivity extends Activity {
 //							if(!checkoutPreviewStarted()){
 //								return;
 //							}
+                            checkPermission();
                             if (startAuto && mStreamer.startStream()) {
                                 mShootingText.setText(STOP_STRING);
                                 mShootingText.postInvalidate();
@@ -282,8 +286,11 @@ public class CameraActivity extends Activity {
             builder.setManualFocus(focus_manual);
             printDebugInfo = bundle.getBoolean(SHOW_DEBUGINFO, false);
 
+            builder.setIsSlightBeauty(false);
         }
 
+        //可以在这里做权限检查,若没有audio和camera权限,进一步引导用户做权限设置
+        checkPermission();
         mStreamer = new KSYStreamer(this);
         mStreamer.setConfig(builder.build());
         mStreamer.setDisplayPreview(mCameraPreview);
@@ -297,6 +304,7 @@ public class CameraActivity extends Activity {
         if (showWaterMark) {
             showWaterMark();
         }
+
         if (testSWFilterInterface) {
             mStreamer.setOnPreviewFrameListener(new OnPreviewFrameListener() {
                 @Override
@@ -339,6 +347,17 @@ public class CameraActivity extends Activity {
                     return;
                 }
                 lastPipClickTime = curTime;
+                if (mPicPipMode) {
+                    mStreamer.hidePipBitmap();
+                    if (mPipBitmap != null) {
+                        mPipBitmap.recycle();
+                        mPipBitmap = null;
+                    }
+                    mPicPipMode = false;
+                    mPicturePip.setText(CameraActivity.this.getResources().getString(R.string.picture_pip));
+                    mPicturePip.postInvalidate();
+                }
+
                 if (!mPipMode) {
                     mKsyMediaPlayer = new KSYMediaPlayer.Builder(CameraActivity.this).build();
                     mKsyMediaPlayer.setOnBufferingUpdateListener(mOnBufferingUpdateListener);
@@ -381,13 +400,29 @@ public class CameraActivity extends Activity {
                     return;
                 }
                 lastPipClickTime = curTime;
+                if (mPipMode) {
+                    if (mKsyMediaPlayer != null) {
+                        mKsyMediaPlayer.stop();
+                        mKsyMediaPlayer.release();
+                        mStreamer.stopPlayer();
+                        mKsyMediaPlayer = null;
+                    }
+                    mPipMode = false;
+                    mPip.setText(CameraActivity.this.getResources().getString(R.string.pip));
+                    mPip.postInvalidate();
+                }
 
                 if (!mPicPipMode) {
-                    mPipBitmap = BitmapFactory.decodeFile("/sdcard/test.png");
-                    mStreamer.showPipBitmap(mPipBitmap,0.6f, 0.6f, 0.4f, 0.4f);
-                    mPicPipMode =true;
-                    mPicturePip.setText(CameraActivity.this.getResources().getString(R.string.stop_picture_pip));
-                    mPicturePip.postInvalidate();
+                    executorService.submit(new Runnable() {
+                        @Override
+                        public void run() {
+                            mPipBitmap = BitmapFactory.decodeFile("/sdcard/test.png");
+                            mStreamer.showPipBitmap(mPipBitmap, 0.6f, 0.6f, 0.4f, 0.4f);
+                            mPicPipMode = true;
+                            mPicturePip.setText(CameraActivity.this.getResources().getString(R.string.stop_picture_pip));
+                            mPicturePip.postInvalidate();
+                        }
+                    });
                 } else {
                     mStreamer.hidePipBitmap();
                     if (mPipBitmap != null) {
@@ -400,8 +435,6 @@ public class CameraActivity extends Activity {
                 }
             }
         });
-
-
 
 
         mBgm.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -468,6 +501,7 @@ public class CameraActivity extends Activity {
                         Log.e(TAG, "操作太频繁");
                     }
                 } else {
+                    checkPermission();
                     if (mStreamer.startStream()) {
                         mShootingText.setText(STOP_STRING);
                         mShootingText.postInvalidate();
@@ -552,7 +586,7 @@ public class CameraActivity extends Activity {
     private void showChooseFilter() {
         AlertDialog alertDialog;
         alertDialog = new AlertDialog.Builder(this).setTitle("请选择美颜滤镜").setSingleChoiceItems(
-                new String[]{"BEAUTY", "SKIN_WHITEN", "BEAUTY_PLUS", "DENOISE", "DEMOFILTER", "SPLIT_E/P_FILTER", "GROUP_FILTER"}, -1, new DialogInterface.OnClickListener() {
+                new String[]{"BEAUTY_SOFT", "SKIN_WHITEN", "BEAUTY_ILLUSION", "DENOISE","DEMOFILTER", "SPLIT_E/P_FILTER", "GROUP_FILTER"}, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (which < 4) {
@@ -576,11 +610,12 @@ public class CameraActivity extends Activity {
     @Override
     public void onResume() {
         super.onResume();
+        //可以在这里做权限检查,若没有audio和camera权限,进一步引导用户做权限设置
+        checkPermission();
         if (mKsyBgmPlayer != null) {
             mKsyBgmPlayer.resume();
         }
-        if(mKsyMediaPlayer != null)
-        {
+        if (mKsyMediaPlayer != null) {
             mKsyMediaPlayer.start();
         }
         mStreamer.onResume();
@@ -593,8 +628,7 @@ public class CameraActivity extends Activity {
         if (mKsyBgmPlayer != null) {
             mKsyBgmPlayer.pause();
         }
-        if(mKsyMediaPlayer != null)
-        {
+        if (mKsyMediaPlayer != null) {
             mKsyMediaPlayer.pause();
         }
         mStreamer.onPause();
@@ -671,7 +705,7 @@ public class CameraActivity extends Activity {
                             .sendToTarget();
                     break;
                 case RecorderConstants.KSY_RENDER_EXCEPTION:
-                    mHandler.obtainMessage(what,"renderer exception")
+                    mHandler.obtainMessage(what, "renderer exception")
                             .sendToTarget();
                     break;
                 default:
@@ -851,7 +885,7 @@ public class CameraActivity extends Activity {
         @Override
         public void onBufferingUpdate(IMediaPlayer mp, int percent) {
             long duration = mKsyMediaPlayer.getDuration();
-            long progress = duration * percent/100;
+            long progress = duration * percent / 100;
         }
     };
 
@@ -872,8 +906,7 @@ public class CameraActivity extends Activity {
     private IMediaPlayer.OnErrorListener mOnPlayerErrorListener = new IMediaPlayer.OnErrorListener() {
         @Override
         public boolean onError(IMediaPlayer mp, int what, int extra) {
-            switch (what)
-            {
+            switch (what) {
                 case KSYMediaPlayer.MEDIA_ERROR_UNKNOWN:
                     Log.e(TAG, "OnErrorListener, Error Unknown:" + what + ",extra:" + extra);
                     break;
@@ -888,9 +921,30 @@ public class CameraActivity extends Activity {
     public IMediaPlayer.OnInfoListener mOnInfoListener = new IMediaPlayer.OnInfoListener() {
         @Override
         public boolean onInfo(IMediaPlayer iMediaPlayer, int i, int i1) {
-            Log.d(TAG, "onInfo, what:"+i+",extra:"+i1);
+            Log.d(TAG, "onInfo, what:" + i + ",extra:" + i1);
             return false;
         }
     };
+
+    private boolean checkPermission() {
+        try {
+            int pRecordAudio = PermissionChecker.checkCallingOrSelfPermission(this, "android.permission.RECORD_AUDIO");
+            int pCamera = PermissionChecker.checkCallingOrSelfPermission(this, "android.permission.CAMERA");
+
+            if(pRecordAudio != PackageManager.PERMISSION_GRANTED) {
+                Log.e(TAG,"do not have AudioRecord permission, please check");
+                Toast.makeText(this,"do not have AudioRecord permission, please check", Toast.LENGTH_LONG).show();
+                return false;
+            }
+            if(pCamera != PackageManager.PERMISSION_GRANTED) {
+                Log.e(TAG,"do not have CAMERA permission, please check");
+                Toast.makeText(this,"do not have CAMERA permission, please check", Toast.LENGTH_LONG).show();
+                return false;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
+    }
 
 }
