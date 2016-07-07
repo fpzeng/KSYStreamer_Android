@@ -694,6 +694,7 @@ public class CameraActivity extends Activity {
                     //编码码率上升状态通知
                     break;
                 case RecorderConstants.KSYVIDEO_AUDIO_INIT_FAILED:
+                    Log.e("CameraActivity", "init audio failed");
                     //音频录制初始化失败回调
                     break;
                 case RecorderConstants.KSYVIDEO_INIT_DONE:
@@ -707,6 +708,15 @@ public class CameraActivity extends Activity {
                 case RecorderConstants.KSY_RENDER_EXCEPTION:
                     mHandler.obtainMessage(what, "renderer exception")
                             .sendToTarget();
+                    break;
+                case RecorderConstants.KSYVIDEO_AUDIO_PERMISSION_DENIED:
+                    Log.e("CameraActivity", "-------no audio permission");
+                    break;
+                case RecorderConstants.KSYVIDEO_CAMERA_DISABLED:
+                    Log.e("CameraActivity", "-------no camera permission");
+                    break;
+                case RecorderConstants.KSYVIDEO_OPEN_CAMERA_FAIL:
+                    Log.e("CameraActivity", "-------init camera failed");
                     break;
                 default:
                     if (msg != null) {
@@ -823,6 +833,9 @@ public class CameraActivity extends Activity {
     }
 
     private void onFlashClick() {
+        if (mStreamer.isFrontCamera())
+            isFlashOpened = true;
+
         if (isFlashOpened) {
             mStreamer.toggleTorch(false);
             isFlashOpened = false;
