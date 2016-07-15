@@ -4,7 +4,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 ## 功能特点
 
 * [x] 支持软编和硬编
-* [x] 网络自适应， 可根据实际网络情况动态调整目标码率，保证流畅性
+* [x] [网络自适应](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%8E%A8%E6%B5%81%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%82%E6%95%B0#%E8%A7%86%E9%A2%91%E7%A0%81%E7%8E%87%E5%8F%8A%E7%A0%81%E7%8E%87%E8%87%AA%E9%80%82%E5%BA%94)， 可根据实际网络情况动态调整目标码率，保证流畅性
 * [x] 音频编码：AAC
 * [x] 视频编码：H.264
 * [x] 推流协议：RTMP
