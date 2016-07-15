@@ -20,8 +20,8 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] 背景音乐功能, 支持本地mp3, aac等格式
 * [x] 支持手动指定自动对焦测光区域
 * [x] 支持图片及时间水印
-* [x] 耳返(new)
-* [x] 画中画(new,仅硬编支持)
+* [x] 耳返
+* [x] [画中画](https://github.com/ksvc/KSYStreamer_Android/wiki/%E7%94%BB%E4%B8%AD%E7%94%BB)
 
 ## 运行环境
 
