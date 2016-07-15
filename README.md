@@ -12,14 +12,14 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] 音视频目标码率：可设
 * [x] 支持固定横屏或固定竖屏推流
 * [x] 支持前、后置摄像头动态切换
-* [x] 前置摄像头镜像功能
+* [x] [前置摄像头镜像功能](https://github.com/ksvc/KSYStreamer_Android/wiki/%E9%95%9C%E5%83%8F)
 * [x] 闪光灯：开/关
-* [x] 内置美颜功能
-* [x] 自定义美颜接口
-* [x] 美声
-* [x] 背景音乐功能, 支持本地mp3, aac等格式
-* [x] 支持手动指定自动对焦测光区域
-* [x] 支持图片及时间水印
+* [x] [内置美颜功能](https://github.com/ksvc/KSYStreamer_Android/wiki/%E5%86%85%E7%BD%AE%E7%BE%8E%E9%A2%9C)
+* [x] [自定义美颜接口](https://github.com/ksvc/KSYStreamer_Android/wiki/%E8%87%AA%E5%AE%9A%E4%B9%89%E6%BB%A4%E9%95%9C)
+* [x] [美声](https://github.com/ksvc/KSYStreamer_Android/wiki/%E7%BE%8E%E5%A3%B0)
+* [x] [背景音乐功能, 支持本地mp3, aac等格式](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%B7%B7%E9%9F%B3)
+* [x] [支持手动指定自动对焦测光区域](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%89%8B%E5%8A%A8%E5%AF%B9%E7%84%A6)
+* [x] [支持图片及时间水印](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%B0%B4%E5%8D%B0)
 * [x] 耳返
 * [x] [画中画](https://github.com/ksvc/KSYStreamer_Android/wiki/%E7%94%BB%E4%B8%AD%E7%94%BB)
 
