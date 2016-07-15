@@ -8,7 +8,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] 音频编码：AAC
 * [x] 视频编码：H.264
 * [x] 推流协议：RTMP
-* [x] 视频分辨率：支持360P, 480P, 540P和720P
+* [x] [视频分辨率](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%8E%A8%E6%B5%81%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%82%E6%95%B0#%E8%A7%86%E9%A2%91%E5%88%86%E8%BE%A8%E7%8E%87)：支持360P, 480P, 540P和720P
 * [x] 音视频目标码率：可设
 * [x] 支持固定横屏或固定竖屏推流
 * [x] 支持前、后置摄像头动态切换
