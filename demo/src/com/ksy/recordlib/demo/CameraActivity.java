@@ -186,6 +186,8 @@ public class CameraActivity extends Activity {
                         case RecorderConstants.KSYVIDEO_CONNECT_FAILED:
                         case RecorderConstants.KSYVIDEO_ENCODED_FRAMES_FAILED:
                         case RecorderConstants.KSYVIDEO_CONNECT_BREAK:
+                        case RecorderConstants.KSYVIDEO_DNS_PARSE_FAILED:
+                        case RecorderConstants.KSYVIDEO_RTMP_PUBLISH_FAILED:
                             Toast.makeText(CameraActivity.this, content,
                                     Toast.LENGTH_LONG).show();
                             chronometer.stop();
