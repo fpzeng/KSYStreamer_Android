@@ -22,7 +22,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] [支持图片及时间水印](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%B0%B4%E5%8D%B0)
 * [x] 耳返
 * [x] [画中画](https://github.com/ksvc/KSYStreamer_Android/wiki/%E7%94%BB%E4%B8%AD%E7%94%BB)
-* [x] 连麦
+* [x] 连麦(news)
 
 ## 运行环境
 
