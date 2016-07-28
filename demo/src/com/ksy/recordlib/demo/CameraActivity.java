@@ -1,6 +1,5 @@
 package com.ksy.recordlib.demo;
 
-import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
@@ -12,7 +11,6 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.opengl.GLSurfaceView;
-import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -34,6 +32,7 @@ import com.ksy.recordlib.service.core.KSYStreamer;
 import com.ksy.recordlib.service.core.KSYStreamerConfig;
 import com.ksy.recordlib.service.hardware.ksyfilter.KSYImageFilter;
 import com.ksy.recordlib.service.stats.OnLogEventListener;
+import com.ksy.recordlib.service.stats.StreamStatusEventHandler;
 import com.ksy.recordlib.service.streamer.OnPreviewFrameListener;
 import com.ksy.recordlib.service.streamer.OnStatusListener;
 import com.ksy.recordlib.service.streamer.RecorderConstants;
@@ -183,11 +182,16 @@ public class CameraActivity extends Activity {
                 if (msg != null && msg.obj != null) {
                     String content = msg.obj.toString();
                     switch (msg.what) {
-                        case RecorderConstants.KSYVIDEO_CONNECT_FAILED:
                         case RecorderConstants.KSYVIDEO_ENCODED_FRAMES_FAILED:
-                        case RecorderConstants.KSYVIDEO_CONNECT_BREAK:
+                        case RecorderConstants.KSYVIDEO_CODEC_OPEN_FAILED:
+                        case RecorderConstants.KSYVIDEO_CONNECT_FAILED:
                         case RecorderConstants.KSYVIDEO_DNS_PARSE_FAILED:
                         case RecorderConstants.KSYVIDEO_RTMP_PUBLISH_FAILED:
+                        case RecorderConstants.KSYVIDEO_CONNECT_BREAK:
+                        case RecorderConstants.KSYVIDEO_AUDIO_INIT_FAILED:
+                        case RecorderConstants.KSYVIDEO_OPEN_CAMERA_FAIL:
+                        case RecorderConstants.KSYVIDEO_CAMERA_PARAMS_ERROR:
+                        case RecorderConstants.KSYVIDEO_AUDIO_START_FAILED:
                             Toast.makeText(CameraActivity.this, content,
                                     Toast.LENGTH_LONG).show();
                             chronometer.stop();
@@ -202,21 +206,10 @@ public class CameraActivity extends Activity {
                             mShootingText.postInvalidate();
                             beginInfoUploadTimer();
                             break;
-                        case RecorderConstants.KSYVIDEO_ENCODED_FRAMES_THRESHOLD:
-                            chronometer.stop();
-                            recording = false;
-                            mShootingText.setText(START_STRING);
-                            mShootingText.postInvalidate();
-                            Toast.makeText(CameraActivity.this, content,
-                                    Toast.LENGTH_LONG).show();
-                            break;
                         case RecorderConstants.KSYVIDEO_INIT_DONE:
                             if (mShootingText != null)
                                 mShootingText.setEnabled(true);
                             Toast.makeText(getApplicationContext(), "初始化完成", Toast.LENGTH_SHORT).show();
-//							if(!checkoutPreviewStarted()){
-//								return;
-//							}
                             checkPermission();
                             if (startAuto && mStreamer.startStream()) {
                                 mShootingText.setText(STOP_STRING);
@@ -296,7 +289,13 @@ public class CameraActivity extends Activity {
         mStreamer = new KSYStreamer(this);
         mStreamer.setConfig(builder.build());
         mStreamer.setDisplayPreview(mCameraPreview);
+        //老的状态回调机制
         mStreamer.setOnStatusListener(mOnErrorListener);
+
+        //新的状态回调机制
+        StreamStatusEventHandler.getInstance().addOnStatusErrorListener(mOnStatusErrorListener);
+        StreamStatusEventHandler.getInstance().addOnStatusInfoListener(mOnStatusInfoListener);
+
         mStreamer.setOnLogListener(mOnLogListener);
         mStreamer.setOnAudioRawDataListener(mOnAudioRawDataListener);
         mStreamer.enableDebugLog(true);
@@ -588,7 +587,7 @@ public class CameraActivity extends Activity {
     private void showChooseFilter() {
         AlertDialog alertDialog;
         alertDialog = new AlertDialog.Builder(this).setTitle("请选择美颜滤镜").setSingleChoiceItems(
-                new String[]{"BEAUTY_SOFT", "SKIN_WHITEN", "BEAUTY_ILLUSION", "DENOISE","DEMOFILTER", "SPLIT_E/P_FILTER", "GROUP_FILTER"}, -1, new DialogInterface.OnClickListener() {
+                new String[]{"BEAUTY_SOFT", "SKIN_WHITEN", "BEAUTY_ILLUSION", "DENOISE", "DEMOFILTER", "SPLIT_E/P_FILTER", "GROUP_FILTER"}, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         if (which < 4) {
@@ -667,6 +666,109 @@ public class CameraActivity extends Activity {
         return true;
     }
 
+    //推流失败,需要退出重新启动推流,建议做log输出,方便快速定位问题
+    public StreamStatusEventHandler.OnStatusErrorListener mOnStatusErrorListener = new StreamStatusEventHandler.OnStatusErrorListener() {
+        @Override
+        public void onError(int what, int arg1, int arg2, String msg) {
+            switch (what) {
+                case RecorderConstants.KSYVIDEO_ENCODED_FRAMES_FAILED:
+                    //视频编码失败,发生在软解,会停止推流
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_ENCODED_FRAMES_FAILED");
+                    break;
+                case RecorderConstants.KSYVIDEO_CODEC_OPEN_FAILED:
+                    //编码器初始化失败,发生在推流开始时
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_CODEC_OPEN_FAILED");
+                    break;
+                case RecorderConstants.KSYVIDEO_CONNECT_FAILED:
+                    //打开编码器的输入输出文件失败,发生在推流开始时,会停止推流
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_CONNECT_FAILED");
+                    break;
+                case RecorderConstants.KSYVIDEO_DNS_PARSE_FAILED:
+                    //打开编码器的输入输出文件失败,发生在推流开始时,会停止推流
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_CONNECT_FAILED");
+                    break;
+                case RecorderConstants.KSYVIDEO_RTMP_PUBLISH_FAILED:
+                    //打开编码器的输入输出文件失败,发生在推流开始时,会停止推流
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_CONNECT_FAILED");
+                    break;
+                case RecorderConstants.KSYVIDEO_CONNECT_BREAK:
+                    //写入一个音视频文件失败
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_CONNECT_BREAK");
+                    break;
+                case RecorderConstants.KSYVIDEO_AUDIO_INIT_FAILED:
+                    //软编,音频初始化失败
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_AUDIO_INIT_FAILED");
+                    break;
+                case RecorderConstants.KSYVIDEO_AUDIO_COVERT_FAILED:
+                    //软编,音频转码失败
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_AUDIO_COVERT_FAILED");
+                    break;
+                case RecorderConstants.KSYVIDEO_OPEN_CAMERA_FAIL:
+                    //openCamera失败
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_OPEN_CAMERA_FAIL");
+                    break;
+                case RecorderConstants.KSYVIDEO_CAMERA_PARAMS_ERROR:
+                    //获取不到camera参数,android 6.0 以下没有camera权限时可能发生
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_CAMERA_PARAMS_ERROR");
+                    break;
+                case RecorderConstants.KSYVIDEO_AUDIO_START_FAILED:
+                    //audio startRecord 失败
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_AUDIO_START_FAILED");
+                    break;
+                default:
+                    break;
+            }
+
+//            if (mHandler != null) {
+//                mHandler.obtainMessage(what, msg).sendToTarget();
+//            }
+        }
+    };
+
+    public StreamStatusEventHandler.OnStatusInfoListener mOnStatusInfoListener = new StreamStatusEventHandler.OnStatusInfoListener() {
+        @Override
+        public void onInfo(int what, int arg1, int arg2, String msg) {
+            switch (what) {
+                case RecorderConstants.KSYVIDEO_OPEN_STREAM_SUCC:
+                    //推流成功
+                    Log.d("TAG", "KSYVIDEO_OPEN_STREAM_SUCC");
+//                    mHandler.obtainMessage(what, "start stream succ")
+//                            .sendToTarget();
+                    break;
+                case RecorderConstants.KSYVIDEO_FRAME_DATA_SEND_SLOW:
+                    //网络状况不佳
+//                    if (mHandler != null) {
+//                        mHandler.obtainMessage(what, "network not good").sendToTarget();
+//                    }
+                    break;
+                case RecorderConstants.KSYVIDEO_EST_BW_RAISE:
+                    //码率上调
+                    Log.d("TAG", "KSYVIDEO_EST_BW_RAISE");
+                    break;
+                case RecorderConstants.KSYVIDEO_EST_BW_DROP:
+                    //码率下调
+                    Log.d("TAG", "KSYVIDEO_EST_BW_DROP");
+                    break;
+                case RecorderConstants.KSYVIDEO_INIT_DONE:
+                    //video preview init done
+                    Log.d("TAG", "KSYVIDEO_INIT_DONE");
+                    break;
+                case RecorderConstants.KSYVIDEO_PIP_EXCEPTION:
+                    Log.d("TAG", "KSYVIDEO_PIP_EXCEPTION");
+//                    mHandler.obtainMessage(what, "pip exception")
+//                            .sendToTarget();
+                    break;
+                case RecorderConstants.KSYVIDEO_RENDER_EXCEPTION:
+                    Log.d("TAG", "KSYVIDEO_RENDER_EXCEPTION");
+//                    mHandler.obtainMessage(what, "renderer exception")
+//                            .sendToTarget();
+                    break;
+                default:
+                    break;
+
+            }
+        }
+    };
 
     public OnStatusListener mOnErrorListener = new OnStatusListener() {
         @Override
@@ -682,6 +784,8 @@ public class CameraActivity extends Activity {
                 case RecorderConstants.KSYVIDEO_ENCODED_FRAMES_FAILED:
                     //编码失败
                     Log.e(TAG, "---------KSYVIDEO_ENCODED_FRAMES_FAILED");
+                    break;
+                case RecorderConstants.KSYVIDEO_WLD_UPLOAD:
                     break;
                 case RecorderConstants.KSYVIDEO_FRAME_DATA_SEND_SLOW:
                     //网络状况不佳
@@ -703,22 +807,22 @@ public class CameraActivity extends Activity {
                     mHandler.obtainMessage(what, "init done")
                             .sendToTarget();
                     break;
-                case RecorderConstants.KSY_PIP_EXCEPTION:
+                case RecorderConstants.KSYVIDEO_PIP_EXCEPTION:
                     mHandler.obtainMessage(what, "pip exception")
                             .sendToTarget();
                     break;
-                case RecorderConstants.KSY_RENDER_EXCEPTION:
+                case RecorderConstants.KSYVIDEO_RENDER_EXCEPTION:
                     mHandler.obtainMessage(what, "renderer exception")
                             .sendToTarget();
                     break;
-                case RecorderConstants.KSYVIDEO_AUDIO_PERMISSION_DENIED:
-                    Log.e("CameraActivity", "-------no audio permission");
+                case RecorderConstants.KSYVIDEO_AUDIO_START_FAILED:
+                    Log.e("CameraActivity", "-------audio start failed");
                     break;
-                case RecorderConstants.KSYVIDEO_CAMERA_DISABLED:
-                    Log.e("CameraActivity", "-------no camera permission");
+                case RecorderConstants.KSYVIDEO_CAMERA_PARAMS_ERROR:
+                    Log.e("CameraActivity", "-------camera param is null");
                     break;
                 case RecorderConstants.KSYVIDEO_OPEN_CAMERA_FAIL:
-                    Log.e("CameraActivity", "-------init camera failed");
+                    Log.e("CameraActivity", "-------open camera failed");
                     break;
                 default:
                     if (msg != null) {
@@ -792,6 +896,10 @@ public class CameraActivity extends Activity {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        //新的状态回调机制
+        StreamStatusEventHandler.getInstance().removeStatusErrorListener(mOnStatusErrorListener);
+        StreamStatusEventHandler.getInstance().removeStatusInfoListener(mOnStatusInfoListener);
+
         if (mKsyBgmPlayer != null) {
             mKsyBgmPlayer.release();
             mKsyBgmPlayer = null;
@@ -946,14 +1054,14 @@ public class CameraActivity extends Activity {
             int pRecordAudio = PermissionChecker.checkCallingOrSelfPermission(this, "android.permission.RECORD_AUDIO");
             int pCamera = PermissionChecker.checkCallingOrSelfPermission(this, "android.permission.CAMERA");
 
-            if(pRecordAudio != PackageManager.PERMISSION_GRANTED) {
-                Log.e(TAG,"do not have AudioRecord permission, please check");
-                Toast.makeText(this,"do not have AudioRecord permission, please check", Toast.LENGTH_LONG).show();
+            if (pRecordAudio != PackageManager.PERMISSION_GRANTED) {
+                Log.e(TAG, "do not have AudioRecord permission, please check");
+                Toast.makeText(this, "do not have AudioRecord permission, please check", Toast.LENGTH_LONG).show();
                 return false;
             }
-            if(pCamera != PackageManager.PERMISSION_GRANTED) {
-                Log.e(TAG,"do not have CAMERA permission, please check");
-                Toast.makeText(this,"do not have CAMERA permission, please check", Toast.LENGTH_LONG).show();
+            if (pCamera != PackageManager.PERMISSION_GRANTED) {
+                Log.e(TAG, "do not have CAMERA permission, please check");
+                Toast.makeText(this, "do not have CAMERA permission, please check", Toast.LENGTH_LONG).show();
                 return false;
             }
         } catch (Exception e) {
