@@ -79,6 +79,7 @@ public class CameraActivity extends Activity {
     private CheckBox mEarMirror;
     private CheckBox mMuteAudio;
     private CheckBox mWaterMark;
+    private CheckBox mPitch;
     private TextView mShootingText;
     private boolean recording = false;
     private boolean isFlashOpened = false;
@@ -168,6 +169,7 @@ public class CameraActivity extends Activity {
         mEarMirror = (CheckBox) findViewById(R.id.ear_mirror);
         mMuteAudio = (CheckBox) findViewById(R.id.mute);
         mWaterMark = (CheckBox) findViewById(R.id.watermark);
+        mPitch = (CheckBox) findViewById(R.id.pitch);
 
         audio_mix = mBgm.isChecked();
         earMirror = mEarMirror.isChecked();
@@ -486,6 +488,22 @@ public class CameraActivity extends Activity {
             }
         });
 
+        mPitch.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                // 升降调，变速
+                if ( isChecked ) {
+                    mStreamer.setEnableAudioEffect(true);
+                    mStreamer.setPitch(-0.318f);
+                    mStreamer.setSpeed(1 / 0.7f);
+                    mStreamer.setTempo(0.7f);
+                }else{
+                    mStreamer.setEnableAudioEffect(false);
+                }
+            }
+        });
+
+
         mShootingText = (TextView) findViewById(R.id.click_to_shoot);
         mShootingText.setClickable(true);
         mShootingText.setOnClickListener(new View.OnClickListener() {
@@ -508,6 +526,7 @@ public class CameraActivity extends Activity {
                         mShootingText.postInvalidate();
                         recording = true;
 
+                        // 混响
                         mStreamer.setEnableReverb(true);
                         mStreamer.setReverbLevel(4);
                     } else {
