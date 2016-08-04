@@ -51,9 +51,16 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 
 ### 下载工程
 
-从github下载SDK及demo工程：  
-<https://github.com/ksvc/KSYStreamer_Android.git>
+#### github下载
+从github下载SDK及demo工程：  <https://github.com/ksvc/KSYStreamer_Android.git>
 
+#### oschina下载
+<http://git.oschina.net/ksvc/KSYStreamer_Android>
+对于部分地方访问github比较慢的情况，可以从oschina clone，获取的库内容和github一致。
+
+```
+$ git clone https://git.oschina.net/ksvc/KSYStreamer_Android.git
+```
 ### 工程目录结构
 
 - demo: 示例工程，演示本SDK主要接口功能的使用
