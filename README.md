@@ -168,15 +168,6 @@ KSYStreamerConfig config = builder.build();
 
 **注意：所有回调直接运行在产生事件的各工作线程中，不要在该回调中做任何耗时的操作，或者直接调用推流API。**
 ````java
-public OnStatusListener mOnStatusListener = new OnStatusListener() {
-    @Override
-    public void onStatus(int what, int arg1, int arg2, String msg) {
-        // msg may be null
-        switch (what) {
-            // ...
-        }
-    }
-}
  public StreamStatusEventHandler.OnStatusErrorListener mOnStatusErrorListener = new StreamStatusEventHandler.OnStatusErrorListener() {
         @Override
         public void onError(int what, int arg1, int arg2, String msg) {
