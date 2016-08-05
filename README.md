@@ -162,8 +162,11 @@ builder.setEnableStreamStatModule(true);
 // 创建KSYStreamerConfig对象
 KSYStreamerConfig config = builder.build();
 ````
-- 创建推流事件监听，可以收到推流过程中的异步事件。  
-**注意：该回调直接运行在产生事件的各工作线程中，不要在该回调中做任何耗时的操作，或者直接调用推流API。**
+- 创建推流事件监听，可以收到推流过程中的异步事件。事件监听分两种：
+1:StreamStatusEventHandler.OnStatusInfoListener  可以接收到状态通知，APP可以在收到对应的通知时提示用户
+2:StreamStatusEventHandler.OnStatusErrorListener 可以接收到错误通知，一般是发生了严重错误，比如断网等,SDK内部会停止推流
+
+**注意：所有回调直接运行在产生事件的各工作线程中，不要在该回调中做任何耗时的操作，或者直接调用推流API。**
 ````java
 public OnStatusListener mOnStatusListener = new OnStatusListener() {
     @Override
@@ -173,6 +176,24 @@ public OnStatusListener mOnStatusListener = new OnStatusListener() {
             // ...
         }
     }
+}
+ public StreamStatusEventHandler.OnStatusErrorListener mOnStatusErrorListener = new StreamStatusEventHandler.OnStatusErrorListener() {
+        @Override
+        public void onError(int what, int arg1, int arg2, String msg) {
+            //what is the status flag, msg may be null  
+            switch (what) {
+              // ...
+            }
+        }
+}
+public StreamStatusEventHandler.OnStatusInfoListener mOnStatusInfoListener = new StreamStatusEventHandler.OnStatusInfoListener() {
+        @Override
+        public void onInfo(int what, int arg1, int arg2, String msg) {
+//what is the status flag, msg may be null  
+            switch (what) {
+              // ...
+            }
+        }
 }
 ````
 - 创建KSYStreamer对象
