@@ -191,6 +191,7 @@ public class CameraActivity extends Activity {
                         case RecorderConstants.KSYVIDEO_RTMP_PUBLISH_FAILED:
                         case RecorderConstants.KSYVIDEO_CONNECT_BREAK:
                         case RecorderConstants.KSYVIDEO_AUDIO_INIT_FAILED:
+                        case RecorderConstants.KSYVIDEO_AUDIO_COVERT_FAILED:
                         case RecorderConstants.KSYVIDEO_OPEN_CAMERA_FAIL:
                         case RecorderConstants.KSYVIDEO_CAMERA_PARAMS_ERROR:
                         case RecorderConstants.KSYVIDEO_AUDIO_START_FAILED:
@@ -291,8 +292,6 @@ public class CameraActivity extends Activity {
         mStreamer = new KSYStreamer(this);
         mStreamer.setConfig(builder.build());
         mStreamer.setDisplayPreview(mCameraPreview);
-        //老的状态回调机制
-        mStreamer.setOnStatusListener(mOnErrorListener);
 
         //新的状态回调机制
         StreamStatusEventHandler.getInstance().addOnStatusErrorListener(mOnStatusErrorListener);
@@ -685,62 +684,130 @@ public class CameraActivity extends Activity {
         return true;
     }
 
-    //推流失败,需要退出重新启动推流,建议做log输出,方便快速定位问题
+    //推流失败,sdk内部已经停止推流
     public StreamStatusEventHandler.OnStatusErrorListener mOnStatusErrorListener = new StreamStatusEventHandler.OnStatusErrorListener() {
         @Override
         public void onError(int what, int arg1, int arg2, String msg) {
+            boolean needRetry = true;
             switch (what) {
                 case RecorderConstants.KSYVIDEO_ENCODED_FRAMES_FAILED:
-                    //视频编码失败,发生在软解,会停止推流
+                    //视频编码失败
                     Log.e(TAG, "the streaming stopped because KSYVIDEO_ENCODED_FRAMES_FAILED");
+                    if (mHandler != null) {
+                        mHandler.obtainMessage(what, msg).sendToTarget();
+                    }
+                    needRetry = false;
                     break;
                 case RecorderConstants.KSYVIDEO_CODEC_OPEN_FAILED:
-                    //编码器初始化失败,发生在推流开始时
+                    //编码器初始化失败
                     Log.e(TAG, "the streaming stopped because KSYVIDEO_CODEC_OPEN_FAILED");
+                    if (mHandler != null) {
+                        mHandler.obtainMessage(what, msg).sendToTarget();
+                    }
                     break;
                 case RecorderConstants.KSYVIDEO_CONNECT_FAILED:
-                    //打开编码器的输入输出文件失败,发生在推流开始时,会停止推流
+                    //无法建立连接
                     Log.e(TAG, "the streaming stopped because KSYVIDEO_CONNECT_FAILED");
+                    if (mHandler != null) {
+                        mHandler.obtainMessage(what, msg).sendToTarget();
+                    }
                     break;
                 case RecorderConstants.KSYVIDEO_DNS_PARSE_FAILED:
-                    //打开编码器的输入输出文件失败,发生在推流开始时,会停止推流
-                    Log.e(TAG, "the streaming stopped because KSYVIDEO_CONNECT_FAILED");
+                    //对于URL中的域名解析失败
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_DNS_PARSE_FAILED");
+                    if (mHandler != null) {
+                        mHandler.obtainMessage(what, msg).sendToTarget();
+                    }
                     break;
                 case RecorderConstants.KSYVIDEO_RTMP_PUBLISH_FAILED:
-                    //打开编码器的输入输出文件失败,发生在推流开始时,会停止推流
-                    Log.e(TAG, "the streaming stopped because KSYVIDEO_CONNECT_FAILED");
+                    //向服务端推流失败
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_RTMP_PUBLISH_FAILED");
+                    if (mHandler != null) {
+                        mHandler.obtainMessage(what, msg).sendToTarget();
+                    }
                     break;
                 case RecorderConstants.KSYVIDEO_CONNECT_BREAK:
-                    //写入一个音视频文件失败
+                    //连接断开
                     Log.e(TAG, "the streaming stopped because KSYVIDEO_CONNECT_BREAK");
+                    if (mHandler != null) {
+                        mHandler.obtainMessage(what, msg).sendToTarget();
+                    }
                     break;
                 case RecorderConstants.KSYVIDEO_AUDIO_INIT_FAILED:
-                    //软编,音频初始化失败
+                    //音频初始化失败
                     Log.e(TAG, "the streaming stopped because KSYVIDEO_AUDIO_INIT_FAILED");
+                    if (mHandler != null) {
+                        mHandler.obtainMessage(what, msg).sendToTarget();
+                    }
+                    needRetry = false;
                     break;
                 case RecorderConstants.KSYVIDEO_AUDIO_COVERT_FAILED:
-                    //软编,音频转码失败
+                    //音频转码失败
                     Log.e(TAG, "the streaming stopped because KSYVIDEO_AUDIO_COVERT_FAILED");
+                    if (mHandler != null) {
+                        mHandler.obtainMessage(what, msg).sendToTarget();
+                    }
                     break;
                 case RecorderConstants.KSYVIDEO_OPEN_CAMERA_FAIL:
                     //openCamera失败
                     Log.e(TAG, "the streaming stopped because KSYVIDEO_OPEN_CAMERA_FAIL");
+                    if (mHandler != null) {
+                        mHandler.obtainMessage(what, msg).sendToTarget();
+                    }
+                    needRetry = false;
                     break;
                 case RecorderConstants.KSYVIDEO_CAMERA_PARAMS_ERROR:
                     //获取不到camera参数,android 6.0 以下没有camera权限时可能发生
                     Log.e(TAG, "the streaming stopped because KSYVIDEO_CAMERA_PARAMS_ERROR");
+                    if (mHandler != null) {
+                        mHandler.obtainMessage(what, msg).sendToTarget();
+                    }
+                    needRetry = false;
                     break;
                 case RecorderConstants.KSYVIDEO_AUDIO_START_FAILED:
-                    //audio startRecord 失败
+                    //audio startRecord 失败, android 6.0 以下没有AudioRecord权限时有可能发生
                     Log.e(TAG, "the streaming stopped because KSYVIDEO_AUDIO_START_FAILED");
+                    if (mHandler != null) {
+                        mHandler.obtainMessage(what, msg).sendToTarget();
+                    }
+                    needRetry = false;
                     break;
                 default:
                     break;
             }
+            if(needRetry) {
+                // 可以在这里处理断网重连的逻辑
+                if (TextUtils.isEmpty(mUrl)) {
+                    mStreamer
+                            .updateUrl("rtmp://test.uplive.ksyun.com/live/androidtest");
+                } else {
+                    mStreamer.updateUrl(mUrl);
+                }
+                if (!executorService.isShutdown()) {
+                    executorService.submit(new Runnable() {
 
-//            if (mHandler != null) {
-//                mHandler.obtainMessage(what, msg).sendToTarget();
-//            }
+                        @Override
+                        public void run() {
+                            boolean needReconnect = true;
+                            try {
+                                while (needReconnect) {
+                                    Thread.sleep(3000);
+                                    //只在Activity对用户可见时重连
+                                    if (mAcitivityResumed) {
+                                        if (mStreamer.startStream()) {
+                                            recording = true;
+                                            needReconnect = false;
+                                        }
+                                    }
+                                }
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                        }
+
+                    });
+                }
+            }
         }
     };
 
@@ -751,60 +818,8 @@ public class CameraActivity extends Activity {
                 case RecorderConstants.KSYVIDEO_OPEN_STREAM_SUCC:
                     //推流成功
                     Log.d("TAG", "KSYVIDEO_OPEN_STREAM_SUCC");
-//                    mHandler.obtainMessage(what, "start stream succ")
-//                            .sendToTarget();
-                    break;
-                case RecorderConstants.KSYVIDEO_FRAME_DATA_SEND_SLOW:
-                    //网络状况不佳
-//                    if (mHandler != null) {
-//                        mHandler.obtainMessage(what, "network not good").sendToTarget();
-//                    }
-                    break;
-                case RecorderConstants.KSYVIDEO_EST_BW_RAISE:
-                    //码率上调
-                    Log.d("TAG", "KSYVIDEO_EST_BW_RAISE");
-                    break;
-                case RecorderConstants.KSYVIDEO_EST_BW_DROP:
-                    //码率下调
-                    Log.d("TAG", "KSYVIDEO_EST_BW_DROP");
-                    break;
-                case RecorderConstants.KSYVIDEO_INIT_DONE:
-                    //video preview init done
-                    Log.d("TAG", "KSYVIDEO_INIT_DONE");
-                    break;
-                case RecorderConstants.KSYVIDEO_PIP_EXCEPTION:
-                    Log.d("TAG", "KSYVIDEO_PIP_EXCEPTION");
-//                    mHandler.obtainMessage(what, "pip exception")
-//                            .sendToTarget();
-                    break;
-                case RecorderConstants.KSYVIDEO_RENDER_EXCEPTION:
-                    Log.d("TAG", "KSYVIDEO_RENDER_EXCEPTION");
-//                    mHandler.obtainMessage(what, "renderer exception")
-//                            .sendToTarget();
-                    break;
-                default:
-                    break;
-
-            }
-        }
-    };
-
-    public OnStatusListener mOnErrorListener = new OnStatusListener() {
-        @Override
-        public void onStatus(int what, int arg1, int arg2, String msg) {
-            // msg may be null
-            switch (what) {
-                case RecorderConstants.KSYVIDEO_OPEN_STREAM_SUCC:
-                    // 推流成功
-                    Log.d("TAG", "KSYVIDEO_OPEN_STREAM_SUCC");
                     mHandler.obtainMessage(what, "start stream succ")
                             .sendToTarget();
-                    break;
-                case RecorderConstants.KSYVIDEO_ENCODED_FRAMES_FAILED:
-                    //编码失败
-                    Log.e(TAG, "---------KSYVIDEO_ENCODED_FRAMES_FAILED");
-                    break;
-                case RecorderConstants.KSYVIDEO_WLD_UPLOAD:
                     break;
                 case RecorderConstants.KSYVIDEO_FRAME_DATA_SEND_SLOW:
                     //网络状况不佳
@@ -812,77 +827,27 @@ public class CameraActivity extends Activity {
                         mHandler.obtainMessage(what, "network not good").sendToTarget();
                     }
                     break;
-                case RecorderConstants.KSYVIDEO_EST_BW_DROP:
-                    //编码码率下降状态通知
-                    break;
-                case RecorderConstants.KSYVIDEO_EST_BW_RAISE:
-                    //编码码率上升状态通知
-                    break;
-                case RecorderConstants.KSYVIDEO_AUDIO_INIT_FAILED:
-                    Log.e("CameraActivity", "init audio failed");
-                    //音频录制初始化失败回调
-                    break;
                 case RecorderConstants.KSYVIDEO_INIT_DONE:
+                    //video preview init done
+                    Log.d("TAG", "KSYVIDEO_INIT_DONE");
                     mHandler.obtainMessage(what, "init done")
                             .sendToTarget();
                     break;
                 case RecorderConstants.KSYVIDEO_PIP_EXCEPTION:
+                    Log.d("TAG", "KSYVIDEO_PIP_EXCEPTION");
                     mHandler.obtainMessage(what, "pip exception")
                             .sendToTarget();
                     break;
                 case RecorderConstants.KSYVIDEO_RENDER_EXCEPTION:
+                    Log.d("TAG", "KSYVIDEO_RENDER_EXCEPTION");
                     mHandler.obtainMessage(what, "renderer exception")
                             .sendToTarget();
                     break;
-                case RecorderConstants.KSYVIDEO_AUDIO_START_FAILED:
-                    Log.e("CameraActivity", "-------audio start failed");
-                    break;
-                case RecorderConstants.KSYVIDEO_CAMERA_PARAMS_ERROR:
-                    Log.e("CameraActivity", "-------camera param is null");
-                    break;
-                case RecorderConstants.KSYVIDEO_OPEN_CAMERA_FAIL:
-                    Log.e("CameraActivity", "-------open camera failed");
-                    break;
                 default:
-                    if (msg != null) {
-                        // 可以在这里处理断网重连的逻辑
-                        if (TextUtils.isEmpty(mUrl)) {
-                            mStreamer
-                                    .updateUrl("rtmp://test.uplive.ksyun.com/live/androidtest");
-                        } else {
-                            mStreamer.updateUrl(mUrl);
-                        }
-                        if (!executorService.isShutdown()) {
-                            executorService.submit(new Runnable() {
+                    break;
 
-                                @Override
-                                public void run() {
-                                    boolean needReconnect = true;
-                                    try {
-                                        while (needReconnect) {
-                                            Thread.sleep(3000);
-                                            //只在Activity对用户可见时重连
-                                            if (mAcitivityResumed) {
-                                                if (mStreamer.startStream()) {
-                                                    recording = true;
-                                                    needReconnect = false;
-                                                }
-                                            }
-                                        }
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
-                                    }
-                                }
-
-                            });
-                        }
-                    }
-                    if (mHandler != null) {
-                        mHandler.obtainMessage(what, msg).sendToTarget();
-                    }
             }
         }
-
     };
 
     private KSYBgmPlayer.OnBgmPlayerListener mBgmListener = new KSYBgmPlayer.OnBgmPlayerListener() {
