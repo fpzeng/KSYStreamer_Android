@@ -1,7 +1,7 @@
 # 金山云直播推流Android SDK使用说明
 
 KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件开发工具包(SDK), 负责视频直播的采集和推流。  
-## 功能特点
+## 一. 功能特点
 
 * [x] [支持软编和硬编](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%8E%A8%E6%B5%81%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%82%E6%95%B0#%E7%BC%96%E7%A0%81%E5%99%A8%E9%80%89%E6%8B%A9)
 * [x] [网络自适应](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%8E%A8%E6%B5%81%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%82%E6%95%B0#%E8%A7%86%E9%A2%91%E7%A0%81%E7%8E%87%E5%8F%8A%E7%A0%81%E7%8E%87%E8%87%AA%E9%80%82%E5%BA%94)， 可根据实际网络情况动态调整目标码率，保证流畅性
@@ -24,7 +24,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] [画中画](https://github.com/ksvc/KSYStreamer_Android/wiki/%E7%94%BB%E4%B8%AD%E7%94%BB)
 * [x] 连麦(new)
 
-## 运行环境
+## 二. 运行环境
 
 * 最低支持版本为Android 4.0 (API level 15)
 * 支持的cpu架构：armv7, arm64, x86
@@ -37,31 +37,31 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 |网络自适应  |4.0 (15)   |4.4 (19)   |
   
 
-## 开发指南
+## 三. 开发指南
 
 [Wiki](https://github.com/ksvc/KSYStreamer_Android/wiki)
 
-## 版本迭代
+## 四. 版本迭代
 [最新及历史版本](https://github.com/ksvc/KSYStreamer_Android/releases)
 
-## 快速集成
+## 五. 快速集成
 
 本章节提供一个快速集成金山云推流SDK基础功能的示例。更详细的文档地址：[https://github.com/ksvc/KSYStreamer_Android/wiki](https://github.com/ksvc/KSYStreamer_Android/wiki)  
 具体可以参考demo工程中的相应文件。
 
-### 下载工程
+### 5.1 下载工程
 
-#### github下载
+#### 5.1.1 github下载
 从github下载SDK及demo工程：  <https://github.com/ksvc/KSYStreamer_Android.git>
 
-#### oschina下载
+#### 5.1.2 oschina下载
 <http://git.oschina.net/ksvc/KSYStreamer_Android>
 对于部分地方访问github比较慢的情况，可以从oschina clone，获取的库内容和github一致。
 
 ```
 $ git clone https://git.oschina.net/ksvc/KSYStreamer_Android.git
 ```
-### 工程目录结构
+### 5.2 工程目录结构
 
 - demo: 示例工程，演示本SDK主要接口功能的使用
 - doc: SDK说明文档
@@ -70,7 +70,7 @@ $ git clone https://git.oschina.net/ksvc/KSYStreamer_Android.git
     - libs/ksylive3.0.jar: 推流SDK jar包
     - libs/libksystat.jar: 金山云统计模块
 
-### 配置项目
+### 5.3 配置项目
 
 引入目标库, 将libs目录下的库文件引入到目标工程中并添加依赖。
 
@@ -108,7 +108,7 @@ $ git clone https://git.oschina.net/ksvc/KSYStreamer_Android.git
 <uses-feature android:name="android.hardware.camera.autofocus" />
 ````
 
-### 简单推流示例
+### 5.4 简单推流示例
 
 具体可参考demo工程中的`com.ksy.recordlib.demo.CameraActivity`类
 
@@ -240,7 +240,7 @@ public class CameraActivity extends Activity {
 }
 ```
 
-## 功能详细使用说明
+## 六. 功能详细使用说明
 * [推流初始化参数](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%8E%A8%E6%B5%81%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%82%E6%95%B0)
 * [状态和错误回调](https://github.com/ksvc/KSYStreamer_Android/wiki/%E7%8A%B6%E6%80%81%E5%92%8C%E9%94%99%E8%AF%AF%E5%9B%9E%E8%B0%83)
 * [内置美颜](https://github.com/ksvc/KSYStreamer_Android/wiki/%E5%86%85%E7%BD%AE%E7%BE%8E%E9%A2%9C)
@@ -250,13 +250,10 @@ public class CameraActivity extends Activity {
 * [水印](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%B0%B4%E5%8D%B0)
 * [手动对焦](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%89%8B%E5%8A%A8%E5%AF%B9%E7%84%A6)
 
-## [API接口速查](https://github.com/ksvc/KSYStreamer_Android/wiki/API%E6%8E%A5%E5%8F%A3%E9%80%9F%E6%9F%A5)  
-
-## [接口变更](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%8E%A5%E5%8F%A3%E5%8F%98%E6%9B%B4)
-
-## [常见问题](https://github.com/ksvc/KSYStreamer_Android/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
-如有其它需求可以联系[我们](http://www.ksyun.com/)
-##反馈与建议
+## 七. [API接口速查](https://github.com/ksvc/KSYStreamer_Android/wiki/API%E6%8E%A5%E5%8F%A3%E9%80%9F%E6%9F%A5)  
+## 八. [接口变更](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%8E%A5%E5%8F%A3%E5%8F%98%E6%9B%B4)
+## 九.[常见问题](https://github.com/ksvc/KSYStreamer_Android/wiki/%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98)
+## 十.反馈与建议
 - 主页：[金山云](http://www.ksyun.com/)
 - 邮箱：<zengfanping@kingsoft.com>
 - Issues: <https://github.com/ksvc/KSYStreamer_Android/issues>
