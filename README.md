@@ -1,6 +1,6 @@
 # 金山云直播推流Android SDK使用说明
 
-KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件开发工具包(SDK), 负责视频直播的采集和推流。  
+KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件开发工具包(SDK), 负责视频直播的采集、预处理、编码和推流。  
 ## 一. 功能特点
 
 * [x] [支持软编和硬编](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%8E%A8%E6%B5%81%E5%88%9D%E5%A7%8B%E5%8C%96%E5%8F%82%E6%95%B0#%E7%BC%96%E7%A0%81%E5%99%A8%E9%80%89%E6%8B%A9)
