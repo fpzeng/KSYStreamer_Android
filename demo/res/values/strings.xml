@@ -19,5 +19,6 @@
     <string name="flash">Flash</string>
     <string name="picture_pip">开始图片画中画</string>
     <string name="stop_picture_pip">停止图片画中画</string>
+    <string name="frontMirror">开始前置摄像头镜像</string>
 
 </resources>

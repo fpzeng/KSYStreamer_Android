@@ -80,6 +80,7 @@ public class CameraActivity extends Activity {
     private CheckBox mMuteAudio;
     private CheckBox mWaterMark;
     private CheckBox mPitch;
+    private CheckBox mFrontMirror;
     private TextView mShootingText;
     private boolean recording = false;
     private boolean isFlashOpened = false;
@@ -167,6 +168,7 @@ public class CameraActivity extends Activity {
         mPicturePip.setClickable(true);
         mBgm = (CheckBox) findViewById(R.id.bgm);
         mEarMirror = (CheckBox) findViewById(R.id.ear_mirror);
+        mFrontMirror = (CheckBox) findViewById(R.id.front_mirror);
         mMuteAudio = (CheckBox) findViewById(R.id.mute);
         mWaterMark = (CheckBox) findViewById(R.id.watermark);
         mPitch = (CheckBox) findViewById(R.id.pitch);
@@ -279,6 +281,7 @@ public class CameraActivity extends Activity {
 
             boolean isFrontCameraMirror = bundle.getBoolean(FRONT_CAMERA_MIRROR, false);
             builder.setFrontCameraMirror(isFrontCameraMirror);
+            mFrontMirror.setChecked(isFrontCameraMirror);  //根据外部的config值来确定checkbox的属性
             testSWFilterInterface = bundle.getBoolean(TEST_SW_FILTER, false);
             boolean focus_manual = bundle.getBoolean(MANUAL_FOCUS, false);
             builder.setManualFocus(focus_manual);
@@ -491,12 +494,12 @@ public class CameraActivity extends Activity {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 // 升降调，变速
-                if ( isChecked ) {
+                if (isChecked) {
                     mStreamer.setEnableAudioEffect(true);
                     mStreamer.setPitch(-0.318f);
                     mStreamer.setSpeed(1 / 0.7f);
                     mStreamer.setTempo(0.7f);
-                }else{
+                } else {
                     mStreamer.setEnableAudioEffect(false);
                 }
             }
@@ -553,6 +556,8 @@ public class CameraActivity extends Activity {
 
         chronometer = (Chronometer) this.findViewById(R.id.chronometer);
         mDebugInfoTextView = (TextView) this.findViewById(R.id.debuginfo);
+
+        initFrontMirror();
     }
 
     private void beginInfoUploadTimer() {
@@ -775,7 +780,7 @@ public class CameraActivity extends Activity {
                 default:
                     break;
             }
-            if(needRetry) {
+            if (needRetry) {
                 // 可以在这里处理断网重连的逻辑
                 if (TextUtils.isEmpty(mUrl)) {
                     mStreamer
@@ -1052,6 +1057,17 @@ public class CameraActivity extends Activity {
             e.printStackTrace();
         }
         return true;
+    }
+
+    private void initFrontMirror() {
+        mFrontMirror.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                if (mStreamer != null) {
+                    mStreamer.setEnableCameraMirror(isChecked);
+                }
+            }
+        });
     }
 
 }
