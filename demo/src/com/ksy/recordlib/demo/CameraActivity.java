@@ -197,6 +197,7 @@ public class CameraActivity extends Activity {
                         case RecorderConstants.KSYVIDEO_OPEN_CAMERA_FAIL:
                         case RecorderConstants.KSYVIDEO_CAMERA_PARAMS_ERROR:
                         case RecorderConstants.KSYVIDEO_AUDIO_START_FAILED:
+                        case RecorderConstants.KSYVIDEO_AV_SYNC_ERROR:
                             Toast.makeText(CameraActivity.this, content,
                                     Toast.LENGTH_LONG).show();
                             chronometer.stop();
@@ -772,6 +773,14 @@ public class CameraActivity extends Activity {
                 case RecorderConstants.KSYVIDEO_AUDIO_START_FAILED:
                     //audio startRecord 失败, android 6.0 以下没有AudioRecord权限时有可能发生
                     Log.e(TAG, "the streaming stopped because KSYVIDEO_AUDIO_START_FAILED");
+                    if (mHandler != null) {
+                        mHandler.obtainMessage(what, msg).sendToTarget();
+                    }
+                    needRetry = false;
+                    break;
+                case RecorderConstants.KSYVIDEO_AV_SYNC_ERROR:
+                    Log.e(TAG, "the streaming stopped because KSYVIDEO_AV_SYNC_ERROR, pts diff:" +
+                                String.valueOf(arg1));
                     if (mHandler != null) {
                         mHandler.obtainMessage(what, msg).sendToTarget();
                     }
