@@ -611,17 +611,17 @@ public class CameraActivity extends Activity {
     private void showChooseFilter() {
         AlertDialog alertDialog;
         alertDialog = new AlertDialog.Builder(this).setTitle("请选择美颜滤镜").setSingleChoiceItems(
-                new String[]{"BEAUTY_SOFT", "SKIN_WHITEN", "BEAUTY_ILLUSION", "DENOISE", "DEMOFILTER", "SPLIT_E/P_FILTER", "GROUP_FILTER"}, -1, new DialogInterface.OnClickListener() {
+                new String[]{"BEAUTY_SOFT", "SKIN_WHITEN", "BEAUTY_ILLUSION", "DENOISE", "SHAPER", "DEMOFILTER", "SPLIT_E/P_FILTER", "GROUP_FILTER"}, -1, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (which < 4) {
+                        if (which < 5) {
                             mStreamer.setBeautyFilter(which + 16);
-                        } else if (which == 4) {
-
                         } else if (which == 5) {
+
+                        } else if (which == 6) {
                             mStreamer.setBeautyFilter(new DEMOFILTER(), RecorderConstants.FILTER_USAGE_ENCODE);
                             mStreamer.setBeautyFilter(new DEMOFILTER2(), RecorderConstants.FILTER_USAGE_PREVIEW);
-                        } else if (which == 6) {
+                        } else if (which == 7) {
                             mStreamer.setBeautyFilter(new GroupFilterDemo());
                         }
                         dialog.dismiss();
