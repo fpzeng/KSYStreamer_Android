@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.ksy.recordlib.demo"
+    package="com.ksyun.media.streamer.demo"
     android:installLocation="preferExternal"
     android:versionCode="1"
     android:versionName="0.0.1">
 
     <uses-sdk
-        android:minSdkVersion="14"
-        android:targetSdkVersion="19" />
+        android:minSdkVersion="15"
+        android:targetSdkVersion="23" />
 
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
@@ -41,7 +41,7 @@
         android:smallScreens="true"
         android:theme="@style/ThemeWithTitle">
         <activity
-            android:name="com.ksy.recordlib.demo.DemoActivity"
+            android:name="com.ksyun.media.streamer.demo.DemoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTop"
             android:screenOrientation="portrait"
@@ -52,12 +52,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
         <activity
-            android:name="com.ksy.recordlib.demo.CameraActivity"
+            android:name="com.ksyun.media.streamer.demo.CameraActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:launchMode="singleTop"
-            android:theme="@style/Theme.RiseAnimation"></activity>
+            android:theme="@style/Theme.RiseAnimation">
+        </activity>
     </application>
 
 </manifest>

@@ -113,6 +113,13 @@
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="软编" />
+
+            <RadioButton
+                android:id="@+id/encode_sw1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="软编1" />
         </RadioGroup>
 
         <LinearLayout
@@ -123,33 +130,12 @@
             android:orientation="vertical">
 
             <CheckBox
-                android:id="@+id/front_camera_mirror"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/encode_group"
-                android:checked="false"
-                android:text="前置摄像头镜像" />
-
-            <CheckBox
                 android:id="@+id/autoStart"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="初始化完成后启动推流" />
 
-            <CheckBox
-                android:id="@+id/testsw"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="测试onPreviewFrame(软编预处理填充UV分量)" />
-
-            <CheckBox
-                android:id="@+id/manual_focus"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="false"
-                android:text="手动指定对焦测光区" />
             <CheckBox
                 android:id="@+id/print_debug_info"
                 android:layout_width="wrap_content"
@@ -214,7 +200,7 @@
                 android:id="@+id/audioBitratePicker"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="32" />
+                android:text="48" />
         </LinearLayout>
 
 
