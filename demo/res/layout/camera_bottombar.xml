@@ -4,46 +4,20 @@
     android:layout_height="wrap_content"
     android:background="#00000000">
 
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:orientation="vertical"
         android:background="#00000000"
-        android:paddingLeft="5dp">
-        <CheckBox
-            android:id="@+id/front_mirror"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:layout_marginLeft="10dp"
-            android:layout_weight="1"
-            android:background="#11123456"
-            android:checked="false"
-            android:text="@string/frontMirror"
-            android:textColor="@color/font_color_35"
-            android:textSize="@dimen/font_size_28px">
-        </CheckBox>
+        android:paddingLeft="5dp"
+        android:id="@+id/linearLayout">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:orientation="horizontal">
-
-            <CheckBox
-                android:id="@+id/pitch"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:background="#11123456"
-                android:checked="false"
-                android:text="@string/pitch"
-                android:textColor="@color/font_color_35"
-                android:textSize="@dimen/font_size_28px">
-            </CheckBox>
 
             <CheckBox
                 android:id="@+id/watermark"
@@ -83,6 +57,20 @@
                 android:background="#11123456"
                 android:checked="false"
                 android:text="@string/bgm"
+                android:textColor="@color/font_color_35"
+                android:textSize="@dimen/font_size_28px">
+            </CheckBox>
+
+            <CheckBox
+                android:id="@+id/reverb"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#11123456"
+                android:checked="false"
+                android:text="@string/reverb"
                 android:textColor="@color/font_color_35"
                 android:textSize="@dimen/font_size_28px">
             </CheckBox>
@@ -128,31 +116,45 @@
                 android:textSize="@dimen/font_size_28px">
             </TextView>
 
-            <TextView
-                android:id="@+id/picture_pip"
+            <CheckBox
+                android:id="@+id/front_camera_mirror"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:background="#11123456"
-                android:text="@string/picture_pip"
+                android:checked="true"
+                android:text="@string/front_mirror"
                 android:textColor="@color/font_color_35"
                 android:textSize="@dimen/font_size_28px">
-            </TextView>
+            </CheckBox>
 
-            <TextView
-                android:id="@+id/pip"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
-                android:background="#11123456"
-                android:text="@string/pip"
-                android:textColor="@color/font_color_35"
-                android:textSize="@dimen/font_size_28px">
-            </TextView>
+            <!--<CheckBox-->
+                <!--android:id="@+id/picture_pip"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="#11123456"-->
+                <!--android:text="@string/picture_pip"-->
+                <!--android:textColor="@color/font_color_35"-->
+                <!--android:textSize="@dimen/font_size_28px">-->
+            <!--</CheckBox>-->
+
+            <!--<CheckBox-->
+                <!--android:id="@+id/pip"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center"-->
+                <!--android:layout_marginLeft="10dp"-->
+                <!--android:layout_weight="1"-->
+                <!--android:background="#11123456"-->
+                <!--android:text="@string/pip"-->
+                <!--android:textColor="@color/font_color_35"-->
+                <!--android:textSize="@dimen/font_size_28px">-->
+            <!--</CheckBox>-->
 
             <CheckBox
                 android:id="@+id/click_to_switch_beauty"
@@ -167,7 +169,7 @@
                 android:textColor="@color/font_color_35"
                 android:textSize="@dimen/font_size_28px">
             </CheckBox>
+
         </LinearLayout>
     </LinearLayout>
-
 </RelativeLayout>
