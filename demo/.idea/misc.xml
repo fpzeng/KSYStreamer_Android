@@ -1,30 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="EntryPointsManager">
-    <entry_points version="2.0" />
+  <component name="AndroidDexCompilerConfiguration">
+    <option name="MAX_HEAP_SIZE" value="2048" />
   </component>
-  <component name="NullableNotNullManager">
-    <option name="myDefaultNullable" value="android.support.annotation.Nullable" />
-    <option name="myDefaultNotNull" value="android.support.annotation.NonNull" />
-    <option name="myNullables">
-      <value>
-        <list size="4">
-          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.Nullable" />
-          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nullable" />
-          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.Nullable" />
-          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.Nullable" />
-        </list>
-      </value>
+  <component name="GradleLocalSettings">
+    <option name="modificationStamps">
+      <map>
+        <entry key="$USER_HOME$/douban/Frodo-Android" value="14254367964000" />
+        <entry key="$USER_HOME$/douban/Natalya-Volley" value="8564151602000" />
+        <entry key="$USER_HOME$/douban/frodo-android" value="14255851862000" />
+        <entry key="$USER_HOME$/douban/group" value="1426146715000" />
+        <entry key="$USER_HOME$/douban/paho" value="4277940090000" />
+        <entry key="$USER_HOME$/douban/pushservice" value="7121409054000" />
+        <entry key="$PROJECT_DIR$/../../../lock" value="7079428685000" />
+        <entry key="$PROJECT_DIR$/../../../volley" value="1426571121000" />
+      </map>
     </option>
-    <option name="myNotNulls">
-      <value>
-        <list size="4">
-          <item index="0" class="java.lang.String" itemvalue="org.jetbrains.annotations.NotNull" />
-          <item index="1" class="java.lang.String" itemvalue="javax.annotation.Nonnull" />
-          <item index="2" class="java.lang.String" itemvalue="edu.umd.cs.findbugs.annotations.NonNull" />
-          <item index="3" class="java.lang.String" itemvalue="android.support.annotation.NonNull" />
-        </list>
-      </value>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="mavenHome" value="Bundled (Maven 3)" />
+      </MavenGeneralSettings>
     </option>
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
@@ -37,26 +34,10 @@
     <ConfirmationsSetting value="0" id="Add" />
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" default="true" assert-keyword="true" jdk-15="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="masterDetails">
-    <states>
-      <state key="ProjectJDKs.UI">
-        <settings>
-          <last-edited>1.8</last-edited>
-          <splitter-proportions>
-            <option name="proportions">
-              <list>
-                <option value="0.2" />
-              </list>
-            </option>
-          </splitter-proportions>
-        </settings>
-      </state>
-    </states>
   </component>
 </project>
