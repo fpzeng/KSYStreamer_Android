@@ -22,7 +22,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] [支持图片及时间水印](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%B0%B4%E5%8D%B0)
 * [x] 耳返
 * [x] [画中画](https://github.com/ksvc/KSYStreamer_Android/wiki/%E7%94%BB%E4%B8%AD%E7%94%BB)
-* [x] 连麦(new)
+* [x] [连麦](https://github.com/ksvc/KSYRTCLive_Android)
 
 ## 二. 运行环境
 
@@ -249,6 +249,7 @@ public class CameraActivity extends Activity {
 * [美声](https://github.com/ksvc/KSYStreamer_Android/wiki/%E7%BE%8E%E5%A3%B0)
 * [水印](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%B0%B4%E5%8D%B0)
 * [手动对焦](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%89%8B%E5%8A%A8%E5%AF%B9%E7%84%A6)
+* [连麦](https://github.com/ksvc/KSYRTCLive_Android)
 
 ## 七. [API接口速查](https://github.com/ksvc/KSYStreamer_Android/wiki/API%E6%8E%A5%E5%8F%A3%E9%80%9F%E6%9F%A5)  
 ## 八. [接口变更](https://github.com/ksvc/KSYStreamer_Android/wiki/%E6%8E%A5%E5%8F%A3%E5%8F%98%E6%9B%B4)
