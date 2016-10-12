@@ -303,7 +303,7 @@ public class CameraActivity extends Activity {
 * https://github.com/ksvc/KSYStreamer_Android/wiki/front_camera_mirror[前置摄像头镜像]
 * https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Streamer_Only[纯音频推流]
 
-== https://github.com/ksvc/KSYStreamer_Android/wiki/QA[FAQ]
+== https://github.com/ksvc/KSYStreamer_Android/wiki/FAQ[FAQ]
 
 == 反馈与建议
 - 主页： http://www.ksyun.com[金山云]
