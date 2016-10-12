@@ -50,9 +50,13 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 |内建美颜滤镜 |所有      |所有         |仅Denoise
 |===
 
+== 版本迭代
+https://github.com/ksvc/KSYStreamer_Android/releases[最新及历史版本]
+
 == 快速集成
 
-本章节提供一个快速集成金山云推流SDK基础功能的示例。
+本章节提供一个快速集成金山云推流SDK基础功能的示例。 +
+更详细的文档地址：https://github.com/ksvc/KSYStreamer_Android/wiki +
 具体可以参考demo工程中的相应文件。
 
 === 下载工程
@@ -288,3 +292,9 @@ public class CameraActivity extends Activity {
 * https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Filter[音频滤镜]
 * https://github.com/ksvc/KSYStreamer_Android/wiki/WaterMark[水印]
 * https://github.com/ksvc/KSYStreamer_Android/wiki/AutoFocus&Zoom[手动对焦&变焦]
+
+== 反馈与建议
+- 主页： http://www.ksyun.com[金山云]
+- 邮箱： zengfanping@kingsoft.com
+- QQ讨论群：574179720
+- Issues:  https://github.com/ksvc/KSYStreamer_Android/issues
