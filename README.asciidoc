@@ -43,7 +43,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * 最低支持版本为Android 4.0 (API level 15)
 * 支持的cpu架构：armv7, arm64, x86
 
-.软硬编部分功能对系统版本的要求及相关限制:
+.软硬编部分功能对系统版本的要求及相关限制
 |===
 |           |软编     |硬编         |软编兼容模式
 |基础推流   |4.4 (19)   |4.3 (18)   |4.0 (15)
@@ -52,7 +52,11 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 |===
 
 == 版本迭代
+
 https://github.com/ksvc/KSYStreamer_Android/releases[最新及历史版本]
+
+当前版本为4.x，相对于v3.x有较大的变动，从3.x迁移的用户可参考： +
+https://github.com/ksvc/KSYStreamer_Android/wiki/Trasform_Info[3.x到4.0迁移说明]。
 
 == 快速集成
 
