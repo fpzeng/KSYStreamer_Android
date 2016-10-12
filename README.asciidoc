@@ -290,13 +290,20 @@ public class CameraActivity extends Activity {
 * http://ksvc.github.io/KSYStreamer_Android/docs[API接口速查]
 * https://github.com/ksvc/KSYStreamer_Android/wiki/Trasform_Info[3.x到4.0迁移说明]
 * https://github.com/ksvc/KSYStreamer_Android/wiki/Streamer_Config_Params[推流参数设置]
+* https://github.com/ksvc/KSYStreamer_Android/wiki/streamer_start&stop[开始和结束推流]
 * https://github.com/ksvc/KSYStreamer_Android/wiki/Info&Error_Listener[状态和错误回调]
+* https://github.com/ksvc/KSYStreamer_Android/wiki/Restream[异常情况下重连]
+* https://github.com/ksvc/KSYStreamer_Android/wiki/Permission_check[权限检查]
 * https://github.com/ksvc/KSYStreamer_Android/wiki/Video_Filter_Inner[内置美颜滤镜]
 * https://github.com/ksvc/KSYStreamer_Android/wiki/Video_Filter[自定义视频滤镜]
-* https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Mixer[混音]
-* https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Filter[音频滤镜]
+* https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Filter[音频滤镜_美声]
+* https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Mixer[混音_背景音乐]
 * https://github.com/ksvc/KSYStreamer_Android/wiki/WaterMark[水印]
 * https://github.com/ksvc/KSYStreamer_Android/wiki/AutoFocus&Zoom[手动对焦&变焦]
+* https://github.com/ksvc/KSYStreamer_Android/wiki/front_camera_mirror[前置摄像头镜像]
+* https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Streamer_Only[纯音频推流]
+
+== https://github.com/ksvc/KSYStreamer_Android/wiki/QA[FAQ]
 
 == 反馈与建议
 - 主页： http://www.ksyun.com[金山云]
