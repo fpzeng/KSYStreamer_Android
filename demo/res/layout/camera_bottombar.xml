@@ -62,7 +62,7 @@
             </CheckBox>
 
             <CheckBox
-                android:id="@+id/reverb"
+                android:id="@+id/click_to_select_audio_filter"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
@@ -70,7 +70,7 @@
                 android:layout_weight="1"
                 android:background="#11123456"
                 android:checked="false"
-                android:text="@string/reverb"
+                android:text="@string/audio_filter_selected"
                 android:textColor="@color/font_color_35"
                 android:textSize="@dimen/font_size_28px">
             </CheckBox>
@@ -115,6 +115,20 @@
                 android:textColor="@color/font_color_35"
                 android:textSize="@dimen/font_size_28px">
             </TextView>
+
+            <CheckBox
+                android:id="@+id/audio_only"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#11123456"
+                android:checked="false"
+                android:text="@string/audio_only"
+                android:textColor="@color/font_color_35"
+                android:textSize="@dimen/font_size_28px">
+            </CheckBox>
 
             <CheckBox
                 android:id="@+id/front_camera_mirror"

@@ -3,7 +3,8 @@ package com.ksyun.media.streamer.demo;
 
 import android.opengl.GLES20;
 
-import com.ksyun.media.streamer.filter.imgtex.GlUtil;
+import com.ksyun.media.streamer.util.gles.GLRender;
+import com.ksyun.media.streamer.util.gles.GlUtil;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexFilter;
 
 /**
@@ -11,18 +12,18 @@ import com.ksyun.media.streamer.filter.imgtex.ImgTexFilter;
  */
 public class DemoFilter3 extends ImgTexFilter {
     // Fragment shader that attempts to produce a high contrast image
-    private static final String FRAGMENT_SHADER =
+    private static final String FRAGMENT_SHADER_BODY =
             "precision mediump float;\n" +
                     "varying vec2 vTextureCoord;\n" +
                     "uniform  float greenplus;\n" +
                     "void main() {\n" +
                     "    vec4 tc = texture2D(sTexture, vTextureCoord);\n" +
                     "    float color = ((tc.r  + tc.g + tc.b ) / 3.0) ;\n" +
-                    "    gl_FragColor = vec4(color, color + greenplus, color, 1.0);\n" +
+                    "    gl_FragColor = vec4(color+ greenplus, color , color, 1.0);\n" +
                     "}\n";
 
-    public DemoFilter3() {
-        super(GlUtil.BASE_VERTEX_SHADER, FRAGMENT_SHADER);
+    public DemoFilter3(GLRender glRender) {
+        super(glRender, BASE_VERTEX_SHADER, FRAGMENT_SHADER_BODY);
     }
 
     public void onInitialized() {

@@ -98,9 +98,9 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 23 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="libksystat" level="project" />
-    <orderEntry type="library" exported="" name="support-v4-24.1.1" level="project" />
     <orderEntry type="library" exported="" name="ksylive4.0" level="project" />
+    <orderEntry type="library" exported="" name="support-v4-24.1.1" level="project" />
+    <orderEntry type="library" exported="" name="libksystat" level="project" />
     <orderEntry type="library" exported="" name="support-annotations-24.1.1" level="project" />
   </component>
 </module>

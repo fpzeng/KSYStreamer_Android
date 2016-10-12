@@ -3,7 +3,8 @@ package com.ksyun.media.streamer.demo;
 
 import android.opengl.GLES20;
 
-import com.ksyun.media.streamer.filter.imgtex.GlUtil;
+import com.ksyun.media.streamer.util.gles.GLRender;
+import com.ksyun.media.streamer.util.gles.GlUtil;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexFilter;
 
 /**
@@ -21,8 +22,8 @@ public class DemoFilter extends ImgTexFilter {
                     "    gl_FragColor = vec4(color, color + greenplus, color, 1.0);\n" +
                     "}\n";
 
-    public DemoFilter() {
-        super(GlUtil.BASE_VERTEX_SHADER, FRAGMENT_SHADER_BODY);
+    public DemoFilter(GLRender glRender) {
+        super(glRender, BASE_VERTEX_SHADER, FRAGMENT_SHADER_BODY);
     }
 
     public void onInitialized() {
