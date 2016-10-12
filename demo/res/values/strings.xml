@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
 
     <string name="camera_error_title">相机异常</string>
     <string name="cannot_connect_camera">无法连接相机，请在系统设置里修改权限</string>
@@ -8,17 +8,18 @@
     <string name="app_name">金山云推流Demo</string>
     <string name="hello_world">Hello world!</string>
     <string name="click_to_shoot">开始直播</string>
-    <string name="beauty_switcher">美颜滤镜</string>
+    <string name="beauty_switcher">美颜</string>
     <string name="watermark">水印</string>
-    <string name="pitch">升降调</string>
     <string name="mute">静音</string>
-    <string name="bgm">背景音乐</string>
+    <string name="bgm">bgm</string>
+    <string name="audio_filter_selected">音频滤镜</string>
     <string name="ear_mirror">耳返</string>
-    <string name="pip">开始画中画</string>
+    <string name="pip">画中画</string>
     <string name="stop_pip">停止画中画</string>
     <string name="flash">Flash</string>
-    <string name="picture_pip">开始图片画中画</string>
+    <string name="picture_pip">图片画中画</string>
     <string name="stop_picture_pip">停止图片画中画</string>
-    <string name="frontMirror">开始前置摄像头镜像</string>
+    <string name="front_mirror">前置镜像</string>
+    <string name="audio_only">音频推流</string>
 
 </resources>

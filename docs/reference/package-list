@@ -1,0 +1,14 @@
+com.ksyun.media.streamer.capture
+com.ksyun.media.streamer.capture.audio
+com.ksyun.media.streamer.capture.camera
+com.ksyun.media.streamer.encoder
+com.ksyun.media.streamer.filter.audio
+com.ksyun.media.streamer.filter.imgbuf
+com.ksyun.media.streamer.filter.imgtex
+com.ksyun.media.streamer.framework
+com.ksyun.media.streamer.kit
+com.ksyun.media.streamer.logstats
+com.ksyun.media.streamer.publisher
+com.ksyun.media.streamer.util.audio
+com.ksyun.media.streamer.util.gles
+
