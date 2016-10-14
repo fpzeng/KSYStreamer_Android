@@ -307,7 +307,7 @@ public class CameraActivity extends Activity {
 == https://github.com/ksvc/KSYStreamer_Android/wiki/FAQ[FAQ]
 
 == 反馈与建议
-- 主页： http://www.ksyun.com[金山云]
-- 邮箱： zengfanping@kingsoft.com
-- QQ讨论群：574179720
-- Issues:  https://github.com/ksvc/KSYStreamer_Android/issues
+* 主页： http://www.ksyun.com[金山云]
+* 邮箱： zengfanping@kingsoft.com
+* QQ讨论群：574179720 [视频云技术交流群] 
+* Issues:  https://github.com/ksvc/KSYStreamer_Android/issues
