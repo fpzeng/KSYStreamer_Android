@@ -214,7 +214,7 @@ mStreamer.setOnErrorListener(new KSYStreamer.OnErrorListener() {
 +
 [NOTE]
 ====
-初次开启预览后需要在mOnStatusListener回调中收到
+初次开启预览后需要在OnInfoListener回调中收到
 StreamerConstants.KSY_STREAMER_CAMERA_INIT_DONE
 事件后调用方才有效。
 ====
