@@ -1732,6 +1732,43 @@
 <parameter name="frame" type="com.ksyun.media.streamer.framework.ImgTexFrame">
 </parameter>
 </method>
+<method name="queueEvent"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="r" type="java.lang.Runnable">
+</parameter>
+</method>
+<method name="requestRender"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setGLRenderListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener">
+</parameter>
+</method>
 </class>
 <class name="AVCodecVideoEncoder"
  extends="com.ksyun.media.streamer.encoder.Encoder"
@@ -2386,6 +2423,26 @@
  visibility="protected"
 >
 </field>
+<field name="mEncodeHandler"
+ type="Handler"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mEncodeThread"
+ type="HandlerThread"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
 <field name="mFrameDropped"
  type="java.util.concurrent.atomic.AtomicInteger"
  transient="false"
@@ -2899,6 +2956,43 @@
  visibility="protected"
 >
 <parameter name="frame" type="com.ksyun.media.streamer.framework.ImgTexFrame">
+</parameter>
+</method>
+<method name="queueEvent"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="r" type="java.lang.Runnable">
+</parameter>
+</method>
+<method name="requestRender"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setGLRenderListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener">
 </parameter>
 </method>
 <method name="updateOutFormat"
@@ -7241,6 +7335,19 @@
 <parameter name="encodeMethod" type="int">
 </parameter>
 </method>
+<method name="setAudioKBitrate"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="kBitrate" type="int">
+</parameter>
+</method>
 <method name="setAudioOnly"
  return="void"
  abstract="false"
@@ -7676,6 +7783,36 @@
  visibility="public"
 >
 <parameter name="encodeMethod" type="int">
+</parameter>
+</method>
+<method name="setVideoKBitrate"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="kBitrate" type="int">
+</parameter>
+</method>
+<method name="setVideoKBitrate"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="initVideoKBitrate" type="int">
+</parameter>
+<parameter name="maxVideoKBitrate" type="int">
+</parameter>
+<parameter name="minVideoKBitrate" type="int">
 </parameter>
 </method>
 <method name="setVoiceVolume"
