@@ -1,6 +1,6 @@
 = 金山云直播推流Android SDK使用说明
 :numbered:
-:toc: left
+//:toc: left
 :icons: font
 :source-highlighter: pygments
 
@@ -165,12 +165,12 @@ mStreamer.setTargetResolution(480, 0);
 mStreamer.setPreviewFps(15);
 // 设置推流帧率，当预览帧率大于推流帧率时，编码模块会自动丢帧以适应设定的推流帧率
 mStreamer.setTargetFps(15);
-// 设置视频码率，分别为初始平均码率、最高平均码率、最低平均码率，单位为bps
-mStreamer.setVideoBitrate(600 * 1000, 800 * 1000, 400 * 1000);
+// 设置视频码率，分别为初始平均码率、最高平均码率、最低平均码率，单位为kbps，另有setVideoBitrate接口，单位为bps
+mStreamer.setVideoKBitrate(600, 800, 400);
 // 设置音频采样率
 mStreamer.setAudioSampleRate(44100);
-// 设置音频码率，单位为bps
-mStreamer.setAudioBitrate(48 * 1000);
+// 设置音频码率，单位为kbps，另有setAudioBitrate接口，单位为bps
+mStreamer.setAudioKBitrate(48);
 /**
  * 设置编码模式(软编、硬编):
  * StreamerConstants.ENCODE_METHOD_SOFTWARE

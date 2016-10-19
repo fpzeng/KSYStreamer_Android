@@ -188,13 +188,12 @@ public class CameraActivity extends Activity implements
 
             int videoBitrate = bundle.getInt(VIDEO_BITRATE, 0);
             if (videoBitrate > 0) {
-                videoBitrate *= 1000;
-                mStreamer.setVideoBitrate(videoBitrate * 3 / 4, videoBitrate, videoBitrate / 4);
+                mStreamer.setVideoKBitrate(videoBitrate * 3 / 4, videoBitrate, videoBitrate / 4);
             }
 
             int audioBitrate = bundle.getInt(AUDIO_BITRATE, 0);
             if (audioBitrate > 0) {
-                mStreamer.setAudioBitrate(audioBitrate * 1000);
+                mStreamer.setAudioKBitrate(audioBitrate);
             }
 
             int videoResolution = bundle.getInt(VIDEO_RESOLUTION, 0);
