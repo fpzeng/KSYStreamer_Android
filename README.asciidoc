@@ -98,7 +98,7 @@ sourceSets {
 }
 ----
 +
-* 修改proguard文件，需要保持com.ksyun.media.streamer下的所有类：
+* 修改proguard(混淆)文件，需要保持com.ksyun.media.streamer下的所有类：
 +
 ----
 -keep class com.ksyun.media.streamer.** { *;}
