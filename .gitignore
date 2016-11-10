@@ -16,6 +16,10 @@
 bin/
 gen/
 
+# Android Studio
+*.iml
+.idea
+
 # Gradle files
 .gradle/
 build/
@@ -37,4 +41,3 @@ captures/
 
 ### Android Patch ###
 gen-external-apklibs
-

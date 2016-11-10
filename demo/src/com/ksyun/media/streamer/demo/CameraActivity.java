@@ -89,6 +89,9 @@ public class CameraActivity extends Activity implements
     private String mBgmPath = "/sdcard/test.mp3";
     private String mLogoPath = "file:///sdcard/test.png";
 
+    private boolean mHWEncoderUnsupported;
+    private boolean mSWEncoderUnsupported;
+
     private final static int PERMISSION_REQUEST_CAMERA_AUDIOREC = 1;
     private static final String START_STRING = "开始直播";
     private static final String STOP_STRING = "停止直播";
@@ -402,6 +405,31 @@ public class CameraActivity extends Activity implements
         }
     };
 
+    private void handleEncodeError() {
+        int encodeMethod = mStreamer.getVideoEncodeMethod();
+        if (encodeMethod == StreamerConstants.ENCODE_METHOD_HARDWARE) {
+            mHWEncoderUnsupported = true;
+            if (mSWEncoderUnsupported) {
+                mStreamer.setEncodeMethod(
+                        StreamerConstants.ENCODE_METHOD_SOFTWARE_COMPAT);
+                Log.e(TAG, "Got HW encoder error, switch to SOFTWARE_COMPAT mode");
+            } else {
+                mStreamer.setEncodeMethod(StreamerConstants.ENCODE_METHOD_SOFTWARE);
+                Log.e(TAG, "Got HW encoder error, switch to SOFTWARE mode");
+            }
+        } else if (encodeMethod == StreamerConstants.ENCODE_METHOD_SOFTWARE) {
+            mSWEncoderUnsupported = true;
+            if (mHWEncoderUnsupported) {
+                mStreamer.setEncodeMethod(
+                        StreamerConstants.ENCODE_METHOD_SOFTWARE_COMPAT);
+                Log.e(TAG, "Got SW encoder error, switch to SOFTWARE_COMPAT mode");
+            } else {
+                mStreamer.setEncodeMethod(StreamerConstants.ENCODE_METHOD_HARDWARE);
+                Log.e(TAG, "Got SW encoder error, switch to HARDWARE mode");
+            }
+        }
+    }
+
     private KSYStreamer.OnErrorListener mOnErrorListener = new KSYStreamer.OnErrorListener() {
         @Override
         public void onError(int what, int msg1, int msg2) {
@@ -467,6 +495,9 @@ public class CameraActivity extends Activity implements
                         }
                     }, 5000);
                     break;
+                case StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNSUPPORTED:
+                case StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNKNOWN:
+                    handleEncodeError();
                 default:
                     stopStream();
                     mMainHandler.postDelayed(new Runnable() {

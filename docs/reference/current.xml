@@ -4121,7 +4121,7 @@
  return="void"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -6760,6 +6760,19 @@
  visibility="public"
 >
 </constructor>
+<method name="onDisconnect"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="recursive" type="boolean">
+</parameter>
+</method>
 <field name="mSinkPin"
  type="com.ksyun.media.streamer.framework.SinkPin"
  transient="false"
