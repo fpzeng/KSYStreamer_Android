@@ -76,6 +76,7 @@ https://github.com/ksvc/KSYStreamer_Android.git
 * libs: 集成SDK需要的所有库文件
 ** `libs/[armeabi-v7a|arm64-v8a|x86]`: 各平台的so库
 ** `libs/ksylive4.0.jar`: 推流SDK jar包
+** `libs/libksyplayer.jar`: 播放SDK jar包
 ** `libs/libksystat.jar`: 金山云统计模块
 
 === 配置项目
@@ -98,10 +99,16 @@ sourceSets {
 }
 ----
 +
-* 修改proguard(混淆)文件，需要保持com.ksyun.media.streamer下的所有类：
+* 修改proguard(混淆)文件，添加如下规则：
 +
 ----
--keep class com.ksyun.media.streamer.** { *;}
+-keep class com.ksyun.** {
+  *;
+}
+
+-keep class com.ksy.statlibrary.** {
+  *;
+}
 ----
 +
 * 在AndroidManifest.xml文件中申请相应权限
