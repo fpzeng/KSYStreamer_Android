@@ -67,7 +67,14 @@ https://github.com/ksvc/KSYStreamer_Android/wiki/Trasform_Info[3.x到4.0迁移�
 具体可以参考demo工程中的相应文件。
 
 === 下载工程
+==== 下载融合库
+**推荐使用融合库**，融合库也会作为重点维护版本。
 
+融合库地址：https://github.com/ksvc/KSYLive_Android  
+
+融合库国内镜像地址：https://git.oschina.net/ksvc/KSYLive_Android
+
+==== 下载单独库
 从github下载SDK及demo工程：
 https://github.com/ksvc/KSYStreamer_Android.git
 
