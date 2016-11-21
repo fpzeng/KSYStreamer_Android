@@ -3,9 +3,8 @@ package com.ksyun.media.streamer.demo;
 
 import android.opengl.GLES20;
 
-import com.ksyun.media.streamer.util.gles.GLRender;
-import com.ksyun.media.streamer.util.gles.GlUtil;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexFilter;
+import com.ksyun.media.streamer.util.gles.GLRender;
 
 /**
  * Demo filter.

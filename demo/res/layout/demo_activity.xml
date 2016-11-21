@@ -128,7 +128,7 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/encode_group"
             android:orientation="vertical">
-
+            
             <CheckBox
                 android:id="@+id/autoStart"
                 android:layout_width="wrap_content"
