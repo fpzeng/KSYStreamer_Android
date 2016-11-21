@@ -30,13 +30,12 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] **自定义音频滤镜 (new)**
 * [x] 背景音乐功能, 支持本地mp3, aac等格式
 * [x] 支持图片及时间戳水印
+* [x] 开放KSYStreamer类的实现，开发者可自行组装各个模块 (new)
 * [x] https://github.com/ksvc/KSYRTCLive_Android[连麦]
 * [x] https://github.com/ksvc/KSYDiversityLive_Android/tree/master/KSYScreenStreamer[录屏直播], http://www.bilibili.com/video/av7038614[录屏直播效果]
 
 === 即将支持
-* [ ] 开放KSYStreamer类的实现，开发者可自行组装各个模块
 * [ ] 画中画
-* [ ] 录屏推流
 * [ ] 低延迟耳返
 * [ ] 音频升降调
 
