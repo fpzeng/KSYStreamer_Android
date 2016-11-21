@@ -254,9 +254,22 @@
  deprecated="not deprecated"
  visibility="public"
 >
+<parameter name="context" type="Context">
+</parameter>
 </constructor>
 <method name="getBgmPlayer"
  return="com.ksyun.media.streamer.util.audio.KSYBgmPlayer"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMediaPlayer"
+ return="KSYMediaPlayer"
  abstract="false"
  native="false"
  synchronized="false"
@@ -276,6 +289,32 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="setEnableMediaPlayer"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="enable" type="boolean">
+</parameter>
+</method>
+<method name="setMute"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mute" type="boolean">
+</parameter>
 </method>
 <method name="start"
  return="void"
@@ -458,6 +497,17 @@
 >
 <parameter name="surfaceTexture" type="SurfaceTexture">
 </parameter>
+</method>
+<method name="onPause"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
 </method>
 <method name="release"
  return="void"
@@ -5842,6 +5892,21 @@
 <parameter name="alpha" type="float">
 </parameter>
 </method>
+<method name="setScalingMode"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="idx" type="int">
+</parameter>
+<parameter name="mode" type="int">
+</parameter>
+</method>
 <method name="setTargetSize"
  return="void"
  abstract="false"
@@ -5857,6 +5922,39 @@
 <parameter name="outHeight" type="int">
 </parameter>
 </method>
+<field name="SCALING_MODE_BEST_FIT"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SCALING_MODE_CENTER_CROP"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SCALING_MODE_FULL_FILL"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="mFragmentShader"
  type="java.lang.String"
  transient="false"
@@ -7452,6 +7550,19 @@
 <parameter name="textureView" type="TextureView">
 </parameter>
 </method>
+<method name="setEnableAudioMix"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="enable" type="boolean">
+</parameter>
+</method>
 <method name="setEnableAudioPreview"
  return="void"
  abstract="false"
@@ -7550,7 +7661,7 @@
  synchronized="false"
  static="false"
  final="false"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 <parameter name="isPlugged" type="boolean">
@@ -9810,6 +9921,127 @@
  transient="false"
  volatile="false"
  value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEFAILT_MIN_VIDEO_BITRATE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="200000"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEFAULT_AUDIO_BITRATE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="48000"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEFAULT_AUDIO_CHANNELS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEFAULT_AUDIO_SAMPLE_RATE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="44100"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEFAULT_IFRAME_INTERVAL"
+ type="float"
+ transient="false"
+ volatile="false"
+ value="3.0f"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEFAULT_INIT_VIDEO_BITRATE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="600000"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEFAULT_MAX_VIDEO_BITRATE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="800000"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEFAULT_PREVIEW_FPS"
+ type="float"
+ transient="false"
+ volatile="false"
+ value="15.0f"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEFAULT_PREVIEW_RESOLUTION"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEFAULT_TARGET_FPS"
+ type="float"
+ transient="false"
+ volatile="false"
+ value="15.0f"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DEFAULT_TARGET_RESOLUTION"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
  static="true"
  final="true"
  deprecated="not deprecated"
