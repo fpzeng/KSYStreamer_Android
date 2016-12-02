@@ -468,7 +468,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(java.nio.ByteBuffer, int, int)">updateFrame</a></span>(ByteBuffer buf, int width, int height)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(Bitmap, boolean)">updateFrame</a></span>(Bitmap img, boolean recycle)
         
   </td></tr>
 
@@ -484,7 +484,39 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(Bitmap, boolean)">updateFrame</a></span>(Bitmap img, boolean recycle)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(java.nio.ByteBuffer, int, int, int)">updateFrame</a></span>(ByteBuffer buf, int stride, int width, int height)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(java.nio.ByteBuffer, int, int, int, long)">updateFrame</a></span>(ByteBuffer buf, int stride, int width, int height, long pts)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(Bitmap, long, boolean)">updateFrame</a></span>(Bitmap img, long pts, boolean recycle)
         
   </td></tr>
 
@@ -942,7 +974,7 @@ From class
 </div>
 
 
-<a id="updateFrame(java.nio.ByteBuffer, int, int)"></a>
+<a id="updateFrame(Bitmap, boolean)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -955,7 +987,7 @@ From class
         void
       </span>
       <span class="sympad">updateFrame</span>
-      <span class="normal">(ByteBuffer buf, int width, int height)</span>
+      <span class="normal">(Bitmap img, boolean recycle)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -973,7 +1005,7 @@ From class
 </div>
 
 
-<a id="updateFrame(Bitmap, boolean)"></a>
+<a id="updateFrame(java.nio.ByteBuffer, int, int, int)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -986,7 +1018,69 @@ From class
         void
       </span>
       <span class="sympad">updateFrame</span>
-      <span class="normal">(Bitmap img, boolean recycle)</span>
+      <span class="normal">(ByteBuffer buf, int stride, int width, int height)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="updateFrame(java.nio.ByteBuffer, int, int, int, long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">updateFrame</span>
+      <span class="normal">(ByteBuffer buf, int stride, int width, int height, long pts)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="updateFrame(Bitmap, long, boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">updateFrame</span>
+      <span class="normal">(Bitmap img, long pts, boolean recycle)</span>
     </h4>
       <div class="api-level">
         <div>

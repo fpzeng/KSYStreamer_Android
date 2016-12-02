@@ -495,12 +495,46 @@ Summary:
             
             
             
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#getState()">getState</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             void
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#init(GLSurfaceView)">init</a></span>(GLSurfaceView glSurfaceView)
         
         <div class="jd-descrdiv">Init GLRender manager, must be called before GLSurfaceView created.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#init(int, int)">init</a></span>(int width, int height)
+        
+        <div class="jd-descrdiv">Init GLRender manager with offscreen surface.</div>
   
   </td></tr>
 
@@ -531,10 +565,10 @@ Summary:
             
             
             
-            void
+            boolean
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#onPause()">onPause</a></span>()
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#isGLRenderThread()">isGLRenderThread</a></span>()
         
   </td></tr>
 
@@ -550,7 +584,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#onResume()">onResume</a></span>()
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#onPause()">onPause</a></span>()
         
   </td></tr>
 
@@ -566,7 +600,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#queueDrawFrameAppends(java.lang.Runnable)">queueDrawFrameAppends</a></span>(Runnable r)
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#onResume()">onResume</a></span>()
         
   </td></tr>
 
@@ -582,7 +616,39 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#queueDrawFrameAppends(java.lang.Runnable)">queueDrawFrameAppends</a></span>(Runnable r)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#queueEvent(java.lang.Runnable)">queueEvent</a></span>(Runnable r)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#release()">release</a></span>()
         
   </td></tr>
 
@@ -1073,6 +1139,37 @@ From class
 </div>
 
 
+<a id="getState()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        int
+      </span>
+      <span class="sympad">getState</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="init(GLSurfaceView)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1105,6 +1202,51 @@ From class
         <tr>
           <th>glSurfaceView</th>
           <td>dedicated GLSurfaceView
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="init(int, int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">init</span>
+      <span class="normal">(int width, int height)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Init GLRender manager with offscreen surface.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>width</th>
+          <td>offscreen width</td>
+        </tr>
+        <tr>
+          <th>height</th>
+          <td>offscreen height
 </td>
         </tr>
       </table>
@@ -1150,6 +1292,37 @@ From class
         </tr>
       </table>
   </div>
+
+    </div>
+</div>
+
+
+<a id="isGLRenderThread()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">isGLRenderThread</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
@@ -1262,6 +1435,37 @@ From class
       </span>
       <span class="sympad">queueEvent</span>
       <span class="normal">(Runnable r)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="release()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">release</span>
+      <span class="normal">()</span>
     </h4>
       <div class="api-level">
         <div>
