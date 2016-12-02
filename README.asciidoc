@@ -92,8 +92,32 @@ https://github.com/ksvc/KSYStreamer_Android.git
 
 可参考下述配置方式（以Android Studio为例）：
 
-* 将libs目录copy到目标工程的根目录下；
-* 修改目标工程的build.gradle文件，配置jniLibs路径：
+* 导入SDK
+. 推荐直接使用gradle方式集成：
++
+[source, gradle]
+----
+# required
+allprojects {
+    repositories {
+        jcenter()
+    }
+}
+
+dependencies {
+    # required, enough for most devices.
+    compile 'com.ksyun.media:libksylive-java:2.0.3'
+    compile 'com.ksyun.media:libksylive-armv7a:2.0.3'
+
+    # Other ABIs: optional
+    compile 'com.ksyun.media:libksylive-arm64:2.0.3'
+    compile 'com.ksyun.media:libksylive-x86:2.0.3'
+}
+----
++
+. 手动下载集成
+** 将libs目录copy到目标工程的根目录下；
+** 修改目标工程的build.gradle文件，配置jniLibs路径：
 +
 [source, gradle]
 ----
