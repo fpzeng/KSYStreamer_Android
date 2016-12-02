@@ -218,6 +218,11 @@ public class CameraActivity extends Activity implements
             mPrintDebugInfo = bundle.getBoolean(SHOW_DEBUGINFO, false);
         }
         mStreamer.setDisplayPreview(mCameraPreviewView);
+        //if (mIsLandscape) {
+        //    mStreamer.setOffscreenPreview(1280, 720);
+        //} else {
+        //    mStreamer.setOffscreenPreview(720, 1280);
+        //}
         mStreamer.setEnableStreamStatModule(true);
         mStreamer.enableDebugLog(true);
         mStreamer.setFrontCameraMirror(mFrontMirrorCheckBox.isChecked());
@@ -240,6 +245,11 @@ public class CameraActivity extends Activity implements
                         ImgTexFilterMgt.KSY_FILTER_BEAUTY_DISABLE);
             }
         });
+
+        // add RGBA buffer filter to ImgTexFilterMgt, this would cause performance drop,
+        // only valid after Android 4.4
+        //RGBABufDemoFilter demoFilter = new RGBABufDemoFilter(mStreamer.getGLRender());
+        //mStreamer.getImgTexFilterMgt().setExtraFilter(demoFilter);
 
         // touch focus and zoom support
         CameraTouchHelper cameraTouchHelper = new CameraTouchHelper();

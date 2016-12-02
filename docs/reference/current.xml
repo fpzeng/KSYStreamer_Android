@@ -995,11 +995,51 @@
  deprecated="not deprecated"
  visibility="public"
 >
+<parameter name="img" type="Bitmap">
+</parameter>
+<parameter name="pts" type="long">
+</parameter>
+<parameter name="recycle" type="boolean">
+</parameter>
+</method>
+<method name="updateFrame"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
 <parameter name="buf" type="java.nio.ByteBuffer">
+</parameter>
+<parameter name="stride" type="int">
 </parameter>
 <parameter name="width" type="int">
 </parameter>
 <parameter name="height" type="int">
+</parameter>
+</method>
+<method name="updateFrame"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="buf" type="java.nio.ByteBuffer">
+</parameter>
+<parameter name="stride" type="int">
+</parameter>
+<parameter name="width" type="int">
+</parameter>
+<parameter name="height" type="int">
+</parameter>
+<parameter name="pts" type="long">
 </parameter>
 </method>
 </class>
@@ -2638,6 +2678,19 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="setOutputColorFormat"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="colorFormat" type="int">
+</parameter>
 </method>
 <field name="mFrameDropped"
  type="java.util.concurrent.atomic.AtomicInteger"
@@ -4720,6 +4773,36 @@
 </package>
 <package name="com.ksyun.media.streamer.filter.imgtex"
 >
+<interface name="IImgTexFilter"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="getSinkPin"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSrcPin"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</interface>
 <class name="ImgBeautyDenoiseFilter"
  extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
@@ -4952,6 +5035,8 @@
  deprecated="not deprecated"
  visibility="public"
 >
+<implements name="com.ksyun.media.streamer.filter.imgtex.IImgTexFilter">
+</implements>
 <constructor name="ImgTexFilter"
  type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
  static="false"
@@ -5596,6 +5681,32 @@
  visibility="public"
 >
 </method>
+<method name="setExtraFilter"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.IImgTexFilter">
+</parameter>
+</method>
+<method name="setExtraFilter"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="filters" type="java.util.List&lt;com.ksyun.media.streamer.filter.imgtex.IImgTexFilter&gt;">
+</parameter>
+</method>
 <method name="setFilter"
  return="void"
  abstract="false"
@@ -6050,6 +6161,85 @@
 <parameter name="w" type="int">
 </parameter>
 <parameter name="h" type="int">
+</parameter>
+</method>
+</class>
+<class name="RGBABufFilter"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<implements name="com.ksyun.media.streamer.filter.imgtex.IImgTexFilter">
+</implements>
+<constructor name="RGBABufFilter"
+ type="com.ksyun.media.streamer.filter.imgtex.RGBABufFilter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+</parameter>
+</constructor>
+<method name="doFilter"
+ return="java.nio.ByteBuffer"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="buffer" type="java.nio.ByteBuffer">
+</parameter>
+<parameter name="stride" type="int">
+</parameter>
+<parameter name="width" type="int">
+</parameter>
+<parameter name="height" type="int">
+</parameter>
+</method>
+<method name="getSinkPin"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSrcPin"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="onSizeChanged"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="stride" type="int">
+</parameter>
+<parameter name="width" type="int">
+</parameter>
+<parameter name="height" type="int">
 </parameter>
 </method>
 </class>
@@ -7691,6 +7881,21 @@
  visibility="public"
 >
 <parameter name="isMute" type="boolean">
+</parameter>
+</method>
+<method name="setOffscreenPreview"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="width" type="int">
+</parameter>
+<parameter name="height" type="int">
 </parameter>
 </method>
 <method name="setOnAudioRawDataListener"
@@ -11027,6 +11232,16 @@
  visibility="public"
 >
 </field>
+<field name="isAdjustBitrate"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="maxVideoBitrate"
  type="int"
  transient="false"
@@ -11510,6 +11725,32 @@
 <parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener">
 </parameter>
 </method>
+<method name="getState"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="init"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="width" type="int">
+</parameter>
+<parameter name="height" type="int">
+</parameter>
+</method>
 <method name="init"
  return="void"
  abstract="false"
@@ -11535,6 +11776,17 @@
 >
 <parameter name="textureView" type="TextureView">
 </parameter>
+</method>
+<method name="isGLRenderThread"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
 </method>
 <method name="onPause"
  return="void"
@@ -11583,6 +11835,17 @@
 >
 <parameter name="r" type="java.lang.Runnable">
 </parameter>
+</method>
+<method name="release"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
 </method>
 <method name="removeListener"
  return="void"
