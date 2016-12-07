@@ -297,8 +297,8 @@ public class CameraActivity extends Activity {
         mStreamer.startCameraPreview();
         // 调用KSYStreamer的onResume接口
         mStreamer.onResume();
-        // 如果正在推流，切回音视频模式
-        if (mStreamer.isRecording() && !mAudioOnlyCheckBox.isChecked()) {
+        // 如果正在推流，切回音视频模式，该逻辑务必加上
+        if (mStreamer.isRecording() && !mAudioOnlyCheckBox.isChecked()) {
             mStreamer.setAudioOnly(false);
         }
     }
@@ -309,7 +309,7 @@ public class CameraActivity extends Activity {
         mStreamer.onPause();
         // 一般在这里停止摄像头采集
         mStreamer.stopCameraPreview();
-        // 如果正在推流，切换至音频推流模式
+        // 如果正在推流，切换至音频推流模式，该逻辑务必加上
         if (mStreamer.isRecording() && !mAudioOnlyCheckBox.isChecked()) {
             mStreamer.setAudioOnly(true);
         }
