@@ -61,6 +61,7 @@ public class CameraActivity extends Activity implements
     private View mSwitchCameraView;
     private View mFlashView;
     private TextView mShootingText;
+    private TextView mRecordingText;
     private CheckBox mWaterMarkCheckBox;
     private CheckBox mBeautyCheckBox;
     private CheckBox mReverbCheckBox;
@@ -83,11 +84,13 @@ public class CameraActivity extends Activity implements
     private boolean mIsLandscape;
     private boolean mPrintDebugInfo = false;
     private boolean mRecording = false;
+    private boolean mIsFileRecording = false;
     private boolean isFlashOpened = false;
     private String mUrl;
     private String mDebugInfo = "";
     private String mBgmPath = "/sdcard/test.mp3";
     private String mLogoPath = "file:///sdcard/test.png";
+    private String mRecordUrl = "/sdcard/test.mp4";
 
     private boolean mHWEncoderUnsupported;
     private boolean mSWEncoderUnsupported;
@@ -95,6 +98,8 @@ public class CameraActivity extends Activity implements
     private final static int PERMISSION_REQUEST_CAMERA_AUDIOREC = 1;
     private static final String START_STRING = "开始直播";
     private static final String STOP_STRING = "停止直播";
+    private static final String START_RECORDING = "开始录制";
+    private static final String STOP_RECORDING = "停止录制";
 
     public final static String URL = "url";
     public final static String FRAME_RATE = "framerate";
@@ -103,6 +108,8 @@ public class CameraActivity extends Activity implements
     public final static String VIDEO_RESOLUTION = "video_resolution";
     public final static String LANDSCAPE = "landscape";
     public final static String ENCDODE_METHOD = "encode_method";
+    public final static String ENCODE_SCENE = "encode_scene";
+    public final static String ENCODE_PROFILE = "encode_profile";
     public final static String START_ATUO = "start_auto";
     public static final String SHOW_DEBUGINFO = "show_debuginfo";
 
@@ -110,8 +117,8 @@ public class CameraActivity extends Activity implements
                                      String rtmpUrl, int frameRate,
                                      int videoBitrate, int audioBitrate,
                                      int videoResolution, boolean isLandscape,
-                                     int encodeMethod, boolean startAuto,
-                                     boolean showDebugInfo) {
+                                     int encodeMethod, int encodeScene, int encodeProfile,
+                                     boolean startAuto, boolean showDebugInfo) {
         Intent intent = new Intent(context, CameraActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         intent.putExtra("type", fromType);
@@ -122,6 +129,8 @@ public class CameraActivity extends Activity implements
         intent.putExtra(VIDEO_RESOLUTION, videoResolution);
         intent.putExtra(LANDSCAPE, isLandscape);
         intent.putExtra(ENCDODE_METHOD, encodeMethod);
+        intent.putExtra(ENCODE_SCENE, encodeScene);
+        intent.putExtra(ENCODE_PROFILE, encodeProfile);
         intent.putExtra(START_ATUO, startAuto);
         intent.putExtra(SHOW_DEBUGINFO, showDebugInfo);
         context.startActivity(intent);
@@ -147,6 +156,8 @@ public class CameraActivity extends Activity implements
         mObserverButton = new ButtonObserver();
         mShootingText = (TextView) findViewById(R.id.click_to_shoot);
         mShootingText.setOnClickListener(mObserverButton);
+        mRecordingText = (TextView) findViewById(R.id.click_to_record);
+        mRecordingText.setOnClickListener(mObserverButton);
         mDeleteView = findViewById(R.id.backoff);
         mDeleteView.setOnClickListener(mObserverButton);
         mSwitchCameraView = findViewById(R.id.switch_cam);
@@ -206,6 +217,12 @@ public class CameraActivity extends Activity implements
             int encode_method = bundle.getInt(ENCDODE_METHOD);
             mStreamer.setEncodeMethod(encode_method);
 
+            int encodeScene = bundle.getInt(ENCODE_SCENE);
+            mStreamer.setVideoEncodeScene(encodeScene);
+
+            int encodeProfile = bundle.getInt(ENCODE_PROFILE);
+            mStreamer.setVideoEncodeProfile(encodeProfile);
+
             mIsLandscape = bundle.getBoolean(LANDSCAPE, false);
             mStreamer.setRotateDegrees(mIsLandscape ? 90 : 0);
             if (mIsLandscape) {
@@ -264,9 +281,6 @@ public class CameraActivity extends Activity implements
         super.onResume();
         startCameraPreviewWithPermCheck();
         mStreamer.onResume();
-        if (mStreamer.isRecording() && !mAudioOnlyCheckBox.isChecked()) {
-            mStreamer.setAudioOnly(false);
-        }
         if (mWaterMarkCheckBox.isChecked()) {
             showWaterMark();
         }
@@ -277,9 +291,6 @@ public class CameraActivity extends Activity implements
         super.onPause();
         mStreamer.onPause();
         mStreamer.stopCameraPreview();
-        if (mStreamer.isRecording() && !mAudioOnlyCheckBox.isChecked()) {
-            mStreamer.setAudioOnly(true);
-        }
         hideWaterMark();
     }
 
@@ -308,6 +319,7 @@ public class CameraActivity extends Activity implements
         return true;
     }
 
+    //start streaming
     private void startStream() {
         mStreamer.startStream();
         mShootingText.setText(STOP_STRING);
@@ -315,13 +327,36 @@ public class CameraActivity extends Activity implements
         mRecording = true;
     }
 
-    private void stopStream() {
-        mStreamer.stopStream();
+    //start recording to a local file
+    private void startRecord() {
+        mStreamer.startRecord(mRecordUrl);
+        mRecordingText.setText(STOP_RECORDING);
+        mRecordingText.postInvalidate();
+        mIsFileRecording = true;
+    }
+
+    private void stopRecord() {
+        mStreamer.stopRecord();
+        mRecordingText.setText(START_RECORDING);
+        mRecordingText.postInvalidate();
+        mIsFileRecording = false;
+        stopChronometer();
+    }
+
+    private void stopChronometer() {
+        if (mRecording || mIsFileRecording) {
+            return;
+        }
         mChronometer.setBase(SystemClock.elapsedRealtime());
         mChronometer.stop();
+    }
+
+    private void stopStream() {
+        mStreamer.stopStream();
         mShootingText.setText(START_STRING);
         mShootingText.postInvalidate();
         mRecording = false;
+        stopChronometer();
     }
 
     private void beginInfoUploadTimer() {
@@ -543,7 +578,7 @@ public class CameraActivity extends Activity implements
         @Override
         public void onPreviewFrame(byte[] data, int width, int height, boolean isRecording) {
             Log.d(TAG, "onPreviewFrame data.length=" + data.length + " " +
-                    width + "x" + height + " isRecording=" + isRecording);
+                    width + "x" + height + " mRecording=" + isRecording);
         }
     };
 
@@ -587,6 +622,14 @@ public class CameraActivity extends Activity implements
             stopStream();
         } else {
             startStream();
+        }
+    }
+
+    private void onRecordClick() {
+        if (mIsFileRecording) {
+            stopRecord();
+        } else {
+            startRecord();
         }
     }
 
@@ -704,9 +747,9 @@ public class CameraActivity extends Activity implements
                             return false;
                         }
                     });
-            mStreamer.getAudioPlayerCapture().getMediaPlayer().setVolume(0.4f, 0.4f);
             mStreamer.setEnableAudioMix(true);
             mStreamer.startBgm(mBgmPath, true);
+            mStreamer.getAudioPlayerCapture().getMediaPlayer().setVolume(0.4f, 0.4f);
         } else {
             mStreamer.stopBgm();
         }
@@ -750,6 +793,9 @@ public class CameraActivity extends Activity implements
                     break;
                 case R.id.click_to_shoot:
                     onShootClick();
+                    break;
+                case R.id.click_to_record:
+                    onRecordClick();
                     break;
                 default:
                     break;

@@ -122,11 +122,62 @@
                 android:text="软编1" />
         </RadioGroup>
 
+        <RadioGroup
+            android:id="@+id/encode_scene"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/encode_group"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/encode_scene_default"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="通用模式" />
+
+            <RadioButton
+                android:id="@+id/encode_scene_show_self"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="秀场模式" />
+        </RadioGroup>
+
+        <RadioGroup
+            android:id="@+id/encode_profile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/encode_scene"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/encode_profile_low_power"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="低功耗" />
+
+            <RadioButton
+                android:id="@+id/encode_profile_balance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="平衡" />
+
+            <RadioButton
+                android:id="@+id/encode_profile_high_perf"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="高性能" />
+        </RadioGroup>
+
         <LinearLayout
             android:id="@+id/init_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/encode_group"
+            android:layout_below="@id/encode_profile"
             android:orientation="vertical">
             
             <CheckBox
