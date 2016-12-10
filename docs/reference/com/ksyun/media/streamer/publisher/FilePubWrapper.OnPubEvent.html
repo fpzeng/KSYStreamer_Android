@@ -57,7 +57,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../../favicon.ico" />
 <title>
 
-  RtmpPublisher.RtmpPubListener
+  FilePubWrapper.OnPubEvent
 
 
 </title>
@@ -174,12 +174,17 @@
               
     <li><h2>Interfaces</h2>
       <ul>
-          <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.RtmpPubListener.html">RtmpPublisher.RtmpPubListener</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/FilePubWrapper.OnPubEvent.html">FilePubWrapper.OnPubEvent</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.PubListener.html">Publisher.PubListener</a></li>
       </ul>
     </li>
               
     <li><h2>Classes</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/FilePublisher.html">FilePublisher</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/FilePubWrapper.html">FilePubWrapper</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html">Publisher</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherMgt.html">PublisherMgt</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html">RtmpPublisher</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.BwEstConfig.html">RtmpPublisher.BwEstConfig</a></li>
       </ul>
@@ -249,7 +254,7 @@
      
     
     interface
-<h1>RtmpPublisher.RtmpPubListener</h1>
+<h1>FilePubWrapper.OnPubEvent</h1>
 
 
 
@@ -268,7 +273,7 @@
 
     <tr>
          	
-        <td colspan="1" class="jd-inheritance-class-cell">com.ksyun.media.streamer.publisher.RtmpPublisher.RtmpPubListener</td>
+        <td colspan="1" class="jd-inheritance-class-cell">com.ksyun.media.streamer.publisher.FilePubWrapper.OnPubEvent</td>
     </tr>
     
 
@@ -351,23 +356,7 @@
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.RtmpPubListener.html#onError(int, long)">onError</a></span>(int err, long msg)
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            abstract
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.RtmpPubListener.html#onInfo(int, long)">onInfo</a></span>(int type, long msg)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/FilePubWrapper.OnPubEvent.html#onPubEvent(int, long)">onPubEvent</a></span>(int type, long msg)
         
   </td></tr>
 
@@ -420,7 +409,7 @@
 
 
 
-<a id="onError(int, long)"></a>
+<a id="onPubEvent(int, long)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -432,38 +421,7 @@
          
         void
       </span>
-      <span class="sympad">onError</span>
-      <span class="normal">(int err, long msg)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<a id="onInfo(int, long)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-        abstract 
-         
-        void
-      </span>
-      <span class="sympad">onInfo</span>
+      <span class="sympad">onPubEvent</span>
       <span class="normal">(int type, long msg)</span>
     </h4>
       <div class="api-level">

@@ -57,7 +57,7 @@
 <link rel="shortcut icon" type="image/x-icon" href="../../../../../favicon.ico" />
 <title>
 
-  RtmpPublisher
+  Publisher
 
 
 </title>
@@ -183,9 +183,9 @@
       <ul>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/FilePublisher.html">FilePublisher</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/FilePubWrapper.html">FilePubWrapper</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html">Publisher</a></li>
+          <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html">Publisher</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherMgt.html">PublisherMgt</a></li>
-          <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html">RtmpPublisher</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html">RtmpPublisher</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.BwEstConfig.html">RtmpPublisher.BwEstConfig</a></li>
       </ul>
     </li>
@@ -234,17 +234,6 @@
    
   
   
-   
-  
-  
-   
-  
-  
-
-  
-   
-  
-  
   
   
 
@@ -265,13 +254,10 @@ Summary:
   
 
 
-  &#124; <a href="#inhconstants">Inherited Constants</a>
+
+  &#124; <a href="#lfields">Fields</a>
   
 
-
-
-  &#124; <a href="#inhfields">Inherited Fields</a>
-  
 
 
   &#124; <a href="#pubctors">Ctors</a>
@@ -309,18 +295,14 @@ Summary:
     public
      
      
-    
+    abstract
     class
-<h1>RtmpPublisher</h1>
+<h1>Publisher</h1>
 
 
 
   
-  
-  
-
-  
-    extends <a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html">Publisher</a><br/>
+    extends Object<br/>
   
   
   
@@ -340,7 +322,7 @@ Summary:
 
     <tr>
          	
-        <td colspan="3" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Object</td>
     </tr>
     
 
@@ -348,17 +330,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
-        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html">com.ksyun.media.streamer.publisher.Publisher</a></td>
-    </tr>
-    
-
-    <tr>
-        
-            <td class="jd-inheritance-space">&nbsp;</td>
-        
-            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
-         	
-        <td colspan="1" class="jd-inheritance-class-cell">com.ksyun.media.streamer.publisher.RtmpPublisher</td>
+        <td colspan="1" class="jd-inheritance-class-cell">com.ksyun.media.streamer.publisher.Publisher</td>
     </tr>
     
 
@@ -367,6 +339,44 @@ Summary:
 
 
 
+<table class="jd-sumtable jd-sumtable-subclasses"><tr><td colspan="12" style="border:none;margin:0;padding:0;">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="subclasses-direct" class="jd-expando-trigger closed"
+          ><img id="subclasses-direct-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>Known Direct Subclasses
+
+  <div id="subclasses-direct">
+      <div id="subclasses-direct-list"
+              class="jd-inheritedlinks"
+              
+              >
+          
+            
+              <a href="../../../../../com/ksyun/media/streamer/publisher/FilePublisher.html">FilePublisher</a>,
+            
+              <a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html">RtmpPublisher</a>
+            
+          
+      </div>
+      <div id="subclasses-direct-summary"
+              style="display: none;"
+              >
+  <table class="jd-sumtable-expando">
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/FilePublisher.html">FilePublisher</a></td>
+              <td class="jd-descrcol" width="100%">Created by sujia on 2016/11/23.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html">RtmpPublisher</a></td>
+              <td class="jd-descrcol" width="100%">Rtmp publish module
+&nbsp;</td>
+          </tr>
+  </table>
+      </div>
+  </div>
+</td></tr></table>
+
 
 
 
@@ -374,7 +384,7 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>Rtmp publish module
+<p>Created by sujia on 2016/11/24.
 </p>
 
 
@@ -416,8 +426,8 @@ Summary:
          
          
         
-        class</td>
-      <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.BwEstConfig.html">RtmpPublisher.BwEstConfig</a></td>
+        interface</td>
+      <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.PubListener.html">Publisher.PubListener</a></td>
       <td class="jd-descrcol" width="100%">&nbsp;</td>
     </tr>
     
@@ -439,115 +449,6 @@ Summary:
 <!-- =========== ENUM CONSTANT SUMMARY =========== -->
 <table id="constants" class="jd-sumtable"><tr><th colspan="12">Constants</th></tr>
 
-
-    
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#BW_EST_STRATEGY_NEGATIVE">BW_EST_STRATEGY_NEGATIVE</a></td>
-        <td class="jd-descrcol" width="100%">more negative strategy than normal mode, faster down, slower up
-</td>
-    </tr>
-    
-    
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#BW_EST_STRATEGY_NORMAL">BW_EST_STRATEGY_NORMAL</a></td>
-        <td class="jd-descrcol" width="100%">bandwidth estimate strategy in normal mode
-</td>
-    </tr>
-    
-    
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#ERROR_AV_ASYNC_ERROR">ERROR_AV_ASYNC_ERROR</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#ERROR_CONNECT_BREAKED">ERROR_CONNECT_BREAKED</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#ERROR_CONNECT_FAILED">ERROR_CONNECT_FAILED</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#ERROR_DNS_PARSE_FAILED">ERROR_DNS_PARSE_FAILED</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#ERROR_PUBLISH_FAILED">ERROR_PUBLISH_FAILED</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#INFO_CONNECTED">INFO_CONNECTED</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#INFO_EST_BW_DROP">INFO_EST_BW_DROP</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#INFO_EST_BW_RAISE">INFO_EST_BW_RAISE</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#INFO_PACKET_SEND_SLOW">INFO_PACKET_SEND_SLOW</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-
-</table>
-
-
-
-
-
-<!-- =========== ENUM CONSTANT SUMMARY =========== -->
-<table id="inhconstants" class="jd-sumtable"><tr><th>
-  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
-  <div style="clear:left;">Inherited Constants</div></th></tr>
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-constants-com.ksyun.media.streamer.publisher.Publisher" class="jd-expando-trigger closed"
-          ><img id="inherited-constants-com.ksyun.media.streamer.publisher.Publisher-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>From class
-<a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html">com.ksyun.media.streamer.publisher.Publisher</a>
-<div id="inherited-constants-com.ksyun.media.streamer.publisher.Publisher">
-  <div id="inherited-constants-com.ksyun.media.streamer.publisher.Publisher-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-constants-com.ksyun.media.streamer.publisher.Publisher-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
 
     
     <tr class="alt-color api apilevel-" >
@@ -627,13 +528,6 @@ Summary:
     </tr>
     
     
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
 
 </table>
 
@@ -644,26 +538,8 @@ Summary:
 
 
 <!-- =========== FIELD SUMMARY =========== -->
-<table id="inhfields" class="jd-sumtable"><tr><th>
-  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
-  <div style="clear:left;">Inherited Fields</div></th></tr>
+<table id="lfields" class="jd-sumtable"><tr><th colspan="12">Fields</th></tr>
 
-
-<tr class="api apilevel-" >
-<td colspan="12">
-
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-com.ksyun.media.streamer.publisher.Publisher" class="jd-expando-trigger closed"
-          ><img id="inherited-fields-com.ksyun.media.streamer.publisher.Publisher-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>From class
-<a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html">com.ksyun.media.streamer.publisher.Publisher</a>
-<div id="inherited-fields-com.ksyun.media.streamer.publisher.Publisher">
-  <div id="inherited-fields-com.ksyun.media.streamer.publisher.Publisher-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-fields-com.ksyun.media.streamer.publisher.Publisher-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
 
     
       <tr class="alt-color api apilevel-" >
@@ -919,15 +795,11 @@ Summary:
       </tr>
       
     
-</table>
-  </div>
-</div>
-</td></tr>
-
-
-
 
 </table>
+
+
+
 
 
 
@@ -948,7 +820,7 @@ Summary:
             
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#RtmpPublisher()">RtmpPublisher</a></span>()
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#Publisher(java.lang.String)">Publisher</a></span>(String name)
         
   </td></tr>
 
@@ -974,10 +846,10 @@ Summary:
             
             
             
-            int
+            <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#addAudioTrack(int, int, int, int, int, java.nio.ByteBuffer)">addAudioTrack</a></span>(int codecId, int sampleFmt, int sampleRate, int channels, int bitrate, ByteBuffer extra)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getAudioSink()">getAudioSink</a></span>()
         
   </td></tr>
 
@@ -990,13 +862,11 @@ Summary:
             
             
             
-            void
+            <a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.PubListener.html">Publisher.PubListener</a>
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#addMetaOption(java.lang.String, java.lang.String)">addMetaOption</a></span>(String key, String value)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getPubListener()">getPubListener</a></span>()
         
-        <div class="jd-descrdiv">Set metadata for rtmp stream.</div>
-  
   </td></tr>
 
 
@@ -1008,10 +878,10 @@ Summary:
             
             
             
-            int
+            <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a>&gt;
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer)">addVideoTrack</a></span>(int codecId, int width, int height, float fps, int bitrate, ByteBuffer extra)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getVideoSink()">getVideoSink</a></span>()
         
   </td></tr>
 
@@ -1024,13 +894,11 @@ Summary:
             
             
             
-            void
+            boolean
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#connect(java.lang.String)">connect</a></span>(String uri)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#isAudioOnly()">isAudioOnly</a></span>()
         
-        <div class="jd-descrdiv">Connect to server</div>
-  
   </td></tr>
 
 
@@ -1042,13 +910,11 @@ Summary:
             
             
             
-            void
+            boolean
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#disconnect()">disconnect</a></span>()
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#isPublishing()">isPublishing</a></span>()
         
-        <div class="jd-descrdiv">Disconnect from server, stop publishing.</div>
-  
   </td></tr>
 
 
@@ -1060,121 +926,11 @@ Summary:
             
             
             
-            int
+            boolean
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#getConnectTime()">getConnectTime</a></span>()
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#isVideoOnly()">isVideoOnly</a></span>()
         
-        <div class="jd-descrdiv">Get time that spent on connecting to server.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#getCurrentUploadKBitrate()">getCurrentUploadKBitrate</a></span>()
-        
-        <div class="jd-descrdiv">Get current upload bandwidth.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#getDnsParseTime()">getDnsParseTime</a></span>()
-        
-        <div class="jd-descrdiv">Get time that spent on dns parsing while connecting to server.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#getDroppedVideoFrames()">getDroppedVideoFrames</a></span>()
-        
-        <div class="jd-descrdiv">Get dropped video frame number util now.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            String
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#getHostIp()">getHostIp</a></span>()
-        
-        <div class="jd-descrdiv">Get rtmp server ip current connected, valid on STATE_PUBLISHING.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#getUploadedKBytes()">getUploadedKBytes</a></span>()
-        
-        <div class="jd-descrdiv">Get current uploaded data size.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#release()">release</a></span>()
-        
-        <div class="jd-descrdiv">Clear publishing resources.</div>
-  
   </td></tr>
 
 
@@ -1189,7 +945,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#setAudioBitrate(int)">setAudioBitrate</a></span>(int audioBitrate)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setAudioBitrate(int)">setAudioBitrate</a></span>(int audioBitrate)
         
         <div class="jd-descrdiv">Set encoded audio bitrate</div>
   
@@ -1207,7 +963,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#setAudioOnly(boolean)">setAudioOnly</a></span>(boolean audioOnly)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setAudioOnly(boolean)">setAudioOnly</a></span>(boolean audioOnly)
         
         <div class="jd-descrdiv">Set if this stream is audio only.</div>
   
@@ -1225,9 +981,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#setBwEstConfig(com.ksyun.media.streamer.publisher.RtmpPublisher.BwEstConfig)">setBwEstConfig</a></span>(<a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.BwEstConfig.html">RtmpPublisher.BwEstConfig</a> config)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setFramerate(float)">setFramerate</a></span>(float framerate)
         
-        <div class="jd-descrdiv">Set bandwidth estimate config.</div>
+        <div class="jd-descrdiv">Set video fps</div>
   
   </td></tr>
 
@@ -1243,10 +999,8 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#setFramerate(float)">setFramerate</a></span>(float framerate)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setPubListener(com.ksyun.media.streamer.publisher.Publisher.PubListener)">setPubListener</a></span>(<a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.PubListener.html">Publisher.PubListener</a> listener)
         
-        <div class="jd-descrdiv">Set video fps</div>
-  
   </td></tr>
 
 
@@ -1261,7 +1015,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#setVideoBitrate(int)">setVideoBitrate</a></span>(int videoBitrate)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setVideoBitrate(int)">setVideoBitrate</a></span>(int videoBitrate)
         
         <div class="jd-descrdiv">Set encoded video bitrate</div>
   
@@ -1279,26 +1033,10 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#setVideoOnly(boolean)">setVideoOnly</a></span>(boolean videoOnly)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setVideoOnly(boolean)">setVideoOnly</a></span>(boolean videoOnly)
         
         <div class="jd-descrdiv">Set if this stream is video only.</div>
   
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#writeFrame(int, java.nio.ByteBuffer, long, long, int)">writeFrame</a></span>(int type, ByteBuffer data, long dts, long pts, int flags)
-        
   </td></tr>
 
 
@@ -1311,134 +1049,6 @@ Summary:
 <!-- ========== METHOD SUMMARY =========== -->
 <table id="promethods" class="jd-sumtable"><tr><th colspan="12">Protected Methods</th></tr>
 
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#doHandleAVFrame(com.ksyun.media.streamer.framework.AVBufFrame)">doHandleAVFrame</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> frame)
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#doStart(java.lang.String)">doStart</a></span>(String uri)
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#doStop()">doStop</a></span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#doWriteFrame(java.lang.Object)">doWriteFrame</a></span>(Object object)
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#postError(int, long)">postError</a></span>(int err, long msg)
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html#postInfo(int, long)">postInfo</a></span>(int type, long msg)
-        
-  </td></tr>
-
-
-
-</table>
-
-
-
-
-
-<!-- ========== METHOD SUMMARY =========== -->
-<table id="inhmethods" class="jd-sumtable"><tr><th>
-  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
-  <div style="clear:left;">Inherited Methods</div></th></tr>
-
-
-<tr class="api apilevel-" >
-<td colspan="12">
-  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.ksyun.media.streamer.publisher.Publisher" class="jd-expando-trigger closed"
-          ><img id="inherited-methods-com.ksyun.media.streamer.publisher.Publisher-trigger"
-          src="../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>
-From class
-
-  <a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html">com.ksyun.media.streamer.publisher.Publisher</a>
-
-<div id="inherited-methods-com.ksyun.media.streamer.publisher.Publisher">
-  <div id="inherited-methods-com.ksyun.media.streamer.publisher.Publisher-list"
-        class="jd-inheritedlinks">
-  </div>
-  <div id="inherited-methods-com.ksyun.media.streamer.publisher.Publisher-summary" style="display: none;">
-    <table class="jd-sumtable-expando">
-    
 
 
 	 
@@ -1561,102 +1171,6 @@ From class
             
             
             
-            <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getAudioSink()">getAudioSink</a></span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            <a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.PubListener.html">Publisher.PubListener</a>
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getPubListener()">getPubListener</a></span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a>&gt;
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getVideoSink()">getVideoSink</a></span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            boolean
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#isAudioOnly()">isAudioOnly</a></span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            boolean
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#isPublishing()">isPublishing</a></span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            boolean
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#isVideoOnly()">isVideoOnly</a></span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
             void
         </td>
         <td class="jd-linkcol" width="100%">
@@ -1732,112 +1246,6 @@ From class
 	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setAudioBitrate(int)">setAudioBitrate</a></span>(int audioBitrate)
-        
-        <div class="jd-descrdiv">Set encoded audio bitrate</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setAudioOnly(boolean)">setAudioOnly</a></span>(boolean audioOnly)
-        
-        <div class="jd-descrdiv">Set if this stream is audio only.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setFramerate(float)">setFramerate</a></span>(float framerate)
-        
-        <div class="jd-descrdiv">Set video fps</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setPubListener(com.ksyun.media.streamer.publisher.Publisher.PubListener)">setPubListener</a></span>(<a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.PubListener.html">Publisher.PubListener</a> listener)
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setVideoBitrate(int)">setVideoBitrate</a></span>(int videoBitrate)
-        
-        <div class="jd-descrdiv">Set encoded video bitrate</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setVideoOnly(boolean)">setVideoOnly</a></span>(boolean videoOnly)
-        
-        <div class="jd-descrdiv">Set if this stream is video only.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
             abstract
             
             
@@ -1851,11 +1259,17 @@ From class
   </td></tr>
 
 
-</table>
-  </div>
-</div>
-</td></tr>
 
+</table>
+
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="inhmethods" class="jd-sumtable"><tr><th>
+  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Methods</div></th></tr>
 
 
 <tr class="api apilevel-" >
@@ -2088,17 +1502,17 @@ From class
 
 
 
-<a id="BW_EST_STRATEGY_NEGATIVE"></a>
+<a id="CMD_RELEASE"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
       <span class="normal">
-        public 
+        protected 
         static 
         final 
         int
       </span>
-        BW_EST_STRATEGY_NEGATIVE
+        CMD_RELEASE
     </h4>
       <div class="api-level">
         
@@ -2110,8 +1524,47 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>more negative strategy than normal mode, faster down, slower up
-</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                4
+                (0x00000004)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="CMD_START"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+        static 
+        final 
+        int
+      </span>
+        CMD_START
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     
         <div class="jd-tagdata">
@@ -2129,17 +1582,17 @@ From class
 
 
 
-<a id="BW_EST_STRATEGY_NORMAL"></a>
+<a id="CMD_STOP"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
       <span class="normal">
-        public 
+        protected 
         static 
         final 
         int
       </span>
-        BW_EST_STRATEGY_NORMAL
+        CMD_STOP
     </h4>
       <div class="api-level">
         
@@ -2151,16 +1604,55 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>bandwidth estimate strategy in normal mode
-</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     
         <div class="jd-tagdata">
         <span class="jd-tagtitle">Constant Value: </span>
         <span>
             
-                0
-                (0x00000000)
+                2
+                (0x00000002)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="CMD_WRITE_FRAME"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+        static 
+        final 
+        int
+      </span>
+        CMD_WRITE_FRAME
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                3
+                (0x00000003)
             
         </span>
         </div>
@@ -2210,7 +1702,7 @@ From class
 
 
 
-<a id="ERROR_CONNECT_BREAKED"></a>
+<a id="INFO_AUDIO_HEADER_GOT"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2220,7 +1712,7 @@ From class
         final 
         int
       </span>
-        ERROR_CONNECT_BREAKED
+        INFO_AUDIO_HEADER_GOT
     </h4>
       <div class="api-level">
         
@@ -2239,8 +1731,8 @@ From class
         <span class="jd-tagtitle">Constant Value: </span>
         <span>
             
-                -1020
-                (0xfffffc04)
+                2
+                (0x00000002)
             
         </span>
         </div>
@@ -2250,7 +1742,7 @@ From class
 
 
 
-<a id="ERROR_CONNECT_FAILED"></a>
+<a id="INFO_VIDEO_HEADER_GOT"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2260,7 +1752,7 @@ From class
         final 
         int
       </span>
-        ERROR_CONNECT_FAILED
+        INFO_VIDEO_HEADER_GOT
     </h4>
       <div class="api-level">
         
@@ -2279,8 +1771,8 @@ From class
         <span class="jd-tagtitle">Constant Value: </span>
         <span>
             
-                -1011
-                (0xfffffc0d)
+                3
+                (0x00000003)
             
         </span>
         </div>
@@ -2290,7 +1782,7 @@ From class
 
 
 
-<a id="ERROR_DNS_PARSE_FAILED"></a>
+<a id="STATE_IDLE"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2300,7 +1792,7 @@ From class
         final 
         int
       </span>
-        ERROR_DNS_PARSE_FAILED
+        STATE_IDLE
     </h4>
       <div class="api-level">
         
@@ -2319,8 +1811,8 @@ From class
         <span class="jd-tagtitle">Constant Value: </span>
         <span>
             
-                -1010
-                (0xfffffc0e)
+                0
+                (0x00000000)
             
         </span>
         </div>
@@ -2330,7 +1822,7 @@ From class
 
 
 
-<a id="ERROR_PUBLISH_FAILED"></a>
+<a id="STATE_PUBLISHING"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2340,7 +1832,7 @@ From class
         final 
         int
       </span>
-        ERROR_PUBLISH_FAILED
+        STATE_PUBLISHING
     </h4>
       <div class="api-level">
         
@@ -2359,8 +1851,8 @@ From class
         <span class="jd-tagtitle">Constant Value: </span>
         <span>
             
-                -1012
-                (0xfffffc0c)
+                2
+                (0x00000002)
             
         </span>
         </div>
@@ -2370,7 +1862,7 @@ From class
 
 
 
-<a id="INFO_CONNECTED"></a>
+<a id="STATE_STARTING"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2380,7 +1872,7 @@ From class
         final 
         int
       </span>
-        INFO_CONNECTED
+        STATE_STARTING
     </h4>
       <div class="api-level">
         
@@ -2410,7 +1902,7 @@ From class
 
 
 
-<a id="INFO_EST_BW_DROP"></a>
+<a id="STATE_STOPPING"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2420,7 +1912,7 @@ From class
         final 
         int
       </span>
-        INFO_EST_BW_DROP
+        STATE_STOPPING
     </h4>
       <div class="api-level">
         
@@ -2439,88 +1931,8 @@ From class
         <span class="jd-tagtitle">Constant Value: </span>
         <span>
             
-                102
-                (0x00000066)
-            
-        </span>
-        </div>
-    
-    </div>
-</div>
-
-
-
-<a id="INFO_EST_BW_RAISE"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-        final 
-        int
-      </span>
-        INFO_EST_BW_RAISE
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-        <div class="jd-tagdata">
-        <span class="jd-tagtitle">Constant Value: </span>
-        <span>
-            
-                101
-                (0x00000065)
-            
-        </span>
-        </div>
-    
-    </div>
-</div>
-
-
-
-<a id="INFO_PACKET_SEND_SLOW"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-        final 
-        int
-      </span>
-        INFO_PACKET_SEND_SLOW
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-        <div class="jd-tagdata">
-        <span class="jd-tagtitle">Constant Value: </span>
-        <span>
-            
-                100
-                (0x00000064)
+                3
+                (0x00000003)
             
         </span>
         </div>
@@ -2534,6 +1946,703 @@ From class
 <!-- Fields -->
 
 
+<!-- ========= FIELD DETAIL ======== -->
+<h2>Fields</h2>
+
+
+
+
+<a id="mAFrameDropped"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        int
+      </span>
+        mAFrameDropped
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mAudioBitrate"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        int
+      </span>
+        mAudioBitrate
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mAudioCache"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="../../../../../com/ksyun/media/streamer/util/FrameBufferCache.html">FrameBufferCache</a>
+      </span>
+        mAudioCache
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mAudioTrackAdded"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        boolean
+      </span>
+        mAudioTrackAdded
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mFramerate"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        float
+      </span>
+        mFramerate
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mInitDts"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        long
+      </span>
+        mInitDts
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mIsAudioOnly"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        boolean
+      </span>
+        mIsAudioOnly
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mIsPublishing"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        boolean
+      </span>
+        mIsPublishing
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mIsVideoOnly"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        boolean
+      </span>
+        mIsVideoOnly
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mLastAudioDts"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        long
+      </span>
+        mLastAudioDts
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mLastVideoDts"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        long
+      </span>
+        mLastVideoDts
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mMainHandler"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+        final 
+        Handler
+      </span>
+        mMainHandler
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mPubListener"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.PubListener.html">Publisher.PubListener</a>
+      </span>
+        mPubListener
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mPublishHandler"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        Handler
+      </span>
+        mPublishHandler
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mPublishThread"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        HandlerThread
+      </span>
+        mPublishThread
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mState"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        AtomicInteger
+      </span>
+        mState
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mVFrameDroppedInner"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        int
+      </span>
+        mVFrameDroppedInner
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mVFrameDroppedUpper"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        int
+      </span>
+        mVFrameDroppedUpper
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mVideoBitrate"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        int
+      </span>
+        mVideoBitrate
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mVideoCache"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="../../../../../com/ksyun/media/streamer/util/FrameBufferCache.html">FrameBufferCache</a>
+      </span>
+        mVideoCache
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mVideoKeyFrameGot"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        boolean
+      </span>
+        mVideoKeyFrameGot
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mVideoPts"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        long
+      </span>
+        mVideoPts
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mVideoTrackAdded"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        boolean
+      </span>
+        mVideoTrackAdded
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+
 <!-- Public ctors -->
 
 
@@ -2542,7 +2651,7 @@ From class
 
 
 
-<a id="RtmpPublisher()"></a>
+<a id="Publisher(java.lang.String)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2554,8 +2663,8 @@ From class
          
         
       </span>
-      <span class="sympad">RtmpPublisher</span>
-      <span class="normal">()</span>
+      <span class="sympad">Publisher</span>
+      <span class="normal">(String name)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2588,7 +2697,7 @@ From class
 
 
 
-<a id="addAudioTrack(int, int, int, int, int, java.nio.ByteBuffer)"></a>
+<a id="getAudioSink()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2598,10 +2707,10 @@ From class
          
          
          
-        int
+        <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
       </span>
-      <span class="sympad">addAudioTrack</span>
-      <span class="normal">(int codecId, int sampleFmt, int sampleRate, int channels, int bitrate, ByteBuffer extra)</span>
+      <span class="sympad">getAudioSink</span>
+      <span class="normal">()</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2619,7 +2728,7 @@ From class
 </div>
 
 
-<a id="addMetaOption(java.lang.String, java.lang.String)"></a>
+<a id="getPubListener()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2629,55 +2738,10 @@ From class
          
          
          
-        void
+        <a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.PubListener.html">Publisher.PubListener</a>
       </span>
-      <span class="sympad">addMetaOption</span>
-      <span class="normal">(String key, String value)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Set metadata for rtmp stream.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>key</th>
-          <td>meta key</td>
-        </tr>
-        <tr>
-          <th>value</th>
-          <td>meta value
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        int
-      </span>
-      <span class="sympad">addVideoTrack</span>
-      <span class="normal">(int codecId, int width, int height, float fps, int bitrate, ByteBuffer extra)</span>
+      <span class="sympad">getPubListener</span>
+      <span class="normal">()</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2695,7 +2759,7 @@ From class
 </div>
 
 
-<a id="connect(java.lang.String)"></a>
+<a id="getVideoSink()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2705,50 +2769,9 @@ From class
          
          
          
-        void
+        <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a>&gt;
       </span>
-      <span class="sympad">connect</span>
-      <span class="normal">(String uri)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Connect to server</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>uri</th>
-          <td>destination connect to.
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="disconnect()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">disconnect</span>
+      <span class="sympad">getVideoSink</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -2761,14 +2784,13 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Disconnect from server, stop publishing.
-</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
 
 
-<a id="getConnectTime()"></a>
+<a id="isAudioOnly()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2778,9 +2800,9 @@ From class
          
          
          
-        int
+        boolean
       </span>
-      <span class="sympad">getConnectTime</span>
+      <span class="sympad">isAudioOnly</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -2793,19 +2815,13 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Get time that spent on connecting to server.
- Valid on STATE_PUBLISHING.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>Connecting time in milliseconds.
-</li></ul>
-  </div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
 
 
-<a id="getCurrentUploadKBitrate()"></a>
+<a id="isPublishing()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2815,9 +2831,9 @@ From class
          
          
          
-        int
+        boolean
       </span>
-      <span class="sympad">getCurrentUploadKBitrate</span>
+      <span class="sympad">isPublishing</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -2830,19 +2846,13 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Get current upload bandwidth.
- Valid on STATE_PUBLISHING.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>upload bandwidth in kbps.
-</li></ul>
-  </div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
 
 
-<a id="getDnsParseTime()"></a>
+<a id="isVideoOnly()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2852,9 +2862,9 @@ From class
          
          
          
-        int
+        boolean
       </span>
-      <span class="sympad">getDnsParseTime</span>
+      <span class="sympad">isVideoOnly</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -2867,155 +2877,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Get time that spent on dns parsing while connecting to server.
- Valid on STATE_PUBLISHING.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>Dns parse time in milliseconds.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="getDroppedVideoFrames()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        int
-      </span>
-      <span class="sympad">getDroppedVideoFrames</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Get dropped video frame number util now.
- Valid on STATE_PUBLISHING.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>dropped video frame number.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="getHostIp()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        String
-      </span>
-      <span class="sympad">getHostIp</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Get rtmp server ip current connected, valid on STATE_PUBLISHING.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>ip address in String or "unknown".
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="getUploadedKBytes()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        int
-      </span>
-      <span class="sympad">getUploadedKBytes</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Get current uploaded data size.
- Valid on STATE_PUBLISHING.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>uploaded data in kbytes util now.
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="release()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">release</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Clear publishing resources.
-</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
@@ -3103,47 +2965,6 @@ From class
 </div>
 
 
-<a id="setBwEstConfig(com.ksyun.media.streamer.publisher.RtmpPublisher.BwEstConfig)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setBwEstConfig</span>
-      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.BwEstConfig.html">RtmpPublisher.BwEstConfig</a> config)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Set bandwidth estimate config.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>config</th>
-          <td>bandwidth estimate config
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
 <a id="setFramerate(float)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -3180,6 +3001,37 @@ From class
         </tr>
       </table>
   </div>
+
+    </div>
+</div>
+
+
+<a id="setPubListener(com.ksyun.media.streamer.publisher.Publisher.PubListener)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setPubListener</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.PubListener.html">Publisher.PubListener</a> listener)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
@@ -3267,20 +3119,29 @@ From class
 </div>
 
 
-<a id="writeFrame(int, java.nio.ByteBuffer, long, long, int)"></a>
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+<h2>Protected Methods</h2>
+
+
+
+<a id="addAudioTrack(int, int, int, int, int, java.nio.ByteBuffer)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
       <span class="normal">
-        public 
+        protected 
          
          
-         
+        abstract 
          
         int
       </span>
-      <span class="sympad">writeFrame</span>
-      <span class="normal">(int type, ByteBuffer data, long dts, long pts, int flags)</span>
+      <span class="sympad">addAudioTrack</span>
+      <span class="normal">(int codecId, int sampleFmt, int sampleRate, int channels, int bitrate, ByteBuffer extra)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3298,16 +3159,69 @@ From class
 </div>
 
 
+<a id="addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer)"></a>
 
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        abstract 
+         
+        int
+      </span>
+      <span class="sympad">addVideoTrack</span>
+      <span class="normal">(int codecId, int width, int height, float fps, int bitrate, ByteBuffer extra)</span>
+    </h4>
+      <div class="api-level">
+        <div>
 
+</div>
+        
+  
 
-<!-- ========= METHOD DETAIL ======== -->
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
-<h2>Protected Methods</h2>
-
+    </div>
+</div>
 
 
 <a id="doHandleAVFrame(com.ksyun.media.streamer.framework.AVBufFrame)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        abstract 
+         
+        void
+      </span>
+      <span class="sympad">doHandleAVFrame</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> frame)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="doHandleAVFrame(com.ksyun.media.streamer.framework.AVBufFrame, boolean)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3320,7 +3234,7 @@ From class
         void
       </span>
       <span class="sympad">doHandleAVFrame</span>
-      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> frame)</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> frame, boolean sendExtraForVideoKeyFrame)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3346,7 +3260,7 @@ From class
         protected 
          
          
-         
+        abstract 
          
         void
       </span>
@@ -3377,7 +3291,7 @@ From class
         protected 
          
          
-         
+        abstract 
          
         void
       </span>
@@ -3462,6 +3376,37 @@ From class
 </div>
 
 
+<a id="postError(int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">postError</span>
+      <span class="normal">(int err)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="postInfo(int, long)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -3476,6 +3421,99 @@ From class
       </span>
       <span class="sympad">postInfo</span>
       <span class="normal">(int type, long msg)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="postInfo(int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">postInfo</span>
+      <span class="normal">(int type)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="release()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        abstract 
+         
+        void
+      </span>
+      <span class="sympad">release</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="writeFrame(int, java.nio.ByteBuffer, long, long, int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        abstract 
+         
+        int
+      </span>
+      <span class="sympad">writeFrame</span>
+      <span class="normal">(int type, ByteBuffer data, long dts, long pts, int flags)</span>
     </h4>
       <div class="api-level">
         <div>
