@@ -100,6 +100,7 @@ var DATA = [
       { id:98, label:"com.ksyun.media.streamer.util.audio.KSYBgmPlayer.OnPcmAvailableListener", link:"com/ksyun/media/streamer/util/audio/KSYBgmPlayer.OnPcmAvailableListener.html", type:"class" },
       { id:99, label:"com.ksyun.media.streamer.util.gles", link:"com/ksyun/media/streamer/util/gles/package-summary.html", type:"package" },
       { id:100, label:"com.ksyun.media.streamer.util.gles.GLRender", link:"com/ksyun/media/streamer/util/gles/GLRender.html", type:"class" },
-      { id:101, label:"com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener", link:"com/ksyun/media/streamer/util/gles/GLRender.GLRenderListener.html", type:"class" }
+      { id:101, label:"com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener", link:"com/ksyun/media/streamer/util/gles/GLRender.GLRenderListener.html", type:"class" },
+      { id:102, label:"com.ksyun.media.streamer.util.gles.GLRender.ScreenShotListener", link:"com/ksyun/media/streamer/util/gles/GLRender.ScreenShotListener.html", type:"class" }
 
     ];

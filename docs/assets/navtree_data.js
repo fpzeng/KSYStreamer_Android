@@ -32,7 +32,7 @@ var NAVTREE_DATA =
 , "" ], [ "com.ksyun.media.streamer.util.audio", "com/ksyun/media/streamer/util/audio/package-summary.html", [ [ "Interfaces", null, [ [ "KSYBgmPlayer.OnBgmPlayerListener", "com/ksyun/media/streamer/util/audio/KSYBgmPlayer.OnBgmPlayerListener.html", null, "" ], [ "KSYBgmPlayer.OnCompletionListener", "com/ksyun/media/streamer/util/audio/KSYBgmPlayer.OnCompletionListener.html", null, "" ], [ "KSYBgmPlayer.OnErrorListener", "com/ksyun/media/streamer/util/audio/KSYBgmPlayer.OnErrorListener.html", null, "" ], [ "KSYBgmPlayer.OnPcmAvailableListener", "com/ksyun/media/streamer/util/audio/KSYBgmPlayer.OnPcmAvailableListener.html", null, "" ] ]
 , "" ], [ "Classes", null, [ [ "KSYBgmPlayer", "com/ksyun/media/streamer/util/audio/KSYBgmPlayer.html", null, "" ] ]
 , "" ] ]
-, "" ], [ "com.ksyun.media.streamer.util.gles", "com/ksyun/media/streamer/util/gles/package-summary.html", [ [ "Interfaces", null, [ [ "GLRender.GLRenderListener", "com/ksyun/media/streamer/util/gles/GLRender.GLRenderListener.html", null, "" ] ]
+, "" ], [ "com.ksyun.media.streamer.util.gles", "com/ksyun/media/streamer/util/gles/package-summary.html", [ [ "Interfaces", null, [ [ "GLRender.GLRenderListener", "com/ksyun/media/streamer/util/gles/GLRender.GLRenderListener.html", null, "" ], [ "GLRender.ScreenShotListener", "com/ksyun/media/streamer/util/gles/GLRender.ScreenShotListener.html", null, "" ] ]
 , "" ], [ "Classes", null, [ [ "GLRender", "com/ksyun/media/streamer/util/gles/GLRender.html", null, "" ] ]
 , "" ] ]
 , "" ] ]

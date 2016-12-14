@@ -8,6 +8,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.hardware.Camera;
 import android.opengl.GLSurfaceView;
@@ -41,7 +42,12 @@ import com.ksyun.media.streamer.kit.OnAudioRawDataListener;
 import com.ksyun.media.streamer.kit.OnPreviewFrameListener;
 import com.ksyun.media.streamer.kit.StreamerConstants;
 import com.ksyun.media.streamer.logstats.StatsLogReport;
+import com.ksyun.media.streamer.util.gles.GLRender;
 
+import java.io.BufferedOutputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -62,6 +68,7 @@ public class CameraActivity extends Activity implements
     private View mFlashView;
     private TextView mShootingText;
     private TextView mRecordingText;
+    private TextView mCaptureSceenShot;
     private CheckBox mWaterMarkCheckBox;
     private CheckBox mBeautyCheckBox;
     private CheckBox mReverbCheckBox;
@@ -91,6 +98,7 @@ public class CameraActivity extends Activity implements
     private String mBgmPath = "/sdcard/test.mp3";
     private String mLogoPath = "file:///sdcard/test.png";
     private String mRecordUrl = "/sdcard/test.mp4";
+    private String mScreenShotPath = "/sdcard/test_screenshot.jpg";
 
     private boolean mHWEncoderUnsupported;
     private boolean mSWEncoderUnsupported;
@@ -158,6 +166,8 @@ public class CameraActivity extends Activity implements
         mShootingText.setOnClickListener(mObserverButton);
         mRecordingText = (TextView) findViewById(R.id.click_to_record);
         mRecordingText.setOnClickListener(mObserverButton);
+        mCaptureSceenShot = (TextView) findViewById(R.id.click_to_capture_screenshot);
+        mCaptureSceenShot.setOnClickListener(mObserverButton);
         mDeleteView = findViewById(R.id.backoff);
         mDeleteView.setOnClickListener(mObserverButton);
         mSwitchCameraView = findViewById(R.id.switch_cam);
@@ -747,9 +757,9 @@ public class CameraActivity extends Activity implements
                             return false;
                         }
                     });
+            mStreamer.getAudioPlayerCapture().getMediaPlayer().setVolume(0.4f, 0.4f);
             mStreamer.setEnableAudioMix(true);
             mStreamer.startBgm(mBgmPath, true);
-            mStreamer.getAudioPlayerCapture().getMediaPlayer().setVolume(0.4f, 0.4f);
         } else {
             mStreamer.stopBgm();
         }
@@ -778,6 +788,28 @@ public class CameraActivity extends Activity implements
         mStreamer.setAudioOnly(isChecked);
     }
 
+    private void onCaptureScreenShotClick() {
+        mStreamer.requestScreenShot(new GLRender.ScreenShotListener() {
+            @Override
+            public void onBitmapAvailable(Bitmap bitmap) {
+                BufferedOutputStream bos = null;
+                try {
+                    bos = new BufferedOutputStream(new FileOutputStream(mScreenShotPath));
+                    if (bitmap != null)
+                        bitmap.compress(Bitmap.CompressFormat.JPEG, 90, bos);
+                } catch (FileNotFoundException e) {
+                    e.printStackTrace();
+                } finally {
+                    if (bos != null) try {
+                        bos.close();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
+    }
+
     private class ButtonObserver implements View.OnClickListener {
         @Override
         public void onClick(View view) {
@@ -796,6 +828,9 @@ public class CameraActivity extends Activity implements
                     break;
                 case R.id.click_to_record:
                     onRecordClick();
+                    break;
+                case R.id.click_to_capture_screenshot:
+                    onCaptureScreenShotClick();
                     break;
                 default:
                     break;
