@@ -208,6 +208,19 @@
                 android:textSize="@dimen/font_size_28px">
             </TextView>
 
+            <TextView
+                android:id="@+id/click_to_capture_screenshot"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#11123456"
+                android:text="@string/capture_thumbnail"
+                android:textColor="@color/font_color_35"
+                android:textSize="@dimen/font_size_28px">
+            </TextView>
+
         </LinearLayout>
     </LinearLayout>
 </RelativeLayout>

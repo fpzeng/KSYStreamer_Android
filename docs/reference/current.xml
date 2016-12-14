@@ -3846,6 +3846,30 @@
 <parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
+<method name="getInputVolume"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="idx" type="int">
+</parameter>
+</method>
+<method name="getMute"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getSinkPin"
  return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
  abstract="false"
@@ -7483,8 +7507,30 @@
 <parameter name="enableDebugLog" type="boolean">
 </parameter>
 </method>
+<method name="getAudioBitrate"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getAudioCapture"
  return="com.ksyun.media.streamer.capture.AudioCapture"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getAudioChannels"
+ return="int"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7538,8 +7584,30 @@
  visibility="public"
 >
 </method>
+<method name="getAudioSampleRate"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getCameraCapture"
  return="com.ksyun.media.streamer.capture.CameraCapture"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getCameraFacing"
+ return="int"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7615,6 +7683,28 @@
  visibility="public"
 >
 </method>
+<method name="getEncodeProfile"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getEncodeScene"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getEncodedFrames"
  return="long"
  abstract="false"
@@ -7628,6 +7718,17 @@
 </method>
 <method name="getGLRender"
  return="com.ksyun.media.streamer.util.gles.GLRender"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getIFrameInterval"
+ return="float"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7659,6 +7760,83 @@
  visibility="public"
 >
 </method>
+<method name="getInitVideoBitrate"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMaxVideoBitrate"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getMinVideoBitrate"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getPreviewFps"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getPreviewHeight"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getPreviewWidth"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getRotateDegrees"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getRtmpHostIP"
  return="java.lang.String"
  abstract="false"
@@ -7681,8 +7859,52 @@
  visibility="public"
 >
 </method>
+<method name="getTargetFps"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTargetHeight"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getTargetWidth"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getUploadedKBytes"
  return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getUrl"
+ return="java.lang.String"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7725,6 +7947,17 @@
  visibility="public"
 >
 </method>
+<method name="getVoiceVolume"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="hideWaterMarkLogo"
  return="void"
  abstract="false"
@@ -7747,6 +7980,50 @@
  visibility="public"
 >
 </method>
+<method name="isAudioMixEnabled"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isAudioMuted"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isAudioPreviewing"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isAutoAdjustVideoBitrate"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="isFileRecording"
  return="boolean"
  abstract="false"
@@ -7759,6 +8036,17 @@
 >
 </method>
 <method name="isFrontCamera"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isFrontCameraMirrorEnabled"
  return="boolean"
  abstract="false"
  native="false"
@@ -7823,6 +8111,34 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="requestScreenShot"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="screenShotListener" type="com.ksyun.media.streamer.util.gles.GLRender.ScreenShotListener">
+</parameter>
+</method>
+<method name="requestScreenShot"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="scaleFactor" type="float">
+</parameter>
+<parameter name="screenShotListener" type="com.ksyun.media.streamer.util.gles.GLRender.ScreenShotListener">
+</parameter>
 </method>
 <method name="setAudioBitrate"
  return="void"
@@ -13415,6 +13731,47 @@
  visibility="public"
 >
 </method>
+<method name="requestScreenShot"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="screenShotListener" type="com.ksyun.media.streamer.util.gles.GLRender.ScreenShotListener">
+</parameter>
+</method>
+<method name="requestScreenShot"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="scaleFactor" type="float">
+</parameter>
+<parameter name="screenShotListener" type="com.ksyun.media.streamer.util.gles.GLRender.ScreenShotListener">
+</parameter>
+</method>
+<method name="setScaleFactor"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="scaleFactor" type="float">
+</parameter>
+</method>
 <field name="STATE_IDLE"
  type="int"
  transient="false"
@@ -13502,6 +13859,27 @@
 <parameter name="width" type="int">
 </parameter>
 <parameter name="height" type="int">
+</parameter>
+</method>
+</interface>
+<interface name="GLRender.ScreenShotListener"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="onBitmapAvailable"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="bitmap" type="Bitmap">
 </parameter>
 </method>
 </interface>
