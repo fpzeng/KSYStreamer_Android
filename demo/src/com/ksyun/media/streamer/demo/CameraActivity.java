@@ -48,6 +48,8 @@ import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Locale;
@@ -98,7 +100,6 @@ public class CameraActivity extends Activity implements
     private String mBgmPath = "/sdcard/test.mp3";
     private String mLogoPath = "file:///sdcard/test.png";
     private String mRecordUrl = "/sdcard/test.mp4";
-    private String mScreenShotPath = "/sdcard/test_screenshot.jpg";
 
     private boolean mHWEncoderUnsupported;
     private boolean mSWEncoderUnsupported;
@@ -251,7 +252,6 @@ public class CameraActivity extends Activity implements
         //    mStreamer.setOffscreenPreview(720, 1280);
         //}
         mStreamer.setEnableStreamStatModule(true);
-        mStreamer.enableDebugLog(true);
         mStreamer.setFrontCameraMirror(mFrontMirrorCheckBox.isChecked());
         mStreamer.setMuteAudio(mMuteCheckBox.isChecked());
         mStreamer.setEnableAudioPreview(mAudioPreviewCheckBox.isChecked());
@@ -398,7 +398,7 @@ public class CameraActivity extends Activity implements
                 mStreamer.getRtmpHostIP(), mStreamer.getDroppedFrameCount(),
                 mStreamer.getConnectTime(), mStreamer.getDnsParseTime(),
                 mStreamer.getUploadedKBytes(), mStreamer.getEncodedFrames(),
-                mStreamer.getCurrentUploadKBitrate(), mStreamer.getVersion());
+                mStreamer.getCurrentUploadKBitrate(), KSYStreamer.getVersion());
     }
 
     //show watermark in specific location
@@ -757,9 +757,9 @@ public class CameraActivity extends Activity implements
                             return false;
                         }
                     });
-            mStreamer.getAudioPlayerCapture().getMediaPlayer().setVolume(0.4f, 0.4f);
             mStreamer.setEnableAudioMix(true);
             mStreamer.startBgm(mBgmPath, true);
+            mStreamer.getAudioPlayerCapture().getMediaPlayer().setVolume(0.4f, 0.4f);
         } else {
             mStreamer.stopBgm();
         }
@@ -794,9 +794,20 @@ public class CameraActivity extends Activity implements
             public void onBitmapAvailable(Bitmap bitmap) {
                 BufferedOutputStream bos = null;
                 try {
-                    bos = new BufferedOutputStream(new FileOutputStream(mScreenShotPath));
-                    if (bitmap != null)
+                    Date date = new Date() ;
+                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss") ;
+                    final String filename = "/sdcard/screenshot"+ dateFormat.format(date) + ".jpg";
+
+                    bos = new BufferedOutputStream(new FileOutputStream(filename));
+                    if (bitmap != null) {
                         bitmap.compress(Bitmap.CompressFormat.JPEG, 90, bos);
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                Toast.makeText(CameraActivity.this, "保存截图到 "+ filename,
+                                        Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
                 } catch (FileNotFoundException e) {
                     e.printStackTrace();
                 } finally {

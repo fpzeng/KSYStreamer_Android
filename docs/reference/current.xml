@@ -377,7 +377,7 @@
  return="void"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -390,7 +390,7 @@
  return="void"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -423,7 +423,7 @@
  return="Camera.Parameters"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -478,7 +478,7 @@
  return="boolean"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -502,7 +502,7 @@
  return="void"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -513,7 +513,7 @@
  return="boolean"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -526,7 +526,7 @@
  return="void"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -606,7 +606,7 @@
  return="void"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -630,7 +630,7 @@
  return="void"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -652,7 +652,7 @@
  return="boolean"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -663,7 +663,7 @@
  return="boolean"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -2448,6 +2448,17 @@
  visibility="public"
 >
 </method>
+<method name="useSyncMode"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
 <field name="ENCODER_ERROR_UNKNOWN"
  type="int"
  transient="false"
@@ -2712,6 +2723,28 @@
 >
 <parameter name="colorFormat" type="int">
 </parameter>
+</method>
+<method name="start"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="stop"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
 </method>
 <field name="mFrameDropped"
  type="java.util.concurrent.atomic.AtomicInteger"
@@ -3558,6 +3591,28 @@
 >
 <parameter name="mirror" type="boolean">
 </parameter>
+</method>
+<method name="start"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="stop"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
 </method>
 <field name="METHOD_HARDWARE"
  type="int"
@@ -7398,7 +7453,7 @@
  return="void"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -7411,7 +7466,7 @@
  return="void"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -7424,7 +7479,7 @@
  return="void"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -7450,7 +7505,7 @@
  return="void"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -7463,7 +7518,7 @@
  return="void"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -7919,7 +7974,7 @@
  abstract="false"
  native="false"
  synchronized="false"
- static="false"
+ static="true"
  final="false"
  deprecated="not deprecated"
  visibility="public"
@@ -8152,6 +8207,8 @@
 >
 <parameter name="bitrate" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setAudioChannels"
  return="void"
@@ -8165,6 +8222,8 @@
 >
 <parameter name="channels" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setAudioEncodeMethod"
  return="void"
@@ -8178,6 +8237,8 @@
 >
 <parameter name="encodeMethod" type="int">
 </parameter>
+<exception name="IllegalStateException" type="java.lang.IllegalStateException">
+</exception>
 </method>
 <method name="setAudioKBitrate"
  return="void"
@@ -8191,6 +8252,8 @@
 >
 <parameter name="kBitrate" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setAudioOnly"
  return="void"
@@ -8217,6 +8280,8 @@
 >
 <parameter name="sampleRate" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setBeautyFilter"
  return="void"
@@ -8373,6 +8438,8 @@
 >
 <parameter name="encodeMethod" type="int">
 </parameter>
+<exception name="IllegalStateException" type="java.lang.IllegalStateException">
+</exception>
 </method>
 <method name="setFrontCameraMirror"
  return="void"
@@ -8412,6 +8479,8 @@
 >
 <parameter name="iFrameInterval" type="float">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setMuteAudio"
  return="void"
@@ -8440,6 +8509,8 @@
 </parameter>
 <parameter name="height" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setOnAudioRawDataListener"
  return="void"
@@ -8518,6 +8589,8 @@
 >
 <parameter name="fps" type="float">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setPreviewResolution"
  return="void"
@@ -8533,6 +8606,8 @@
 </parameter>
 <parameter name="height" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setPreviewResolution"
  return="void"
@@ -8546,6 +8621,8 @@
 >
 <parameter name="idx" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setRotateDegrees"
  return="void"
@@ -8559,6 +8636,8 @@
 >
 <parameter name="degrees" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setTargetFps"
  return="void"
@@ -8572,6 +8651,8 @@
 >
 <parameter name="fps" type="float">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setTargetResolution"
  return="void"
@@ -8587,6 +8668,8 @@
 </parameter>
 <parameter name="height" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setTargetResolution"
  return="void"
@@ -8600,6 +8683,8 @@
 >
 <parameter name="idx" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setUrl"
  return="void"
@@ -8613,6 +8698,8 @@
 >
 <parameter name="url" type="java.lang.String">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setVideoBitrate"
  return="void"
@@ -8626,6 +8713,8 @@
 >
 <parameter name="bitrate" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setVideoBitrate"
  return="void"
@@ -8643,6 +8732,8 @@
 </parameter>
 <parameter name="minVideoBitrate" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setVideoEncodeMethod"
  return="void"
@@ -8656,6 +8747,8 @@
 >
 <parameter name="encodeMethod" type="int">
 </parameter>
+<exception name="IllegalStateException" type="java.lang.IllegalStateException">
+</exception>
 </method>
 <method name="setVideoEncodeProfile"
  return="void"
@@ -8695,6 +8788,8 @@
 >
 <parameter name="kBitrate" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setVideoKBitrate"
  return="void"
@@ -8712,6 +8807,8 @@
 </parameter>
 <parameter name="minVideoKBitrate" type="int">
 </parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
 </method>
 <method name="setVoiceVolume"
  return="void"
@@ -11681,7 +11778,7 @@
 </parameter>
 </method>
 <method name="doStart"
- return="void"
+ return="int"
  abstract="false"
  native="false"
  synchronized="false"
@@ -11909,7 +12006,7 @@
 </parameter>
 </method>
 <method name="doStart"
- return="void"
+ return="int"
  abstract="true"
  native="false"
  synchronized="false"
@@ -12237,6 +12334,17 @@
  transient="false"
  volatile="false"
  value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="INFO_STARTED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
  static="true"
  final="true"
  deprecated="not deprecated"
@@ -12773,7 +12881,7 @@
 </parameter>
 </method>
 <method name="doStart"
- return="void"
+ return="int"
  abstract="false"
  native="false"
  synchronized="false"
@@ -13757,19 +13865,6 @@
 <parameter name="scaleFactor" type="float">
 </parameter>
 <parameter name="screenShotListener" type="com.ksyun.media.streamer.util.gles.GLRender.ScreenShotListener">
-</parameter>
-</method>
-<method name="setScaleFactor"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="scaleFactor" type="float">
 </parameter>
 </method>
 <field name="STATE_IDLE"
