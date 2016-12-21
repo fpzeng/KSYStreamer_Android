@@ -251,7 +251,6 @@ public class CameraActivity extends Activity implements
         //} else {
         //    mStreamer.setOffscreenPreview(720, 1280);
         //}
-        mStreamer.setEnableStreamStatModule(true);
         mStreamer.setFrontCameraMirror(mFrontMirrorCheckBox.isChecked());
         mStreamer.setMuteAudio(mMuteCheckBox.isChecked());
         mStreamer.setEnableAudioPreview(mAudioPreviewCheckBox.isChecked());
