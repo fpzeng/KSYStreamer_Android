@@ -219,8 +219,6 @@ mStreamer.setAudioKBitrate(48);
 mStreamer.setEncodeMethod(StreamerConstants.ENCODE_METHOD_SOFTWARE);
 // 设置屏幕的旋转角度，支持 0, 90, 180, 270
 mStreamer.setRotateDegrees(0);
-// 开启推流统计功能
-mStreamer.setEnableStreamStatModule(true);
 ----
 +
 . 创建推流事件监听
@@ -299,6 +297,10 @@ public class CameraActivity extends Activity {
         mStreamer.startCameraPreview();
         // 调用KSYStreamer的onResume接口
         mStreamer.onResume();
+        // 如果onPause中启用了mute推流，可以在此关闭
+        if (mStreamer.isRecording()) {
+            mStreamer.setMuteAudio(false);
+        }
     }
 
     @Override
@@ -307,6 +309,10 @@ public class CameraActivity extends Activity {
         mStreamer.onPause();
         // 一般在这里停止摄像头采集
         mStreamer.stopCameraPreview();
+        // 如果希望App切后台后，停止录制主播端的声音，可以在此调用mute方法，SDK将使用静音数据替代MIC采集数据
+        if (mStreamer.isRecording()) {
+            mStreamer.setMuteAudio(true);
+        }
     }
 
     @Override
