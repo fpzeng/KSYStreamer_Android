@@ -309,7 +309,8 @@ public class CameraActivity extends Activity {
         mStreamer.onPause();
         // 一般在这里停止摄像头采集
         mStreamer.stopCameraPreview();
-        // 如果希望App切后台后，停止录制主播端的声音，可以在此调用mute方法，SDK将使用静音数据替代MIC采集数据
+        // 如果希望App切后台后，停止录制主播端的声音，可以在此调用mute方法，
+        // SDK将使用静音数据替代MIC采集数据
         if (mStreamer.isRecording()) {
             mStreamer.setMuteAudio(true);
         }
