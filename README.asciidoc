@@ -199,7 +199,7 @@ mStreamer.setDisplayPreview(mCameraPreview);
 mStreamer.setUrl("rtmp://test.uplive.ksyun.com/live/{streamName}");
 // 设置预览分辨率, 当一边为0时，SDK会根据另一边及实际预览View的尺寸进行计算
 mStreamer.setPreviewResolution(480, 0);
-// 设置推流分辨率，可以不同于预览分辨率
+// 设置推流分辨率，可以不同于预览分辨率（不应大于预览分辨率，否则推流会有画质损失）
 mStreamer.setTargetResolution(480, 0);
 // 设置预览帧率
 mStreamer.setPreviewFps(15);
