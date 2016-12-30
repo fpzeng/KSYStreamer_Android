@@ -430,20 +430,6 @@ Summary:
     </tr>
     
     
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">String</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/VideoEncodeFormat.html#MIME_AVC">MIME_AVC</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">String</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/VideoEncodeFormat.html#MIME_HEVC">MIME_HEVC</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
 
 </table>
 
@@ -474,7 +460,7 @@ Summary:
             
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/VideoEncodeFormat.html#VideoEncodeFormat(java.lang.String, int, int, int)">VideoEncodeFormat</a></span>(String mime, int width, int height, int bitrate)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/VideoEncodeFormat.html#VideoEncodeFormat(int, int, int, int)">VideoEncodeFormat</a></span>(int codecId, int width, int height, int bitrate)
         
   </td></tr>
 
@@ -516,6 +502,22 @@ Summary:
             
             
             
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/VideoEncodeFormat.html#getCodecId()">getCodecId</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             float
         </td>
         <td class="jd-linkcol" width="100%">
@@ -525,7 +527,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -541,7 +543,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -552,22 +554,6 @@ Summary:
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/VideoEncodeFormat.html#getIframeinterval()">getIframeinterval</a></span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            String
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/VideoEncodeFormat.html#getMime()">getMime</a></span>()
         
   </td></tr>
 
@@ -1185,84 +1171,6 @@ From class
 
 
 
-<a id="MIME_AVC"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-        final 
-        String
-      </span>
-        MIME_AVC
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-        <div class="jd-tagdata">
-        <span class="jd-tagtitle">Constant Value: </span>
-        <span>
-            
-                "video/avc"
-            
-        </span>
-        </div>
-    
-    </div>
-</div>
-
-
-
-<a id="MIME_HEVC"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-        final 
-        String
-      </span>
-        MIME_HEVC
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-        <div class="jd-tagdata">
-        <span class="jd-tagtitle">Constant Value: </span>
-        <span>
-            
-                "video/hevc"
-            
-        </span>
-        </div>
-    
-    </div>
-</div>
-
-
-
 
 <!-- Fields -->
 
@@ -1275,7 +1183,7 @@ From class
 
 
 
-<a id="VideoEncodeFormat(java.lang.String, int, int, int)"></a>
+<a id="VideoEncodeFormat(int, int, int, int)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1288,7 +1196,7 @@ From class
         
       </span>
       <span class="sympad">VideoEncodeFormat</span>
-      <span class="normal">(String mime, int width, int height, int bitrate)</span>
+      <span class="normal">(int codecId, int width, int height, int bitrate)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -1334,6 +1242,37 @@ From class
         int
       </span>
       <span class="sympad">getBitrate</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getCodecId()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        int
+      </span>
+      <span class="sympad">getCodecId</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -1427,37 +1366,6 @@ From class
         float
       </span>
       <span class="sympad">getIframeinterval</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<a id="getMime()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        String
-      </span>
-      <span class="sympad">getMime</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">

@@ -1001,6 +1001,25 @@
  deprecated="not deprecated"
  visibility="public"
 >
+<parameter name="img" type="Bitmap">
+</parameter>
+<parameter name="rotate" type="int">
+</parameter>
+<parameter name="pts" type="long">
+</parameter>
+<parameter name="recycle" type="boolean">
+</parameter>
+</method>
+<method name="updateFrame"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
 <parameter name="buf" type="java.nio.ByteBuffer">
 </parameter>
 <parameter name="stride" type="int">
@@ -1027,6 +1046,29 @@
 <parameter name="width" type="int">
 </parameter>
 <parameter name="height" type="int">
+</parameter>
+<parameter name="pts" type="long">
+</parameter>
+</method>
+<method name="updateFrame"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="buf" type="java.nio.ByteBuffer">
+</parameter>
+<parameter name="stride" type="int">
+</parameter>
+<parameter name="width" type="int">
+</parameter>
+<parameter name="height" type="int">
+</parameter>
+<parameter name="rotate" type="int">
 </parameter>
 <parameter name="pts" type="long">
 </parameter>
@@ -3181,7 +3223,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="mime" type="java.lang.String">
+<parameter name="codecId" type="int">
 </parameter>
 <parameter name="width" type="int">
 </parameter>
@@ -3191,6 +3233,17 @@
 </parameter>
 </constructor>
 <method name="getBitrate"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getCodecId"
  return="int"
  abstract="false"
  native="false"
@@ -3225,17 +3278,6 @@
 </method>
 <method name="getIframeinterval"
  return="float"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="getMime"
- return="java.lang.String"
  abstract="false"
  native="false"
  synchronized="false"
@@ -3403,28 +3445,6 @@
  transient="false"
  volatile="false"
  value="1"
- static="true"
- final="true"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
-<field name="MIME_AVC"
- type="java.lang.String"
- transient="false"
- volatile="false"
- value="&quot;video/avc&quot;"
- static="true"
- final="true"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
-<field name="MIME_HEVC"
- type="java.lang.String"
- transient="false"
- volatile="false"
- value="&quot;video/hevc&quot;"
  static="true"
  final="true"
  deprecated="not deprecated"
@@ -5036,36 +5056,6 @@
 </package>
 <package name="com.ksyun.media.streamer.filter.imgtex"
 >
-<interface name="IImgTexFilter"
- abstract="true"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
- abstract="true"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
- abstract="true"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-</interface>
 <class name="ImgBeautyDenoiseFilter"
  extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
@@ -5098,6 +5088,25 @@
 </parameter>
 </method>
 </class>
+<class name="ImgBeautyGrindSimpleFilter"
+ extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ImgBeautyGrindSimpleFilter"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgBeautyGrindSimpleFilter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+</parameter>
+</constructor>
+</class>
 <class name="ImgBeautyIllusionFilter"
  extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
@@ -5128,6 +5137,62 @@
 >
 <parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
 </parameter>
+</method>
+</class>
+<class name="ImgBeautyProFilter"
+ extends="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ImgBeautyProFilter"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgBeautyProFilter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+</parameter>
+<parameter name="context" type="Context">
+</parameter>
+</constructor>
+<method name="getSinkPin"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="idx" type="int">
+</parameter>
+</method>
+<method name="getSinkPinNum"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSrcPin"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
 </method>
 </class>
 <class name="ImgBeautySkinWhitenFilter"
@@ -5163,7 +5228,7 @@
 </method>
 </class>
 <class name="ImgBeautySmoothFilter"
- extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ extends="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase"
  abstract="false"
  static="false"
  final="false"
@@ -5180,8 +5245,20 @@
 <parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
-<method name="onFormatChanged"
- return="void"
+<constructor name="ImgBeautySmoothFilter"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgBeautySmoothFilter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+</parameter>
+<parameter name="context" type="Context">
+</parameter>
+</constructor>
+<method name="getSinkPin"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5190,8 +5267,30 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
+<parameter name="idx" type="int">
 </parameter>
+</method>
+<method name="getSinkPinNum"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSrcPin"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
 </method>
 </class>
 <class name="ImgBeautySoftExtFilter"
@@ -5290,6 +5389,388 @@
 </parameter>
 </method>
 </class>
+<class name="ImgBeautySpecialEffectsFilter"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ImgBeautySpecialEffectsFilter"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgBeautySpecialEffectsFilter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+</parameter>
+<parameter name="context" type="Context">
+</parameter>
+<parameter name="idx" type="int">
+</parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
+</constructor>
+<method name="setSpecialEffect"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="idx" type="int">
+</parameter>
+</method>
+<field name="KSY_SPECIAL_EFFECT_BEAUTY"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="KSY_SPECIAL_EFFECT_BLUE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="5"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="KSY_SPECIAL_EFFECT_FRESHY"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="KSY_SPECIAL_EFFECT_NOSTALGIA"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="6"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="KSY_SPECIAL_EFFECT_SEPIA"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="KSY_SPECIAL_EFFECT_SWEETY"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="ImgFilterBase"
+ extends="java.lang.Object"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ImgFilterBase"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="getGrindRatio"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getRuddyRatio"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSinkPin"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="idx" type="int">
+</parameter>
+</method>
+<method name="getSinkPin"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSinkPinNum"
+ return="int"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSrcPin"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getVersion"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getWhitenRatio"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isGrindRatioSupported"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isRuddyRatioSupported"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isWhitenRatioSupported"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setGrindRatio"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="ratio" type="float">
+</parameter>
+</method>
+<method name="setMainSinkPinIndex"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="index" type="int">
+</parameter>
+</method>
+<method name="setOnErrorListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase.OnErrorListener">
+</parameter>
+</method>
+<method name="setRuddyRatio"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="ratio" type="float">
+</parameter>
+</method>
+<method name="setWhitenRatio"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="ratio" type="float">
+</parameter>
+</method>
+<field name="mErrorListener"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase.OnErrorListener"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mGrindRatio"
+ type="float"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mMainSinkPinIndex"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mRuddyRatio"
+ type="float"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mWhitenRatio"
+ type="float"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+</class>
+<interface name="ImgFilterBase.OnErrorListener"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="onError"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase">
+</parameter>
+<parameter name="errno" type="int">
+</parameter>
+</method>
+</interface>
 <class name="ImgTexFilter"
  extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase"
  abstract="false"
@@ -5298,8 +5779,6 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<implements name="com.ksyun.media.streamer.filter.imgtex.IImgTexFilter">
-</implements>
 <constructor name="ImgTexFilter"
  type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
  static="false"
@@ -5338,17 +5817,6 @@
 <parameter name="fragmentShader" type="java.lang.String">
 </parameter>
 </constructor>
-<method name="getSinkPin"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
 <method name="getSinkPinNum"
  return="int"
  abstract="false"
@@ -5621,7 +6089,7 @@
 </field>
 </class>
 <class name="ImgTexFilterBase"
- extends="java.lang.Object"
+ extends="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase"
  abstract="true"
  static="false"
  final="false"
@@ -5651,17 +6119,6 @@
 <parameter name="index" type="int">
 </parameter>
 </method>
-<method name="getSinkPinNum"
- return="int"
- abstract="true"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
 <method name="getSrcPin"
  return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
@@ -5676,6 +6133,17 @@
 <method name="getSrcPinFormat"
  return="com.ksyun.media.streamer.framework.ImgTexFormat"
  abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="isReuseFbo"
+ return="boolean"
+ abstract="false"
  native="false"
  synchronized="false"
  static="false"
@@ -5773,32 +6241,6 @@
 <parameter name="isPreviewer" type="boolean">
 </parameter>
 </method>
-<method name="setMainSinkPinIndex"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="true"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="index" type="int">
-</parameter>
-</method>
-<method name="setOnErrorListener"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="listener" type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase.OnErrorListener">
-</parameter>
-</method>
 <field name="ERROR_LOAD_PROGRAM_FAILED"
  type="int"
  transient="false"
@@ -5819,16 +6261,6 @@
  final="true"
  deprecated="not deprecated"
  visibility="public"
->
-</field>
-<field name="mErrorListener"
- type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase.OnErrorListener"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
 >
 </field>
 <field name="mGLRender"
@@ -5861,16 +6293,6 @@
  visibility="protected"
 >
 </field>
-<field name="mMainSinkPinIndex"
- type="int"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-</field>
 <field name="mOutTexture"
  type="int"
  transient="false"
@@ -5882,29 +6304,6 @@
 >
 </field>
 </class>
-<interface name="ImgTexFilterBase.OnErrorListener"
- abstract="true"
- static="true"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<method name="onError"
- return="void"
- abstract="true"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase">
-</parameter>
-<parameter name="errno" type="int">
-</parameter>
-</method>
-</interface>
 <class name="ImgTexFilterMgt"
  extends="java.lang.Object"
  abstract="false"
@@ -5920,7 +6319,20 @@
  deprecated="not deprecated"
  visibility="public"
 >
+<parameter name="context" type="Context">
+</parameter>
 </constructor>
+<method name="getFilter"
+ return="java.util.List&lt;com.ksyun.media.streamer.filter.imgtex.ImgFilterBase&gt;"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getSinkPin"
  return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
@@ -5964,7 +6376,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.IImgTexFilter">
+<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
 </parameter>
 </method>
 <method name="setExtraFilter"
@@ -5977,7 +6389,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filters" type="java.util.List&lt;com.ksyun.media.streamer.filter.imgtex.IImgTexFilter&gt;">
+<parameter name="filters" type="java.util.List&lt;? extends com.ksyun.media.streamer.filter.imgtex.ImgFilterBase&gt;">
 </parameter>
 </method>
 <method name="setFilter"
@@ -6005,7 +6417,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter">
+<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
 </parameter>
 </method>
 <method name="setFilter"
@@ -6018,20 +6430,20 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filterArray" type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter[]">
+<parameter name="filterArray" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase[]">
 </parameter>
 </method>
 <method name="setFilter"
  return="void"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filters" type="java.util.List&lt;com.ksyun.media.streamer.filter.imgtex.ImgTexFilter&gt;">
+<parameter name="filters" type="java.util.List&lt;? extends com.ksyun.media.streamer.filter.imgtex.ImgFilterBase&gt;">
 </parameter>
 </method>
 <method name="setOnErrorListener"
@@ -6044,7 +6456,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="listener" type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase.OnErrorListener">
+<parameter name="listener" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase.OnErrorListener">
 </parameter>
 </method>
 <field name="KSY_FILTER_BEAUTY_DENOISE"
@@ -6074,6 +6486,17 @@
  transient="false"
  volatile="false"
  value="18"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="KSY_FILTER_BEAUTY_PRO"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="23"
  static="true"
  final="true"
  deprecated="not deprecated"
@@ -6438,15 +6861,13 @@
 </method>
 </class>
 <class name="RGBABufFilter"
- extends="java.lang.Object"
+ extends="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase"
  abstract="true"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<implements name="com.ksyun.media.streamer.filter.imgtex.IImgTexFilter">
-</implements>
 <constructor name="RGBABufFilter"
  type="com.ksyun.media.streamer.filter.imgtex.RGBABufFilter"
  static="false"
@@ -6478,6 +6899,19 @@
 </method>
 <method name="getSinkPin"
  return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="idx" type="int">
+</parameter>
+</method>
+<method name="getSinkPinNum"
+ return="int"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7494,7 +7928,7 @@
  return="boolean"
  abstract="false"
  native="false"
- synchronized="false"
+ synchronized="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -7738,28 +8172,6 @@
  visibility="public"
 >
 </method>
-<method name="getEncodeProfile"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="getEncodeScene"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
 <method name="getEncodedFrames"
  return="long"
  abstract="false"
@@ -7980,7 +8392,40 @@
  visibility="public"
 >
 </method>
+<method name="getVideoCodecId"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getVideoEncodeMethod"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getVideoEncodeProfile"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getVideoEncodeScene"
  return="int"
  abstract="false"
  native="false"
@@ -8734,6 +9179,19 @@
 </parameter>
 <exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
 </exception>
+</method>
+<method name="setVideoCodecId"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="codecId" type="int">
+</parameter>
 </method>
 <method name="setVideoEncodeMethod"
  return="void"
@@ -11370,6 +11828,19 @@
  visibility="public"
 >
 <parameter name="enableDebugLog" type="boolean">
+</parameter>
+</method>
+<method name="setEncodeFormat"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="encodeFormat" type="int">
 </parameter>
 </method>
 <method name="setIsFrontCameraMirror"
