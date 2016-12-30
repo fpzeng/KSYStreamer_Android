@@ -13,9 +13,11 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
 import com.ksyun.media.streamer.encoder.VideoEncodeFormat;
+import com.ksyun.media.streamer.framework.AVConst;
 import com.ksyun.media.streamer.kit.StreamerConstants;
 
-public class DemoActivity extends Activity implements OnClickListener {
+public class DemoActivity extends Activity
+        implements OnClickListener, RadioGroup.OnCheckedChangeListener{
     private static final String TAG = DemoActivity.class.getSimpleName();
     private Button mConnectButton;
     private EditText mUrlEditText;
@@ -34,6 +36,10 @@ public class DemoActivity extends Activity implements OnClickListener {
     private RadioButton mSWButton;
     private RadioButton mHWButton;
     private RadioButton mSW1Button;
+
+    private RadioGroup mEncodeTypeGroup;
+    private RadioButton mEncodeWithH264;
+    private RadioButton mEncodeWithH265;
 
     private RadioGroup mSceneGroup;
     private RadioButton mSceneDefaultButton;
@@ -72,6 +78,9 @@ public class DemoActivity extends Activity implements OnClickListener {
         mSWButton = (RadioButton) findViewById(R.id.encode_sw);
         mHWButton = (RadioButton) findViewById(R.id.encode_hw);
         mSW1Button = (RadioButton) findViewById(R.id.encode_sw1);
+        mEncodeTypeGroup = (RadioGroup) findViewById(R.id.encode_type);
+        mEncodeWithH264 = (RadioButton) findViewById(R.id.encode_h264);
+        mEncodeWithH265 = (RadioButton) findViewById(R.id.encode_h265);
         mSceneGroup = (RadioGroup) findViewById(R.id.encode_scene);
         mSceneDefaultButton = (RadioButton) findViewById(R.id.encode_scene_default);
         mSceneShowSelfButton = (RadioButton) findViewById(R.id.encode_scene_show_self);
@@ -82,31 +91,30 @@ public class DemoActivity extends Activity implements OnClickListener {
         mAutoStartCheckBox = (CheckBox) findViewById(R.id.autoStart);
         mShowDebugInfoCheckBox = (CheckBox) findViewById(R.id.print_debug_info);
 
-        if (mHWButton.isChecked()) {
-            setEnableRadioGroup(mSceneGroup, false);
-            setEnableRadioGroup(mProfileGroup, false);
-        } else {
-            setEnableRadioGroup(mSceneGroup, true);
-            setEnableRadioGroup(mProfileGroup, true);
-        }
-        mEncodeGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(RadioGroup group, int checkedId) {
-                if (checkedId == R.id.encode_hw) {
-                    setEnableRadioGroup(mSceneGroup, false);
-                    setEnableRadioGroup(mProfileGroup, false);
-                } else {
-                    setEnableRadioGroup(mSceneGroup, true);
-                    setEnableRadioGroup(mProfileGroup, true);
-                }
-            }
-        });
+        updateUI();
+        mEncodeTypeGroup.setOnCheckedChangeListener(this);
+        mEncodeGroup.setOnCheckedChangeListener(this);
     }
 
     private void setEnableRadioGroup(RadioGroup radioGroup, boolean enable) {
         for (int i=0; i<radioGroup.getChildCount(); i++) {
             radioGroup.getChildAt(i).setEnabled(enable);
         }
+    }
+
+    private void updateUI() {
+        if (mHWButton.isChecked() || mEncodeWithH265.isChecked()) {
+            setEnableRadioGroup(mSceneGroup, false);
+            setEnableRadioGroup(mProfileGroup, false);
+        } else {
+            setEnableRadioGroup(mSceneGroup, true);
+            setEnableRadioGroup(mProfileGroup, true);
+        }
+    }
+
+    @Override
+    public void onCheckedChanged(RadioGroup group, int checkedId) {
+        updateUI();
     }
 
     @Override
@@ -117,6 +125,7 @@ public class DemoActivity extends Activity implements OnClickListener {
                 int videoBitRate = 0;
                 int audioBitRate = 0;
                 int videoResolution;
+                int encodeType;
                 int encodeMethod;
                 int encodeScene;
                 int encodeProfile;
@@ -151,6 +160,12 @@ public class DemoActivity extends Activity implements OnClickListener {
                         videoResolution = StreamerConstants.VIDEO_RESOLUTION_720P;
                     }
 
+                    if (mEncodeWithH265.isChecked()) {
+                        encodeType = AVConst.CODEC_ID_HEVC;
+                    } else {
+                        encodeType = AVConst.CODEC_ID_AVC;
+                    }
+
                     if (mHWButton.isChecked()) {
                         encodeMethod = StreamerConstants.ENCODE_METHOD_HARDWARE;
                         mSceneGroup.setClickable(false);
@@ -182,8 +197,8 @@ public class DemoActivity extends Activity implements OnClickListener {
 
                     CameraActivity.startActivity(getApplicationContext(), 0,
                             mUrlEditText.getText().toString(), frameRate, videoBitRate,
-                            audioBitRate, videoResolution, landscape, encodeMethod, encodeScene,
-                            encodeProfile, startAuto, showDebugInfo);
+                            audioBitRate, videoResolution, landscape, encodeType,  encodeMethod,
+                            encodeScene, encodeProfile, startAuto, showDebugInfo);
                 }
                 break;
             default:

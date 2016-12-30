@@ -516,8 +516,44 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(java.nio.ByteBuffer, int, int, int, int, long)">updateFrame</a></span>(ByteBuffer buf, int stride, int width, int height, int rotate, long pts)
+        
+        <div class="jd-descrdiv">Update image frame with RGBA ByteBuffer.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(Bitmap, long, boolean)">updateFrame</a></span>(Bitmap img, long pts, boolean recycle)
         
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(Bitmap, int, long, boolean)">updateFrame</a></span>(Bitmap img, int rotate, long pts, boolean recycle)
+        
+        <div class="jd-descrdiv">Update image with Bitmap.</div>
+  
   </td></tr>
 
 
@@ -611,7 +647,7 @@ From class
     <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
-            
+            synchronized
             
             
             
@@ -1067,6 +1103,67 @@ From class
 </div>
 
 
+<a id="updateFrame(java.nio.ByteBuffer, int, int, int, int, long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">updateFrame</span>
+      <span class="normal">(ByteBuffer buf, int stride, int width, int height, int rotate, long pts)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Update image frame with RGBA ByteBuffer.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>buf</th>
+          <td>image ByteBuffer with RGBA data</td>
+        </tr>
+        <tr>
+          <th>stride</th>
+          <td>stride of current frame, in bytes</td>
+        </tr>
+        <tr>
+          <th>width</th>
+          <td>width of frame</td>
+        </tr>
+        <tr>
+          <th>height</th>
+          <td>height of frame</td>
+        </tr>
+        <tr>
+          <th>rotate</th>
+          <td>rotate degrees, only 0, 90, 180, 270 valid</td>
+        </tr>
+        <tr>
+          <th>pts</th>
+          <td>pts of current frame
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="updateFrame(Bitmap, long, boolean)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1093,6 +1190,59 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="updateFrame(Bitmap, int, long, boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">updateFrame</span>
+      <span class="normal">(Bitmap img, int rotate, long pts, boolean recycle)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Update image with Bitmap.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>img</th>
+          <td>source image</td>
+        </tr>
+        <tr>
+          <th>rotate</th>
+          <td>rotate degrees, only 0, 90, 180, 270 valid</td>
+        </tr>
+        <tr>
+          <th>pts</th>
+          <td>pts of current image frame</td>
+        </tr>
+        <tr>
+          <th>recycle</th>
+          <td>should be recycled
+</td>
+        </tr>
+      </table>
+  </div>
 
     </div>
 </div>

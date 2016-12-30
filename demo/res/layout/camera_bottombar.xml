@@ -16,7 +16,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:orientation="horizontal">
 
             <CheckBox
@@ -80,7 +80,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             android:orientation="horizontal">
 
             <CheckBox
@@ -125,32 +125,6 @@
                 android:textSize="@dimen/font_size_28px">
             </CheckBox>
 
-            <!--<CheckBox-->
-            <!--android:id="@+id/picture_pip"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="#11123456"-->
-            <!--android:text="@string/picture_pip"-->
-            <!--android:textColor="@color/font_color_35"-->
-            <!--android:textSize="@dimen/font_size_28px">-->
-            <!--</CheckBox>-->
-
-            <!--<CheckBox-->
-            <!--android:id="@+id/pip"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center"-->
-            <!--android:layout_marginLeft="10dp"-->
-            <!--android:layout_weight="1"-->
-            <!--android:background="#11123456"-->
-            <!--android:text="@string/pip"-->
-            <!--android:textColor="@color/font_color_35"-->
-            <!--android:textSize="@dimen/font_size_28px">-->
-            <!--</CheckBox>-->
-
             <CheckBox
                 android:id="@+id/click_to_switch_beauty"
                 android:layout_width="0dp"
@@ -159,7 +133,7 @@
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
                 android:background="#11123456"
-                android:checked="true"
+                android:checked="false"
                 android:text="@string/beauty_switcher"
                 android:textColor="@color/font_color_35"
                 android:textSize="@dimen/font_size_28px">
@@ -168,27 +142,31 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="10dp"
+            android:layout_height="36dp"
+            android:layout_marginBottom="5dp"
             android:orientation="horizontal"
             android:weightSum="4">
 
             <ImageView
                 android:id="@+id/backoff"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:background="@drawable/recorder_delete_icon" />
+                android:paddingLeft="12dp"
+                android:paddingRight="12dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/recorder_delete_icon"/>
 
             <TextView
                 android:id="@+id/click_to_shoot"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:background="#11123456"
                 android:text="@string/click_to_shoot"
                 android:textColor="@color/font_color_35"
@@ -198,10 +176,11 @@
             <TextView
                 android:id="@+id/click_to_record"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:background="#11123456"
                 android:text="@string/start_recording"
                 android:textColor="@color/font_color_35"
@@ -211,10 +190,11 @@
             <TextView
                 android:id="@+id/click_to_capture_screenshot"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
+                android:gravity="center"
                 android:background="#11123456"
                 android:text="@string/capture_thumbnail"
                 android:textColor="@color/font_color_35"
