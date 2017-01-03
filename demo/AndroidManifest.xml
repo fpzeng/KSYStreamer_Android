@@ -35,7 +35,7 @@
         android:persistent="false"
         android:screenOrientation="portrait"
         android:smallScreens="true"
-        android:theme="@style/ThemeWithTitle">
+        android:theme="@style/AppTheme">
         <activity
             android:name="com.ksyun.media.streamer.demo.DemoActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"

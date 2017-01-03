@@ -174,20 +174,23 @@
               
     <li><h2>Interfaces</h2>
       <ul>
-          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/IImgTexFilter.html">IImgTexFilter</a></li>
-          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.OnErrorListener.html">ImgTexFilterBase.OnErrorListener</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.OnErrorListener.html">ImgFilterBase.OnErrorListener</a></li>
       </ul>
     </li>
               
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautyDenoiseFilter.html">ImgBeautyDenoiseFilter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautyGrindSimpleFilter.html">ImgBeautyGrindSimpleFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautyIllusionFilter.html">ImgBeautyIllusionFilter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautyProFilter.html">ImgBeautyProFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySkinWhitenFilter.html">ImgBeautySkinWhitenFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySmoothFilter.html">ImgBeautySmoothFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySoftExtFilter.html">ImgBeautySoftExtFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySoftFilter.html">ImgBeautySoftFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySoftSharpenFilter.html">ImgBeautySoftSharpenFilter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySpecialEffectsFilter.html">ImgBeautySpecialEffectsFilter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">ImgFilterBase</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilter.html">ImgTexFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html">ImgTexFilterBase</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterMgt.html">ImgTexFilterMgt</a></li>
@@ -242,6 +245,15 @@
   
   
    
+  
+  
+   
+  
+  
+
+  
+   
+  
   
   
    
@@ -327,6 +339,10 @@ Summary:
   
 
   
+  
+  
+
+  
     extends <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html">ImgTexFilterBase</a><br/>
   
   
@@ -347,11 +363,21 @@ Summary:
 
     <tr>
          	
-        <td colspan="3" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="4" class="jd-inheritance-class-cell">java.lang.Object</td>
     </tr>
     
 
     <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+         	
+        <td colspan="3" class="jd-inheritance-class-cell"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">com.ksyun.media.streamer.filter.imgtex.ImgFilterBase</a></td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
@@ -360,6 +386,8 @@ Summary:
     
 
     <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
         
             <td class="jd-inheritance-space">&nbsp;</td>
         
@@ -506,6 +534,8 @@ Summary:
 
 
 
+
+
 </table>
 
 
@@ -606,24 +636,13 @@ Summary:
           protected
           
           
-          <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.OnErrorListener.html">ImgTexFilterBase.OnErrorListener</a></td>
-          <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#mErrorListener">mErrorListener</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol">
-          protected
-          
-          
           <a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html">GLRender</a></td>
           <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#mGLRender">mGLRender</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -634,24 +653,13 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol">
           protected
           
           
           Handler</td>
           <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#mMainHandler">mMainHandler</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol">
-          protected
-          
-          
-          int</td>
-          <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#mMainSinkPinIndex">mMainSinkPinIndex</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -664,6 +672,85 @@ Summary:
           int</td>
           <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#mOutTexture">mOutTexture</a></td>
           <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-com.ksyun.media.streamer.filter.imgtex.ImgFilterBase" class="jd-expando-trigger closed"
+          ><img id="inherited-fields-com.ksyun.media.streamer.filter.imgtex.ImgFilterBase-trigger"
+          src="../../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>From class
+<a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">com.ksyun.media.streamer.filter.imgtex.ImgFilterBase</a>
+<div id="inherited-fields-com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+  <div id="inherited-fields-com.ksyun.media.streamer.filter.imgtex.ImgFilterBase-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-fields-com.ksyun.media.streamer.filter.imgtex.ImgFilterBase-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.OnErrorListener.html">ImgFilterBase.OnErrorListener</a></td>
+          <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#mErrorListener">mErrorListener</a></td>
+          <td class="jd-descrcol" width="100%">The error listener.</td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          float</td>
+          <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#mGrindRatio">mGrindRatio</a></td>
+          <td class="jd-descrcol" width="100%">The grind ratio.</td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          int</td>
+          <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#mMainSinkPinIndex">mMainSinkPinIndex</a></td>
+          <td class="jd-descrcol" width="100%">The main sinkPin index.</td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          float</td>
+          <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#mRuddyRatio">mRuddyRatio</a></td>
+          <td class="jd-descrcol" width="100%">The ruddy ratio.</td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          float</td>
+          <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#mWhitenRatio">mWhitenRatio</a></td>
+          <td class="jd-descrcol" width="100%">The whiten ratio.</td>
       </tr>
       
     
@@ -975,24 +1062,6 @@ From class
 	 
     <tr class=" api apilevel-" >
         <td class="jd-typecol">
-            abstract
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#getSinkPinNum()">getSinkPinNum</a></span>()
-        
-        <div class="jd-descrdiv">Get sink pin number, must be implement by child</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
             
             
             
@@ -1009,7 +1078,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             abstract
             
@@ -1024,6 +1093,22 @@ From class
         <div class="jd-descrdiv">Get output pin format, child class must return valid value after
  onFormatChanged(mMainSinkPinIndex, ...) called</div>
   
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#isReuseFbo()">isReuseFbo</a></span>()
+        
   </td></tr>
 
 
@@ -1147,8 +1232,250 @@ From class
   </td></tr>
 
 
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.ksyun.media.streamer.filter.imgtex.ImgFilterBase" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-com.ksyun.media.streamer.filter.imgtex.ImgFilterBase-trigger"
+          src="../../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">com.ksyun.media.streamer.filter.imgtex.ImgFilterBase</a>
+
+<div id="inherited-methods-com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+  <div id="inherited-methods-com.ksyun.media.streamer.filter.imgtex.ImgFilterBase-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.ksyun.media.streamer.filter.imgtex.ImgFilterBase-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            float
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#getGrindRatio()">getGrindRatio</a></span>()
+        
+        <div class="jd-descrdiv">Gets grind ratio.</div>
+  
+  </td></tr>
+
+
 	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            float
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#getRuddyRatio()">getRuddyRatio</a></span>()
+        
+        <div class="jd-descrdiv">Gets ruddy ratio.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            <a href="../../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a>&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#getSinkPin(int)">getSinkPin</a></span>(int idx)
+        
+        <div class="jd-descrdiv">Get the input port of filter module by index.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a>&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#getSinkPin()">getSinkPin</a></span>()
+        
+        <div class="jd-descrdiv">Get the default input port of filter module.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#getSinkPinNum()">getSinkPinNum</a></span>()
+        
+        <div class="jd-descrdiv">Get sink pin number, must be implement by child</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            <a href="../../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a>&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#getSrcPin()">getSrcPin</a></span>()
+        
+        <div class="jd-descrdiv">Get the output port of filter module.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            String
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#getVersion()">getVersion</a></span>()
+        
+        <div class="jd-descrdiv">Version number of current filter.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            float
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#getWhitenRatio()">getWhitenRatio</a></span>()
+        
+        <div class="jd-descrdiv">Gets whiten ratio.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#isGrindRatioSupported()">isGrindRatioSupported</a></span>()
+        
+        <div class="jd-descrdiv">Is grind ratio supported to be changed in this filter.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#isRuddyRatioSupported()">isRuddyRatioSupported</a></span>()
+        
+        <div class="jd-descrdiv">Is ruddy ratio supported to be changed in this filter.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#isWhitenRatioSupported()">isWhitenRatioSupported</a></span>()
+        
+        <div class="jd-descrdiv">Is whiten ratio supported to be changed in this filter.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#setGrindRatio(float)">setGrindRatio</a></span>(float ratio)
+        
+        <div class="jd-descrdiv">Set grind ratio.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1158,9 +1485,27 @@ From class
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#setMainSinkPinIndex(int)">setMainSinkPinIndex</a></span>(int index)
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#setMainSinkPinIndex(int)">setMainSinkPinIndex</a></span>(int index)
         
         <div class="jd-descrdiv">Set main input pin, generally the camera input</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#setOnErrorListener(com.ksyun.media.streamer.filter.imgtex.ImgFilterBase.OnErrorListener)">setOnErrorListener</a></span>(<a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.OnErrorListener.html">ImgFilterBase.OnErrorListener</a> listener)
+        
+        <div class="jd-descrdiv">Set error listener, app should use other filter instead of current one after error occur.</div>
   
   </td></tr>
 
@@ -1176,9 +1521,27 @@ From class
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#setOnErrorListener(com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase.OnErrorListener)">setOnErrorListener</a></span>(<a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.OnErrorListener.html">ImgTexFilterBase.OnErrorListener</a> listener)
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#setRuddyRatio(float)">setRuddyRatio</a></span>(float ratio)
         
-        <div class="jd-descrdiv">Set error listener, app should use other filter instead of current one after error occur.</div>
+        <div class="jd-descrdiv">Set ruddy ratio.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html#setWhitenRatio(float)">setWhitenRatio</a></span>(float ratio)
+        
+        <div class="jd-descrdiv">Set whiten ratio.</div>
   
   </td></tr>
 
