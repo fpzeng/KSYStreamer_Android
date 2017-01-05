@@ -163,6 +163,8 @@ sourceSets {
 <uses-feature android:name="android.hardware.camera" />
 <uses-feature android:name="android.hardware.camera.autofocus" />
 ----
++
+* 将demo assets目录下的资源文件copy到目标工程的assets目录下
 
 === 简单推流示例
 
