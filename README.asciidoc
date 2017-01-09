@@ -214,7 +214,7 @@ mStreamer.setAudioSampleRate(44100);
 // 设置音频码率，单位为kbps，另有setAudioBitrate接口，单位为bps
 mStreamer.setAudioKBitrate(48);
 /**
- * 设置编码模式(软编、硬编)，请根据白名单和系统版本来设置软硬编模式，不要全部设成软编或者硬编:
+ * 设置编码模式(软编、硬编)，请根据白名单和系统版本来设置软硬编模式，不要全部设成软编或者硬编,白名单可以联系金山云商务:
  * StreamerConstants.ENCODE_METHOD_SOFTWARE
  * StreamerConstants.ENCODE_METHOD_HARDWARE
  */
