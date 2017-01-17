@@ -23,6 +23,7 @@ import android.support.v7.widget.AppCompatSpinner;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
+import android.view.TextureView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -290,6 +291,8 @@ public class CameraActivity extends Activity implements
         //} else {
         //    mStreamer.setOffscreenPreview(720, 1280);
         //}
+        //断网等异常case触发自动重连
+        mStreamer.setEnableAutoRestart(true, 3000);
         mStreamer.setFrontCameraMirror(mFrontMirrorCheckBox.isChecked());
         mStreamer.setMuteAudio(mMuteCheckBox.isChecked());
         mStreamer.setEnableAudioPreview(mAudioPreviewCheckBox.isChecked());
@@ -328,7 +331,7 @@ public class CameraActivity extends Activity implements
     }
 
     private void initBeautyUI() {
-        String[] items =  new String[]{"DISABLE", "BEAUTY_SOFT", "SKIN_WHITEN", "BEAUTY_ILLUSION",
+        String[] items = new String[]{"DISABLE", "BEAUTY_SOFT", "SKIN_WHITEN", "BEAUTY_ILLUSION",
                 "BEAUTY_DENOISE", "BEAUTY_SMOOTH", "BEAUTY_PRO", "DEMO_FILTER", "GROUP_FILTER"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, items);
@@ -428,6 +431,7 @@ public class CameraActivity extends Activity implements
         super.onResume();
         startCameraPreviewWithPermCheck();
         mStreamer.onResume();
+        mStreamer.setUseDummyAudioCapture(false);
         if (mWaterMarkCheckBox.isChecked()) {
             showWaterMark();
         }
@@ -438,6 +442,7 @@ public class CameraActivity extends Activity implements
     public void onPause() {
         super.onPause();
         mStreamer.onPause();
+        mStreamer.setUseDummyAudioCapture(true);
         mStreamer.stopCameraPreview();
         hideWaterMark();
     }
@@ -452,6 +457,7 @@ public class CameraActivity extends Activity implements
         if (mTimer != null) {
             mTimer.cancel();
         }
+        mStreamer.setOnLogEventListener(null);
         mStreamer.release();
     }
 
@@ -577,6 +583,7 @@ public class CameraActivity extends Activity implements
                     break;
                 case StreamerConstants.KSY_STREAMER_OPEN_STREAM_SUCCESS:
                     Log.d(TAG, "KSY_STREAMER_OPEN_STREAM_SUCCESS");
+                    mShootingText.setText(STOP_STRING);
                     mChronometer.setBase(SystemClock.elapsedRealtime());
                     mChronometer.start();
                     beginInfoUploadTimer();
@@ -671,6 +678,10 @@ public class CameraActivity extends Activity implements
                 case StreamerConstants.KSY_STREAMER_CAMERA_ERROR_SERVER_DIED:
                     Log.d(TAG, "KSY_STREAMER_CAMERA_ERROR_SERVER_DIED");
                     break;
+                //Camera was disconnected due to use by higher priority user.
+                case StreamerConstants.KSY_STREAMER_CAMERA_ERROR_EVICTED:
+                    Log.d(TAG, "KSY_STREAMER_CAMERA_ERROR_EVICTED");
+                    break;
                 default:
                     Log.d(TAG, "what=" + what + " msg1=" + msg1 + " msg2=" + msg2);
                     break;
@@ -690,17 +701,39 @@ public class CameraActivity extends Activity implements
                         }
                     }, 5000);
                     break;
+                case StreamerConstants.KSY_STREAMER_FILE_PUBLISHER_CLOSE_FAILED:
+                case StreamerConstants.KSY_STREAMER_FILE_PUBLISHER_ERROR_UNKNOWN:
+                case StreamerConstants.KSY_STREAMER_FILE_PUBLISHER_OPEN_FAILED:
+                case StreamerConstants.KSY_STREAMER_FILE_PUBLISHER_WRITE_FAILED:
+                    break;
                 case StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNSUPPORTED:
                 case StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNKNOWN:
-                    handleEncodeError();
+                    {
+                        handleEncodeError();
+                        stopStream();
+                        mMainHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startStream();
+                            }
+                        }, 3000);
+                    }
+                    break;
                 default:
-                    stopStream();
-                    mMainHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            startStream();
-                        }
-                    }, 3000);
+                    if(mStreamer.getEnableAutoRestart()) {
+                        mShootingText.setText(START_STRING);
+                        mShootingText.postInvalidate();
+                        mRecording = false;
+                        stopChronometer();
+                    } else {
+                        stopStream();
+                        mMainHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startStream();
+                            }
+                        }, 3000);
+                    }
                     break;
             }
         }
