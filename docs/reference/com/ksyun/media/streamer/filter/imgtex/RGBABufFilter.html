@@ -190,7 +190,9 @@
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySoftFilter.html">ImgBeautySoftFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySoftSharpenFilter.html">ImgBeautySoftSharpenFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySpecialEffectsFilter.html">ImgBeautySpecialEffectsFilter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautyToneCurveFilter.html">ImgBeautyToneCurveFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">ImgFilterBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html">ImgTexBufFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilter.html">ImgTexFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html">ImgTexFilterBase</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterMgt.html">ImgTexFilterMgt</a></li>
@@ -245,6 +247,13 @@
   
   
   
+  
+
+  
+   
+  
+  
+  
    
   
   
@@ -277,9 +286,6 @@ Summary:
   
 
 
-
-  &#124; <a href="#pubmethods">Methods</a>
-  
 
 
   &#124; <a href="#promethods">Protected Methods</a>
@@ -319,7 +325,11 @@ Summary:
   
 
   
-    extends <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">ImgFilterBase</a><br/>
+  
+  
+
+  
+    extends <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html">ImgTexBufFilter</a><br/>
   
   
   
@@ -339,7 +349,7 @@ Summary:
 
     <tr>
          	
-        <td colspan="3" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="4" class="jd-inheritance-class-cell">java.lang.Object</td>
     </tr>
     
 
@@ -347,11 +357,23 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
-        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">com.ksyun.media.streamer.filter.imgtex.ImgFilterBase</a></td>
+        <td colspan="3" class="jd-inheritance-class-cell"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">com.ksyun.media.streamer.filter.imgtex.ImgFilterBase</a></td>
     </tr>
     
 
     <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+         	
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html">com.ksyun.media.streamer.filter.imgtex.ImgTexBufFilter</a></td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
         
             <td class="jd-inheritance-space">&nbsp;</td>
         
@@ -428,6 +450,8 @@ Summary:
 <table id="inhfields" class="jd-sumtable"><tr><th>
   <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
   <div style="clear:left;">Inherited Fields</div></th></tr>
+
+
 
 
 <tr class="api apilevel-" >
@@ -544,69 +568,6 @@ Summary:
 
 
 
-<!-- ========== METHOD SUMMARY =========== -->
-<table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
-
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            <a href="../../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a>&gt;
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/RGBABufFilter.html#getSinkPin(int)">getSinkPin</a></span>(int idx)
-        
-        <div class="jd-descrdiv">Get the input port of filter module by index.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/RGBABufFilter.html#getSinkPinNum()">getSinkPinNum</a></span>()
-        
-        <div class="jd-descrdiv">Get sink pin number, must be implement by child</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            <a href="../../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a>&gt;
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/RGBABufFilter.html#getSrcPin()">getSrcPin</a></span>()
-        
-        <div class="jd-descrdiv">Get the output port of filter module.</div>
-  
-  </td></tr>
-
-
-
-</table>
-
-
 
 
 <!-- ========== METHOD SUMMARY =========== -->
@@ -628,6 +589,42 @@ Summary:
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/RGBABufFilter.html#doFilter(java.nio.ByteBuffer, int, int, int)">doFilter</a></span>(ByteBuffer buffer, int stride, int width, int height)
         
         <div class="jd-descrdiv">Do cpu filter here.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            ByteBuffer
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/RGBABufFilter.html#doFilter(java.nio.ByteBuffer, int[], int, int)">doFilter</a></span>(ByteBuffer buffer, int[] stride, int width, int height)
+        
+        <div class="jd-descrdiv">Do cpu filter here.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/RGBABufFilter.html#onSizeChanged(int[], int, int)">onSizeChanged</a></span>(int[] stride, int width, int height)
+        
+        <div class="jd-descrdiv">Notify image size changed.</div>
   
   </td></tr>
 
@@ -661,6 +658,122 @@ Summary:
 <table id="inhmethods" class="jd-sumtable"><tr><th>
   <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
   <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.ksyun.media.streamer.filter.imgtex.ImgTexBufFilter" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-com.ksyun.media.streamer.filter.imgtex.ImgTexBufFilter-trigger"
+          src="../../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html">com.ksyun.media.streamer.filter.imgtex.ImgTexBufFilter</a>
+
+<div id="inherited-methods-com.ksyun.media.streamer.filter.imgtex.ImgTexBufFilter">
+  <div id="inherited-methods-com.ksyun.media.streamer.filter.imgtex.ImgTexBufFilter-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.ksyun.media.streamer.filter.imgtex.ImgTexBufFilter-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            ByteBuffer
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html#doFilter(java.nio.ByteBuffer, int[], int, int)">doFilter</a></span>(ByteBuffer buffer, int[] stride, int width, int height)
+        
+        <div class="jd-descrdiv">Do cpu filter here.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a>&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html#getSinkPin(int)">getSinkPin</a></span>(int idx)
+        
+        <div class="jd-descrdiv">Get the input port of filter module by index.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html#getSinkPinNum()">getSinkPinNum</a></span>()
+        
+        <div class="jd-descrdiv">Get sink pin number, must be implement by child</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a>&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html#getSrcPin()">getSrcPin</a></span>()
+        
+        <div class="jd-descrdiv">Get the output port of filter module.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html#onSizeChanged(int[], int, int)">onSizeChanged</a></span>(int[] stride, int width, int height)
+        
+        <div class="jd-descrdiv">Notify image size changed.</div>
+  
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
 
 
 <tr class="api apilevel-" >
@@ -1254,128 +1367,6 @@ From class
 <!-- ========= METHOD DETAIL ======== -->
 <!-- Public methdos -->
 
-<h2>Public Methods</h2>
-
-
-
-<a id="getSinkPin(int)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        <a href="../../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a>&gt;
-      </span>
-      <span class="sympad">getSinkPin</span>
-      <span class="normal">(int idx)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Get the input port of filter module by index.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>idx</th>
-          <td>index of SinkPin to get</td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>the sinkPin
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="getSinkPinNum()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        int
-      </span>
-      <span class="sympad">getSinkPinNum</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Get sink pin number, must be implement by child</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>sink pin number
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="getSrcPin()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        <a href="../../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a>&gt;
-      </span>
-      <span class="sympad">getSrcPin</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Get the output port of filter module.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>the srcPin
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
-
 
 
 <!-- ========= METHOD DETAIL ======== -->
@@ -1435,6 +1426,112 @@ From class
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>ByteBuffer with filtered RGBA data in same size as input.
 </li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="doFilter(java.nio.ByteBuffer, int[], int, int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        ByteBuffer
+      </span>
+      <span class="sympad">doFilter</span>
+      <span class="normal">(ByteBuffer buffer, int[] stride, int width, int height)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Do cpu filter here.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>buffer</th>
+          <td>the image buffer</td>
+        </tr>
+        <tr>
+          <th>stride</th>
+          <td>the row stride for this plane, in bytes</td>
+        </tr>
+        <tr>
+          <th>width</th>
+          <td>the image width</td>
+        </tr>
+        <tr>
+          <th>height</th>
+          <td>the image height</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>ByteBuffer with filtered data in same size as input.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="onSizeChanged(int[], int, int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">onSizeChanged</span>
+      <span class="normal">(int[] stride, int width, int height)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Notify image size changed.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>stride</th>
+          <td>the row stride for this plane, in bytes</td>
+        </tr>
+        <tr>
+          <th>width</th>
+          <td>the image width</td>
+        </tr>
+        <tr>
+          <th>height</th>
+          <td>the image height
+</td>
+        </tr>
+      </table>
   </div>
 
     </div>

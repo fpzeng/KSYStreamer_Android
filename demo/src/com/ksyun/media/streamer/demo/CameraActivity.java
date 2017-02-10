@@ -8,9 +8,11 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
+import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.hardware.Camera;
+import android.hardware.SensorManager;
 import android.opengl.GLSurfaceView;
 import android.os.Build;
 import android.os.Bundle;
@@ -23,7 +25,8 @@ import android.support.v7.widget.AppCompatSpinner;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.KeyEvent;
-import android.view.TextureView;
+import android.view.OrientationEventListener;
+import android.view.Surface;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -42,11 +45,11 @@ import com.ksyun.media.streamer.capture.camera.CameraTouchHelper;
 import com.ksyun.media.streamer.filter.audio.AudioFilterBase;
 import com.ksyun.media.streamer.filter.audio.AudioReverbFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgBeautyProFilter;
+import com.ksyun.media.streamer.filter.imgtex.ImgBeautyToneCurveFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgFilterBase;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexFilterMgt;
-import com.ksyun.media.streamer.framework.AVConst;
 import com.ksyun.media.streamer.kit.KSYStreamer;
 import com.ksyun.media.streamer.kit.OnAudioRawDataListener;
 import com.ksyun.media.streamer.kit.OnPreviewFrameListener;
@@ -104,6 +107,9 @@ public class CameraActivity extends Activity implements
     private TextView mRuddyText;
     private AppCompatSeekBar mRuddySeekBar;
 
+    private int mLastRotation;
+    private OrientationEventListener mOrientationEventListener;
+
     private ButtonObserver mObserverButton;
     private CheckBoxObserver mCheckBoxObserver;
 
@@ -137,18 +143,18 @@ public class CameraActivity extends Activity implements
     public final static String VIDEO_BITRATE = "video_bitrate";
     public final static String AUDIO_BITRATE = "audio_bitrate";
     public final static String VIDEO_RESOLUTION = "video_resolution";
-    public final static String LANDSCAPE = "landscape";
+    public final static String ORIENTATION = "orientation";
     public final static String ENCODE_TYPE = "encode_type";
     public final static String ENCODE_METHOD = "encode_method";
     public final static String ENCODE_SCENE = "encode_scene";
     public final static String ENCODE_PROFILE = "encode_profile";
-    public final static String START_ATUO = "start_auto";
+    public final static String START_AUTO = "start_auto";
     public static final String SHOW_DEBUGINFO = "show_debuginfo";
 
     public static void startActivity(Context context, int fromType,
                                      String rtmpUrl, int frameRate,
                                      int videoBitrate, int audioBitrate,
-                                     int videoResolution, boolean isLandscape,
+                                     int videoResolution, int orientation,
                                      int encodeType, int encodeMethod,
                                      int encodeScene, int encodeProfile,
                                      boolean startAuto, boolean showDebugInfo) {
@@ -160,12 +166,12 @@ public class CameraActivity extends Activity implements
         intent.putExtra(VIDEO_BITRATE, videoBitrate);
         intent.putExtra(AUDIO_BITRATE, audioBitrate);
         intent.putExtra(VIDEO_RESOLUTION, videoResolution);
-        intent.putExtra(LANDSCAPE, isLandscape);
+        intent.putExtra(ORIENTATION, orientation);
         intent.putExtra(ENCODE_TYPE, encodeType);
         intent.putExtra(ENCODE_METHOD, encodeMethod);
         intent.putExtra(ENCODE_SCENE, encodeScene);
         intent.putExtra(ENCODE_PROFILE, encodeProfile);
-        intent.putExtra(START_ATUO, startAuto);
+        intent.putExtra(START_AUTO, startAuto);
         intent.putExtra(SHOW_DEBUGINFO, showDebugInfo);
         context.startActivity(intent);
     }
@@ -274,15 +280,39 @@ public class CameraActivity extends Activity implements
             int encodeProfile = bundle.getInt(ENCODE_PROFILE);
             mStreamer.setVideoEncodeProfile(encodeProfile);
 
-            mIsLandscape = bundle.getBoolean(LANDSCAPE, false);
-            mStreamer.setRotateDegrees(mIsLandscape ? 90 : 0);
-            if (mIsLandscape) {
+            int orientation = bundle.getInt(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            if (orientation == ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR) {
+                setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR);
+                int rotation = getDisplayRotation();
+                mIsLandscape = (rotation % 180) != 0;
+                mStreamer.setRotateDegrees(rotation);
+                mLastRotation = rotation;
+                mOrientationEventListener = new OrientationEventListener(this,
+                        SensorManager.SENSOR_DELAY_NORMAL) {
+                    @Override
+                    public void onOrientationChanged(int orientation) {
+                        int rotation = getDisplayRotation();
+                        if (rotation != mLastRotation) {
+                            Log.d(TAG, "Rotation changed " + mLastRotation + "->" + rotation);
+                            mIsLandscape = (rotation % 180) != 0;
+                            mStreamer.setRotateDegrees(rotation);
+                            hideWaterMark();
+                            showWaterMark();
+                            mLastRotation = rotation;
+                        }
+                    }
+                };
+            } else if (orientation == ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE) {
+                mIsLandscape = true;
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+                mStreamer.setRotateDegrees(90);
             } else {
+                mIsLandscape = false;
                 setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+                mStreamer.setRotateDegrees(0);
             }
 
-            mAutoStart = bundle.getBoolean(START_ATUO, false);
+            mAutoStart = bundle.getBoolean(START_AUTO, false);
             mPrintDebugInfo = bundle.getBoolean(SHOW_DEBUGINFO, false);
         }
         mStreamer.setDisplayPreview(mCameraPreviewView);
@@ -291,7 +321,7 @@ public class CameraActivity extends Activity implements
         //} else {
         //    mStreamer.setOffscreenPreview(720, 1280);
         //}
-        //断网等异常case触发自动重连
+        //断网等异常case触发自动重练
         mStreamer.setEnableAutoRestart(true, 3000);
         mStreamer.setFrontCameraMirror(mFrontMirrorCheckBox.isChecked());
         mStreamer.setMuteAudio(mMuteCheckBox.isChecked());
@@ -332,7 +362,8 @@ public class CameraActivity extends Activity implements
 
     private void initBeautyUI() {
         String[] items = new String[]{"DISABLE", "BEAUTY_SOFT", "SKIN_WHITEN", "BEAUTY_ILLUSION",
-                "BEAUTY_DENOISE", "BEAUTY_SMOOTH", "BEAUTY_PRO", "DEMO_FILTER", "GROUP_FILTER"};
+                "BEAUTY_DENOISE", "BEAUTY_SMOOTH", "BEAUTY_PRO", "DEMO_FILTER", "GROUP_FILTER",
+                "ToneCurve", "复古", "胶片"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -361,6 +392,24 @@ public class CameraActivity extends Activity implements
                     groupFilter.add(new DemoFilter3(mStreamer.getGLRender()));
                     groupFilter.add(new DemoFilter4(mStreamer.getGLRender()));
                     mStreamer.getImgTexFilterMgt().setFilter(groupFilter);
+                } else if (position == 9) {
+                    ImgBeautyToneCurveFilter acvFilter = new ImgBeautyToneCurveFilter(mStreamer.getGLRender());
+                    acvFilter.setFromCurveFileInputStream(
+                            CameraActivity.this.getResources().openRawResource(R.raw.tone_cuver_sample));
+
+                    mStreamer.getImgTexFilterMgt().setFilter(acvFilter);
+                } else if (position == 10) {
+                    ImgBeautyToneCurveFilter acvFilter = new ImgBeautyToneCurveFilter(mStreamer.getGLRender());
+                    acvFilter.setFromCurveFileInputStream(
+                            CameraActivity.this.getResources().openRawResource(R.raw.fugu));
+
+                    mStreamer.getImgTexFilterMgt().setFilter(acvFilter);
+                } else if (position == 11) {
+                    ImgBeautyToneCurveFilter acvFilter = new ImgBeautyToneCurveFilter(mStreamer.getGLRender());
+                    acvFilter.setFromCurveFileInputStream(
+                            CameraActivity.this.getResources().openRawResource(R.raw.jiaopian));
+
+                    mStreamer.getImgTexFilterMgt().setFilter(acvFilter);
                 }
                 List<ImgFilterBase> filters = mStreamer.getImgTexFilterMgt().getFilter();
                 if (filters != null && !filters.isEmpty()) {
@@ -429,6 +478,10 @@ public class CameraActivity extends Activity implements
     @Override
     public void onResume() {
         super.onResume();
+        if (mOrientationEventListener != null &&
+                mOrientationEventListener.canDetectOrientation()) {
+            mOrientationEventListener.enable();
+        }
         startCameraPreviewWithPermCheck();
         mStreamer.onResume();
         mStreamer.setUseDummyAudioCapture(false);
@@ -441,6 +494,9 @@ public class CameraActivity extends Activity implements
     @Override
     public void onPause() {
         super.onPause();
+        if (mOrientationEventListener != null) {
+            mOrientationEventListener.disable();
+        }
         mStreamer.onPause();
         mStreamer.setUseDummyAudioCapture(true);
         mStreamer.stopCameraPreview();
@@ -471,6 +527,21 @@ public class CameraActivity extends Activity implements
                 break;
         }
         return true;
+    }
+
+    private int getDisplayRotation() {
+        int rotation = getWindowManager().getDefaultDisplay().getRotation();
+        switch (rotation) {
+            case Surface.ROTATION_0:
+                return 0;
+            case Surface.ROTATION_90:
+                return 90;
+            case Surface.ROTATION_180:
+                return 180;
+            case Surface.ROTATION_270:
+                return 270;
+        }
+        return 0;
     }
 
     //start streaming
