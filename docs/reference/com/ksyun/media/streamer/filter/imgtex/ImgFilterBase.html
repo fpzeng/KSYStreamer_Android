@@ -190,7 +190,9 @@
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySoftFilter.html">ImgBeautySoftFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySoftSharpenFilter.html">ImgBeautySoftSharpenFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySpecialEffectsFilter.html">ImgBeautySpecialEffectsFilter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautyToneCurveFilter.html">ImgBeautyToneCurveFilter</a></li>
           <li class="selected api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">ImgFilterBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html">ImgTexBufFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilter.html">ImgTexFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html">ImgTexFilterBase</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterMgt.html">ImgTexFilterMgt</a></li>
@@ -361,9 +363,9 @@ Summary:
             
               <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySmoothFilter.html">ImgBeautySmoothFilter</a>,
             
-              <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html">ImgTexFilterBase</a>,
+              <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html">ImgTexBufFilter</a>,
             
-              <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/RGBABufFilter.html">RGBABufFilter</a>
+              <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html">ImgTexFilterBase</a>
             
           
       </div>
@@ -380,12 +382,12 @@ Summary:
               <td class="jd-descrcol" width="100%">Beauty face filter.&nbsp;</td>
           </tr>
         <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html">ImgTexFilterBase</a></td>
-              <td class="jd-descrcol" width="100%">The base class of gpu filters.&nbsp;</td>
+              <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html">ImgTexBufFilter</a></td>
+              <td class="jd-descrcol" width="100%">format（RGBA or I420） buffer filter inserted in gpu pipe.&nbsp;</td>
           </tr>
         <tr class=" api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/RGBABufFilter.html">RGBABufFilter</a></td>
-              <td class="jd-descrcol" width="100%">RGBA buffer filter inserted in gpu pipe.&nbsp;</td>
+              <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html">ImgTexFilterBase</a></td>
+              <td class="jd-descrcol" width="100%">The base class of gpu filters.&nbsp;</td>
           </tr>
   </table>
       </div>
@@ -422,11 +424,15 @@ Summary:
             
               <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySoftSharpenFilter.html">ImgBeautySoftSharpenFilter</a>,
             
+              <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautyToneCurveFilter.html">ImgBeautyToneCurveFilter</a>,
+            
               <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilter.html">ImgTexFilter</a>,
             
               <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexMixer.html">ImgTexMixer</a>,
             
-              <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexScaleFilter.html">ImgTexScaleFilter</a>
+              <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexScaleFilter.html">ImgTexScaleFilter</a>,
+            
+              <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/RGBABufFilter.html">RGBABufFilter</a>
             
           
       </div>
@@ -464,17 +470,25 @@ Summary:
 &nbsp;</td>
           </tr>
         <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautyToneCurveFilter.html">ImgBeautyToneCurveFilter</a></td>
+              <td class="jd-descrcol" width="100%">Image beauty filter from photoshop acv file.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilter.html">ImgTexFilter</a></td>
               <td class="jd-descrcol" width="100%">Base class of filters implement by openGLES with default shader.&nbsp;</td>
           </tr>
-        <tr class="alt-color api apilevel-" >
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexMixer.html">ImgTexMixer</a></td>
               <td class="jd-descrcol" width="100%">Video frame mixer with openGLES.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexScaleFilter.html">ImgTexScaleFilter</a></td>
               <td class="jd-descrcol" width="100%">Gpu image filter to rotate/crop/scale video frame,
  and covert image format to RGBA if needed.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/RGBABufFilter.html">RGBABufFilter</a></td>
+              <td class="jd-descrcol" width="100%">RGBA buffer filter inserted in gpu pipe.&nbsp;</td>
           </tr>
   </table>
       </div>

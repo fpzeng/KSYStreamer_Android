@@ -94,6 +94,13 @@
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="竖屏" />
+
+            <RadioButton
+                android:id="@+id/orientationbutton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="动态" />
         </RadioGroup>
 
         <RadioGroup
