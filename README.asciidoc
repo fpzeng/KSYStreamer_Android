@@ -17,7 +17,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] **预览与推流分辨率可分别自由设置 (new)**
 * [x] **支持通过GLSurfaceView或TextureView进行预览 (new)**
 * [x] 音视频目标码率：可设
-* [x] 支持固定横屏或固定竖屏推流
+* [x] **支持动态横竖屏推流（new）**
 * [x] **支持后台音频推流 (new)**
 * [x] 支持前、后置摄像头动态切换
 * [x] 前置摄像头镜像功能
