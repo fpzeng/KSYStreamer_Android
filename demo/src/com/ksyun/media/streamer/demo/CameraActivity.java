@@ -8,7 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.content.pm.PackageManager;
-import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.hardware.Camera;
@@ -659,6 +658,11 @@ public class CameraActivity extends Activity implements
                     mChronometer.start();
                     beginInfoUploadTimer();
                     break;
+                case StreamerConstants.KSY_STREAMER_OPEN_FILE_SUCCESS:
+                    Log.d(TAG, "KSY_STREAMER_OPEN_FILE_SUCCESS");
+                    mChronometer.setBase(SystemClock.elapsedRealtime());
+                    mChronometer.start();
+                    break;
                 case StreamerConstants.KSY_STREAMER_FRAME_SEND_SLOW:
                     Log.d(TAG, "KSY_STREAMER_FRAME_SEND_SLOW " + msg1 + "ms");
                     Toast.makeText(CameraActivity.this, "Network not good!",
@@ -775,7 +779,9 @@ public class CameraActivity extends Activity implements
                 case StreamerConstants.KSY_STREAMER_FILE_PUBLISHER_CLOSE_FAILED:
                 case StreamerConstants.KSY_STREAMER_FILE_PUBLISHER_ERROR_UNKNOWN:
                 case StreamerConstants.KSY_STREAMER_FILE_PUBLISHER_OPEN_FAILED:
+                case StreamerConstants.KSY_STREAMER_FILE_PUBLISHER_FORMAT_NOT_SUPPORTED:
                 case StreamerConstants.KSY_STREAMER_FILE_PUBLISHER_WRITE_FAILED:
+                    stopRecord();
                     break;
                 case StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNSUPPORTED:
                 case StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNKNOWN:
