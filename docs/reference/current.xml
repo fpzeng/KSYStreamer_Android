@@ -2828,6 +2828,17 @@
  visibility="public"
 >
 </method>
+<method name="getExtra"
+ return="java.nio.ByteBuffer"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getFrameDropped"
  return="int"
  abstract="false"
@@ -7094,6 +7105,19 @@
 <parameter name="isPreviewer" type="boolean">
 </parameter>
 </method>
+<method name="setReuseFbo"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="reuse" type="boolean">
+</parameter>
+</method>
 <field name="ERROR_LOAD_PROGRAM_FAILED"
  type="int"
  transient="false"
@@ -7148,6 +7172,16 @@
 </field>
 <field name="mOutTexture"
  type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mReuseFbo"
+ type="boolean"
  transient="false"
  volatile="false"
  static="false"
@@ -9635,6 +9669,17 @@
 <parameter name="audioOnly" type="boolean">
 </parameter>
 </method>
+<method name="setAudioParams"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
 <method name="setAudioSampleRate"
  return="void"
  abstract="false"
@@ -9974,6 +10019,17 @@
 <exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
 </exception>
 </method>
+<method name="setPreviewParams"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
 <method name="setPreviewResolution"
  return="void"
  abstract="false"
@@ -10005,6 +10061,17 @@
 </parameter>
 <exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
 </exception>
+</method>
+<method name="setRecordingParams"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
 </method>
 <method name="setRotateDegrees"
  return="void"
@@ -10275,6 +10342,17 @@
 <parameter name="alpha" type="float">
 </parameter>
 </method>
+<method name="startAudioCapture"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
 <method name="startBgm"
  return="void"
  abstract="false"
@@ -10313,6 +10391,17 @@
 >
 <parameter name="facing" type="int">
 </parameter>
+</method>
+<method name="startCapture"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
 </method>
 <method name="startMixMusic"
  return="boolean"
@@ -10353,6 +10442,17 @@
  visibility="public"
 >
 </method>
+<method name="stopAudioCapture"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
 <method name="stopBgm"
  return="void"
  abstract="false"
@@ -10373,6 +10473,17 @@
  final="false"
  deprecated="not deprecated"
  visibility="public"
+>
+</method>
+<method name="stopCapture"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
 >
 </method>
 <method name="stopMixMusic"
@@ -10432,6 +10543,17 @@
 <parameter name="open" type="boolean">
 </parameter>
 </method>
+<method name="updateFrontMirror"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
 <method name="updateUrl"
  return="void"
  abstract="false"
@@ -10445,8 +10567,108 @@
 <parameter name="url" type="java.lang.String">
 </parameter>
 </method>
+<field name="mAudioCapture"
+ type="com.ksyun.media.streamer.capture.AudioCapture"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mAudioCaptureType"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mAudioChannels"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mAudioFilterMgt"
+ type="com.ksyun.media.streamer.filter.audio.AudioFilterMgt"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mAudioMixer"
+ type="com.ksyun.media.streamer.filter.audio.AudioMixer"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mAudioResampleFilter"
+ type="com.ksyun.media.streamer.filter.audio.AudioResampleFilter"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mAudioSampleRate"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mCameraFacing"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
 <field name="mContext"
  type="Context"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mFrontCameraMirror"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mGLRender"
+ type="com.ksyun.media.streamer.util.gles.GLRender"
  transient="false"
  volatile="false"
  static="false"
@@ -10496,6 +10718,96 @@
 >
 </field>
 <field name="mIdxWmTime"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mImgTexFilterMgt"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgTexFilterMgt"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mImgTexMixer"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgTexMixer"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mIsAudioPreviewing"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mIsFileRecording"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mIsRecording"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mPreviewHeight"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mPreviewWidth"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mRotateDegrees"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mTargetWidth"
  type="int"
  transient="false"
  volatile="false"
@@ -12642,6 +12954,17 @@
  visibility="public"
 >
 </field>
+<field name="KSY_STREAMER_FILE_PUBLISHER_FORMAT_NOT_SUPPORTED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-4004"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="KSY_STREAMER_FILE_PUBLISHER_OPEN_FAILED"
  type="int"
  transient="false"
@@ -12669,6 +12992,17 @@
  transient="false"
  volatile="false"
  value="3001"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="KSY_STREAMER_OPEN_FILE_SUCCESS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
  static="true"
  final="true"
  deprecated="not deprecated"
@@ -12980,220 +13314,6 @@
 </package>
 <package name="com.ksyun.media.streamer.publisher"
 >
-<class name="FilePubWrapper"
- extends="java.lang.Object"
- abstract="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<constructor name="FilePubWrapper"
- type="com.ksyun.media.streamer.publisher.FilePubWrapper"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</constructor>
-<method name="abort"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="addAudioTrack"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="codecId" type="int">
-</parameter>
-<parameter name="sampleFmt" type="int">
-</parameter>
-<parameter name="sampleRate" type="int">
-</parameter>
-<parameter name="channels" type="int">
-</parameter>
-<parameter name="bitrate" type="int">
-</parameter>
-<parameter name="extra" type="java.nio.ByteBuffer">
-</parameter>
-</method>
-<method name="addVideoTrack"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="codecId" type="int">
-</parameter>
-<parameter name="width" type="int">
-</parameter>
-<parameter name="height" type="int">
-</parameter>
-<parameter name="fps" type="float">
-</parameter>
-<parameter name="bitrate" type="int">
-</parameter>
-<parameter name="extra" type="java.nio.ByteBuffer">
-</parameter>
-</method>
-<method name="release"
- return="void"
- abstract="false"
- native="false"
- synchronized="true"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="setAudioOnly"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="audioOnly" type="boolean">
-</parameter>
-</method>
-<method name="setPubEvent"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="event" type="com.ksyun.media.streamer.publisher.FilePubWrapper.OnPubEvent">
-</parameter>
-</method>
-<method name="setVideoOnly"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="videoOnly" type="boolean">
-</parameter>
-</method>
-<method name="startRecording"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="uri" type="java.lang.String">
-</parameter>
-</method>
-<method name="stop"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="writeFrame"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="type" type="int">
-</parameter>
-<parameter name="data" type="java.nio.ByteBuffer">
-</parameter>
-<parameter name="dts" type="long">
-</parameter>
-<parameter name="pts" type="long">
-</parameter>
-<parameter name="flags" type="int">
-</parameter>
-</method>
-<field name="FRAME_TYPE_AUDIO"
- type="int"
- transient="false"
- volatile="false"
- value="1"
- static="true"
- final="true"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
-<field name="FRAME_TYPE_VIDEO"
- type="int"
- transient="false"
- volatile="false"
- value="2"
- static="true"
- final="true"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
-</class>
-<interface name="FilePubWrapper.OnPubEvent"
- abstract="true"
- static="true"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<method name="onPubEvent"
- return="void"
- abstract="true"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="type" type="int">
-</parameter>
-<parameter name="msg" type="long">
-</parameter>
-</method>
-</interface>
 <class name="FilePublisher"
  extends="com.ksyun.media.streamer.publisher.Publisher"
  abstract="false"
@@ -13210,52 +13330,6 @@
  visibility="public"
 >
 </constructor>
-<method name="addAudioTrack"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="codecId" type="int">
-</parameter>
-<parameter name="sampleFmt" type="int">
-</parameter>
-<parameter name="sampleRate" type="int">
-</parameter>
-<parameter name="channels" type="int">
-</parameter>
-<parameter name="bitrate" type="int">
-</parameter>
-<parameter name="extra" type="java.nio.ByteBuffer">
-</parameter>
-</method>
-<method name="addVideoTrack"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="codecId" type="int">
-</parameter>
-<parameter name="width" type="int">
-</parameter>
-<parameter name="height" type="int">
-</parameter>
-<parameter name="fps" type="float">
-</parameter>
-<parameter name="bitrate" type="int">
-</parameter>
-<parameter name="extra" type="java.nio.ByteBuffer">
-</parameter>
-</method>
 <method name="doHandleAVFrame"
  return="void"
  abstract="false"
@@ -13269,52 +13343,6 @@
 <parameter name="frame" type="com.ksyun.media.streamer.framework.AVBufFrame">
 </parameter>
 </method>
-<method name="doRelease"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-</method>
-<method name="doStart"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-<parameter name="uri" type="java.lang.String">
-</parameter>
-</method>
-<method name="doStop"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-</method>
-<method name="release"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
 <method name="startRecording"
  return="void"
  abstract="false"
@@ -13326,38 +13354,6 @@
  visibility="public"
 >
 <parameter name="uri" type="java.lang.String">
-</parameter>
-</method>
-<method name="stop"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
-<method name="writeFrame"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="type" type="int">
-</parameter>
-<parameter name="data" type="java.nio.ByteBuffer">
-</parameter>
-<parameter name="dts" type="long">
-</parameter>
-<parameter name="pts" type="long">
-</parameter>
-<parameter name="flags" type="int">
 </parameter>
 </method>
 <field name="FILE_PUBLISHER_ERROR_CLOSE_FAILED"
@@ -13404,6 +13400,17 @@
  visibility="public"
 >
 </field>
+<field name="FILE_PUBLISHER_FORMAT_NOT_SUPPORTED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-4004"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="INFO_OPENED"
  type="int"
  transient="false"
@@ -13436,36 +13443,28 @@
 </constructor>
 <method name="addAudioTrack"
  return="int"
- abstract="true"
+ abstract="false"
  native="false"
  synchronized="false"
  static="false"
  final="false"
  deprecated="not deprecated"
- visibility="protected"
+ visibility="public"
 >
-<parameter name="codecId" type="int">
+<parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
 </parameter>
-<parameter name="sampleFmt" type="int">
-</parameter>
-<parameter name="sampleRate" type="int">
-</parameter>
-<parameter name="channels" type="int">
-</parameter>
-<parameter name="bitrate" type="int">
-</parameter>
-<parameter name="extra" type="java.nio.ByteBuffer">
+<parameter name="buffer" type="java.nio.ByteBuffer">
 </parameter>
 </method>
 <method name="addVideoTrack"
  return="int"
- abstract="true"
+ abstract="false"
  native="false"
  synchronized="false"
  static="false"
  final="false"
  deprecated="not deprecated"
- visibility="protected"
+ visibility="public"
 >
 <parameter name="codecId" type="int">
 </parameter>
@@ -13510,7 +13509,7 @@
 </method>
 <method name="doRelease"
  return="void"
- abstract="true"
+ abstract="false"
  native="false"
  synchronized="false"
  static="false"
@@ -13521,7 +13520,7 @@
 </method>
 <method name="doStart"
  return="int"
- abstract="true"
+ abstract="false"
  native="false"
  synchronized="false"
  static="false"
@@ -13534,7 +13533,7 @@
 </method>
 <method name="doStop"
  return="void"
- abstract="true"
+ abstract="false"
  native="false"
  synchronized="false"
  static="false"
@@ -13702,13 +13701,13 @@
 </method>
 <method name="release"
  return="void"
- abstract="true"
+ abstract="false"
  native="false"
  synchronized="false"
  static="false"
  final="false"
  deprecated="not deprecated"
- visibility="protected"
+ visibility="public"
 >
 </method>
 <method name="setAudioBitrate"
@@ -13815,15 +13814,39 @@
 <parameter name="videoOnly" type="boolean">
 </parameter>
 </method>
-<method name="writeFrame"
- return="int"
- abstract="true"
+<method name="start"
+ return="void"
+ abstract="false"
  native="false"
  synchronized="false"
  static="false"
  final="false"
  deprecated="not deprecated"
- visibility="protected"
+ visibility="public"
+>
+<parameter name="uri" type="java.lang.String">
+</parameter>
+</method>
+<method name="stop"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="writeFrame"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
 >
 <parameter name="type" type="int">
 </parameter>
@@ -14098,6 +14121,16 @@
  visibility="protected"
 >
 </field>
+<field name="mPubWrapper"
+ type="com.ksyun.media.streamer.publisher.PublisherWrapper"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
 <field name="mPublishHandler"
  type="Handler"
  transient="false"
@@ -14328,22 +14361,33 @@
 </parameter>
 </method>
 </class>
-<class name="RtmpPublisher"
- extends="com.ksyun.media.streamer.publisher.Publisher"
+<class name="PublisherWrapper"
+ extends="java.lang.Object"
  abstract="false"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
-<constructor name="RtmpPublisher"
- type="com.ksyun.media.streamer.publisher.RtmpPublisher"
+<constructor name="PublisherWrapper"
+ type="com.ksyun.media.streamer.publisher.PublisherWrapper"
  static="false"
  final="false"
  deprecated="not deprecated"
  visibility="public"
 >
 </constructor>
+<method name="abort"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="addAudioTrack"
  return="int"
  abstract="false"
@@ -14405,6 +14449,447 @@
 <parameter name="extra" type="java.nio.ByteBuffer">
 </parameter>
 </method>
+<method name="getPropertyInt"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="property" type="int">
+</parameter>
+</method>
+<method name="getPropertyLong"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="property" type="int">
+</parameter>
+</method>
+<method name="getPropertyString"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="property" type="int">
+</parameter>
+</method>
+<method name="release"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setAudioOnly"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="audioOnly" type="boolean">
+</parameter>
+</method>
+<method name="setBwEstConfig"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="initAudioBitrate" type="int">
+</parameter>
+<parameter name="initVideoBitrate" type="int">
+</parameter>
+<parameter name="minVideoBitrate" type="int">
+</parameter>
+<parameter name="maxVideoBitrate" type="int">
+</parameter>
+<parameter name="strategy" type="int">
+</parameter>
+</method>
+<method name="setOnPubEvent"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="event" type="com.ksyun.media.streamer.publisher.PublisherWrapper.OnPubEvent">
+</parameter>
+</method>
+<method name="setVideoOnly"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="videoOnly" type="boolean">
+</parameter>
+</method>
+<method name="start"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="uri" type="java.lang.String">
+</parameter>
+</method>
+<method name="stop"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="writeFrame"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="type" type="int">
+</parameter>
+<parameter name="data" type="java.nio.ByteBuffer">
+</parameter>
+<parameter name="dts" type="long">
+</parameter>
+<parameter name="pts" type="long">
+</parameter>
+<parameter name="flags" type="int">
+</parameter>
+</method>
+<field name="BW_EST_STRATEGY_NEGATIVE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="BW_EST_STRATEGY_NORMAL"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="CONNECT_BREAKED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-1020"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="CONNECT_FAILED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-1011"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="DNS_PARSE_FAILED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-1010"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="FRAME_TYPE_AUDIO"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="FRAME_TYPE_VIDEO"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PUBLISH_FAILED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-1012"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_EVENT_EST_BW_DROP"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="102"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_EVENT_EST_BW_RAISE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="101"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_EVENT_SEND_SLOW"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="100"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_EVENT_WLD_UPLOAD"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="103"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_AUDIO_FRAME_NUM"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="6"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_AUDIO_SEND_DELAY"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="8"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_AUDIO_TS"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="9"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_CONNECT_TIME"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_DNS_PARSE_TIME"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_DROPPED_VIDEO_FRAMES"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="5"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_HOST_IP"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_UPLOADED_KBYTES"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="RTMP_PUB_PROPERTY_VIDEO_FRAME_NUM"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="7"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<interface name="PublisherWrapper.OnPubEvent"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="onPubEvent"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="type" type="int">
+</parameter>
+<parameter name="msg" type="long">
+</parameter>
+</method>
+</interface>
+<class name="RtmpPublisher"
+ extends="com.ksyun.media.streamer.publisher.Publisher"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="RtmpPublisher"
+ type="com.ksyun.media.streamer.publisher.RtmpPublisher"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="addMetaOption"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="key" type="java.lang.String">
+</parameter>
+<parameter name="value" type="java.lang.String">
+</parameter>
+</method>
 <method name="connect"
  return="void"
  abstract="false"
@@ -14441,41 +14926,6 @@
 >
 <parameter name="frame" type="com.ksyun.media.streamer.framework.AVBufFrame">
 </parameter>
-</method>
-<method name="doRelease"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-</method>
-<method name="doStart"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-<parameter name="uri" type="java.lang.String">
-</parameter>
-</method>
-<method name="doStop"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
 </method>
 <method name="getConnectTime"
  return="int"
@@ -14543,17 +14993,6 @@
  visibility="public"
 >
 </method>
-<method name="release"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
 <method name="setBwEstConfig"
  return="void"
  abstract="false"
@@ -14565,27 +15004,6 @@
  visibility="public"
 >
 <parameter name="config" type="com.ksyun.media.streamer.publisher.RtmpPublisher.BwEstConfig">
-</parameter>
-</method>
-<method name="writeFrame"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="type" type="int">
-</parameter>
-<parameter name="data" type="java.nio.ByteBuffer">
-</parameter>
-<parameter name="dts" type="long">
-</parameter>
-<parameter name="pts" type="long">
-</parameter>
-<parameter name="flags" type="int">
 </parameter>
 </method>
 <field name="BW_EST_STRATEGY_NEGATIVE"
@@ -14810,6 +15228,17 @@
 <parameter name="itemSize" type="int">
 </parameter>
 </constructor>
+<method name="clear"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="offer"
  return="void"
  abstract="false"

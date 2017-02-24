@@ -174,17 +174,17 @@
               
     <li><h2>Interfaces</h2>
       <ul>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/FilePubWrapper.OnPubEvent.html">FilePubWrapper.OnPubEvent</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.PubListener.html">Publisher.PubListener</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.OnPubEvent.html">PublisherWrapper.OnPubEvent</a></li>
       </ul>
     </li>
               
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/FilePublisher.html">FilePublisher</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/FilePubWrapper.html">FilePubWrapper</a></li>
           <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html">Publisher</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherMgt.html">PublisherMgt</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html">PublisherWrapper</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html">RtmpPublisher</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.BwEstConfig.html">RtmpPublisher.BwEstConfig</a></li>
       </ul>
@@ -697,13 +697,24 @@ Summary:
           protected
           
           
+          <a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html">PublisherWrapper</a></td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mPubWrapper">mPubWrapper</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
           Handler</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mPublishHandler">mPublishHandler</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -714,7 +725,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -725,7 +736,7 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -736,7 +747,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -747,7 +758,7 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -758,7 +769,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -769,7 +780,7 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -780,7 +791,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -791,7 +802,7 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -843,6 +854,38 @@ Summary:
 <!-- ========== METHOD SUMMARY =========== -->
 <table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
 
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#addAudioTrack(com.ksyun.media.streamer.framework.AudioBufFormat, java.nio.ByteBuffer)">addAudioTrack</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a> format, ByteBuffer buffer)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer)">addVideoTrack</a></span>(int codecId, int width, int height, float fps, int bitrate, ByteBuffer extra)
+        
+  </td></tr>
 
 
 	 
@@ -984,6 +1027,22 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#release()">release</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setAudioBitrate(int)">setAudioBitrate</a></span>(int audioBitrate)
         
         <div class="jd-descrdiv">Set encoded audio bitrate</div>
@@ -992,7 +1051,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1008,7 +1067,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1026,7 +1085,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1044,7 +1103,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1060,7 +1119,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1078,7 +1137,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1094,7 +1153,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1111,6 +1170,54 @@ Summary:
   </td></tr>
 
 
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#start(java.lang.String)">start</a></span>(String uri)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#stop()">stop</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#writeFrame(int, java.nio.ByteBuffer, long, long, int)">writeFrame</a></span>(int type, ByteBuffer data, long dts, long pts, int flags)
+        
+  </td></tr>
+
+
 
 </table>
 
@@ -1120,38 +1227,6 @@ Summary:
 <!-- ========== METHOD SUMMARY =========== -->
 <table id="promethods" class="jd-sumtable"><tr><th colspan="12">Protected Methods</th></tr>
 
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            abstract
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#addAudioTrack(int, int, int, int, int, java.nio.ByteBuffer)">addAudioTrack</a></span>(int codecId, int sampleFmt, int sampleRate, int channels, int bitrate, ByteBuffer extra)
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            abstract
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer)">addVideoTrack</a></span>(int codecId, int width, int height, float fps, int bitrate, ByteBuffer extra)
-        
-  </td></tr>
 
 
 	 
@@ -1189,7 +1264,7 @@ Summary:
 	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
-            abstract
+            
             
             
             
@@ -1205,7 +1280,7 @@ Summary:
 	 
     <tr class=" api apilevel-" >
         <td class="jd-typecol">
-            abstract
+            
             
             
             
@@ -1221,7 +1296,7 @@ Summary:
 	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
-            abstract
+            
             
             
             
@@ -1310,38 +1385,6 @@ Summary:
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#postInfo(int)">postInfo</a></span>(int type)
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            abstract
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#release()">release</a></span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            abstract
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#writeFrame(int, java.nio.ByteBuffer, long, long, int)">writeFrame</a></span>(int type, ByteBuffer data, long dts, long pts, int flags)
         
   </td></tr>
 
@@ -2469,6 +2512,36 @@ From class
 
 
 
+<a id="mPubWrapper"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        <a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html">PublisherWrapper</a>
+      </span>
+        mPubWrapper
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <a id="mPublishHandler"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -2824,6 +2897,68 @@ From class
 
 
 
+<a id="addAudioTrack(com.ksyun.media.streamer.framework.AudioBufFormat, java.nio.ByteBuffer)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        int
+      </span>
+      <span class="sympad">addAudioTrack</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a> format, ByteBuffer buffer)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        int
+      </span>
+      <span class="sympad">addVideoTrack</span>
+      <span class="normal">(int codecId, int width, int height, float fps, int bitrate, ByteBuffer extra)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="getAudioExtra()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -3054,6 +3189,37 @@ From class
         boolean
       </span>
       <span class="sympad">isVideoOnly</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="release()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">release</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -3370,6 +3536,99 @@ From class
 </div>
 
 
+<a id="start(java.lang.String)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">start</span>
+      <span class="normal">(String uri)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="stop()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">stop</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="writeFrame(int, java.nio.ByteBuffer, long, long, int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        int
+      </span>
+      <span class="sympad">writeFrame</span>
+      <span class="normal">(int type, ByteBuffer data, long dts, long pts, int flags)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 
 
 
@@ -3377,68 +3636,6 @@ From class
 
 <h2>Protected Methods</h2>
 
-
-
-<a id="addAudioTrack(int, int, int, int, int, java.nio.ByteBuffer)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        abstract 
-         
-        int
-      </span>
-      <span class="sympad">addAudioTrack</span>
-      <span class="normal">(int codecId, int sampleFmt, int sampleRate, int channels, int bitrate, ByteBuffer extra)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<a id="addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        abstract 
-         
-        int
-      </span>
-      <span class="sympad">addVideoTrack</span>
-      <span class="normal">(int codecId, int width, int height, float fps, int bitrate, ByteBuffer extra)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
 
 
 <a id="doHandleAVFrame(com.ksyun.media.streamer.framework.AVBufFrame)"></a>
@@ -3511,7 +3708,7 @@ From class
         protected 
          
          
-        abstract 
+         
          
         void
       </span>
@@ -3542,7 +3739,7 @@ From class
         protected 
          
          
-        abstract 
+         
          
         int
       </span>
@@ -3573,7 +3770,7 @@ From class
         protected 
          
          
-        abstract 
+         
          
         void
       </span>
@@ -3734,68 +3931,6 @@ From class
       </span>
       <span class="sympad">postInfo</span>
       <span class="normal">(int type)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<a id="release()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        abstract 
-         
-        void
-      </span>
-      <span class="sympad">release</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<a id="writeFrame(int, java.nio.ByteBuffer, long, long, int)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        abstract 
-         
-        int
-      </span>
-      <span class="sympad">writeFrame</span>
-      <span class="normal">(int type, ByteBuffer data, long dts, long pts, int flags)</span>
     </h4>
       <div class="api-level">
         <div>
