@@ -5,6 +5,7 @@ import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.text.InputType;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -12,10 +13,13 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Toast;
 
 import com.ksyun.media.streamer.encoder.VideoEncodeFormat;
 import com.ksyun.media.streamer.framework.AVConst;
 import com.ksyun.media.streamer.kit.StreamerConstants;
+import com.ksyun.media.streamer.util.device.DeviceInfo;
+import com.ksyun.media.streamer.util.device.DeviceInfoTools;
 
 public class DemoActivity extends Activity
         implements OnClickListener, RadioGroup.OnCheckedChangeListener{
@@ -52,6 +56,9 @@ public class DemoActivity extends Activity
 
     private CheckBox mAutoStartCheckBox;
     private CheckBox mShowDebugInfoCheckBox;
+
+    private DeviceInfo mDeviceInfo;
+    private static boolean mShowDeviceToast = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +104,27 @@ public class DemoActivity extends Activity
         mEncodeGroup.setOnCheckedChangeListener(this);
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        //init encode info
+        //若在硬编白名单中存在设备信息，则参考白名单信息进行配置
+        DeviceInfo lastDeviceInfo = mDeviceInfo;
+        mDeviceInfo = DeviceInfoTools.getInstance().getDeviceInfo();
+        Log.i(TAG, "deviceInfo:" +  mDeviceInfo.printDeviceInfo());
+        if(!mShowDeviceToast || !mDeviceInfo.compareDeviceInfo(lastDeviceInfo)) {
+            if (mDeviceInfo.encode_h264 == DeviceInfo.ENCODE_HW_SUPPORT) {
+                //支持硬编，建议使用硬编
+                mHWButton.setChecked(true);
+                Toast.makeText(this, "该设备支持h264硬编，建议您使用硬编", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(this, "该设备可能不在硬编白名单中\n或者不支持硬编\n或者服务器还未返回" +
+                        "\n如果支持硬编，欢迎一起更新白名单", Toast.LENGTH_SHORT).show();
+            }
+            mShowDeviceToast = true;
+        }
+    }
+    
     private void setEnableRadioGroup(RadioGroup radioGroup, boolean enable) {
         for (int i=0; i<radioGroup.getChildCount(); i++) {
             radioGroup.getChildAt(i).setEnabled(enable);

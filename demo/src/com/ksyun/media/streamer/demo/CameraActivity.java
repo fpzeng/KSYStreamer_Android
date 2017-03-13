@@ -46,7 +46,6 @@ import com.ksyun.media.streamer.filter.audio.AudioReverbFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgBeautyProFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgBeautyToneCurveFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgFilterBase;
-import com.ksyun.media.streamer.filter.imgtex.ImgTexFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexFilterMgt;
 import com.ksyun.media.streamer.kit.KSYStreamer;
@@ -126,7 +125,7 @@ public class CameraActivity extends Activity implements
     private String mDebugInfo = "";
     private String mBgmPath = "/sdcard/test.mp3";
     private String mLogoPath = "file:///sdcard/test.png";
-    private String mRecordUrl = "/sdcard/test.mp4";
+    private String mRecordUrl = "/sdcard/rec_test.mp4";
 
     private boolean mHWEncoderUnsupported;
     private boolean mSWEncoderUnsupported;
@@ -296,7 +295,9 @@ public class CameraActivity extends Activity implements
                             mIsLandscape = (rotation % 180) != 0;
                             mStreamer.setRotateDegrees(rotation);
                             hideWaterMark();
-                            showWaterMark();
+                            if (mWaterMarkCheckBox.isChecked()) {
+                                showWaterMark();
+                            }
                             mLastRotation = rotation;
                         }
                     }
@@ -386,7 +387,7 @@ public class CameraActivity extends Activity implements
                     mStreamer.getImgTexFilterMgt().setFilter(
                             new DemoFilter(mStreamer.getGLRender()));
                 } else if (position == 8) {
-                    List<ImgTexFilter> groupFilter = new LinkedList<>();
+                    List<ImgFilterBase> groupFilter = new LinkedList<>();
                     groupFilter.add(new DemoFilter2(mStreamer.getGLRender()));
                     groupFilter.add(new DemoFilter3(mStreamer.getGLRender()));
                     groupFilter.add(new DemoFilter4(mStreamer.getGLRender()));

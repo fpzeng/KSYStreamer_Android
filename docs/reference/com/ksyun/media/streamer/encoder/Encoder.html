@@ -165,6 +165,8 @@
     <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/util/audio/package-summary.html">com.ksyun.media.streamer.util.audio</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../com/ksyun/media/streamer/util/device/package-summary.html">com.ksyun.media.streamer.util.device</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/util/gles/package-summary.html">com.ksyun.media.streamer.util.gles</a></li>
               </ul><br/>
             </div> <!-- end packages -->
@@ -174,6 +176,7 @@
               
     <li><h2>Interfaces</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.EncoderInfoListener.html">Encoder.EncoderInfoListener</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.EncoderListener.html">Encoder.EncoderListener</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/ImgTexToBuf.ErrorListener.html">ImgTexToBuf.ErrorListener</a></li>
       </ul>
@@ -483,6 +486,18 @@ Summary:
          
         
         interface</td>
+      <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.EncoderInfoListener.html">Encoder.EncoderInfoListener</a></td>
+      <td class="jd-descrcol" width="100%">&nbsp;</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+      <td class="jd-typecol">
+        
+         
+         
+        
+        interface</td>
       <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.EncoderListener.html">Encoder.EncoderListener</a></td>
       <td class="jd-descrcol" width="100%">&nbsp;</td>
     </tr>
@@ -545,6 +560,20 @@ Summary:
     <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#ENCODER_STATE_STOPPING">ENCODER_STATE_STOPPING</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#INFO_STARTED">INFO_STARTED</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#INFO_STOPPED">INFO_STOPPED</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
@@ -642,11 +671,11 @@ Summary:
     
       <tr class=" api apilevel-" >
           <td class="jd-typecol">
-          public
+          protected
           
           
-          <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&gt;</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#mSinkPin">mSinkPin</a></td>
+          ConditionVariable</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#mSig">mSig</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -656,8 +685,30 @@ Summary:
           public
           
           
+          <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&gt;</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#mSinkPin">mSinkPin</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol">
+          public
+          
+          
           <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;O&gt;</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#mSrcPin">mSrcPin</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          AtomicInteger</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#mState">mState</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -794,6 +845,24 @@ Summary:
             
             
             
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#getAutoWork()">getAutoWork</a></span>()
+        
+        <div class="jd-descrdiv">Get if encoder start/stop by input frames.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             ByteBuffer
         </td>
         <td class="jd-linkcol" width="100%">
@@ -803,7 +872,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -821,7 +890,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -839,7 +908,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -852,6 +921,24 @@ Summary:
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#getState()">getState</a></span>()
         
         <div class="jd-descrdiv">Get current state.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#getUseSyncMode()">getUseSyncMode</a></span>()
+        
+        <div class="jd-descrdiv">Get if encoding frames in sync mode.</div>
   
   </td></tr>
 
@@ -886,6 +973,40 @@ Summary:
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#release()">release</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#setAutoWork(boolean)">setAutoWork</a></span>(boolean autoWork)
+        
+        <div class="jd-descrdiv">Set if encoder start/stop by input frames.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#setEncoderInfoListener(com.ksyun.media.streamer.encoder.Encoder.EncoderInfoListener)">setEncoderInfoListener</a></span>(<a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.EncoderInfoListener.html">Encoder.EncoderInfoListener</a> infoListener)
         
   </td></tr>
 
@@ -937,6 +1058,24 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#setUseSyncMode(boolean)">setUseSyncMode</a></span>(boolean useSyncMode)
+        
+        <div class="jd-descrdiv">Set if encoding frames in sync mode.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#start()">start</a></span>()
         
         <div class="jd-descrdiv">Start encoding.</div>
@@ -945,7 +1084,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -963,7 +1102,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -981,7 +1120,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1199,11 +1338,29 @@ Summary:
             
             
             
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#sendInfo(int, int)">sendInfo</a></span>(int type, int extra)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             boolean
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#useSyncMode()">useSyncMode</a></span>()
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#updateEncodeFormat(java.lang.Object, java.lang.Object)">updateEncodeFormat</a></span>(Object src, Object dst)
         
+        <div class="jd-descrdiv">Update encode format with input frame format.</div>
+  
   </td></tr>
 
 
@@ -1690,6 +1847,86 @@ From class
 
 
 
+<a id="INFO_STARTED"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        INFO_STARTED
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                1
+                (0x00000001)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="INFO_STOPPED"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        INFO_STOPPED
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                2
+                (0x00000002)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
 
 <!-- Fields -->
 
@@ -1910,6 +2147,36 @@ From class
 
 
 
+<a id="mSig"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        ConditionVariable
+      </span>
+        mSig
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <a id="mSinkPin"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1951,6 +2218,36 @@ From class
         <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;O&gt;
       </span>
         mSrcPin
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mState"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        AtomicInteger
+      </span>
+        mState
     </h4>
       <div class="api-level">
         
@@ -2204,6 +2501,42 @@ From class
 </div>
 
 
+<a id="getAutoWork()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">getAutoWork</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get if encoder start/stop by input frames.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>is auto work
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="getExtra()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -2349,6 +2682,42 @@ From class
 </div>
 
 
+<a id="getUseSyncMode()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">getUseSyncMode</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get if encoding frames in sync mode.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>sync mode
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="isEncoding()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -2399,6 +2768,81 @@ From class
       </span>
       <span class="sympad">release</span>
       <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="setAutoWork(boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setAutoWork</span>
+      <span class="normal">(boolean autoWork)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Set if encoder start/stop by input frames.
+
+ For example, onFormatChanged would start encoding if encoder not started,
+ and frame with <code><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#FLAG_END_OF_STREAM">FLAG_END_OF_STREAM</a></code> would stop encoding.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>autoWork</th>
+          <td>true to enable, false to disable
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setEncoderInfoListener(com.ksyun.media.streamer.encoder.Encoder.EncoderInfoListener)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setEncoderInfoListener</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.EncoderInfoListener.html">Encoder.EncoderInfoListener</a> infoListener)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2489,6 +2933,47 @@ From class
         <tr>
           <th>mute</th>
           <td>true to encode mute data, false otherwise
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setUseSyncMode(boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setUseSyncMode</span>
+      <span class="normal">(boolean useSyncMode)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Set if encoding frames in sync mode.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>useSyncMode</th>
+          <td>true in sync mode, false in async mode.
 </td>
         </tr>
       </table>
@@ -3012,7 +3497,7 @@ From class
 </div>
 
 
-<a id="useSyncMode()"></a>
+<a id="sendInfo(int, int)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3022,10 +3507,10 @@ From class
          
          
          
-        boolean
+        void
       </span>
-      <span class="sympad">useSyncMode</span>
-      <span class="normal">()</span>
+      <span class="sympad">sendInfo</span>
+      <span class="normal">(int type, int extra)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3038,6 +3523,55 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="updateEncodeFormat(java.lang.Object, java.lang.Object)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">updateEncodeFormat</span>
+      <span class="normal">(Object src, Object dst)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Update encode format with input frame format.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>src</th>
+          <td>input frame format</td>
+        </tr>
+        <tr>
+          <th>dst</th>
+          <td>encode format to be updated</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>true if success, false otherwise
+</li></ul>
+  </div>
 
     </div>
 </div>

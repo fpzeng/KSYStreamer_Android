@@ -10,5 +10,6 @@ com.ksyun.media.streamer.kit
 com.ksyun.media.streamer.logstats
 com.ksyun.media.streamer.publisher
 com.ksyun.media.streamer.util.audio
+com.ksyun.media.streamer.util.device
 com.ksyun.media.streamer.util.gles
 

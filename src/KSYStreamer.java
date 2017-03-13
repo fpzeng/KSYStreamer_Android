@@ -81,6 +81,7 @@ public class KSYStreamer {
     private int mAudioBitrate = 48 * 1000;
     protected int mAudioSampleRate = 44100;
     protected int mAudioChannels = 1;
+    protected int mAudioProfile = AVConst.PROFILE_AAC_HE;
 
     protected boolean mFrontCameraMirror = false;
     private boolean mEnableStreamStatModule = true;
@@ -127,6 +128,7 @@ public class KSYStreamer {
     private PublisherMgt mPublisherMgt;
 
     private Handler mMainHandler;
+    private final Object mReleaseObject = new Object();  //release与自动重连的互斥锁
 
     public KSYStreamer(Context context) {
         if (context == null) {
@@ -1259,6 +1261,30 @@ public class KSYStreamer {
     }
 
     /**
+     * Set audio encode profile.
+     *
+     * @param profile profile to set.
+     * @see AVConst#PROFILE_AAC_LOW
+     * @see AVConst#PROFILE_AAC_HE
+     * @see AVConst#PROFILE_AAC_HE_V2
+     */
+    public void setAudioEncodeProfile(int profile) {
+        mAudioProfile = profile;
+    }
+
+    /**
+     * Get audio encode profile.
+     *
+     * @return current audio encode profile
+     * @see AVConst#PROFILE_AAC_LOW
+     * @see AVConst#PROFILE_AAC_HE
+     * @see AVConst#PROFILE_AAC_HE_V2
+     */
+    public int getAudioEncodeProfile() {
+        return mAudioProfile;
+    }
+
+    /**
      * get audio bitrate in bps.
      *
      * @return audio bitrate in bps
@@ -1463,8 +1489,9 @@ public class KSYStreamer {
         videoEncodeFormat.setProfile(mEncodeProfile);
         mVideoEncoderMgt.setEncodeFormat(videoEncodeFormat);
 
-        AudioEncodeFormat audioEncodeFormat = new AudioEncodeFormat(AudioEncodeFormat.MIME_AAC,
+        AudioEncodeFormat audioEncodeFormat = new AudioEncodeFormat(AVConst.CODEC_ID_AAC,
                 AVConst.AV_SAMPLE_FMT_S16, mAudioSampleRate, mAudioChannels, mAudioBitrate);
+        audioEncodeFormat.setProfile(mAudioProfile);
         mAudioEncoderMgt.setEncodeFormat(audioEncodeFormat);
 
         RtmpPublisher.BwEstConfig bwEstConfig = new RtmpPublisher.BwEstConfig();
@@ -1524,7 +1551,7 @@ public class KSYStreamer {
         setAudioParams();
         setRecordingParams();
         if (!mUseDummyAudioCapture) {
-            if(mAudioCapture.mAudioBufSrcPin.isConnected()) {
+            if (mAudioCapture.mAudioBufSrcPin.isConnected()) {
                 startAudioCapture();
             }
         } else {
@@ -1619,13 +1646,13 @@ public class KSYStreamer {
         mUseDummyAudioCapture = enable;
         if (enable) {
             if (mAudioCapture.isRecordingState()) {
-                stopAudioCapture();
+                mAudioCapture.stop();
                 mAudioDummyCapture.start();
             }
         } else {
             if (mAudioDummyCapture.isRecordingState()) {
                 mAudioDummyCapture.stop();
-                startAudioCapture();
+                mAudioCapture.start();
             }
         }
     }
@@ -1959,7 +1986,7 @@ public class KSYStreamer {
         if (enable) {
             setAudioParams();
             if (!mUseDummyAudioCapture) {
-                if(mAudioCapture.mAudioBufSrcPin.isConnected()) {
+                if (mAudioCapture.mAudioBufSrcPin.isConnected()) {
                     startAudioCapture();
                 }
             } else {
@@ -2138,13 +2165,15 @@ public class KSYStreamer {
             mMainHandler = null;
         }
 
-        mCameraCapture.release();
-        mAudioCapture.release();
-        mAudioDummyCapture.release();
-        mWaterMarkCapture.release();
-        mAudioPlayerCapture.release();
-        mGLRender.release();
-        setOnLogEventListener(null);
+        synchronized (mReleaseObject) {
+            mCameraCapture.release();
+            mAudioCapture.release();
+            mAudioDummyCapture.release();
+            mWaterMarkCapture.release();
+            mAudioPlayerCapture.release();
+            mGLRender.release();
+            setOnLogEventListener(null);
+        }
     }
 
     /**
@@ -2207,7 +2236,11 @@ public class KSYStreamer {
                 mMainHandler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        startStream();
+                        synchronized (mReleaseObject) {
+                            if (mMainHandler != null) {
+                                startStream();
+                            }
+                        }
                     }
                 }, mAutoRestartInterval);
             }
