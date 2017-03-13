@@ -165,6 +165,8 @@
     <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/util/audio/package-summary.html">com.ksyun.media.streamer.util.audio</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../com/ksyun/media/streamer/util/device/package-summary.html">com.ksyun.media.streamer.util.device</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/util/gles/package-summary.html">com.ksyun.media.streamer.util.gles</a></li>
               </ul><br/>
             </div> <!-- end packages -->
@@ -174,6 +176,7 @@
               
     <li><h2>Interfaces</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.EncoderInfoListener.html">Encoder.EncoderInfoListener</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.EncoderListener.html">Encoder.EncoderListener</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/ImgTexToBuf.ErrorListener.html">ImgTexToBuf.ErrorListener</a></li>
       </ul>
@@ -507,6 +510,20 @@ Summary:
     </tr>
     
     
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#INFO_STARTED">INFO_STARTED</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#INFO_STOPPED">INFO_STOPPED</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
 </table>
   </div>
 </div>
@@ -693,11 +710,11 @@ Summary:
     
       <tr class=" api apilevel-" >
           <td class="jd-typecol">
-          public
+          protected
           
           
-          <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&gt;</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#mSinkPin">mSinkPin</a></td>
+          ConditionVariable</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#mSig">mSig</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -707,8 +724,30 @@ Summary:
           public
           
           
+          <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&gt;</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#mSinkPin">mSinkPin</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol">
+          public
+          
+          
           <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;O&gt;</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#mSrcPin">mSrcPin</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          AtomicInteger</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#mState">mState</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -1220,6 +1259,24 @@ From class
             
             
             
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#getAutoWork()">getAutoWork</a></span>()
+        
+        <div class="jd-descrdiv">Get if encoder start/stop by input frames.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             ByteBuffer
         </td>
         <td class="jd-linkcol" width="100%">
@@ -1229,7 +1286,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1247,7 +1304,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1265,7 +1322,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1278,6 +1335,24 @@ From class
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#getState()">getState</a></span>()
         
         <div class="jd-descrdiv">Get current state.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#getUseSyncMode()">getUseSyncMode</a></span>()
+        
+        <div class="jd-descrdiv">Get if encoding frames in sync mode.</div>
   
   </td></tr>
 
@@ -1397,9 +1472,77 @@ From class
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#sendInfo(int, int)">sendInfo</a></span>(int type, int extra)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#setAutoWork(boolean)">setAutoWork</a></span>(boolean autoWork)
+        
+        <div class="jd-descrdiv">Set if encoder start/stop by input frames.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#setEncoderInfoListener(com.ksyun.media.streamer.encoder.Encoder.EncoderInfoListener)">setEncoderInfoListener</a></span>(<a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.EncoderInfoListener.html">Encoder.EncoderInfoListener</a> infoListener)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#setEncoderListener(com.ksyun.media.streamer.encoder.Encoder.EncoderListener)">setEncoderListener</a></span>(<a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.EncoderListener.html">Encoder.EncoderListener</a> listener)
         
         <div class="jd-descrdiv">Set encoder listener.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#setMute(boolean)">setMute</a></span>(boolean mute)
+        
+        <div class="jd-descrdiv">Set if encode mute audio data.</div>
   
   </td></tr>
 
@@ -1415,9 +1558,9 @@ From class
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#setMute(boolean)">setMute</a></span>(boolean mute)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#setUseSyncMode(boolean)">setUseSyncMode</a></span>(boolean useSyncMode)
         
-        <div class="jd-descrdiv">Set if encode mute audio data.</div>
+        <div class="jd-descrdiv">Set if encoding frames in sync mode.</div>
   
   </td></tr>
 
@@ -1505,8 +1648,10 @@ From class
             boolean
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#useSyncMode()">useSyncMode</a></span>()
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#updateEncodeFormat(java.lang.Object, java.lang.Object)">updateEncodeFormat</a></span>(Object src, Object dst)
         
+        <div class="jd-descrdiv">Update encode format with input frame format.</div>
+  
   </td></tr>
 
 
