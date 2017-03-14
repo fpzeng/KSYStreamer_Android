@@ -58,7 +58,7 @@ public class DemoActivity extends Activity
     private CheckBox mShowDebugInfoCheckBox;
 
     private DeviceInfo mDeviceInfo;
-    private static boolean mShowDeviceToast = false;
+    private boolean mShowDeviceToast = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,17 +111,20 @@ public class DemoActivity extends Activity
         //若在硬编白名单中存在设备信息，则参考白名单信息进行配置
         DeviceInfo lastDeviceInfo = mDeviceInfo;
         mDeviceInfo = DeviceInfoTools.getInstance().getDeviceInfo();
-        Log.i(TAG, "deviceInfo:" +  mDeviceInfo.printDeviceInfo());
-        if(!mShowDeviceToast || !mDeviceInfo.compareDeviceInfo(lastDeviceInfo)) {
-            if (mDeviceInfo.encode_h264 == DeviceInfo.ENCODE_HW_SUPPORT) {
-                //支持硬编，建议使用硬编
-                mHWButton.setChecked(true);
-                Toast.makeText(this, "该设备支持h264硬编，建议您使用硬编", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(this, "该设备可能不在硬编白名单中\n或者不支持硬编\n或者服务器还未返回" +
-                        "\n如果支持硬编，欢迎一起更新白名单", Toast.LENGTH_SHORT).show();
+        if(mDeviceInfo != null) {
+            Log.i(TAG, "deviceInfo:" + mDeviceInfo.printDeviceInfo());
+            if (!mShowDeviceToast || (lastDeviceInfo != null && !mDeviceInfo.compareDeviceInfo
+                    (lastDeviceInfo))) {
+                if (mDeviceInfo.encode_h264 == DeviceInfo.ENCODE_HW_SUPPORT) {
+                    //支持硬编，建议使用硬编
+                    mHWButton.setChecked(true);
+                    Toast.makeText(this, "该设备支持h264硬编，建议您使用硬编", Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(this, "该设备可能不在硬编白名单中\n或者不支持硬编\n或者服务器还未返回" +
+                            "\n如果支持硬编，欢迎一起更新白名单", Toast.LENGTH_SHORT).show();
+                }
+                mShowDeviceToast = true;
             }
-            mShowDeviceToast = true;
         }
     }
     
