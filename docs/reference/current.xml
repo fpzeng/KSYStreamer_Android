@@ -11059,6 +11059,16 @@
  visibility="protected"
 >
 </field>
+<field name="mBluetoothPluged"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
 <field name="mCameraFacing"
  type="int"
  transient="false"
@@ -11091,6 +11101,16 @@
 </field>
 <field name="mGLRender"
  type="com.ksyun.media.streamer.util.gles.GLRender"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mHeadSetPluged"
+ type="boolean"
  transient="false"
  volatile="false"
  static="false"
@@ -13266,6 +13286,17 @@
  visibility="public"
 >
 </field>
+<field name="KSY_STREAMER_CAMERA_FACEING_CHANGED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1002"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="KSY_STREAMER_CAMERA_INIT_DONE"
  type="int"
  transient="false"
@@ -13878,6 +13909,21 @@
 <parameter name="buffer" type="java.nio.ByteBuffer">
 </parameter>
 </method>
+<method name="addMetaOption"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="key" type="java.lang.String">
+</parameter>
+<parameter name="value" type="java.lang.String">
+</parameter>
+</method>
 <method name="addVideoTrack"
  return="int"
  abstract="false"
@@ -14023,6 +14069,17 @@
 </method>
 <method name="getUseSyncMode"
  return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getVideoCacheLength"
+ return="int"
  abstract="false"
  native="false"
  synchronized="false"
@@ -15307,6 +15364,17 @@
  visibility="public"
 >
 </field>
+<field name="RTMP_PUB_PROPERTY_VIDEO_CACHE_LENGTH"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="10"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="RTMP_PUB_PROPERTY_VIDEO_FRAME_NUM"
  type="int"
  transient="false"
@@ -15342,6 +15410,36 @@
 </parameter>
 </method>
 </interface>
+<class name="RTPPublisher"
+ extends="com.ksyun.media.streamer.publisher.Publisher"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="RTPPublisher"
+ type="com.ksyun.media.streamer.publisher.RTPPublisher"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="doHandleAVFrame"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="frame" type="com.ksyun.media.streamer.framework.AVBufFrame">
+</parameter>
+</method>
+</class>
 <class name="RtmpPublisher"
  extends="com.ksyun.media.streamer.publisher.Publisher"
  abstract="false"
@@ -15358,21 +15456,6 @@
  visibility="public"
 >
 </constructor>
-<method name="addMetaOption"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="key" type="java.lang.String">
-</parameter>
-<parameter name="value" type="java.lang.String">
-</parameter>
-</method>
 <method name="connect"
  return="void"
  abstract="false"
@@ -16818,6 +16901,19 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="updateView"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="glSurfaceView" type="GLSurfaceView">
+</parameter>
 </method>
 <field name="STATE_IDLE"
  type="int"

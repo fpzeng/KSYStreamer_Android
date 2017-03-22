@@ -326,6 +326,9 @@ public class CameraActivity extends Activity implements
         mStreamer.setFrontCameraMirror(mFrontMirrorCheckBox.isChecked());
         mStreamer.setMuteAudio(mMuteCheckBox.isChecked());
         mStreamer.setEnableAudioPreview(mAudioPreviewCheckBox.isChecked());
+        if(mStreamer.isAudioPreviewing() != mAudioPreviewCheckBox.isChecked()) {
+            mAudioPreviewCheckBox.setChecked(mStreamer.isAudioPreviewing());
+        }
         mStreamer.setOnInfoListener(mOnInfoListener);
         mStreamer.setOnErrorListener(mOnErrorListener);
         mStreamer.setOnLogEventListener(mOnLogEventListener);
@@ -422,33 +425,33 @@ public class CameraActivity extends Activity implements
                             View.VISIBLE : View.GONE);
                     SeekBar.OnSeekBarChangeListener seekBarChangeListener =
                             new SeekBar.OnSeekBarChangeListener() {
-                        @Override
-                        public void onProgressChanged(SeekBar seekBar, int progress,
-                                                      boolean fromUser) {
-                            if (!fromUser) {
-                                return;
-                            }
-                            float val = progress / 100.f;
-                            if (seekBar == mGrindSeekBar) {
-                                filter.setGrindRatio(val);
-                            } else if (seekBar == mWhitenSeekBar) {
-                                filter.setWhitenRatio(val);
-                            } else if (seekBar == mRuddySeekBar) {
-                                if (filter instanceof ImgBeautyProFilter) {
-                                    val = progress / 50.f - 1.0f;
+                                @Override
+                                public void onProgressChanged(SeekBar seekBar, int progress,
+                                                              boolean fromUser) {
+                                    if (!fromUser) {
+                                        return;
+                                    }
+                                    float val = progress / 100.f;
+                                    if (seekBar == mGrindSeekBar) {
+                                        filter.setGrindRatio(val);
+                                    } else if (seekBar == mWhitenSeekBar) {
+                                        filter.setWhitenRatio(val);
+                                    } else if (seekBar == mRuddySeekBar) {
+                                        if (filter instanceof ImgBeautyProFilter) {
+                                            val = progress / 50.f - 1.0f;
+                                        }
+                                        filter.setRuddyRatio(val);
+                                    }
                                 }
-                                filter.setRuddyRatio(val);
-                            }
-                        }
 
-                        @Override
-                        public void onStartTrackingTouch(SeekBar seekBar) {
-                        }
+                                @Override
+                                public void onStartTrackingTouch(SeekBar seekBar) {
+                                }
 
-                        @Override
-                        public void onStopTrackingTouch(SeekBar seekBar) {
-                        }
-                    };
+                                @Override
+                                public void onStopTrackingTouch(SeekBar seekBar) {
+                                }
+                            };
                     mGrindSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
                     mWhitenSeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
                     mRuddySeekBar.setOnSeekBarChangeListener(seekBarChangeListener);
@@ -482,6 +485,7 @@ public class CameraActivity extends Activity implements
                 mOrientationEventListener.canDetectOrientation()) {
             mOrientationEventListener.enable();
         }
+
         startCameraPreviewWithPermCheck();
         mStreamer.onResume();
         mStreamer.setUseDummyAudioCapture(false);
@@ -786,17 +790,17 @@ public class CameraActivity extends Activity implements
                     break;
                 case StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNSUPPORTED:
                 case StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNKNOWN:
-                    {
-                        handleEncodeError();
-                        stopStream();
-                        mMainHandler.postDelayed(new Runnable() {
-                            @Override
-                            public void run() {
-                                startStream();
-                            }
-                        }, 3000);
-                    }
-                    break;
+                {
+                    handleEncodeError();
+                    stopStream();
+                    mMainHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            startStream();
+                        }
+                    }, 3000);
+                }
+                break;
                 default:
                     if(mStreamer.getEnableAutoRestart()) {
                         mShootingText.setText(START_STRING);
@@ -979,7 +983,14 @@ public class CameraActivity extends Activity implements
     }
 
     private void onAudioPreviewChecked(boolean isChecked) {
-        mStreamer.setEnableAudioPreview(isChecked);
+        if(isChecked != mStreamer.isAudioPreviewing()) {
+            // 若没有插入耳机，该接口会设置失败，因此设置完毕后需要判断一下，进行状态复归
+            mStreamer.setEnableAudioPreview(isChecked);
+            if (isChecked != mStreamer.isAudioPreviewing()) {
+                Toast.makeText(this, "设置耳返失败，您需要插入耳机", Toast.LENGTH_SHORT).show();
+                mAudioPreviewCheckBox.setChecked(mStreamer.isAudioPreviewing());
+            }
+        }
     }
 
     private void onMuteChecked(boolean isChecked) {
