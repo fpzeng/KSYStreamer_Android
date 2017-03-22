@@ -189,6 +189,7 @@
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html">PublisherWrapper</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html">RtmpPublisher</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.BwEstConfig.html">RtmpPublisher.BwEstConfig</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/publisher/RTPPublisher.html">RTPPublisher</a></li>
       </ul>
     </li>
               
@@ -357,6 +358,8 @@ Summary:
             
               <a href="../../../../../com/ksyun/media/streamer/publisher/FilePublisher.html">FilePublisher</a>,
             
+              <a href="../../../../../com/ksyun/media/streamer/publisher/RTPPublisher.html">RTPPublisher</a>,
+            
               <a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html">RtmpPublisher</a>
             
           
@@ -370,6 +373,10 @@ Summary:
               <td class="jd-descrcol" width="100%">Mux and write a/v frames to local file.&nbsp;</td>
           </tr>
         <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RTPPublisher.html">RTPPublisher</a></td>
+              <td class="jd-descrcol" width="100%">Created by sujia on 2017/3/9.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/RtmpPublisher.html">RtmpPublisher</a></td>
               <td class="jd-descrcol" width="100%">Rtmp publish module
 &nbsp;</td>
@@ -889,6 +896,24 @@ Summary:
             
             
             
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#addMetaOption(java.lang.String, java.lang.String)">addMetaOption</a></span>(String key, String value)
+        
+        <div class="jd-descrdiv">Set metadata for rtmp stream.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             int
         </td>
         <td class="jd-linkcol" width="100%">
@@ -898,7 +923,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -914,7 +939,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -932,7 +957,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -948,7 +973,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -964,7 +989,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -978,6 +1003,22 @@ Summary:
         
         <div class="jd-descrdiv">Get if writing frames in sync mode.</div>
   
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getVideoCacheLength()">getVideoCacheLength</a></span>()
+        
   </td></tr>
 
 
@@ -3049,6 +3090,51 @@ From class
 </div>
 
 
+<a id="addMetaOption(java.lang.String, java.lang.String)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">addMetaOption</span>
+      <span class="normal">(String key, String value)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Set metadata for rtmp stream.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>key</th>
+          <td>meta key</td>
+        </tr>
+        <tr>
+          <th>value</th>
+          <td>meta value
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -3240,6 +3326,37 @@ From class
       <ul class="nolist"><li>sync mode
 </li></ul>
   </div>
+
+    </div>
+</div>
+
+
+<a id="getVideoCacheLength()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        int
+      </span>
+      <span class="sympad">getVideoCacheLength</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>

@@ -1,6 +1,13 @@
 package com.ksyun.media.streamer.kit;
 
+import android.bluetooth.BluetoothA2dp;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothHeadset;
+import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.media.AudioManager;
 import android.opengl.GLSurfaceView;
 import android.os.Handler;
 import android.os.Looper;
@@ -126,6 +133,10 @@ public class KSYStreamer {
     private AudioPreview mAudioPreview;
     private FilePublisher mFilePublisher;
     private PublisherMgt mPublisherMgt;
+
+    private HeadSetReceiver mHeadSetReceiver;
+    protected boolean mHeadSetPluged = false;
+    protected boolean mBluetoothPluged = false;
 
     private Handler mMainHandler;
     private final Object mReleaseObject = new Object();  //release与自动重连的互斥锁
@@ -276,6 +287,9 @@ public class KSYStreamer {
             public void onFacingChanged(int facing) {
                 mCameraFacing = facing;
                 updateFrontMirror();
+                if (mOnInfoListener != null) {
+                    mOnInfoListener.onInfo(StreamerConstants.KSY_STREAMER_CAMERA_FACEING_CHANGED, facing, 0);
+                }
             }
 
             @Override
@@ -513,6 +527,15 @@ public class KSYStreamer {
                 //do not need to restart
             }
         });
+
+        if (mContext != null) {
+            AudioManager localAudioManager = (AudioManager) mContext.getSystemService(Context
+                    .AUDIO_SERVICE);
+            mHeadSetPluged = localAudioManager.isWiredHeadsetOn();
+            mBluetoothPluged = localAudioManager.isBluetoothA2dpOn();
+        }
+
+        registerHeadsetPlugReceiver();
     }
 
     /**
@@ -1977,11 +2000,16 @@ public class KSYStreamer {
 
     /**
      * Set if start audio preview.<br/>
-     * Should start only when headset plugged.
+     * true: strart success only when headset plugged.
+     * get value using @see KSYStreamer#isAudioPreviewing()
      *
      * @param enable true to start, false to stop.
      */
     public void setEnableAudioPreview(boolean enable) {
+        if (enable && !mHeadSetPluged && !mBluetoothPluged) {
+            Log.d(TAG, "please connect the earphone");
+            return;
+        }
         mIsAudioPreviewing = enable;
         if (enable) {
             setAudioParams();
@@ -2004,6 +2032,7 @@ public class KSYStreamer {
                 mAudioPlayerCapture.setMute(mAudioMixer.getMute());
             }
         }
+        return;
     }
 
     /**
@@ -2173,6 +2202,7 @@ public class KSYStreamer {
             mAudioPlayerCapture.release();
             mGLRender.release();
             setOnLogEventListener(null);
+            unregisterHeadsetPlugReceiver();
         }
     }
 
@@ -2266,6 +2296,77 @@ public class KSYStreamer {
         }
         if (mAudioUsingCount.getAndIncrement() == 0) {
             mAudioCapture.start();
+        }
+    }
+
+    private void registerHeadsetPlugReceiver() {
+        if (mHeadSetReceiver == null && mContext != null) {
+            mHeadSetReceiver = new HeadSetReceiver();
+            IntentFilter filter = new IntentFilter(Intent.ACTION_HEADSET_PLUG);
+
+            filter.addAction(BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED);
+            filter.addAction(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED);
+            filter.addAction(BluetoothAdapter.ACTION_STATE_CHANGED);
+            mContext.registerReceiver(mHeadSetReceiver, filter);
+        }
+    }
+
+    private void unregisterHeadsetPlugReceiver() {
+        if (mHeadSetReceiver != null) {
+            mContext.unregisterReceiver(mHeadSetReceiver);
+        }
+    }
+
+    private class HeadSetReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            int state = BluetoothHeadset.STATE_DISCONNECTED;
+
+            if (action.equals(BluetoothHeadset.ACTION_CONNECTION_STATE_CHANGED)) {
+                state = intent.getIntExtra(BluetoothHeadset.EXTRA_STATE,
+                        BluetoothHeadset.STATE_DISCONNECTED);
+                Log.d(TAG, "bluetooth state:" + state);
+                if (state == BluetoothHeadset.STATE_CONNECTED) {
+                    Log.d(TAG, "bluetooth Headset is plugged");
+                    mBluetoothPluged = true;
+                } else if (state == BluetoothHeadset.STATE_DISCONNECTED) {
+                    Log.d(TAG, "bluetooth Headset is unplugged");
+                    mBluetoothPluged = false;
+                }
+            } else if (action.equals(BluetoothHeadset.ACTION_AUDIO_STATE_CHANGED))// audio
+            {
+                state = intent.getIntExtra(BluetoothHeadset.EXTRA_STATE,
+                        BluetoothHeadset.STATE_AUDIO_DISCONNECTED);
+                if (state == BluetoothHeadset.STATE_AUDIO_CONNECTED) {
+                    Log.d(TAG, "bluetooth Headset is plugged");
+                    mBluetoothPluged = true;
+                } else if (state == BluetoothHeadset.STATE_AUDIO_DISCONNECTED) {
+                    Log.d(TAG, "bluetooth Headset is unplugged");
+                    mBluetoothPluged = false;
+                }
+            } else if (action.equals(Intent.ACTION_HEADSET_PLUG)) {
+                state = intent.getIntExtra("state", -1);
+
+                switch (state) {
+                    case 0:
+                        Log.d(TAG, "Headset is unplugged");
+                        mHeadSetPluged = false;
+                        break;
+                    case 1:
+                        Log.d(TAG, "Headset is plugged");
+                        mHeadSetPluged = true;
+                        break;
+                    default:
+                        Log.d(TAG, "I have no idea what the headset state is");
+                }
+            } else if (action.equals(BluetoothAdapter.ACTION_STATE_CHANGED)) { //蓝牙开关
+                state = intent.getIntExtra(BluetoothAdapter.EXTRA_STATE, BluetoothAdapter.STATE_OFF);
+                if (state == BluetoothAdapter.STATE_OFF) {
+                    Log.d(TAG, "bluetooth Headset is unplugged");
+                    mBluetoothPluged = false;
+                }
+            }
         }
     }
 }
