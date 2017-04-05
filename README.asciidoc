@@ -221,6 +221,8 @@ mStreamer.setAudioKBitrate(48);
 mStreamer.setEncodeMethod(StreamerConstants.ENCODE_METHOD_SOFTWARE);
 // 设置屏幕的旋转角度，支持 0, 90, 180, 270
 mStreamer.setRotateDegrees(0);
+// 设置开始预览使用前置还是后置摄像头
+mStreamer.setCameraFacing(CameraCapture.FACING_FRONT);
 ----
 +
 . 创建推流事件监听
