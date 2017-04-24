@@ -10,7 +10,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 == 功能特点
 
 * [x] https://github.com/ksvc/KSYStreamer_Android/wiki/Streamer_Config_Params#%E7%BC%96%E7%A0%81%E7%B1%BB%E5%9E%8B[支持软编、硬编及软编兼容模式]
-* [x]  https://github.com/ksvc/KSYStreamer_Android/wiki/Streamer_Config_Params#%E8%A7%86%E9%A2%91%E7%A0%81%E7%8E%87%E5%8F%8A%E7%A0%81%E7%8E%87%E8%87%AA%E9%80%82%E5%BA%94[网络自适应，可根据实际网络情况动态调整目标码率，保证流畅性]
+* [x]  https://github.com/ksvc/KSYStreamer_Android/wiki/Streamer_Config_Params#%E8%A7%86%E9%A2%91%E7%A0%81%E7%8E%87%E5%8F%8A%E7%A0%81%E7%8E%87%E8%87%AA%E9%80%82%E5%BA%94[网络自适应]，可根据实际网络情况动态调整目标码率，保证流畅性]
 * [x] 音频编码：AAC
 * [x] 视频编码：H.264 / H.265
 * [x] 推流协议：RTMP
@@ -29,6 +29,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Filter[内置美声]
 * [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Filter[自定义音频滤镜] (new)**
 * [x] https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Mixer[背景音乐功能], 支持 https://github.com/ksvc/KSYStreamer_Android/wiki/Ear_Mirror[耳返]
+* [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/Ear_Mirror[低延迟耳返] (new)**
 * [x] https://github.com/ksvc/KSYStreamer_Android/wiki/WaterMark[支持图片及时间戳水印]
 * [x] 开放KSYStreamer类的实现，开发者可自行组装各个模块 (new)
 * [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/liveScene[软编模式下支持场景编码]（new）**
@@ -39,7 +40,6 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] https://github.com/ksvc/KSYStreamer_Android/blob/master/demo/src/com/ksyun/media/streamer/demo/FloatViewActivity.java[悬浮窗推流]  
 
 === 即将支持
-* [ ] 低延迟耳返
 * [ ] 音频升降调
 
 == 运行环境
