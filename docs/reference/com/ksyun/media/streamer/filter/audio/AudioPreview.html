@@ -183,6 +183,8 @@
           <li class="selected api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html">AudioPreview</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResampleFilter.html">AudioResampleFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioReverbFilter.html">AudioReverbFilter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioSLPlayer.html">AudioSLPlayer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioTrackPlayer.html">AudioTrackPlayer</a></li>
       </ul>
     </li>
               
@@ -233,6 +235,13 @@
   
   
 
+  
+   
+  
+  
+  
+  
+
 
 <div class="sum-details-links">
 
@@ -245,12 +254,9 @@ Summary:
 
 
 
-  <a href="#lfields">Fields</a>
-  
 
 
-
-  &#124; <a href="#pubctors">Ctors</a>
+  <a href="#pubctors">Ctors</a>
   
 
 
@@ -258,6 +264,9 @@ Summary:
   &#124; <a href="#pubmethods">Methods</a>
   
 
+
+  &#124; <a href="#promethods">Protected Methods</a>
+  
 
 
   &#124; <a href="#inhmethods">Inherited Methods</a>
@@ -289,7 +298,11 @@ Summary:
 
 
   
-    extends Object<br/>
+  
+  
+
+  
+    extends <a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html">AudioFilterBase</a><br/>
   
   
   
@@ -309,11 +322,21 @@ Summary:
 
     <tr>
          	
-        <td colspan="2" class="jd-inheritance-class-cell">java.lang.Object</td>
+        <td colspan="3" class="jd-inheritance-class-cell">java.lang.Object</td>
     </tr>
     
 
     <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
+         	
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html">com.ksyun.media.streamer.filter.audio.AudioFilterBase</a></td>
+    </tr>
+    
+
+    <tr>
+        
+            <td class="jd-inheritance-space">&nbsp;</td>
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
@@ -333,9 +356,7 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>Audio preview module.
- <p>
- This module would be used to play the input audio data.
+<p>Audio preview use openSL ES.
 </p>
 
 
@@ -381,26 +402,6 @@ Summary:
 
 
 
-<!-- =========== FIELD SUMMARY =========== -->
-<table id="lfields" class="jd-sumtable"><tr><th colspan="12">Fields</th></tr>
-
-
-    
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol">
-          public
-          
-          
-          <a href="../../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;</td>
-          <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html#mSinkPin">mSinkPin</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-
-</table>
-
-
 
 
 
@@ -422,7 +423,7 @@ Summary:
             
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html#AudioPreview()">AudioPreview</a></span>()
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html#AudioPreview(Context)">AudioPreview</a></span>(Context context)
         
   </td></tr>
 
@@ -451,7 +452,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html#release()">release</a></span>()
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html#setMute(boolean)">setMute</a></span>(boolean mute)
         
   </td></tr>
 
@@ -469,8 +470,6 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html#start()">start</a></span>()
         
-        <div class="jd-descrdiv">Start playing.</div>
-  
   </td></tr>
 
 
@@ -487,7 +486,106 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html#stop()">stop</a></span>()
         
-        <div class="jd-descrdiv">Stop playing.</div>
+  </td></tr>
+
+
+
+</table>
+
+
+
+
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="promethods" class="jd-sumtable"><tr><th colspan="12">Protected Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html#attachTo(int, long, boolean)">attachTo</a></span>(int idx, long ptr, boolean detach)
+        
+        <div class="jd-descrdiv">Attach to previous filter</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html#doFilter(com.ksyun.media.streamer.framework.AudioBufFrame)">doFilter</a></span>(<a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a> frame)
+        
+        <div class="jd-descrdiv">Do actual filter.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html#doFormatChanged(com.ksyun.media.streamer.framework.AudioBufFormat)">doFormatChanged</a></span>(<a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a> format)
+        
+        <div class="jd-descrdiv">Handle format changed event by inherit this method.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html#doRelease()">doRelease</a></span>()
+        
+        <div class="jd-descrdiv">Release resources needed to be released.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            long
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html#getNativeInstance()">getNativeInstance</a></span>()
+        
+        <div class="jd-descrdiv">Get native instance of this filter.</div>
   
   </td></tr>
 
@@ -499,12 +597,178 @@ Summary:
 
 
 
-
-
 <!-- ========== METHOD SUMMARY =========== -->
 <table id="inhmethods" class="jd-sumtable"><tr><th>
   <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
   <div style="clear:left;">Inherited Methods</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.ksyun.media.streamer.filter.audio.AudioFilterBase" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-com.ksyun.media.streamer.filter.audio.AudioFilterBase-trigger"
+          src="../../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  <a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html">com.ksyun.media.streamer.filter.audio.AudioFilterBase</a>
+
+<div id="inherited-methods-com.ksyun.media.streamer.filter.audio.AudioFilterBase">
+  <div id="inherited-methods-com.ksyun.media.streamer.filter.audio.AudioFilterBase-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.ksyun.media.streamer.filter.audio.AudioFilterBase-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#attachTo(int, long, boolean)">attachTo</a></span>(int idx, long ptr, boolean detach)
+        
+        <div class="jd-descrdiv">Attach to previous filter</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            <a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#doFilter(com.ksyun.media.streamer.framework.AudioBufFrame)">doFilter</a></span>(<a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a> frame)
+        
+        <div class="jd-descrdiv">Do actual filter.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            <a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#doFormatChanged(com.ksyun.media.streamer.framework.AudioBufFormat)">doFormatChanged</a></span>(<a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a> format)
+        
+        <div class="jd-descrdiv">Handle format changed event by inherit this method.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#doRelease()">doRelease</a></span>()
+        
+        <div class="jd-descrdiv">Release resources needed to be released.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            long
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#getNativeInstance()">getNativeInstance</a></span>()
+        
+        <div class="jd-descrdiv">Get native instance of this filter.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#getSinkPin()">getSinkPin</a></span>()
+        
+        <div class="jd-descrdiv">Get input pin instance.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#getSrcPin()">getSrcPin</a></span>()
+        
+        <div class="jd-descrdiv">Get output pin instance.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#release()">release</a></span>()
+        
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
 
 
 <tr class="api apilevel-" >
@@ -734,43 +998,6 @@ From class
 <!-- Fields -->
 
 
-<!-- ========= FIELD DETAIL ======== -->
-<h2>Fields</h2>
-
-
-
-
-<a id="mSinkPin"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-        <a href="../../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
-      </span>
-        mSinkPin
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-
 <!-- Public ctors -->
 
 
@@ -779,7 +1006,7 @@ From class
 
 
 
-<a id="AudioPreview()"></a>
+<a id="AudioPreview(Context)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -792,7 +1019,7 @@ From class
         
       </span>
       <span class="sympad">AudioPreview</span>
-      <span class="normal">()</span>
+      <span class="normal">(Context context)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -825,7 +1052,7 @@ From class
 
 
 
-<a id="release()"></a>
+<a id="setMute(boolean)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -837,8 +1064,8 @@ From class
          
         void
       </span>
-      <span class="sympad">release</span>
-      <span class="normal">()</span>
+      <span class="sympad">setMute</span>
+      <span class="normal">(boolean mute)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -881,8 +1108,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Start playing.
-</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
@@ -913,8 +1139,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Stop playing.
-</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
@@ -924,6 +1149,218 @@ From class
 
 
 <!-- ========= METHOD DETAIL ======== -->
+
+<h2>Protected Methods</h2>
+
+
+
+<a id="attachTo(int, long, boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">attachTo</span>
+      <span class="normal">(int idx, long ptr, boolean detach)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Attach to previous filter</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>idx</th>
+          <td>index defined by this filter</td>
+        </tr>
+        <tr>
+          <th>ptr</th>
+          <td>previous filter native ptr</td>
+        </tr>
+        <tr>
+          <th>detach</th>
+          <td>is detach
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="doFilter(com.ksyun.media.streamer.framework.AudioBufFrame)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        <a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>
+      </span>
+      <span class="sympad">doFilter</span>
+      <span class="normal">(<a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a> frame)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Do actual filter.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>frame</th>
+          <td>input audio frame</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>output audio frame
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="doFormatChanged(com.ksyun.media.streamer.framework.AudioBufFormat)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        <a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a>
+      </span>
+      <span class="sympad">doFormatChanged</span>
+      <span class="normal">(<a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a> format)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Handle format changed event by inherit this method.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>format</th>
+          <td>the new audio format</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>the output audio format
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="doRelease()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">doRelease</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Release resources needed to be released.
+</p></div>
+
+    </div>
+</div>
+
+
+<a id="getNativeInstance()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        long
+      </span>
+      <span class="sympad">getNativeInstance</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get native instance of this filter.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>native instance ptr or 0
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 
 
 

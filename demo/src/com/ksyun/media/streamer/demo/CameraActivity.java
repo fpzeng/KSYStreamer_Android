@@ -26,6 +26,7 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.OrientationEventListener;
 import android.view.Surface;
+import android.view.TextureView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -40,6 +41,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ksyun.media.player.IMediaPlayer;
+import com.ksyun.media.streamer.capture.CameraCapture;
 import com.ksyun.media.streamer.capture.camera.CameraTouchHelper;
 import com.ksyun.media.streamer.filter.audio.AudioFilterBase;
 import com.ksyun.media.streamer.filter.audio.AudioReverbFilter;
@@ -79,9 +81,11 @@ public class CameraActivity extends Activity implements
     private View mDeleteView;
     private View mSwitchCameraView;
     private View mFlashView;
+    private View mAddView;
     private TextView mShootingText;
     private TextView mRecordingText;
     private TextView mCaptureSceenShot;
+    private CheckBox mAudioLDCheckBox;
     private CheckBox mWaterMarkCheckBox;
     private CheckBox mBeautyCheckBox;
     private CheckBox mReverbCheckBox;
@@ -120,7 +124,8 @@ public class CameraActivity extends Activity implements
     private boolean mPrintDebugInfo = false;
     private boolean mRecording = false;
     private boolean mIsFileRecording = false;
-    private boolean isFlashOpened = false;
+    private boolean mIsFlashOpened = false;
+    private boolean mSwitchOrQuit = false;
     private String mUrl;
     private String mDebugInfo = "";
     private String mBgmPath = "/sdcard/test.mp3";
@@ -204,6 +209,8 @@ public class CameraActivity extends Activity implements
         mSwitchCameraView.setOnClickListener(mObserverButton);
         mFlashView = findViewById(R.id.flash);
         mFlashView.setOnClickListener(mObserverButton);
+        mAddView = findViewById(R.id.add);
+        mAddView.setOnClickListener(mObserverButton);
 
         mCheckBoxObserver = new CheckBoxObserver();
         mBeautyCheckBox = (CheckBox) findViewById(R.id.click_to_switch_beauty);
@@ -222,6 +229,8 @@ public class CameraActivity extends Activity implements
         mFrontMirrorCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
         mAudioOnlyCheckBox = (CheckBox) findViewById(R.id.audio_only);
         mAudioOnlyCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
+        mAudioLDCheckBox = (CheckBox) findViewById(R.id.audio_ld);
+        mAudioLDCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
 
         mBeautyChooseView = findViewById(R.id.beauty_choose);
         mBeautySpinner = (AppCompatSpinner) findViewById(R.id.beauty_spin);
@@ -316,13 +325,9 @@ public class CameraActivity extends Activity implements
             mPrintDebugInfo = bundle.getBoolean(SHOW_DEBUGINFO, false);
         }
         mStreamer.setDisplayPreview(mCameraPreviewView);
-        //if (mIsLandscape) {
-        //    mStreamer.setOffscreenPreview(1280, 720);
-        //} else {
-        //    mStreamer.setOffscreenPreview(720, 1280);
-        //}
-        //断网等异常case触发自动重练
-        mStreamer.setEnableAutoRestart(true, 3000);
+        mStreamer.setEnableRepeatLastFrame(false);  // disable repeat last frame in background
+        mStreamer.setEnableAutoRestart(true, 3000); // enable auto restart
+        mStreamer.setCameraFacing(CameraCapture.FACING_FRONT);
         mStreamer.setFrontCameraMirror(mFrontMirrorCheckBox.isChecked());
         mStreamer.setMuteAudio(mMuteCheckBox.isChecked());
         mStreamer.setEnableAudioPreview(mAudioPreviewCheckBox.isChecked());
@@ -361,6 +366,11 @@ public class CameraActivity extends Activity implements
         mCameraPreviewView.setOnTouchListener(cameraTouchHelper);
         // set CameraHintView to show focus rect and zoom ratio
         cameraTouchHelper.setCameraHintView(mCameraHintView);
+
+        startCameraPreviewWithPermCheck();
+        if (mWaterMarkCheckBox.isChecked()) {
+            showWaterMark();
+        }
     }
 
     private void initBeautyUI() {
@@ -486,13 +496,12 @@ public class CameraActivity extends Activity implements
             mOrientationEventListener.enable();
         }
 
-        startCameraPreviewWithPermCheck();
+        mStreamer.setDisplayPreview(mCameraPreviewView);
         mStreamer.onResume();
-        mStreamer.setUseDummyAudioCapture(false);
-        if (mWaterMarkCheckBox.isChecked()) {
-            showWaterMark();
-        }
         mCameraHintView.hideAll();
+
+        // camera may be occupied by other app in background
+        startCameraPreviewWithPermCheck();
     }
 
     @Override
@@ -502,9 +511,12 @@ public class CameraActivity extends Activity implements
             mOrientationEventListener.disable();
         }
         mStreamer.onPause();
-        mStreamer.setUseDummyAudioCapture(true);
-        mStreamer.stopCameraPreview();
-        hideWaterMark();
+        if (!mSwitchOrQuit) {
+            // setOffscreenPreview to enable camera capture in background
+            mStreamer.setOffscreenPreview(mStreamer.getPreviewWidth(),
+                    mStreamer.getPreviewHeight());
+        }
+        mSwitchOrQuit = false;
     }
 
     @Override
@@ -526,11 +538,11 @@ public class CameraActivity extends Activity implements
         switch (keyCode) {
             case KeyEvent.KEYCODE_BACK:
                 onBackoffClick();
-                break;
+                return true;
             default:
                 break;
         }
-        return true;
+        return super.onKeyDown(keyCode, event);
     }
 
     private int getDisplayRotation() {
@@ -767,19 +779,14 @@ public class CameraActivity extends Activity implements
                     break;
             }
             switch (what) {
-                case StreamerConstants.KSY_STREAMER_CAMERA_ERROR_UNKNOWN:
-                case StreamerConstants.KSY_STREAMER_CAMERA_ERROR_START_FAILED:
                 case StreamerConstants.KSY_STREAMER_AUDIO_RECORDER_ERROR_START_FAILED:
                 case StreamerConstants.KSY_STREAMER_AUDIO_RECORDER_ERROR_UNKNOWN:
                     break;
+                case StreamerConstants.KSY_STREAMER_CAMERA_ERROR_UNKNOWN:
+                case StreamerConstants.KSY_STREAMER_CAMERA_ERROR_START_FAILED:
+                case StreamerConstants.KSY_STREAMER_CAMERA_ERROR_EVICTED:
                 case StreamerConstants.KSY_STREAMER_CAMERA_ERROR_SERVER_DIED:
                     mStreamer.stopCameraPreview();
-                    mMainHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            startCameraPreviewWithPermCheck();
-                        }
-                    }, 5000);
                     break;
                 case StreamerConstants.KSY_STREAMER_FILE_PUBLISHER_CLOSE_FAILED:
                 case StreamerConstants.KSY_STREAMER_FILE_PUBLISHER_ERROR_UNKNOWN:
@@ -831,8 +838,9 @@ public class CameraActivity extends Activity implements
 
     private OnAudioRawDataListener mOnAudioRawDataListener = new OnAudioRawDataListener() {
         @Override
-        public short[] OnAudioRawData(short[] data, int count) {
-            Log.d(TAG, "OnAudioRawData data.length=" + data.length + " count=" + count);
+        public short[] OnAudioRawData(short[] data, int count, int sampleRate, int channels) {
+            Log.d(TAG, "OnAudioRawData data.length=" + data.length + " count=" + count +
+                    " sampleRate=" + sampleRate + " channels=" + channels);
             //audio pcm data
             return data;
         }
@@ -852,13 +860,21 @@ public class CameraActivity extends Activity implements
     }
 
     private void onFlashClick() {
-        if (isFlashOpened) {
+        if (mIsFlashOpened) {
             mStreamer.toggleTorch(false);
-            isFlashOpened = false;
+            mIsFlashOpened = false;
         } else {
             mStreamer.toggleTorch(true);
-            isFlashOpened = true;
+            mIsFlashOpened = true;
         }
+    }
+
+    private void onAddClick() {
+        Intent intent = new Intent(getApplicationContext(), FloatViewActivity.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        KSYGlobalStreamer.setInstance(mStreamer);
+        mSwitchOrQuit = true;
+        startActivity(intent);
     }
 
     private void onBackoffClick() {
@@ -875,7 +891,7 @@ public class CameraActivity extends Activity implements
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         mChronometer.stop();
-                        mRecording = false;
+                        mSwitchOrQuit = true;
                         CameraActivity.this.finish();
                     }
                 }).show();
@@ -957,26 +973,24 @@ public class CameraActivity extends Activity implements
 
     private void onBgmChecked(boolean isChecked) {
         if (isChecked) {
-            // use KSYMediaPlayer instead of KSYBgmPlayer
-            mStreamer.getAudioPlayerCapture().setEnableMediaPlayer(true);
-            mStreamer.getAudioPlayerCapture().getMediaPlayer()
-                    .setOnCompletionListener(new IMediaPlayer.OnCompletionListener() {
+            mStreamer.getAudioPlayerCapture().setOnCompletionListener(
+                    new IMediaPlayer.OnCompletionListener() {
                         @Override
                         public void onCompletion(IMediaPlayer iMediaPlayer) {
                             Log.d(TAG, "End of the currently playing music");
                         }
                     });
-            mStreamer.getAudioPlayerCapture().getMediaPlayer()
-                    .setOnErrorListener(new IMediaPlayer.OnErrorListener() {
+            mStreamer.getAudioPlayerCapture().setOnErrorListener(
+                    new IMediaPlayer.OnErrorListener() {
                         @Override
                         public boolean onError(IMediaPlayer iMediaPlayer, int what, int extra) {
                             Log.e(TAG, "OnErrorListener, Error:" + what + ", extra:" + extra);
                             return false;
                         }
                     });
+            mStreamer.getAudioPlayerCapture().setVolume(0.4f);
             mStreamer.setEnableAudioMix(true);
             mStreamer.startBgm(mBgmPath, true);
-            mStreamer.getAudioPlayerCapture().getMediaPlayer().setVolume(0.4f, 0.4f);
         } else {
             mStreamer.stopBgm();
         }
@@ -1010,6 +1024,10 @@ public class CameraActivity extends Activity implements
 
     private void onAudioOnlyChecked(boolean isChecked) {
         mStreamer.setAudioOnly(isChecked);
+    }
+
+    private void onAudioLDChecked(boolean isChecked) {
+        mStreamer.setEnableAudioLowDelay(isChecked);
     }
 
     private void onCaptureScreenShotClick() {
@@ -1058,6 +1076,9 @@ public class CameraActivity extends Activity implements
                 case R.id.flash:
                     onFlashClick();
                     break;
+                case R.id.add:
+                    onAddClick();
+                    break;
                 case R.id.click_to_shoot:
                     onShootClick();
                     break;
@@ -1101,6 +1122,9 @@ public class CameraActivity extends Activity implements
                     break;
                 case R.id.audio_only:
                     onAudioOnlyChecked(isChecked);
+                    break;
+                case R.id.audio_ld:
+                    onAudioLDChecked(isChecked);
                     break;
                 default:
                     break;

@@ -184,7 +184,6 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/AudioCapture.html">AudioCapture</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/AudioDummyCapture.html">AudioDummyCapture</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.html">AudioPlayerCapture</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/CameraCapture.html">CameraCapture</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/CameraCapture.Size.html">CameraCapture.Size</a></li>
@@ -579,6 +578,24 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/WaterMarkCapture.html#showLogo(Bitmap, float, float)">showLogo</a></span>(Bitmap bitmap, float fw, float fh)
+        
+        <div class="jd-descrdiv">Transfer logo image frame to the connected module.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/WaterMarkCapture.html#showLogo(Context, java.lang.String, float, float)">showLogo</a></span>(Context context, String uri, float fw, float fh)
         
         <div class="jd-descrdiv">Decode logo image and transfer image frame to the connected module.</div>
@@ -587,7 +604,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1204,6 +1221,57 @@ From class
         <tr>
           <th>h</th>
           <td>height
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="showLogo(Bitmap, float, float)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">showLogo</span>
+      <span class="normal">(Bitmap bitmap, float fw, float fh)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Transfer logo image frame to the connected module.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>bitmap</th>
+          <td>logo to show, must not be recycled by caller</td>
+        </tr>
+        <tr>
+          <th>fw</th>
+          <td>relative width, should between 0~1,
+               if set 0, width would be calculated by fh and image radio</td>
+        </tr>
+        <tr>
+          <th>fh</th>
+          <td>relative height, should between 0~1,
+               if set 0, height would be calculated by fw and image radio
 </td>
         </tr>
       </table>

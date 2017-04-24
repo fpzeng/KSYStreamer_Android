@@ -186,19 +186,11 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html">KSYStreamer</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamerConfig.html">KSYStreamerConfig</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamerConfig.Builder.html">KSYStreamerConfig.Builder</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/kit/RecorderConstants.html">RecorderConstants</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/kit/StreamerConstants.html">StreamerConstants</a></li>
       </ul>
     </li>
               
               
-    <li><h2>Enums</h2>
-      <ul>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamerConfig.ENCODE_METHOD.html">KSYStreamerConfig.ENCODE_METHOD</a></li>
-      </ul>
-    </li>
               
               
             </ul><br/>
@@ -374,7 +366,7 @@
             short[]
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/OnAudioRawDataListener.html#OnAudioRawData(short[], int)">OnAudioRawData</a></span>(short[] data, int count)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/OnAudioRawDataListener.html#OnAudioRawData(short[], int, int, int)">OnAudioRawData</a></span>(short[] data, int count, int sampleRate, int channels)
         
         <div class="jd-descrdiv">Called on every audio frame captured.</div>
   
@@ -429,7 +421,7 @@
 
 
 
-<a id="OnAudioRawData(short[], int)"></a>
+<a id="OnAudioRawData(short[], int, int, int)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -442,7 +434,7 @@
         short[]
       </span>
       <span class="sympad">OnAudioRawData</span>
-      <span class="normal">(short[] data, int count)</span>
+      <span class="normal">(short[] data, int count, int sampleRate, int channels)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -460,11 +452,19 @@
       <table class="jd-tagtable">
         <tr>
           <th>data</th>
-          <td>audio frame data in 44100Hz 16bit mono.</td>
+          <td>audio frame data</td>
         </tr>
         <tr>
           <th>count</th>
           <td>sample count</td>
+        </tr>
+        <tr>
+          <th>sampleRate</th>
+          <td>audio sample rate</td>
+        </tr>
+        <tr>
+          <th>channels</th>
+          <td>audio channel number, 1 for mono, 2 for stereo</td>
         </tr>
       </table>
   </div>

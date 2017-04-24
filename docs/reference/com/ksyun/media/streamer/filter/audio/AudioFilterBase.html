@@ -183,6 +183,8 @@
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html">AudioPreview</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResampleFilter.html">AudioResampleFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioReverbFilter.html">AudioReverbFilter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioSLPlayer.html">AudioSLPlayer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioTrackPlayer.html">AudioTrackPlayer</a></li>
       </ul>
     </li>
               
@@ -340,6 +342,8 @@ Summary:
               >
           
             
+              <a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html">AudioPreview</a>,
+            
               <a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResampleFilter.html">AudioResampleFilter</a>,
             
               <a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioReverbFilter.html">AudioReverbFilter</a>
@@ -351,10 +355,14 @@ Summary:
               >
   <table class="jd-sumtable-expando">
         <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html">AudioPreview</a></td>
+              <td class="jd-descrcol" width="100%">Audio preview use openSL ES.&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResampleFilter.html">AudioResampleFilter</a></td>
               <td class="jd-descrcol" width="100%">Audio resample filter.&nbsp;</td>
           </tr>
-        <tr class=" api apilevel-" >
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioReverbFilter.html">AudioReverbFilter</a></td>
               <td class="jd-descrcol" width="100%">Audio reverb filter, with 5 acceptable level.&nbsp;</td>
           </tr>
@@ -521,6 +529,24 @@ Summary:
 	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#attachTo(int, long, boolean)">attachTo</a></span>(int idx, long ptr, boolean detach)
+        
+        <div class="jd-descrdiv">Attach to previous filter</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
             abstract
             
             
@@ -537,7 +563,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             abstract
             
@@ -555,7 +581,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -568,6 +594,24 @@ Summary:
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#doRelease()">doRelease</a></span>()
         
         <div class="jd-descrdiv">Release resources needed to be released.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            long
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#getNativeInstance()">getNativeInstance</a></span>()
+        
+        <div class="jd-descrdiv">Get native instance of this filter.</div>
   
   </td></tr>
 
@@ -978,6 +1022,55 @@ From class
 
 
 
+<a id="attachTo(int, long, boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">attachTo</span>
+      <span class="normal">(int idx, long ptr, boolean detach)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Attach to previous filter</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>idx</th>
+          <td>index defined by this filter</td>
+        </tr>
+        <tr>
+          <th>ptr</th>
+          <td>previous filter native ptr</td>
+        </tr>
+        <tr>
+          <th>detach</th>
+          <td>is detach
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="doFilter(com.ksyun.media.streamer.framework.AudioBufFrame)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1095,6 +1188,42 @@ From class
       
   <div class="jd-tagdata jd-tagdescr"><p>Release resources needed to be released.
 </p></div>
+
+    </div>
+</div>
+
+
+<a id="getNativeInstance()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        long
+      </span>
+      <span class="sympad">getNativeInstance</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get native instance of this filter.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>native instance ptr or 0
+</li></ul>
+  </div>
 
     </div>
 </div>

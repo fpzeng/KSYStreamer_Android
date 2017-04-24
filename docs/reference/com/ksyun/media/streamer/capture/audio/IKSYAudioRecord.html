@@ -183,7 +183,6 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/AudioRecordParams.html">AudioRecordParams</a></li>
-          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/KSYAudioRecordES.html">KSYAudioRecordES</a></li>
       </ul>
     </li>
               
@@ -230,28 +229,6 @@
 
 <div class="sum-details-links">
 
-
-Summary:
-
-
-
-
-
-  <a href="#constants">Constants</a>
-  
-
-
-
-
-
-
-
-  &#124; <a href="#pubmethods">Methods</a>
-  
-
-
-
-&#124; <a href="#" onclick="return toggleAllClassInherited()" id="toggleAllClassInherited">[Expand All]</a>
 
 </div><!-- end sum-details-links -->
 <div class="api-level">
@@ -303,44 +280,12 @@ Summary:
 
 
 
-<table class="jd-sumtable jd-sumtable-subclasses"><tr><td colspan="12" style="border:none;margin:0;padding:0;">
-
-  <a href="#" onclick="return toggleInherited(this, null)" id="subclasses-indirect" class="jd-expando-trigger closed"
-          ><img id="subclasses-indirect-trigger"
-          src="../../../../../../../assets/images/triangle-closed.png"
-          class="jd-expando-trigger-img" /></a>Known Indirect Subclasses
-
-  <div id="subclasses-indirect">
-      <div id="subclasses-indirect-list"
-              class="jd-inheritedlinks"
-              
-              >
-          
-            
-              <a href="../../../../../../com/ksyun/media/streamer/capture/audio/KSYAudioRecordES.html">KSYAudioRecordES</a>
-            
-          
-      </div>
-      <div id="subclasses-indirect-summary"
-              style="display: none;"
-              >
-  <table class="jd-sumtable-expando">
-        <tr class="alt-color api apilevel-" >
-              <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/KSYAudioRecordES.html">KSYAudioRecordES</a></td>
-              <td class="jd-descrcol" width="100%">capture audio using opensl es
-&nbsp;</td>
-          </tr>
-  </table>
-      </div>
-  </div>
-</td></tr></table>
-
 
 <div class="jd-descr">
 
 
 <h2>Class Overview</h2>
-<p>Created by zanxiaofei on 16/8/29.
+<p>Base class of audio record.
 </p>
 
 
@@ -381,43 +326,6 @@ Summary:
 
 
 
-<!-- =========== ENUM CONSTANT SUMMARY =========== -->
-<table id="constants" class="jd-sumtable"><tr><th colspan="12">Constants</th></tr>
-
-
-    
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/IKSYAudioRecord.html#AUDIO_ILLEGAL_STATE">AUDIO_ILLEGAL_STATE</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/IKSYAudioRecord.html#AUDIO_START_FAILED">AUDIO_START_FAILED</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/IKSYAudioRecord.html#AUDIO_STOP_FAILED">AUDIO_STOP_FAILED</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/IKSYAudioRecord.html#AUDIO_SUCESS">AUDIO_SUCESS</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-
-</table>
-
-
 
 
 
@@ -445,64 +353,16 @@ Summary:
             
             
             
-            int
+            long
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/IKSYAudioRecord.html#getRecordingState()">getRecordingState</a></span>()
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/IKSYAudioRecord.html#getNativeModule()">getNativeModule</a></span>()
         
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            abstract
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/IKSYAudioRecord.html#getSampleRate()">getSampleRate</a></span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            abstract
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/IKSYAudioRecord.html#getState()">getState</a></span>()
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            abstract
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/IKSYAudioRecord.html#read(short[], int, int)">read</a></span>(short[] buffer, int offset, int sizeInShort)
-        
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             abstract
             
@@ -518,6 +378,22 @@ Summary:
 
 
 	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/IKSYAudioRecord.html#release()">release</a></span>()
+        
+  </td></tr>
+
+
+	 
     <tr class=" api apilevel-" >
         <td class="jd-typecol">
             abstract
@@ -525,10 +401,10 @@ Summary:
             
             
             
-            int
+            void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/IKSYAudioRecord.html#release()">release</a></span>()
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/capture/audio/IKSYAudioRecord.html#setEnableLatencyTest(boolean)">setEnableLatencyTest</a></span>(boolean enable)
         
   </td></tr>
 
@@ -594,173 +470,6 @@ Summary:
 <!-- Constants -->
 
 
-<!-- ========= ENUM CONSTANTS DETAIL ======== -->
-<h2>Constants</h2>
-
-
-
-
-<a id="AUDIO_ILLEGAL_STATE"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-        final 
-        int
-      </span>
-        AUDIO_ILLEGAL_STATE
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-        <div class="jd-tagdata">
-        <span class="jd-tagtitle">Constant Value: </span>
-        <span>
-            
-                -1
-                (0xffffffff)
-            
-        </span>
-        </div>
-    
-    </div>
-</div>
-
-
-
-<a id="AUDIO_START_FAILED"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-        final 
-        int
-      </span>
-        AUDIO_START_FAILED
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-        <div class="jd-tagdata">
-        <span class="jd-tagtitle">Constant Value: </span>
-        <span>
-            
-                -2
-                (0xfffffffe)
-            
-        </span>
-        </div>
-    
-    </div>
-</div>
-
-
-
-<a id="AUDIO_STOP_FAILED"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-        final 
-        int
-      </span>
-        AUDIO_STOP_FAILED
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-        <div class="jd-tagdata">
-        <span class="jd-tagtitle">Constant Value: </span>
-        <span>
-            
-                -3
-                (0xfffffffd)
-            
-        </span>
-        </div>
-    
-    </div>
-</div>
-
-
-
-<a id="AUDIO_SUCESS"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-        final 
-        int
-      </span>
-        AUDIO_SUCESS
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-        <div class="jd-tagdata">
-        <span class="jd-tagtitle">Constant Value: </span>
-        <span>
-            
-                0
-                (0x00000000)
-            
-        </span>
-        </div>
-    
-    </div>
-</div>
-
-
-
-
 <!-- Fields -->
 
 
@@ -780,7 +489,7 @@ Summary:
 
 
 
-<a id="getRecordingState()"></a>
+<a id="getNativeModule()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -790,103 +499,10 @@ Summary:
          
         abstract 
          
-        int
+        long
       </span>
-      <span class="sympad">getRecordingState</span>
+      <span class="sympad">getNativeModule</span>
       <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<a id="getSampleRate()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-        abstract 
-         
-        int
-      </span>
-      <span class="sympad">getSampleRate</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<a id="getState()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-        abstract 
-         
-        int
-      </span>
-      <span class="sympad">getState</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<a id="read(short[], int, int)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-        abstract 
-         
-        int
-      </span>
-      <span class="sympad">read</span>
-      <span class="normal">(short[] buffer, int offset, int sizeInShort)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -945,10 +561,41 @@ Summary:
          
         abstract 
          
-        int
+        void
       </span>
       <span class="sympad">release</span>
       <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="setEnableLatencyTest(boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+        abstract 
+         
+        void
+      </span>
+      <span class="sympad">setEnableLatencyTest</span>
+      <span class="normal">(boolean enable)</span>
     </h4>
       <div class="api-level">
         <div>
