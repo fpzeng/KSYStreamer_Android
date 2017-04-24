@@ -25,9 +25,9 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] https://github.com/ksvc/KSYStreamer_Android/wiki/AutoFocus&Zoom[支持触摸对焦（手动对焦）及测光]
 * [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/AutoFocus&Zoom[支持变焦功能] (new)**
 * [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/Video_Filter_Inner[内置美颜功能] (性能大幅提升，软硬编下均有效)**
-* [x] **自定义美颜滤镜 (软硬编下均有效)**
-* [x] 内置美声
-* [x] **自定义音频滤镜 (new)**
+* [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/Video_Filter[自定义美颜滤镜] (软硬编下均有效)**
+* [x] https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Filter[内置美声]
+* [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Filter[自定义音频滤镜] (new)**
 * [x] https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Mixer[背景音乐功能], 支持 https://github.com/ksvc/KSYStreamer_Android/wiki/Ear_Mirror[耳返]
 * [x] https://github.com/ksvc/KSYStreamer_Android/wiki/WaterMark[支持图片及时间戳水印]
 * [x] 开放KSYStreamer类的实现，开发者可自行组装各个模块 (new)
