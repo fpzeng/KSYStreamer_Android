@@ -186,19 +186,11 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html">KSYStreamer</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamerConfig.html">KSYStreamerConfig</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamerConfig.Builder.html">KSYStreamerConfig.Builder</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/kit/RecorderConstants.html">RecorderConstants</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/kit/StreamerConstants.html">StreamerConstants</a></li>
       </ul>
     </li>
               
               
-    <li><h2>Enums</h2>
-      <ul>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamerConfig.ENCODE_METHOD.html">KSYStreamerConfig.ENCODE_METHOD</a></li>
-      </ul>
-    </li>
               
               
             </ul><br/>
@@ -683,7 +675,7 @@ Summary:
           
           
           boolean</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#mIsFileRecording">mIsFileRecording</a></td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#mIsEnableAudioPreview">mIsEnableAudioPreview</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -694,12 +686,23 @@ Summary:
           
           
           boolean</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#mIsRecording">mIsRecording</a></td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#mIsFileRecording">mIsFileRecording</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
     
       <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          boolean</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#mIsRecording">mIsRecording</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -710,7 +713,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -721,7 +724,7 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -732,7 +735,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -1028,27 +1031,6 @@ Summary:
             
             
             
-            <a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamerConfig.html">KSYStreamerConfig</a>
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#getConfig()">getConfig</a></span>()
-        
-        <div class="jd-descrdiv">
-      <em>
-  This method is deprecated.
-      No replacement.</em></div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
             int
         </td>
         <td class="jd-linkcol" width="100%">
@@ -1060,7 +1042,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1082,7 +1064,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1100,7 +1082,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1118,7 +1100,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1131,6 +1113,24 @@ Summary:
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#getDroppedFrameCount()">getDroppedFrameCount</a></span>()
         
         <div class="jd-descrdiv">Get dropped frame number.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#getEnableAudioLowDelay()">getEnableAudioLowDelay</a></span>()
+        
+        <div class="jd-descrdiv">Get if audio low delay feature enabled.</div>
   
   </td></tr>
 
@@ -1159,6 +1159,24 @@ Summary:
             
             
             
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#getEnableRepeatLastFrame()">getEnableRepeatLastFrame</a></span>()
+        
+        <div class="jd-descrdiv">Get if repeat last video frame while streaming in background enabled.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             long
         </td>
         <td class="jd-linkcol" width="100%">
@@ -1170,7 +1188,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1188,7 +1206,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1206,7 +1224,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1224,7 +1242,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1242,7 +1260,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1260,7 +1278,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1278,7 +1296,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1296,7 +1314,39 @@ Summary:
 
 
 	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.OnErrorListener.html">KSYStreamer.OnErrorListener</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#getOnErrorListener()">getOnErrorListener</a></span>()
+        
+  </td></tr>
+
+
+	 
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.OnInfoListener.html">KSYStreamer.OnInfoListener</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#getOnInfoListener()">getOnInfoListener</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1314,7 +1364,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1332,7 +1382,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1350,7 +1400,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1368,7 +1418,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1386,7 +1436,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1404,7 +1454,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1422,7 +1472,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1440,7 +1490,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1458,7 +1508,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1476,7 +1526,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1494,7 +1544,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1512,7 +1562,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1530,7 +1580,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1548,7 +1598,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1566,7 +1616,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1584,7 +1634,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1602,7 +1652,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1620,7 +1670,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1638,7 +1688,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1656,7 +1706,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1674,7 +1724,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1692,7 +1742,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1710,7 +1760,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1728,7 +1778,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1744,7 +1794,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1762,7 +1812,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1780,7 +1830,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1798,7 +1848,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1816,7 +1866,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1834,7 +1884,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1852,7 +1902,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1870,7 +1920,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1888,7 +1938,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1906,7 +1956,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1924,7 +1974,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1942,7 +1992,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1960,7 +2010,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1978,7 +2028,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1996,7 +2046,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2014,7 +2064,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2027,29 +2077,6 @@ Summary:
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#setAudioSampleRate(int)">setAudioSampleRate</a></span>(int sampleRate)
         
         <div class="jd-descrdiv">Set audio sample rate while streaming.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#setBeautyFilter(int)">setBeautyFilter</a></span>(int beautyFilter)
-        
-        <div class="jd-descrdiv">
-      <em>
-  This method is deprecated.
-      Use <code><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#getImgTexFilterMgt()">getImgTexFilterMgt()</a></code> and
- <code><a href="../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterMgt.html#setFilter(com.ksyun.media.streamer.util.gles.GLRender, int)">setFilter(GLRender, int)</a></code> instead.
-</em></div>
   
   </td></tr>
 
@@ -2083,12 +2110,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#setConfig(com.ksyun.media.streamer.kit.KSYStreamerConfig)">setConfig</a></span>(<a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamerConfig.html">KSYStreamerConfig</a> config)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#setDisplayPreview(GLSurfaceView)">setDisplayPreview</a></span>(GLSurfaceView surfaceView)
         
-        <div class="jd-descrdiv">
-      <em>
-  This method is deprecated.
-      No replacement.</em></div>
+        <div class="jd-descrdiv">Set GLSurfaceView as camera previewer.</div>
   
   </td></tr>
 
@@ -2104,9 +2128,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#setDisplayPreview(GLSurfaceView)">setDisplayPreview</a></span>(GLSurfaceView surfaceView)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#setDisplayPreview(TextureView)">setDisplayPreview</a></span>(TextureView textureView)
         
-        <div class="jd-descrdiv">Set GLSurfaceView as camera previewer.</div>
+        <div class="jd-descrdiv">Set TextureView as camera previewer.</div>
   
   </td></tr>
 
@@ -2122,9 +2146,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#setDisplayPreview(TextureView)">setDisplayPreview</a></span>(TextureView textureView)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#setEnableAudioLowDelay(boolean)">setEnableAudioLowDelay</a></span>(boolean enable)
         
-        <div class="jd-descrdiv">Set TextureView as camera previewer.</div>
+        <div class="jd-descrdiv">Enable audio low delay feature.</div>
   
   </td></tr>
 
@@ -2256,6 +2280,24 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#setEnableRepeatLastFrame(boolean)">setEnableRepeatLastFrame</a></span>(boolean enable)
+        
+        <div class="jd-descrdiv">Set if repeat last video frame while streaming in background.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#setEnableStreamStatModule(boolean)">setEnableStreamStatModule</a></span>(boolean enableStreamStatModule)
         
         <div class="jd-descrdiv">Set if enable stat info upstreaming.</div>
@@ -2264,7 +2306,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2282,7 +2324,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2300,7 +2342,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2322,7 +2364,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2340,7 +2382,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2358,7 +2400,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2376,7 +2418,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2400,7 +2442,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2418,7 +2460,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2436,7 +2478,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2454,7 +2496,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2478,7 +2520,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2496,7 +2538,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2514,7 +2556,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2532,7 +2574,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2550,7 +2592,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2568,7 +2610,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2586,7 +2628,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2604,7 +2646,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2622,7 +2664,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2641,7 +2683,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2659,7 +2701,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2677,7 +2719,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2695,7 +2737,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2713,7 +2755,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2731,7 +2773,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2749,7 +2791,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2767,7 +2809,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2785,7 +2827,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2798,6 +2840,24 @@ Summary:
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#setVoiceVolume(float)">setVoiceVolume</a></span>(float volume)
         
         <div class="jd-descrdiv">Set mic volume.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#showWaterMarkLogo(Bitmap, float, float, float, float, float)">showWaterMarkLogo</a></span>(Bitmap bitmap, float x, float y, float w, float h, float alpha)
+        
+        <div class="jd-descrdiv">Show watermark logo both on preview and stream.</div>
   
   </td></tr>
 
@@ -2904,35 +2964,13 @@ Summary:
             boolean
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#startMixMusic(java.lang.String, boolean)">startMixMusic</a></span>(String path, boolean loop)
-        
-        <div class="jd-descrdiv">
-      <em>
-  This method is deprecated.
-      Use <code><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#startBgm(java.lang.String, boolean)">startBgm(String, boolean)</a></code> instead.
-</em></div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            boolean
-        </td>
-        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#startRecord(java.lang.String)">startRecord</a></span>(String recordUrl)
         
   </td></tr>
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2950,7 +2988,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2968,7 +3006,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2981,28 +3019,6 @@ Summary:
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#stopCameraPreview()">stopCameraPreview</a></span>()
         
         <div class="jd-descrdiv">Stop camera preview.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            boolean
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#stopMixMusic()">stopMixMusic</a></span>()
-        
-        <div class="jd-descrdiv">
-      <em>
-  This method is deprecated.
-      Use <code><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#stopBgm()">stopBgm()</a></code> instead.
-</em></div>
   
   </td></tr>
 
@@ -4160,6 +4176,36 @@ From class
 
 
 
+<a id="mIsEnableAudioPreview"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        boolean
+      </span>
+        mIsEnableAudioPreview
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <a id="mIsFileRecording"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -4876,45 +4922,6 @@ From class
 </div>
 
 
-<a id="getConfig()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        <a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamerConfig.html">KSYStreamerConfig</a>
-      </span>
-      <span class="sympad">getConfig</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      <p>
-  <p class="caution">
-      <strong>
-  This method is deprecated.</strong><br/> No replacement.
-  </p>
-  <div class="jd-tagdata jd-tagdescr"><p>Get KSYStreamerConfig instance previous set by setConfig.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>KSYStreamerConfig instance or null.</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
 <a id="getConnectTime()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -5120,6 +5127,42 @@ From class
 </div>
 
 
+<a id="getEnableAudioLowDelay()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">getEnableAudioLowDelay</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get if audio low delay feature enabled.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>true if enabled, false if disabled.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="getEnableAutoRestart()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -5146,6 +5189,42 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getEnableRepeatLastFrame()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">getEnableRepeatLastFrame</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get if repeat last video frame while streaming in background enabled.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>true if enabled, false if disabled
+</li></ul>
+  </div>
 
     </div>
 </div>
@@ -5438,6 +5517,68 @@ From class
       <ul class="nolist"><li>min video bit rate
 </li></ul>
   </div>
+
+    </div>
+</div>
+
+
+<a id="getOnErrorListener()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.OnErrorListener.html">KSYStreamer.OnErrorListener</a>
+      </span>
+      <span class="sympad">getOnErrorListener</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getOnInfoListener()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.OnInfoListener.html">KSYStreamer.OnInfoListener</a>
+      </span>
+      <span class="sympad">getOnInfoListener</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
@@ -6095,7 +6236,7 @@ From class
   <div class="jd-tagdata jd-tagdescr"><p>get mic volume</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>volume in 0~1.0f.
+      <ul class="nolist"><li>volume in 0~1.0f, also could be greater than 1.0.
 </li></ul>
   </div>
 
@@ -6813,6 +6954,10 @@ From class
             <td>IllegalStateException</td>
         </tr>  
         <tr>
+            <th>IllegalArgumentException</td>
+            <td></td>
+        </tr>  
+        <tr>
             <th>IllegalStateException</td>
             <td></td>
         </tr>
@@ -7018,43 +7163,6 @@ From class
 </div>
 
 
-<a id="setBeautyFilter(int)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setBeautyFilter</span>
-      <span class="normal">(int beautyFilter)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      <p>
-  <p class="caution">
-      <strong>
-  This method is deprecated.</strong><br/> Use <code><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#getImgTexFilterMgt()">getImgTexFilterMgt()</a></code> and
- <code><a href="../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterMgt.html#setFilter(com.ksyun.media.streamer.util.gles.GLRender, int)">setFilter(GLRender, int)</a></code> instead.
-
-  </p>
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
 <a id="setCameraFacing(int)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -7096,50 +7204,6 @@ From class
       <h5 class="jd-tagtitle">See Also</h5>
       <ul class="nolist"><li><code><a href="../../../../../com/ksyun/media/streamer/capture/CameraCapture.html#FACING_FRONT">FACING_FRONT</a></code></li><li><code><a href="../../../../../com/ksyun/media/streamer/capture/CameraCapture.html#FACING_BACK">FACING_BACK</a></code></li>
       </ul>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="setConfig(com.ksyun.media.streamer.kit.KSYStreamerConfig)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setConfig</span>
-      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamerConfig.html">KSYStreamerConfig</a> config)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      <p>
-  <p class="caution">
-      <strong>
-  This method is deprecated.</strong><br/> No replacement.
-  </p>
-  <div class="jd-tagdata jd-tagdescr"><p>Set params to KSYStreamer with <code><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamerConfig.html">KSYStreamerConfig</a></code>.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>config</th>
-          <td>streamer params</td>
-        </tr>
-      </table>
   </div>
 
     </div>
@@ -7230,6 +7294,47 @@ From class
 </div>
 
 
+<a id="setEnableAudioLowDelay(boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setEnableAudioLowDelay</span>
+      <span class="normal">(boolean enable)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Enable audio low delay feature.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>enable</th>
+          <td>true to enable, false to disable
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="setEnableAudioMix(boolean)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -7297,14 +7402,14 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Set if start audio preview.<br/>
- true: strart success only when headset plugged.
- get value using @see KSYStreamer#isAudioPreviewing()</p></div>
+ While enabled, audio preview will only start after headset plugged,
+ and will be automatically stopped after headset unplugged.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
           <th>enable</th>
-          <td>true to start, false to stop.
+          <td>true to enable, false to disable.
 </td>
         </tr>
       </table>
@@ -7491,6 +7596,48 @@ From class
 </div>
 
 
+<a id="setEnableRepeatLastFrame(boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setEnableRepeatLastFrame</span>
+      <span class="normal">(boolean enable)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Set if repeat last video frame while streaming in background.<br/>
+ Enabled by default.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>enable</th>
+          <td>true to enable, false to disable
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="setEnableStreamStatModule(boolean)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -7575,6 +7722,10 @@ From class
         <tr>
             <th></td>
             <td>IllegalStateException</td>
+        </tr>  
+        <tr>
+            <th>IllegalArgumentException</td>
+            <td></td>
         </tr>  
         <tr>
             <th>IllegalStateException</td>
@@ -7806,16 +7957,8 @@ From class
         </tr>
         <tr>
           <th>height</th>
-          <td>offscreen height</td>
-        </tr>
-      </table>
-  </div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Throws</h5>
-      <table class="jd-tagtable">  
-        <tr>
-            <th>IllegalArgumentException</td>
-            <td></td>
+          <td>offscreen height
+</td>
         </tr>
       </table>
   </div>
@@ -8274,8 +8417,7 @@ From class
       
   <div class="jd-tagdata jd-tagdescr"><p>Set streaming fps.<br/>
  <p>
- The set fps would take effect on next
- <code><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#startStream()">startStream()</a></code> call.<br/>
+ The set fps would take effect immediately if streaming started.<br/>
  <p>
  If actual preview fps is larger than set value,
  the extra frames will be dropped before encoding,
@@ -8331,8 +8473,7 @@ From class
       
   <div class="jd-tagdata jd-tagdescr"><p>Set streaming resolution index.<br/>
  <p>
- The set resolution would take effect on next
- <code><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#startStream()">startStream()</a></code> call.</p></div>
+ The set resolution would take effect immediately if streaming started.<br/></p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
@@ -8392,8 +8533,7 @@ From class
       
   <div class="jd-tagdata jd-tagdescr"><p>Set streaming resolution.<br/>
  <p>
- The set resolution would take effect on next
- <code><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#startStream()">startStream()</a></code> call.<br/>
+ The set resolution would take effect immediately if streaming started.<br/>
  <p>
  The set width and height must not be 0 at same time.
  If one of the params is 0, the other would calculated by the actual preview view size
@@ -8663,6 +8803,15 @@ From class
       </table>
   </div>
   <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>IllegalArgumentException</td>
+            <td></td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
       <h5 class="jd-tagtitle">See Also</h5>
       <ul class="nolist"><li><code><a href="../../../../../com/ksyun/media/streamer/framework/AVConst.html#CODEC_ID_AVC">CODEC_ID_AVC</a></code></li><li><code><a href="../../../../../com/ksyun/media/streamer/framework/AVConst.html#CODEC_ID_HEVC">CODEC_ID_HEVC</a></code></li>
       </ul>
@@ -8714,6 +8863,10 @@ From class
         <tr>
             <th></td>
             <td>IllegalStateException</td>
+        </tr>  
+        <tr>
+            <th>IllegalArgumentException</td>
+            <td></td>
         </tr>  
         <tr>
             <th>IllegalStateException</td>
@@ -8966,7 +9119,70 @@ From class
       <table class="jd-tagtable">
         <tr>
           <th>volume</th>
-          <td>volume in 0~1.0f.
+          <td>volume in 0~1.0f, greater than 1.0f also acceptable.
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="showWaterMarkLogo(Bitmap, float, float, float, float, float)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">showWaterMarkLogo</span>
+      <span class="normal">(Bitmap bitmap, float x, float y, float w, float h, float alpha)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Show watermark logo both on preview and stream.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>bitmap</th>
+          <td>logo bitmap, should not be recycled by caller</td>
+        </tr>
+        <tr>
+          <th>x</th>
+          <td>x position for left top of logo relative to the video, between 0~1.0.</td>
+        </tr>
+        <tr>
+          <th>y</th>
+          <td>y position for left top of logo relative to the video, between 0~1.0.</td>
+        </tr>
+        <tr>
+          <th>w</th>
+          <td>width of logo relative to the video, between 0~1.0, if set to 0,
+               width would be calculated by h and logo image radio.</td>
+        </tr>
+        <tr>
+          <th>h</th>
+          <td>height of logo relative to the video, between 0~1.0, if set to 0,
+               height would be calculated by w and logo image radio.</td>
+        </tr>
+        <tr>
+          <th>alpha</th>
+          <td>alpha value，between 0~1.0
 </td>
         </tr>
       </table>
@@ -9222,42 +9438,6 @@ From class
 </div>
 
 
-<a id="startMixMusic(java.lang.String, boolean)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        boolean
-      </span>
-      <span class="sympad">startMixMusic</span>
-      <span class="normal">(String path, boolean loop)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      <p>
-  <p class="caution">
-      <strong>
-  This method is deprecated.</strong><br/> Use <code><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#startBgm(java.lang.String, boolean)">startBgm(String, boolean)</a></code> instead.
-
-  </p>
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
 <a id="startRecord(java.lang.String)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -9387,42 +9567,6 @@ From class
       
   <div class="jd-tagdata jd-tagdescr"><p>Stop camera preview.
 </p></div>
-
-    </div>
-</div>
-
-
-<a id="stopMixMusic()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        boolean
-      </span>
-      <span class="sympad">stopMixMusic</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      <p>
-  <p class="caution">
-      <strong>
-  This method is deprecated.</strong><br/> Use <code><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#stopBgm()">stopBgm()</a></code> instead.
-
-  </p>
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>

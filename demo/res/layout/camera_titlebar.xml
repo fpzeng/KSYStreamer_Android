@@ -34,4 +34,12 @@
         android:background="@drawable/recorder_flash_icon" >
     </ImageView>
 
+    <ImageView
+        android:id="@+id/add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_toLeftOf="@id/flash"
+        android:background="@drawable/recorder_add_icon"/>
+
 </RelativeLayout>

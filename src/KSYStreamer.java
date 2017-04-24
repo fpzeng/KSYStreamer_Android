@@ -1,12 +1,12 @@
 package com.ksyun.media.streamer.kit;
 
-import android.bluetooth.BluetoothA2dp;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothHeadset;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.opengl.GLSurfaceView;
 import android.os.Handler;
@@ -16,11 +16,9 @@ import android.util.Log;
 import android.view.TextureView;
 
 import com.ksyun.media.streamer.capture.AudioCapture;
-import com.ksyun.media.streamer.capture.AudioDummyCapture;
 import com.ksyun.media.streamer.capture.AudioPlayerCapture;
 import com.ksyun.media.streamer.capture.CameraCapture;
 import com.ksyun.media.streamer.capture.WaterMarkCapture;
-import com.ksyun.media.streamer.capture.audio.AudioRecordParams;
 import com.ksyun.media.streamer.encoder.AVCodecAudioEncoder;
 import com.ksyun.media.streamer.encoder.AudioEncodeFormat;
 import com.ksyun.media.streamer.encoder.AudioEncoderMgt;
@@ -86,7 +84,7 @@ public class KSYStreamer {
     private int mMinVideoBitrate = 200 * 1000;
     private boolean mAutoAdjustVideoBitrate = true;
     private int mAudioBitrate = 48 * 1000;
-    protected int mAudioSampleRate = 44100;
+    protected int mAudioSampleRate = 0; // for KSYRtcStreamer
     protected int mAudioChannels = 1;
     protected int mAudioProfile = AVConst.PROFILE_AAC_HE;
 
@@ -99,17 +97,17 @@ public class KSYStreamer {
     private boolean mIsCaptureStarted = false;
     private boolean mIsAudioOnly = false;
     protected boolean mIsAudioPreviewing = false;
+    protected boolean mIsEnableAudioPreview = false;
     private boolean mDelayedStartCameraPreview = false;
     private boolean mEnableDebugLog = false;
     private boolean mEnableAudioMix = false;
+    private boolean mEnableRepeatLastFrame = true;
     private boolean mUseDummyAudioCapture = false;
+    private boolean mEnableAudioLowDelay = false;
     private boolean mAutoRestart = false;
     private int mAutoRestartInterval = 3000;
 
     private AtomicInteger mAudioUsingCount;
-
-    // compat members
-    private KSYStreamerConfig mConfig;
 
     private OnInfoListener mOnInfoListener;
     private OnErrorListener mOnErrorListener;
@@ -121,7 +119,6 @@ public class KSYStreamer {
     protected ImgTexMixer mImgTexMixer;
     protected ImgTexFilterMgt mImgTexFilterMgt;
     protected AudioCapture mAudioCapture;
-    private AudioDummyCapture mAudioDummyCapture;
     private VideoEncoderMgt mVideoEncoderMgt;
     private AudioEncoderMgt mAudioEncoderMgt;
     private RtmpPublisher mRtmpPublisher;
@@ -150,44 +147,6 @@ public class KSYStreamer {
         initModules();
     }
 
-    /**
-     * Set params to KSYStreamer with {@link KSYStreamerConfig}.
-     *
-     * @param config streamer params
-     * @deprecated
-     */
-    @Deprecated
-    public void setConfig(KSYStreamerConfig config) {
-        if (config == null || mContext == null) {
-            throw new IllegalStateException("method invoking failed " +
-                    "context == null or config == null!");
-        }
-
-        mConfig = config;
-        setUrl(config.getUrl());
-        setPreviewResolution(config.getVideoResolution());
-        setTargetResolution(config.getVideoResolution());
-        setPreviewFps(config.getFrameRate());
-        setTargetFps(config.getFrameRate());
-        setIFrameInterval(config.getIFrameIntervalSec());
-        setRotateDegrees(config.getDefaultLandscape() ? 90 : 0);
-        if (config.isAutoAdjustBitrate()) {
-            setVideoBitrate(config.getInitAverageVideoBitrate() * 1000,
-                    config.getMaxAverageVideoBitrate() * 1000,
-                    config.getMinAverageVideoBitrate() * 1000);
-        } else {
-            setVideoBitrate(config.getInitAverageVideoBitrate() * 1000);
-        }
-        setAudioSampleRate(config.getAudioSampleRate());
-        setAudioChannels(config.getAudioChannels());
-        setAudioBitrate(config.getAudioBitrate() * 1000);
-        setEncodeMethod(config.getEncodeMethod());
-        setFrontCameraMirror(config.isFrontCameraMirror());
-        setEnableStreamStatModule(config.isEnableStreamStatModule());
-        setCameraFacing(config.getDefaultFrontCamera() ?
-                CameraCapture.FACING_FRONT : CameraCapture.FACING_BACK);
-    }
-
     protected void initModules() {
         // Init GLRender for gpu render
         mGLRender = new GLRender();
@@ -209,22 +168,27 @@ public class KSYStreamer {
 
         // Audio preview
         mAudioPlayerCapture = new AudioPlayerCapture(mContext);
-        AudioRecordParams params = new AudioRecordParams(mAudioSampleRate);
-        mAudioCapture = new AudioCapture(params);
-        mAudioDummyCapture = new AudioDummyCapture();
+        mAudioCapture = new AudioCapture(mContext);
         mAudioCapture.setAudioCaptureType(mAudioCaptureType);
-        mAudioResampleFilter = new AudioResampleFilter();
+
+        // TODO: for RTC, remove this after rtc lib updated
+        if (mAudioSampleRate != 0) {
+            mAudioCapture.setSampleRate(mAudioSampleRate);
+        }
+        mAudioSampleRate = 44100;
+        ////
+
         mAudioFilterMgt = new AudioFilterMgt();
+        mAudioPreview = new AudioPreview(mContext);
         mAudioMixer = new AudioMixer();
-        mAudioPreview = new AudioPreview();
-        mAudioCapture.mAudioBufSrcPin.connect(mAudioResampleFilter.getSinkPin());
-        mAudioDummyCapture.getSrcPin().connect(mAudioResampleFilter.getSinkPin());
-        mAudioResampleFilter.getSrcPin().connect(mAudioFilterMgt.getSinkPin());
-        mAudioFilterMgt.getSrcPin().connect(mAudioMixer.getSinkPin(mIdxAudioMic));
+        mAudioResampleFilter = new AudioResampleFilter();
+        mAudioCapture.getSrcPin().connect(mAudioFilterMgt.getSinkPin());
+        mAudioFilterMgt.getSrcPin().connect(mAudioPreview.getSinkPin());
+        mAudioPreview.getSrcPin().connect(mAudioMixer.getSinkPin(mIdxAudioMic));
         if (mEnableAudioMix) {
             mAudioPlayerCapture.mSrcPin.connect(mAudioMixer.getSinkPin(mIdxAudioBgm));
         }
-        mAudioMixer.getSrcPin().connect(mAudioPreview.mSinkPin);
+        mAudioMixer.getSrcPin().connect(mAudioResampleFilter.getSinkPin());
 
         // encoder
         mVideoEncoderMgt = new VideoEncoderMgt(mGLRender);
@@ -233,7 +197,7 @@ public class KSYStreamer {
         mWaterMarkCapture.mTimeBufSrcPin.connect(mVideoEncoderMgt.getImgBufMixer().getSinkPin(mIdxWmTime));
         mImgTexMixer.getSrcPin().connect(mVideoEncoderMgt.getImgTexSinkPin());
         mCameraCapture.mImgBufSrcPin.connect(mVideoEncoderMgt.getImgBufSinkPin());
-        mAudioMixer.getSrcPin().connect(mAudioEncoderMgt.getSinkPin());
+        mAudioResampleFilter.getSrcPin().connect(mAudioEncoderMgt.getSinkPin());
 
         // publisher
         mRtmpPublisher = new RtmpPublisher();
@@ -664,11 +628,11 @@ public class KSYStreamer {
      *
      * @param width  offscreen width
      * @param height offscreen height
-     * @throws IllegalArgumentException
      */
-    public void setOffscreenPreview(int width, int height) throws IllegalArgumentException {
+    public void setOffscreenPreview(int width, int height) {
         if (width <= 0 || height <= 0) {
-            throw new IllegalArgumentException("Invalid offscreen resolution");
+            Log.e(TAG, "Invalid offscreen resolution " + width + "x" + height);
+            return;
         }
         mGLRender.init(width, height);
         mGLRender.addListener(mGLRenderListener);
@@ -860,7 +824,10 @@ public class KSYStreamer {
      * @see StreamerConstants#ENCODE_METHOD_SOFTWARE_COMPAT
      * @see StreamerConstants#ENCODE_METHOD_HARDWARE
      */
-    public void setEncodeMethod(int encodeMethod) throws IllegalStateException {
+    public void setEncodeMethod(int encodeMethod) throws IllegalStateException, IllegalArgumentException {
+        if (!isVaildEncodeMethod(encodeMethod)) {
+            throw new IllegalArgumentException();
+        }
         setVideoEncodeMethod(encodeMethod);
         setAudioEncodeMethod(encodeMethod);
     }
@@ -875,7 +842,11 @@ public class KSYStreamer {
      * @see StreamerConstants#ENCODE_METHOD_SOFTWARE_COMPAT
      * @see StreamerConstants#ENCODE_METHOD_HARDWARE
      */
-    public void setVideoEncodeMethod(int encodeMethod) throws IllegalStateException {
+    public void setVideoEncodeMethod(int encodeMethod) throws IllegalStateException, IllegalArgumentException {
+        if (!isVaildEncodeMethod(encodeMethod)) {
+            throw new IllegalArgumentException();
+        }
+
         if (mIsRecording) {
             throw new IllegalStateException("Cannot set encode method while recording");
         }
@@ -903,7 +874,11 @@ public class KSYStreamer {
      * @see StreamerConstants#ENCODE_METHOD_SOFTWARE
      * @see StreamerConstants#ENCODE_METHOD_HARDWARE
      */
-    public void setAudioEncodeMethod(int encodeMethod) throws IllegalStateException {
+    public void setAudioEncodeMethod(int encodeMethod) throws IllegalStateException, IllegalArgumentException  {
+        if (!isVaildEncodeMethod(encodeMethod)) {
+            throw new IllegalArgumentException();
+        }
+
         if (mIsRecording) {
             throw new IllegalStateException("Cannot set encode method while recording");
         }
@@ -921,11 +896,19 @@ public class KSYStreamer {
         return mAudioEncoderMgt.getEncodeMethod();
     }
 
+    private boolean isVaildEncodeMethod(int encodeMethod) {
+        if (encodeMethod != StreamerConstants.ENCODE_METHOD_SOFTWARE &&
+                encodeMethod != StreamerConstants.ENCODE_METHOD_SOFTWARE_COMPAT &&
+                encodeMethod != StreamerConstants.ENCODE_METHOD_HARDWARE) {
+            return false;
+        }
+        return true;
+    }
+
     /**
      * Set streaming resolution.<br/>
      * <p>
-     * The set resolution would take effect on next
-     * {@link #startStream()} call.<br/>
+     * The set resolution would take effect immediately if streaming started.<br/>
      * <p>
      * The set width and height must not be 0 at same time.
      * If one of the params is 0, the other would calculated by the actual preview view size
@@ -952,8 +935,7 @@ public class KSYStreamer {
     /**
      * Set streaming resolution index.<br/>
      * <p>
-     * The set resolution would take effect on next
-     * {@link #startStream()} call.
+     * The set resolution would take effect immediately if streaming started.<br/>
      *
      * @param idx Resolution index.<br/>
      * @throws IllegalArgumentException
@@ -999,8 +981,7 @@ public class KSYStreamer {
     /**
      * Set streaming fps.<br/>
      * <p>
-     * The set fps would take effect on next
-     * {@link #startStream()} call.<br/>
+     * The set fps would take effect immediately if streaming started.<br/>
      * <p>
      * If actual preview fps is larger than set value,
      * the extra frames will be dropped before encoding,
@@ -1163,7 +1144,11 @@ public class KSYStreamer {
      * @see AVConst#CODEC_ID_AVC
      * @see AVConst#CODEC_ID_HEVC
      */
-    public void setVideoCodecId(int codecId) {
+    public void setVideoCodecId(int codecId) throws IllegalArgumentException{
+        if (codecId != AVConst.CODEC_ID_AVC &&
+                codecId != AVConst.CODEC_ID_HEVC) {
+            throw new IllegalArgumentException("input video codecid error");
+        }
         mVideoCodecId = codecId;
     }
 
@@ -1335,6 +1320,31 @@ public class KSYStreamer {
     }
 
     /**
+     * Enable audio low delay feature.
+     *
+     * @param enable true to enable, false to disable
+     */
+    public void setEnableAudioLowDelay(boolean enable) {
+        mEnableAudioLowDelay = enable;
+        if (!mUseDummyAudioCapture) {
+            mAudioCapture.setAudioCaptureType(enable ? AudioCapture.AUDIO_CAPTURE_TYPE_OPENSLES :
+                    AudioCapture.AUDIO_CAPTURE_TYPE_AUDIORECORDER);
+        }
+        mAudioPlayerCapture.setAudioPlayerType(enable ?
+                AudioPlayerCapture.AUDIO_PLAYER_TYPE_OPENSLES :
+                AudioPlayerCapture.AUDIO_PLAYER_TYPE_AUDIOTRACK);
+    }
+
+    /**
+     * Get if audio low delay feature enabled.
+     *
+     * @return true if enabled, false if disabled.
+     */
+    public boolean getEnableAudioLowDelay() {
+        return mEnableAudioLowDelay;
+    }
+
+    /**
      * Set enable front camera mirror or not while streaming.
      *
      * @param enableMirror true to enable, false to disable.
@@ -1493,6 +1503,9 @@ public class KSYStreamer {
         mWaterMarkCapture.setTargetSize(mTargetWidth, mTargetHeight);
         mCameraCapture.setOrientation(mRotateDegrees);
         mCameraCapture.setPreviewSize(mPreviewWidth, mPreviewHeight);
+        if (mPreviewFps == 0) {
+            mPreviewFps = CameraCapture.DEFAULT_PREVIEW_FPS;
+        }
         mCameraCapture.setPreviewFps(mPreviewFps);
 
         mImgTexScaleFilter.setTargetSize(mPreviewWidth, mPreviewHeight);
@@ -1506,6 +1519,9 @@ public class KSYStreamer {
         mImgTexMixer.setTargetSize(mTargetWidth, mTargetHeight);
         VideoEncodeFormat videoEncodeFormat = new VideoEncodeFormat(mVideoCodecId,
                 mTargetWidth, mTargetHeight, mInitVideoBitrate);
+        if (mTargetFps == 0) {
+            mTargetFps = CameraCapture.DEFAULT_PREVIEW_FPS;
+        }
         videoEncodeFormat.setFramerate(mTargetFps);
         videoEncodeFormat.setIframeinterval(mIFrameInterval);
         videoEncodeFormat.setScene(mEncodeScene);
@@ -1538,6 +1554,11 @@ public class KSYStreamer {
      * @return false if it's already streaming, true otherwise.
      */
     public boolean startStream() {
+        if (mScreenRenderWidth == 0 || mScreenRenderHeight == 0) {
+            Log.e(TAG, "startStream must be called after KSY_STREAMER_CAMERA_INIT_DONE " +
+                    "event received");
+            return false;
+        }
         if (mIsRecording) {
             return false;
         }
@@ -1548,6 +1569,11 @@ public class KSYStreamer {
     }
 
     public boolean startRecord(String recordUrl) {
+        if (mScreenRenderWidth == 0 || mScreenRenderHeight == 0) {
+            Log.e(TAG, "startRecord must be called after KSY_STREAMER_CAMERA_INIT_DONE " +
+                    "event received");
+            return false;
+        }
         if (mIsFileRecording) {
             return false;
         }
@@ -1573,13 +1599,7 @@ public class KSYStreamer {
         mIsCaptureStarted = true;
         setAudioParams();
         setRecordingParams();
-        if (!mUseDummyAudioCapture) {
-            if (mAudioCapture.mAudioBufSrcPin.isConnected()) {
-                startAudioCapture();
-            }
-        } else {
-            mAudioDummyCapture.start();
-        }
+        startAudioCapture();
         mCameraCapture.startRecord();
     }
 
@@ -1591,10 +1611,7 @@ public class KSYStreamer {
             return;
         }
         mIsCaptureStarted = false;
-        if (!mIsAudioPreviewing) {
-            stopAudioCapture();
-            mAudioDummyCapture.stop();
-        }
+        stopAudioCapture();
         if (mCameraCapture.isRecording()) {
             mCameraCapture.stopRecord();
         }
@@ -1668,16 +1685,31 @@ public class KSYStreamer {
     public void setUseDummyAudioCapture(boolean enable) {
         mUseDummyAudioCapture = enable;
         if (enable) {
-            if (mAudioCapture.isRecordingState()) {
-                mAudioCapture.stop();
-                mAudioDummyCapture.start();
-            }
+            mAudioCapture.setAudioCaptureType(AudioCapture.AUDIO_CAPTURE_TYPE_DUMMY);
         } else {
-            if (mAudioDummyCapture.isRecordingState()) {
-                mAudioDummyCapture.stop();
-                mAudioCapture.start();
-            }
+            mAudioCapture.setAudioCaptureType(mEnableAudioLowDelay ?
+                    AudioCapture.AUDIO_CAPTURE_TYPE_OPENSLES :
+                    AudioCapture.AUDIO_CAPTURE_TYPE_AUDIORECORDER);
         }
+    }
+
+    /**
+     * Set if repeat last video frame while streaming in background.<br/>
+     * Enabled by default.
+     *
+     * @param enable true to enable, false to disable
+     */
+    public void setEnableRepeatLastFrame(boolean enable) {
+        mEnableRepeatLastFrame = enable;
+    }
+
+    /**
+     * Get if repeat last video frame while streaming in background enabled.
+     *
+     * @return true if enabled, false if disabled
+     */
+    public boolean getEnableRepeatLastFrame() {
+        return mEnableRepeatLastFrame;
     }
 
     /**
@@ -1685,10 +1717,10 @@ public class KSYStreamer {
      */
     public void onResume() {
         Log.d(TAG, "onResume");
-        mGLRender.onResume();
-        if (mIsRecording && !mIsAudioOnly) {
+        if (mEnableRepeatLastFrame && mIsRecording && !mIsAudioOnly) {
             getVideoEncoderMgt().getEncoder().stopRepeatLastFrame();
         }
+        mGLRender.onResume();
     }
 
     /**
@@ -1697,7 +1729,7 @@ public class KSYStreamer {
     public void onPause() {
         Log.d(TAG, "onPause");
         mGLRender.onPause();
-        if (mIsRecording && !mIsAudioOnly) {
+        if (mEnableRepeatLastFrame && mIsRecording && !mIsAudioOnly) {
             getVideoEncoderMgt().getEncoder().startRepeatLastFrame();
         }
     }
@@ -1864,33 +1896,12 @@ public class KSYStreamer {
     }
 
     /**
-     * @deprecated Use {@link #startBgm(String, boolean)} instead.
-     */
-    @Deprecated
-    public boolean startMixMusic(String path, boolean loop) {
-        startBgm(path, loop);
-        return true;
-    }
-
-    /**
-     * @deprecated Use {@link #stopBgm()} instead.
-     */
-    @Deprecated
-    public boolean stopMixMusic() {
-        stopBgm();
-        return true;
-    }
-
-    /**
      * Start bgm play.
      *
      * @param path bgm path.
      * @param loop true if loop this music, false if not.
      */
     public void startBgm(String path, boolean loop) {
-        if (mIsAudioPreviewing) {
-            mAudioPlayerCapture.setMute(true);
-        }
         mAudioPlayerCapture.start(path, loop);
     }
 
@@ -1938,7 +1949,7 @@ public class KSYStreamer {
     /**
      * Set mic volume.
      *
-     * @param volume volume in 0~1.0f.
+     * @param volume volume in 0~1.0f, greater than 1.0f also acceptable.
      */
     public void setVoiceVolume(float volume) {
         mAudioMixer.setInputVolume(mIdxAudioMic, volume);
@@ -1947,21 +1958,10 @@ public class KSYStreamer {
     /**
      * get mic volume
      *
-     * @return volume in 0~1.0f.
+     * @return volume in 0~1.0f, also could be greater than 1.0.
      */
     public float getVoiceVolume() {
         return mAudioMixer.getInputVolume(mIdxAudioMic);
-    }
-
-    /**
-     * @deprecated Use {@link #getImgTexFilterMgt()} and
-     * {@link ImgTexFilterMgt#setFilter(GLRender, int)} instead.
-     */
-    @Deprecated
-    public void setBeautyFilter(int beautyFilter) {
-        mImgTexFilterMgt.setFilter(mGLRender, beautyFilter);
-        mVideoEncoderMgt.setEnableImgBufBeauty(
-                beautyFilter != RecorderConstants.FILTER_BEAUTY_DISABLE);
     }
 
     /**
@@ -1983,9 +1983,8 @@ public class KSYStreamer {
      * @param isMute true to mute, false to unmute.
      */
     public void setMuteAudio(boolean isMute) {
-        if (!mIsAudioPreviewing) {
-            mAudioPlayerCapture.setMute(isMute);
-        }
+        mAudioPlayerCapture.setMute(isMute);
+        mAudioPreview.setMute(isMute);
         mAudioMixer.setMute(isMute);
     }
 
@@ -2000,39 +1999,34 @@ public class KSYStreamer {
 
     /**
      * Set if start audio preview.<br/>
-     * true: strart success only when headset plugged.
-     * get value using @see KSYStreamer#isAudioPreviewing()
+     * While enabled, audio preview will only start after headset plugged,
+     * and will be automatically stopped after headset unplugged.
      *
-     * @param enable true to start, false to stop.
+     * @param enable true to enable, false to disable.
      */
     public void setEnableAudioPreview(boolean enable) {
-        if (enable && !mHeadSetPluged && !mBluetoothPluged) {
-            Log.d(TAG, "please connect the earphone");
+        mIsEnableAudioPreview = enable;
+        setEnableAudioPreviewInternal(enable);
+    }
+
+    private void setEnableAudioPreviewInternal(boolean enable) {
+        if (enable == mIsAudioPreviewing) {
+            return;
+        }
+        if (enable && !mHeadSetPluged && !mBluetoothPluged &&
+                !mAudioCapture.getEnableLatencyTest()) {
+            Log.w(TAG, "please connect the earphone");
             return;
         }
         mIsAudioPreviewing = enable;
         if (enable) {
             setAudioParams();
-            if (!mUseDummyAudioCapture) {
-                if (mAudioCapture.mAudioBufSrcPin.isConnected()) {
-                    startAudioCapture();
-                }
-            } else {
-                mAudioDummyCapture.start();
-            }
+            startAudioCapture();
             mAudioPreview.start();
-            mAudioPlayerCapture.setMute(true);
         } else {
-            stopAudioCapture();
-            if (!mIsRecording) {
-                mAudioDummyCapture.stop();
-            }
             mAudioPreview.stop();
-            if (mAudioMixer != null) {
-                mAudioPlayerCapture.setMute(mAudioMixer.getMute());
-            }
+            stopAudioCapture();
         }
-        return;
     }
 
     /**
@@ -2041,7 +2035,7 @@ public class KSYStreamer {
      * @return true if audio preview is enabled
      */
     public boolean isAudioPreviewing() {
-        return mIsAudioPreviewing;
+        return mIsEnableAudioPreview;
     }
 
     /**
@@ -2070,17 +2064,6 @@ public class KSYStreamer {
 
     public boolean getEnableAutoRestart() {
         return mAutoRestart;
-    }
-
-    /**
-     * Get KSYStreamerConfig instance previous set by setConfig.
-     *
-     * @return KSYStreamerConfig instance or null.
-     * @deprecated
-     */
-    @Deprecated
-    public KSYStreamerConfig getConfig() {
-        return mConfig;
     }
 
     /**
@@ -2145,6 +2128,26 @@ public class KSYStreamer {
     }
 
     /**
+     * Show watermark logo both on preview and stream.
+     *
+     * @param bitmap logo bitmap, should not be recycled by caller
+     * @param x      x position for left top of logo relative to the video, between 0~1.0.
+     * @param y      y position for left top of logo relative to the video, between 0~1.0.
+     * @param w      width of logo relative to the video, between 0~1.0, if set to 0,
+     *               width would be calculated by h and logo image radio.
+     * @param h      height of logo relative to the video, between 0~1.0, if set to 0,
+     *               height would be calculated by w and logo image radio.
+     * @param alpha  alpha value，between 0~1.0
+     */
+    public void showWaterMarkLogo(Bitmap bitmap, float x, float y, float w, float h, float alpha) {
+        alpha = Math.max(0.0f, alpha);
+        alpha = Math.min(alpha, 1.0f);
+        mImgTexMixer.setRenderRect(mIdxWmLogo, x, y, w, h, alpha);
+        mVideoEncoderMgt.getImgBufMixer().setRenderRect(1, x, y, w, h, alpha);
+        mWaterMarkCapture.showLogo(bitmap, w, h);
+    }
+
+    /**
      * Hide watermark logo.
      */
     public void hideWaterMarkLogo() {
@@ -2195,11 +2198,10 @@ public class KSYStreamer {
         }
 
         synchronized (mReleaseObject) {
-            mCameraCapture.release();
-            mAudioCapture.release();
-            mAudioDummyCapture.release();
             mWaterMarkCapture.release();
             mAudioPlayerCapture.release();
+            mCameraCapture.release();
+            mAudioCapture.release();
             mGLRender.release();
             setOnLogEventListener(null);
             unregisterHeadsetPlugReceiver();
@@ -2243,8 +2245,8 @@ public class KSYStreamer {
             mScreenRenderWidth = width;
             mScreenRenderHeight = height;
             mWaterMarkCapture.setPreviewSize(width, height);
+            setPreviewParams();
             if (mDelayedStartCameraPreview) {
-                setPreviewParams();
                 mCameraCapture.start(mCameraFacing);
                 mDelayedStartCameraPreview = false;
             }
@@ -2291,11 +2293,14 @@ public class KSYStreamer {
     }
 
     protected void startAudioCapture() {
-        if (mAudioUsingCount == null) {
-            mAudioUsingCount = new AtomicInteger(0);
-        }
-        if (mAudioUsingCount.getAndIncrement() == 0) {
-            mAudioCapture.start();
+        // May be used another audio capture
+        if (mAudioCapture.getSrcPin().isConnected()) {
+            if (mAudioUsingCount == null) {
+                mAudioUsingCount = new AtomicInteger(0);
+            }
+            if (mAudioUsingCount.getAndIncrement() == 0) {
+                mAudioCapture.start();
+            }
         }
     }
 
@@ -2367,6 +2372,19 @@ public class KSYStreamer {
                     mBluetoothPluged = false;
                 }
             }
+
+            if (mIsEnableAudioPreview) {
+                setEnableAudioPreviewInternal(mHeadSetPluged || mBluetoothPluged ||
+                        mAudioCapture.getEnableLatencyTest());
+            }
         }
+    }
+
+    public OnErrorListener getOnErrorListener() {
+        return mOnErrorListener;
+    }
+
+    public OnInfoListener getOnInfoListener() {
+        return mOnInfoListener;
     }
 }

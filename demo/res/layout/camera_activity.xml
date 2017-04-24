@@ -3,7 +3,7 @@
     android:id="@+id/root"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/recorder_bg_new" >
+    android:background="#ff000000" >
 
     <android.opengl.GLSurfaceView
         android:id="@+id/camera_preview"

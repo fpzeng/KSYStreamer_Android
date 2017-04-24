@@ -184,7 +184,6 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/AudioCapture.html">AudioCapture</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/AudioDummyCapture.html">AudioDummyCapture</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.html">AudioPlayerCapture</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/CameraCapture.html">CameraCapture</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/CameraCapture.Size.html">CameraCapture.Size</a></li>
@@ -239,6 +238,8 @@
   
   
   
+   
+  
   
 
   
@@ -261,8 +262,11 @@ Summary:
 
 
 
+  <a href="#inhfields">Inherited Fields</a>
+  
 
-  <a href="#pubctors">Ctors</a>
+
+  &#124; <a href="#pubctors">Ctors</a>
   
 
 
@@ -408,6 +412,62 @@ Summary:
 
 
 
+<!-- =========== FIELD SUMMARY =========== -->
+<table id="inhfields" class="jd-sumtable"><tr><th>
+  <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
+  <div style="clear:left;">Inherited Fields</div></th></tr>
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-fields-com.ksyun.media.streamer.framework.SrcPin" class="jd-expando-trigger closed"
+          ><img id="inherited-fields-com.ksyun.media.streamer.framework.SrcPin-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>From class
+<a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">com.ksyun.media.streamer.framework.SrcPin</a>
+<div id="inherited-fields-com.ksyun.media.streamer.framework.SrcPin">
+  <div id="inherited-fields-com.ksyun.media.streamer.framework.SrcPin-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-fields-com.ksyun.media.streamer.framework.SrcPin-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          Object</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html#format">format</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          List&lt;<a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;T&gt;&gt;</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html#sinkPins">sinkPins</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+
+</table>
+
+
 
 
 <!-- ======== CONSTRUCTOR SUMMARY ======== -->
@@ -452,10 +512,42 @@ Summary:
             
             
             
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#getUseSyncMode()">getUseSyncMode</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             void
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#release()">release</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#setUseSyncMode(boolean)">setUseSyncMode</a></span>(boolean mSyncMode)
         
   </td></tr>
 
@@ -982,6 +1074,37 @@ From class
 
 
 
+<a id="getUseSyncMode()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">getUseSyncMode</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="release()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -996,6 +1119,37 @@ From class
       </span>
       <span class="sympad">release</span>
       <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="setUseSyncMode(boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setUseSyncMode</span>
+      <span class="normal">(boolean mSyncMode)</span>
     </h4>
       <div class="api-level">
         <div>
