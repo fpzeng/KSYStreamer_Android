@@ -55,12 +55,33 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 |内建美颜滤镜 |所有      |所有         |仅Denoise
 |===
 
-== 版本迭代
+== 版本说明
+=== 迭代
 
 https://github.com/ksvc/KSYStreamer_Android/releases[最新及历史版本]
 
 当前版本为4.x，相对于v3.x有较大的变动，从3.x迁移的用户可参考： +
 https://github.com/ksvc/KSYStreamer_Android/wiki/Trasform_Info[3.x到4.0迁移说明]。
+
+=== 直播SDK
+https://github.com/ksvc/KSYLive_Android/tree/master/libs[KSYLive_Android]集成了  https://github.com/ksvc/KSYMediaPlayer_Android/tree/master/libs_live[libksyplayer]，具有播放SDK直播的所有功能，并且集成了 https://github.com/ksvc/KSYStreamer_Android/tree/master/libs[KSYStreamer]，具有推流SDK所有功能。
+
+如果使用直播推流、播放功能，请使用 https://github.com/ksvc/KSYLive_Android/tree/master/libs[KSYLive_Android] ，无需单独集成 https://github.com/ksvc/KSYStreamer_Android/tree/master/libs[KSYStreamer] 。
+
+=== 体系结构
+当前推流  https://github.com/ksvc/KSYStreamer_Android/tree/master/libs[KSYStreamer]支持以下体系结构:
+
+* armeabi
+* armeabi-v7a
+* arm64-v8a
+* x86
+
+为了节省apk size，如果没有特殊缘由，请只集成armeabi-v7a版本。
+----
+只集成armeabi-v7a版本，会导致ARMv5 ARMv6 设备不能运行。如果APP需要适配这两类设备，需要额外集成armebi版本。
+
+ARMv5 ARMv6 设备计算性能较差，金山云不保证该芯片设备上的直播体验。不推荐直播APP视频适配该两款芯片设备。
+----
 
 == 快速集成
 
@@ -352,3 +373,4 @@ public class CameraActivity extends Activity {
 * Issues:  https://github.com/ksvc/KSYStreamer_Android/issues
 
 image::https://raw.githubusercontent.com/wiki/ksvc/KSYLive_Android/images/logo.png[金山云计算, link=http://www.ksyun.com/]
+
