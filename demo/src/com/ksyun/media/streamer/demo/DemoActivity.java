@@ -22,7 +22,7 @@ import com.ksyun.media.streamer.util.device.DeviceInfo;
 import com.ksyun.media.streamer.util.device.DeviceInfoTools;
 
 public class DemoActivity extends Activity
-        implements OnClickListener, RadioGroup.OnCheckedChangeListener{
+        implements OnClickListener, RadioGroup.OnCheckedChangeListener {
     private static final String TAG = DemoActivity.class.getSimpleName();
     private Button mConnectButton;
     private EditText mUrlEditText;
@@ -49,6 +49,7 @@ public class DemoActivity extends Activity
     private RadioGroup mSceneGroup;
     private RadioButton mSceneDefaultButton;
     private RadioButton mSceneShowSelfButton;
+    private RadioButton mSceneGameButton;
     private RadioGroup mProfileGroup;
     private RadioButton mProfileLowPowerButton;
     private RadioButton mProfileBalanceButton;
@@ -92,6 +93,7 @@ public class DemoActivity extends Activity
         mSceneGroup = (RadioGroup) findViewById(R.id.encode_scene);
         mSceneDefaultButton = (RadioButton) findViewById(R.id.encode_scene_default);
         mSceneShowSelfButton = (RadioButton) findViewById(R.id.encode_scene_show_self);
+        mSceneGameButton = (RadioButton) findViewById(R.id.encode_scene_game);
         mProfileGroup = (RadioGroup) findViewById(R.id.encode_profile);
         mProfileLowPowerButton = (RadioButton) findViewById(R.id.encode_profile_low_power);
         mProfileBalanceButton = (RadioButton) findViewById(R.id.encode_profile_balance);
@@ -111,7 +113,7 @@ public class DemoActivity extends Activity
         //若在硬编白名单中存在设备信息，则参考白名单信息进行配置
         DeviceInfo lastDeviceInfo = mDeviceInfo;
         mDeviceInfo = DeviceInfoTools.getInstance().getDeviceInfo();
-        if(mDeviceInfo != null) {
+        if (mDeviceInfo != null) {
             Log.i(TAG, "deviceInfo:" + mDeviceInfo.printDeviceInfo());
             if (!mShowDeviceToast || (lastDeviceInfo != null && !mDeviceInfo.compareDeviceInfo
                     (lastDeviceInfo))) {
@@ -127,9 +129,9 @@ public class DemoActivity extends Activity
             }
         }
     }
-    
+
     private void setEnableRadioGroup(RadioGroup radioGroup, boolean enable) {
-        for (int i=0; i<radioGroup.getChildCount(); i++) {
+        for (int i = 0; i < radioGroup.getChildCount(); i++) {
             radioGroup.getChildAt(i).setEnabled(enable);
         }
     }
@@ -166,7 +168,7 @@ public class DemoActivity extends Activity
                 boolean showDebugInfo;
 
                 if (!TextUtils.isEmpty(mUrlEditText.getText())
-					&& mUrlEditText.getText().toString().startsWith("rtmp")) {
+                        && mUrlEditText.getText().toString().startsWith("rtmp")) {
                     if (!TextUtils.isEmpty(mFrameRateEditText.getText().toString())) {
                         frameRate = Integer.parseInt(mFrameRateEditText.getText()
                                 .toString());
@@ -209,11 +211,12 @@ public class DemoActivity extends Activity
                         encodeMethod = StreamerConstants.ENCODE_METHOD_SOFTWARE_COMPAT;
                     }
 
-                    //TODO
-                    if (mSceneDefaultButton.isChecked()) {
-                        encodeScene = VideoEncodeFormat.ENCODE_SCENE_DEFAULT;
-                    } else {
+                    if (mSceneShowSelfButton.isChecked()) {
                         encodeScene = VideoEncodeFormat.ENCODE_SCENE_SHOWSELF;
+                    } else if (mSceneGameButton.isChecked()) {
+                        encodeScene = VideoEncodeFormat.ENCODE_SCENE_GAME;
+                    } else {
+                        encodeScene = VideoEncodeFormat.ENCODE_SCENE_DEFAULT;
                     }
 
                     if (mProfileLowPowerButton.isChecked()) {
@@ -237,7 +240,7 @@ public class DemoActivity extends Activity
 
                     CameraActivity.startActivity(getApplicationContext(), 0,
                             mUrlEditText.getText().toString(), frameRate, videoBitRate,
-                            audioBitRate, videoResolution, orientation, encodeType,  encodeMethod,
+                            audioBitRate, videoResolution, orientation, encodeType, encodeMethod,
                             encodeScene, encodeProfile, startAuto, showDebugInfo);
                 }
                 break;

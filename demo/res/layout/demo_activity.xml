@@ -177,6 +177,13 @@
                 android:layout_height="wrap_content"
                 android:checked="true"
                 android:text="秀场模式" />
+
+            <RadioButton
+                android:id="@+id/encode_scene_game"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="游戏模式" />
         </RadioGroup>
 
         <RadioGroup

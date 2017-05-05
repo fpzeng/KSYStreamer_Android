@@ -14,6 +14,7 @@ import android.provider.Settings;
 import android.support.annotation.Nullable;
 import android.util.Log;
 import android.view.Gravity;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.OrientationEventListener;
 import android.view.Surface;
@@ -116,6 +117,23 @@ public class FloatViewActivity extends Activity {
         KSYGlobalStreamer.setInstance(null);
     }
 
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        switch (keyCode) {
+            case KeyEvent.KEYCODE_BACK:
+                onBackoffClick();
+                return true;
+            default:
+                break;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    private void onBackoffClick() {
+        KSYGlobalStreamer.getInstance().onPause();
+        FloatViewActivity.this.finish();
+    }
+
     /**
      * 初始化悬浮窗口示例
      */
@@ -133,6 +151,8 @@ public class FloatViewActivity extends Activity {
 
             //设置浮动窗口不可聚焦（实现操作除浮动窗口外的其他可见窗口的操作）
             mWmParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
+            //开启硬件加速，以支持TextureView
+            mWmParams.flags |= WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
             //接收touch事件
             mWmParams.flags |= WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
             //排版不受限制
@@ -177,7 +197,7 @@ public class FloatViewActivity extends Activity {
             mFloatClose.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    FloatViewActivity.this.finish();
+                    onBackoffClick();
                 }
             });
 
@@ -203,7 +223,7 @@ public class FloatViewActivity extends Activity {
         public void onClick(View view) {
             switch (view.getId()) {
                 case R.id.float_back:
-                    FloatViewActivity.this.finish();
+                    onBackoffClick();
                     break;
                 default:
                     break;
