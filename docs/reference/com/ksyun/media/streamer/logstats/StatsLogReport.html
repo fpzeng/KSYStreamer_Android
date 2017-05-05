@@ -163,6 +163,8 @@
     <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/publisher/package-summary.html">com.ksyun.media.streamer.publisher</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../com/ksyun/media/streamer/util/package-summary.html">com.ksyun.media.streamer.util</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/util/audio/package-summary.html">com.ksyun.media.streamer.util.audio</a></li>
     <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/util/device/package-summary.html">com.ksyun.media.streamer.util.device</a></li>
@@ -512,12 +514,44 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#setAudioEncodeProfile(int)">setAudioEncodeProfile</a></span>(int audioEncodeProfile)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#setAutoAdjustVideoBitrate(boolean)">setAutoAdjustVideoBitrate</a></span>(boolean adjustBitrate)
         
         <div class="jd-descrdiv">是否允许码率自适应,默认为true
  相当于kit类的setVideoBitrate接口
  如果不使用kit类,第三方开发者需要调用该类</div>
   
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#setBwEstStrategy(int)">setBwEstStrategy</a></span>(int bwEstStrategy)
+        
   </td></tr>
 
 
@@ -586,10 +620,10 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#setIsPermitLogReport(boolean)">setIsPermitLogReport</a></span>(boolean permit)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#setOnLogEventListener(com.ksyun.media.streamer.logstats.StatsLogReport.OnLogEventListener)">setOnLogEventListener</a></span>(<a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.OnLogEventListener.html">StatsLogReport.OnLogEventListener</a> logEventListener)
         
-        <div class="jd-descrdiv">是否允许上报
- 等价于kit类的setEnableStreamStatModule接口,若不使用kit类,需要第三方开发者调用</div>
+        <div class="jd-descrdiv">日志上报回调
+ 用于给第三方开发者提供日志信息</div>
   
   </td></tr>
 
@@ -605,10 +639,11 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#setOnLogEventListener(com.ksyun.media.streamer.logstats.StatsLogReport.OnLogEventListener)">setOnLogEventListener</a></span>(<a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.OnLogEventListener.html">StatsLogReport.OnLogEventListener</a> logEventListener)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#setTargetResolution(int, int)">setTargetResolution</a></span>(int presetWidth, int presetHeight)
         
-        <div class="jd-descrdiv">日志上报回调
- 用于给第三方开发者提供日志信息</div>
+        <div class="jd-descrdiv">推流分辨率,默认值是0
+ 相当于kit类的setTargetResolution接口
+ 如果不使用kit类,需要第三方开发者调用该接口</div>
   
   </td></tr>
 
@@ -624,12 +659,40 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#setTargetResolution(int, int)">setTargetResolution</a></span>(int presetWidth, int presetHeight)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#setVideoEncodeProfile(int)">setVideoEncodeProfile</a></span>(int videoEncodeProfile)
         
-        <div class="jd-descrdiv">推流分辨率,默认值是0
- 相当于kit类的setTargetResolution接口
- 如果不使用kit类,需要第三方开发者调用该接口</div>
-  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#setVideoEncodeScence(int)">setVideoEncodeScence</a></span>(int videoEncodeScence)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#startRecordSuccess()">startRecordSuccess</a></span>()
+        
   </td></tr>
 
 
@@ -684,12 +747,76 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#stopRecord()">stopRecord</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#stopStream()">stopStream</a></span>()
         
         <div class="jd-descrdiv">停止推流上报
  被迫停止和主动停止都需要调用这个接口
 </div>
   
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#updateAudioFilterType(java.lang.String...)">updateAudioFilterType</a></span>(String... types)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#updateBeautyType(java.lang.String...)">updateBeautyType</a></span>(String... types)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/logstats/StatsLogReport.html#updateFunctionPoint(java.lang.String)">updateFunctionPoint</a></span>(String type)
+        
   </td></tr>
 
 
@@ -1142,6 +1269,37 @@ From class
 </div>
 
 
+<a id="setAudioEncodeProfile(int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setAudioEncodeProfile</span>
+      <span class="normal">(int audioEncodeProfile)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="setAutoAdjustVideoBitrate(boolean)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1170,6 +1328,37 @@ From class
   <div class="jd-tagdata jd-tagdescr"><p>是否允许码率自适应,默认为true
  相当于kit类的setVideoBitrate接口
  如果不使用kit类,第三方开发者需要调用该类</p></div>
+
+    </div>
+</div>
+
+
+<a id="setBwEstStrategy(int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setBwEstStrategy</span>
+      <span class="normal">(int bwEstStrategy)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
@@ -1270,38 +1459,6 @@ From class
 </div>
 
 
-<a id="setIsPermitLogReport(boolean)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setIsPermitLogReport</span>
-      <span class="normal">(boolean permit)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>是否允许上报
- 等价于kit类的setEnableStreamStatModule接口,若不使用kit类,需要第三方开发者调用</p></div>
-
-    </div>
-</div>
-
-
 <a id="setOnLogEventListener(com.ksyun.media.streamer.logstats.StatsLogReport.OnLogEventListener)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1362,6 +1519,99 @@ From class
   <div class="jd-tagdata jd-tagdescr"><p>推流分辨率,默认值是0
  相当于kit类的setTargetResolution接口
  如果不使用kit类,需要第三方开发者调用该接口</p></div>
+
+    </div>
+</div>
+
+
+<a id="setVideoEncodeProfile(int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setVideoEncodeProfile</span>
+      <span class="normal">(int videoEncodeProfile)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="setVideoEncodeScence(int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setVideoEncodeScence</span>
+      <span class="normal">(int videoEncodeScence)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="startRecordSuccess()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">startRecordSuccess</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
@@ -1433,6 +1683,37 @@ From class
 </div>
 
 
+<a id="stopRecord()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">stopRecord</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="stopStream()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1461,6 +1742,99 @@ From class
   <div class="jd-tagdata jd-tagdescr"><p>停止推流上报
  被迫停止和主动停止都需要调用这个接口
 </p></div>
+
+    </div>
+</div>
+
+
+<a id="updateAudioFilterType(java.lang.String...)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">updateAudioFilterType</span>
+      <span class="normal">(String... types)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="updateBeautyType(java.lang.String...)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">updateBeautyType</span>
+      <span class="normal">(String... types)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="updateFunctionPoint(java.lang.String)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">updateFunctionPoint</span>
+      <span class="normal">(String type)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>

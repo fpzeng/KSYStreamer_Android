@@ -163,6 +163,8 @@
     <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/publisher/package-summary.html">com.ksyun.media.streamer.publisher</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../com/ksyun/media/streamer/util/package-summary.html">com.ksyun.media.streamer.util</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/util/audio/package-summary.html">com.ksyun.media.streamer.util.audio</a></li>
     <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/util/device/package-summary.html">com.ksyun.media.streamer.util.device</a></li>
@@ -2966,6 +2968,8 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#startRecord(java.lang.String)">startRecord</a></span>(String recordUrl)
         
+        <div class="jd-descrdiv">Start recording to file.</div>
+  
   </td></tr>
 
 
@@ -9463,7 +9467,12 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Start recording to file.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>false if it's already recording, true otherwise.
+</li></ul>
+  </div>
 
     </div>
 </div>
@@ -9494,10 +9503,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Start streaming.<br/>
- Must be called after <code><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.html#setUrl(java.lang.String)">setUrl(String)</a></code> and got
- <code><a href="../../../../../com/ksyun/media/streamer/kit/StreamerConstants.html#KSY_STREAMER_CAMERA_INIT_DONE">KSY_STREAMER_CAMERA_INIT_DONE</a></code> event on
- <code><a href="../../../../../com/ksyun/media/streamer/kit/KSYStreamer.OnInfoListener.html#onInfo(int, int, int)">onInfo(int, int, int)</a></code>.</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Start streaming.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>false if it's already streaming, true otherwise.

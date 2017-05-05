@@ -46,6 +46,7 @@ import com.ksyun.media.streamer.capture.camera.CameraTouchHelper;
 import com.ksyun.media.streamer.filter.audio.AudioFilterBase;
 import com.ksyun.media.streamer.filter.audio.AudioReverbFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgBeautyProFilter;
+import com.ksyun.media.streamer.filter.imgtex.ImgBeautySpecialEffectsFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgBeautyToneCurveFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgFilterBase;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase;
@@ -324,6 +325,7 @@ public class CameraActivity extends Activity implements
             mAutoStart = bundle.getBoolean(START_AUTO, false);
             mPrintDebugInfo = bundle.getBoolean(SHOW_DEBUGINFO, false);
         }
+        mStreamer.setOnLogEventListener(mOnLogEventListener);
         mStreamer.setDisplayPreview(mCameraPreviewView);
         mStreamer.setEnableRepeatLastFrame(false);  // disable repeat last frame in background
         mStreamer.setEnableAutoRestart(true, 3000); // enable auto restart
@@ -371,6 +373,9 @@ public class CameraActivity extends Activity implements
         if (mWaterMarkCheckBox.isChecked()) {
             showWaterMark();
         }
+        if (mAutoStart) {
+            startStream();
+        }
     }
 
     private void initBeautyUI() {
@@ -404,6 +409,9 @@ public class CameraActivity extends Activity implements
                     groupFilter.add(new DemoFilter2(mStreamer.getGLRender()));
                     groupFilter.add(new DemoFilter3(mStreamer.getGLRender()));
                     groupFilter.add(new DemoFilter4(mStreamer.getGLRender()));
+                    groupFilter.add(new ImgBeautySpecialEffectsFilter(mStreamer.getGLRender(),
+                            CameraActivity.this,
+                            ImgBeautySpecialEffectsFilter.KSY_SPECIAL_EFFECT_BLUE));
                     mStreamer.getImgTexFilterMgt().setFilter(groupFilter);
                 } else if (position == 9) {
                     ImgBeautyToneCurveFilter acvFilter = new ImgBeautyToneCurveFilter(mStreamer.getGLRender());
@@ -502,6 +510,11 @@ public class CameraActivity extends Activity implements
 
         // camera may be occupied by other app in background
         startCameraPreviewWithPermCheck();
+
+        // re-enable audio low delay in foreground
+        if (mAudioLDCheckBox.isChecked()) {
+            mStreamer.setEnableAudioLowDelay(true);
+        }
     }
 
     @Override
@@ -517,6 +530,11 @@ public class CameraActivity extends Activity implements
                     mStreamer.getPreviewHeight());
         }
         mSwitchOrQuit = false;
+
+        // disable audio low delay in background
+        if (mAudioLDCheckBox.isChecked()) {
+            mStreamer.setEnableAudioLowDelay(false);
+        }
     }
 
     @Override
@@ -664,9 +682,6 @@ public class CameraActivity extends Activity implements
                 case StreamerConstants.KSY_STREAMER_CAMERA_INIT_DONE:
                     Log.d(TAG, "KSY_STREAMER_CAMERA_INIT_DONE");
                     setCameraAntiBanding50Hz();
-                    if (mAutoStart) {
-                        startStream();
-                    }
                     break;
                 case StreamerConstants.KSY_STREAMER_OPEN_STREAM_SUCCESS:
                     Log.d(TAG, "KSY_STREAMER_OPEN_STREAM_SUCCESS");

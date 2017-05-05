@@ -163,6 +163,8 @@
     <li class="api apilevel-">
   <a href="../../../../../../com/ksyun/media/streamer/publisher/package-summary.html">com.ksyun.media.streamer.publisher</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../com/ksyun/media/streamer/util/package-summary.html">com.ksyun.media.streamer.util</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../com/ksyun/media/streamer/util/audio/package-summary.html">com.ksyun.media.streamer.util.audio</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../com/ksyun/media/streamer/util/device/package-summary.html">com.ksyun.media.streamer.util.device</a></li>
@@ -483,9 +485,10 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterMgt.html#setFilter(com.ksyun.media.streamer.filter.audio.AudioFilterBase)">setFilter</a></span>(<a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html">AudioFilterBase</a> filter)
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterMgt.html#setFilter(java.util.List<? extends com.ksyun.media.streamer.filter.audio.AudioFilterBase>)">setFilter</a></span>(List&lt;?&nbsp;extends&nbsp;<a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html">AudioFilterBase</a>&gt; filters)
         
-        <div class="jd-descrdiv">Set an audio filer to use.</div>
+        <div class="jd-descrdiv">Set audio filter in list, you can set a audio group filter with this method,
+ the filters set would be connected in order.</div>
   
   </td></tr>
 
@@ -501,10 +504,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterMgt.html#setFilter(java.util.List<com.ksyun.media.streamer.filter.audio.AudioFilterBase>)">setFilter</a></span>(List&lt;<a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html">AudioFilterBase</a>&gt; filters)
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterMgt.html#setFilter(com.ksyun.media.streamer.filter.audio.AudioFilterBase)">setFilter</a></span>(<a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html">AudioFilterBase</a> filter)
         
-        <div class="jd-descrdiv">Set audio filter in list, you can set a audio group filter with this method,
- the filters set would be connected in order.</div>
+        <div class="jd-descrdiv">Set an audio filer to use.</div>
   
   </td></tr>
 
@@ -920,6 +922,49 @@ From class
 </div>
 
 
+<a id="setFilter(java.util.List<? extends com.ksyun.media.streamer.filter.audio.AudioFilterBase>)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setFilter</span>
+      <span class="normal">(List&lt;?&nbsp;extends&nbsp;<a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html">AudioFilterBase</a>&gt; filters)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Set audio filter in list, you can set a audio group filter with this method,
+ the filters set would be connected in order.<br/>
+ The previous ones would be released automatically.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>filters</th>
+          <td>filter list to set, null or empty means disable filter
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="setFilter(com.ksyun.media.streamer.filter.audio.AudioFilterBase)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -953,49 +998,6 @@ From class
         <tr>
           <th>filter</th>
           <td>audio filter to set, null means disable filter
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
-<a id="setFilter(java.util.List<com.ksyun.media.streamer.filter.audio.AudioFilterBase>)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setFilter</span>
-      <span class="normal">(List&lt;<a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html">AudioFilterBase</a>&gt; filters)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Set audio filter in list, you can set a audio group filter with this method,
- the filters set would be connected in order.<br/>
- The previous ones would be released automatically.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>filters</th>
-          <td>filter list to set, null or empty means disable filter
 </td>
         </tr>
       </table>

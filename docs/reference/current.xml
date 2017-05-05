@@ -4666,7 +4666,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="filters" type="java.util.List&lt;com.ksyun.media.streamer.filter.audio.AudioFilterBase&gt;">
+<parameter name="filters" type="java.util.List&lt;? extends com.ksyun.media.streamer.filter.audio.AudioFilterBase&gt;">
 </parameter>
 </method>
 </class>
@@ -5080,6 +5080,17 @@
 <parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
 </parameter>
 </method>
+<method name="getReverbType"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="setReverbLevel"
  return="void"
  abstract="false"
@@ -5091,6 +5102,19 @@
  visibility="public"
 >
 <parameter name="revertLevel" type="int">
+</parameter>
+</method>
+<method name="setTakeEffect"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="effect" type="boolean">
 </parameter>
 </method>
 <field name="AUDIO_REVERB_LEVEL_1"
@@ -6606,6 +6630,17 @@
 <exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
 </exception>
 </constructor>
+<method name="getSpecialName"
+ return="java.lang.String"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="setSpecialEffect"
  return="void"
  abstract="false"
@@ -6617,6 +6652,19 @@
  visibility="public"
 >
 <parameter name="idx" type="int">
+</parameter>
+</method>
+<method name="setTakeEffect"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="takeEffect" type="boolean">
 </parameter>
 </method>
 <field name="KSY_SPECIAL_EFFECT_BEAUTY"
@@ -12259,6 +12307,19 @@
  visibility="public"
 >
 </method>
+<method name="setAudioEncodeProfile"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="audioEncodeProfile" type="int">
+</parameter>
+</method>
 <method name="setAutoAdjustVideoBitrate"
  return="void"
  abstract="false"
@@ -12270,6 +12331,19 @@
  visibility="public"
 >
 <parameter name="adjustBitrate" type="boolean">
+</parameter>
+</method>
+<method name="setBwEstStrategy"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="bwEstStrategy" type="int">
 </parameter>
 </method>
 <method name="setEnableDebugLog"
@@ -12311,19 +12385,6 @@
 <parameter name="isFrontCameraMirror" type="boolean">
 </parameter>
 </method>
-<method name="setIsPermitLogReport"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="permit" type="boolean">
-</parameter>
-</method>
 <method name="setOnLogEventListener"
  return="void"
  abstract="false"
@@ -12352,6 +12413,43 @@
 <parameter name="presetHeight" type="int">
 </parameter>
 </method>
+<method name="setVideoEncodeProfile"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="videoEncodeProfile" type="int">
+</parameter>
+</method>
+<method name="setVideoEncodeScence"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="videoEncodeScence" type="int">
+</parameter>
+</method>
+<method name="startRecordSuccess"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="startStream"
  return="void"
  abstract="false"
@@ -12378,6 +12476,17 @@
  visibility="public"
 >
 </method>
+<method name="stopRecord"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="stopStream"
  return="void"
  abstract="false"
@@ -12388,6 +12497,45 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="updateAudioFilterType"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="types" type="java.lang.String...">
+</parameter>
+</method>
+<method name="updateBeautyType"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="types" type="java.lang.String...">
+</parameter>
+</method>
+<method name="updateFunctionPoint"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="type" type="java.lang.String">
+</parameter>
 </method>
 </class>
 <interface name="StatsLogReport.OnLogEventListener"
@@ -12516,6 +12664,17 @@
  transient="false"
  volatile="false"
  value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="INFO_STOPED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
  static="true"
  final="true"
  deprecated="not deprecated"
@@ -14421,6 +14580,34 @@
 </package>
 <package name="com.ksyun.media.streamer.util"
 >
+<class name="ContextUtil"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ContextUtil"
+ type="com.ksyun.media.streamer.util.ContextUtil"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="getContext"
+ return="Context"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</class>
 <class name="FrameBufferCache"
  extends="java.lang.Object"
  abstract="false"
