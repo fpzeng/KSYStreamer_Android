@@ -32,7 +32,6 @@ import com.ksyun.media.streamer.filter.audio.AudioPreview;
 import com.ksyun.media.streamer.filter.audio.AudioResampleFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexFilterMgt;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexMixer;
-import com.ksyun.media.streamer.filter.imgtex.ImgTexPreview;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexScaleFilter;
 import com.ksyun.media.streamer.framework.AVConst;
 import com.ksyun.media.streamer.framework.AudioBufFormat;
@@ -86,7 +85,7 @@ public class KSYStreamer {
     private int mMinVideoBitrate = 200 * 1000;
     private boolean mAutoAdjustVideoBitrate = true;
     private int mAudioBitrate = 48 * 1000;
-    protected int mAudioSampleRate = 44100;
+    protected int mAudioSampleRate = 0; // for KSYRtcStreamer
     protected int mAudioChannels = 1;
     protected int mAudioProfile = AVConst.PROFILE_AAC_HE;
 
@@ -122,7 +121,6 @@ public class KSYStreamer {
     private ImgTexScaleFilter mImgTexScaleFilter;
     protected ImgTexMixer mImgTexMixer;
     protected ImgTexFilterMgt mImgTexFilterMgt;
-    protected ImgTexPreview mImgTexPreview;
     protected AudioCapture mAudioCapture;
     private VideoEncoderMgt mVideoEncoderMgt;
     private AudioEncoderMgt mAudioEncoderMgt;
@@ -164,18 +162,25 @@ public class KSYStreamer {
         mImgTexScaleFilter = new ImgTexScaleFilter(mGLRender);
         mImgTexFilterMgt = new ImgTexFilterMgt(mContext);
         mImgTexMixer = new ImgTexMixer(mGLRender);
-        mImgTexPreview = new ImgTexPreview();
+        mImgTexMixer.setIsPreviewer(true);
         mCameraCapture.mImgTexSrcPin.connect(mImgTexScaleFilter.getSinkPin());
         mImgTexScaleFilter.getSrcPin().connect(mImgTexFilterMgt.getSinkPin());
         mImgTexFilterMgt.getSrcPin().connect(mImgTexMixer.getSinkPin(mIdxCamera));
         mWaterMarkCapture.mLogoTexSrcPin.connect(mImgTexMixer.getSinkPin(mIdxWmLogo));
         mWaterMarkCapture.mTimeTexSrcPin.connect(mImgTexMixer.getSinkPin(mIdxWmTime));
-        mImgTexMixer.getPreviewSrcPin().connect(mImgTexPreview.getSinkPin());
 
         // Audio preview
         mAudioPlayerCapture = new AudioPlayerCapture(mContext);
         mAudioCapture = new AudioCapture(mContext);
         mAudioCapture.setAudioCaptureType(mAudioCaptureType);
+
+        // TODO: for RTC, remove this after rtc lib updated
+        if (mAudioSampleRate != 0) {
+            mAudioCapture.setSampleRate(mAudioSampleRate);
+        }
+        mAudioSampleRate = 44100;
+        ////
+
         mAudioFilterMgt = new AudioFilterMgt();
         mAudioPreview = new AudioPreview(mContext);
         mAudioMixer = new AudioMixer();
@@ -208,25 +213,6 @@ public class KSYStreamer {
         mPublisherMgt.addPublisher(mRtmpPublisher);
 
         // set listeners
-        mGLRender.addListener(new GLRender.GLRenderListener() {
-            @Override
-            public void onReady() {
-                mImgTexPreview.setEGL10Context(mGLRender.getEGL10Context());
-            }
-
-            @Override
-            public void onSizeChanged(int width, int height) {
-            }
-
-            @Override
-            public void onDrawFrame() {
-            }
-
-            @Override
-            public void onReleased() {
-            }
-        });
-
         mAudioCapture.setAudioCaptureListener(new AudioCapture.OnAudioCaptureListener() {
             @Override
             public void onStatusChanged(int status) {
@@ -506,16 +492,13 @@ public class KSYStreamer {
             }
         });
 
-        // init with offscreen GLRender
-        mGLRender.init(1, 1);
-
-        // monitor headset status
         if (mContext != null) {
             AudioManager localAudioManager = (AudioManager) mContext.getSystemService(Context
                     .AUDIO_SERVICE);
             mHeadSetPluged = localAudioManager.isWiredHeadsetOn();
             mBluetoothPluged = localAudioManager.isBluetoothA2dpOn();
         }
+
         registerHeadsetPlugReceiver();
     }
 
@@ -625,8 +608,8 @@ public class KSYStreamer {
      * @param surfaceView GLSurfaceView to be set.
      */
     public void setDisplayPreview(GLSurfaceView surfaceView) {
-        mImgTexPreview.setDisplayPreview(surfaceView);
-        mImgTexPreview.getGLRender().addListener(mGLRenderListener);
+        mGLRender.init(surfaceView);
+        mGLRender.addListener(mGLRenderListener);
     }
 
     /**
@@ -636,8 +619,8 @@ public class KSYStreamer {
      * @param textureView TextureView to be set.
      */
     public void setDisplayPreview(TextureView textureView) {
-        mImgTexPreview.setDisplayPreview(textureView);
-        mImgTexPreview.getGLRender().addListener(mGLRenderListener);
+        mGLRender.init(textureView);
+        mGLRender.addListener(mGLRenderListener);
     }
 
     /**
@@ -645,11 +628,14 @@ public class KSYStreamer {
      *
      * @param width  offscreen width
      * @param height offscreen height
-     * @deprecated This interface is useless after v4.2.1.
      */
-    @Deprecated
     public void setOffscreenPreview(int width, int height) {
-        // do nothing
+        if (width <= 0 || height <= 0) {
+            Log.e(TAG, "Invalid offscreen resolution " + width + "x" + height);
+            return;
+        }
+        mGLRender.init(width, height);
+        mGLRender.addListener(mGLRenderListener);
     }
 
     /**
@@ -1741,7 +1727,7 @@ public class KSYStreamer {
         if (mEnableRepeatLastFrame && mIsRecording && !mIsAudioOnly) {
             getVideoEncoderMgt().getEncoder().stopRepeatLastFrame();
         }
-        mImgTexPreview.onResume();
+        mGLRender.onResume();
     }
 
     /**
@@ -1749,7 +1735,7 @@ public class KSYStreamer {
      */
     public void onPause() {
         Log.d(TAG, "onPause");
-        mImgTexPreview.onPause();
+        mGLRender.onPause();
         if (mEnableRepeatLastFrame && mIsRecording && !mIsAudioOnly) {
             getVideoEncoderMgt().getEncoder().startRepeatLastFrame();
         }
