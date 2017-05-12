@@ -68,7 +68,7 @@ https://github.com/ksvc/KSYStreamer_Android/wiki/Trasform_Info[3.x到4.0迁移�
 === 直播SDK
 https://github.com/ksvc/KSYLive_Android/tree/master/libs[KSYLive_Android]集成了  https://github.com/ksvc/KSYMediaPlayer_Android/tree/master/libs_live[libksyplayer]，具有播放SDK直播的所有功能，并且集成了 https://github.com/ksvc/KSYStreamer_Android/tree/master/libs[KSYStreamer]，具有推流SDK所有功能。
 
-如果使用直播推流、播放功能，请使用 https://github.com/ksvc/KSYLive_Android/tree/master/libs[KSYLive_Android] ，无需单独集成 https://github.com/ksvc/KSYStreamer_Android/tree/master/libs[KSYStreamer] 。
+如果使用直播推流、播放功能，请使用 https://github.com/ksvc/KSYLive_Android/tree/master/libs[KSYLive_Android] ，无需单独集成 https://github.com/ksvc/KSYStreamer_Android/tree/master/libs[KSYStreamer]。
 
 === 体系结构
 当前推流  https://github.com/ksvc/KSYStreamer_Android/tree/master/libs[KSYStreamer]支持以下体系结构:
