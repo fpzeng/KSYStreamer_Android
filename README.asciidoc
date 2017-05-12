@@ -38,7 +38,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] https://github.com/ksvc/KSYDiversityLive_Android/tree/master/KSYPipStreamerAndroid[画中画]  
 * [x] https://github.com/ksvc/KSYDiversityLive_Android/tree/master/KSYStickerAndroid[商汤动态贴纸、手势识别], http://www.bilibili.com/video/av7432197/[动态贴纸效果]    
 * [x] https://github.com/ksvc/KSYDiversityLive_Android/tree/master/KSYFaceunityAndroid[相芯动态贴纸]
-* [x] https://github.com/ksvc/KSYStreamer_Android/blob/master/demo/src/com/ksyun/media/streamer/demo/FloatViewActivity.java[悬浮窗推流]  
+* [x] https://github.com/ksvc/KSYStreamer_Android/wiki/FloatingView[悬浮窗推流]  
 * [x] **https://github.com/ksvc/KSYMediaEditorKit_Android[短视频编辑] (new) **
 
 === 即将支持
