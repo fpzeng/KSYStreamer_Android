@@ -2748,7 +2748,7 @@
 >
 </method>
 <method name="getExtra"
- return="java.nio.ByteBuffer"
+ return="com.ksyun.media.streamer.framework.AVBufFrame"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7493,6 +7493,17 @@
 <parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
+<method name="getPreviewSrcPin"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getSinkPin"
  return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
  abstract="false"
@@ -7663,7 +7674,7 @@
  synchronized="false"
  static="false"
  final="true"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 <parameter name="isPreviewer" type="boolean">
@@ -7735,6 +7746,16 @@
 >
 </field>
 <field name="mOutTexture"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mPreviewTexture"
  type="int"
  transient="false"
  volatile="false"
@@ -8288,6 +8309,128 @@
 >
 </field>
 </class>
+<class name="ImgTexPreview"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ImgTexPreview"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgTexPreview"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="getDisplayPreview"
+ return="java.lang.Object"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getGLRender"
+ return="com.ksyun.media.streamer.util.gles.GLRender"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSinkPin"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="onPause"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="onResume"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="release"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setDisplayPreview"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="glSurfaceView" type="GLSurfaceView">
+</parameter>
+</method>
+<method name="setDisplayPreview"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="textureView" type="TextureView">
+</parameter>
+</method>
+<method name="setEGL10Context"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="eglContext" type="EGLContext">
+</parameter>
+</method>
+</class>
 <class name="ImgTexScaleFilter"
  extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
  abstract="false"
@@ -8700,6 +8843,28 @@
  visibility="public"
 >
 </field>
+<field name="FLAG_DETACH_NATIVE_MODULE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="65536"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="FLAG_DUMMY_VIDEO_FRAME"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="131072"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="FLAG_END_OF_STREAM"
  type="int"
  transient="false"
@@ -8881,17 +9046,6 @@
 <parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
 </parameter>
 </constructor>
-<field name="FLAG_DETACH_NATIVE_MODULE"
- type="int"
- transient="false"
- volatile="false"
- value="65536"
- static="true"
- final="true"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
 <field name="format"
  type="com.ksyun.media.streamer.framework.AudioBufFormat"
  transient="false"
@@ -10658,7 +10812,7 @@
  synchronized="false"
  static="false"
  final="false"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 <parameter name="width" type="int">
@@ -11497,6 +11651,16 @@
 </field>
 <field name="mImgTexMixer"
  type="com.ksyun.media.streamer.filter.imgtex.ImgTexMixer"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mImgTexPreview"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgTexPreview"
  transient="false"
  volatile="false"
  static="false"
@@ -13029,7 +13193,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="audioExtra" type="java.nio.ByteBuffer">
+<parameter name="audioExtra" type="com.ksyun.media.streamer.framework.AVBufFrame">
 </parameter>
 </method>
 <method name="setAudioOnly"
@@ -13133,7 +13297,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="videoExtra" type="java.nio.ByteBuffer">
+<parameter name="videoExtra" type="com.ksyun.media.streamer.framework.AVBufFrame">
 </parameter>
 </method>
 <method name="setVideoOnly"
@@ -13291,6 +13455,17 @@
  final="true"
  deprecated="not deprecated"
  visibility="public"
+>
+</field>
+<field name="INVALID_TS"
+ type="long"
+ transient="false"
+ volatile="false"
+ value="-9223372036854775808L"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
 >
 </field>
 <field name="STATE_IDLE"
@@ -15245,8 +15420,19 @@
  visibility="public"
 >
 </method>
-<method name="getEGLContext"
+<method name="getEGL10Context"
  return="EGLContext"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getEGLContext"
+ return="android.opengl.EGLContext"
  abstract="false"
  native="false"
  synchronized="false"
@@ -15423,6 +15609,19 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="setInitEGL10Context"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="eglContext" type="EGLContext">
+</parameter>
 </method>
 <field name="STATE_IDLE"
  type="int"

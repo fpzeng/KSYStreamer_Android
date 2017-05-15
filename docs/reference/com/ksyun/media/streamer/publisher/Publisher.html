@@ -526,27 +526,34 @@ Summary:
     
     
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">long</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#INVALID_TS">INVALID_TS</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#STATE_IDLE">STATE_IDLE</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#STATE_PUBLISHING">STATE_PUBLISHING</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#STATE_STARTING">STATE_STARTING</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#STATE_STOPPING">STATE_STOPPING</a></td>
         <td class="jd-descrcol" width="100%"></td>
@@ -1133,7 +1140,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setAudioExtra(java.nio.ByteBuffer)">setAudioExtra</a></span>(ByteBuffer audioExtra)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setAudioExtra(com.ksyun.media.streamer.framework.AVBufFrame)">setAudioExtra</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> audioExtra)
         
   </td></tr>
 
@@ -1271,7 +1278,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setVideoExtra(java.nio.ByteBuffer)">setVideoExtra</a></span>(ByteBuffer videoExtra)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setVideoExtra(com.ksyun.media.streamer.framework.AVBufFrame)">setVideoExtra</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> videoExtra)
         
   </td></tr>
 
@@ -2107,6 +2114,46 @@ From class
             
                 3
                 (0x00000003)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="INVALID_TS"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+        static 
+        final 
+        long
+      </span>
+        INVALID_TS
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                -9223372036854775808
+                (0x8000000000000000)
             
         </span>
         </div>
@@ -3560,7 +3607,7 @@ From class
 </div>
 
 
-<a id="setAudioExtra(java.nio.ByteBuffer)"></a>
+<a id="setAudioExtra(com.ksyun.media.streamer.framework.AVBufFrame)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3573,7 +3620,7 @@ From class
         void
       </span>
       <span class="sympad">setAudioExtra</span>
-      <span class="normal">(ByteBuffer audioExtra)</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> audioExtra)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3861,7 +3908,7 @@ From class
 </div>
 
 
-<a id="setVideoExtra(java.nio.ByteBuffer)"></a>
+<a id="setVideoExtra(com.ksyun.media.streamer.framework.AVBufFrame)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3874,7 +3921,7 @@ From class
         void
       </span>
       <span class="sympad">setVideoExtra</span>
-      <span class="normal">(ByteBuffer videoExtra)</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> videoExtra)</span>
     </h4>
       <div class="api-level">
         <div>
