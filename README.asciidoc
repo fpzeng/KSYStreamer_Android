@@ -12,6 +12,8 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 
 金山云直播SDK提供了业内一流的H.265编码、解码能力，免费使用，欢迎试用评估。
 
+== 阅读对象
+本文档面向所有使用  https://github.com/ksvc/KSYStreamer_Android[金山云直播SDK]的开发、测试人员等, 要求读者具有一定的Android编程开发经验，并且要求读者具备阅读  https://github.com/ksvc/KSYStreamer_Android/wiki/[wiki]的习惯
 
 == 功能特点
 
