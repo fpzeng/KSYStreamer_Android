@@ -183,10 +183,12 @@
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterMgt.html">AudioFilterMgt</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioMixer.html">AudioMixer</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioPreview.html">AudioPreview</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResample.html">AudioResample</a></li>
           <li class="selected api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResampleFilter.html">AudioResampleFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioReverbFilter.html">AudioReverbFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioSLPlayer.html">AudioSLPlayer</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioTrackPlayer.html">AudioTrackPlayer</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/KSYAudioEffectFilter.html">KSYAudioEffectFilter</a></li>
       </ul>
     </li>
               
@@ -453,6 +455,24 @@ Summary:
             
             
             
+            <a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResampleFilter.html#getOutFormat()">getOutFormat</a></span>()
+        
+        <div class="jd-descrdiv">Get output format of current filter, should be implemented by child class.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             void
         </td>
         <td class="jd-linkcol" width="100%">
@@ -482,6 +502,24 @@ Summary:
             
             
             
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResampleFilter.html#attachTo(int, long, boolean)">attachTo</a></span>(int idx, long ptr, boolean detach)
+        
+        <div class="jd-descrdiv">Attach to previous filter</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             <a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>
         </td>
         <td class="jd-linkcol" width="100%">
@@ -493,7 +531,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -511,7 +549,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -524,6 +562,42 @@ Summary:
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResampleFilter.html#doRelease()">doRelease</a></span>()
         
         <div class="jd-descrdiv">Release resources needed to be released.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            long
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResampleFilter.html#getNativeInstance()">getNativeInstance</a></span>()
+        
+        <div class="jd-descrdiv">Get native instance of this filter.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResampleFilter.html#readNative(java.nio.ByteBuffer, int)">readNative</a></span>(ByteBuffer buffer, int size)
+        
+        <div class="jd-descrdiv">Read filtered data from native side.</div>
   
   </td></tr>
 
@@ -658,12 +732,12 @@ From class
             
             
             
-            <a href="../../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
+            <a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a>
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#getSinkPin()">getSinkPin</a></span>()
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#getOutFormat()">getOutFormat</a></span>()
         
-        <div class="jd-descrdiv">Get input pin instance.</div>
+        <div class="jd-descrdiv">Get output format of current filter, should be implemented by child class.</div>
   
   </td></tr>
 
@@ -676,12 +750,48 @@ From class
             
             
             
+            <a href="../../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#getSinkPin()">getSinkPin</a></span>()
+        
+        <div class="jd-descrdiv">Get input pin instance.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             <a href="../../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#getSrcPin()">getSrcPin</a></span>()
         
         <div class="jd-descrdiv">Get output pin instance.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioFilterBase.html#readNative(java.nio.ByteBuffer, int)">readNative</a></span>(ByteBuffer buffer, int size)
+        
+        <div class="jd-descrdiv">Read filtered data from native side.</div>
   
   </td></tr>
 
@@ -990,6 +1100,42 @@ From class
 
 
 
+<a id="getOutFormat()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a>
+      </span>
+      <span class="sympad">getOutFormat</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get output format of current filter, should be implemented by child class.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>audio output format
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="setOutFormat(com.ksyun.media.streamer.framework.AudioBufFormat)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1038,6 +1184,55 @@ From class
 
 <h2>Protected Methods</h2>
 
+
+
+<a id="attachTo(int, long, boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">attachTo</span>
+      <span class="normal">(int idx, long ptr, boolean detach)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Attach to previous filter</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>idx</th>
+          <td>index defined by this filter</td>
+        </tr>
+        <tr>
+          <th>ptr</th>
+          <td>previous filter native ptr</td>
+        </tr>
+        <tr>
+          <th>detach</th>
+          <td>is detach
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
 
 
 <a id="doFilter(com.ksyun.media.streamer.framework.AudioBufFrame)"></a>
@@ -1157,6 +1352,91 @@ From class
       
   <div class="jd-tagdata jd-tagdescr"><p>Release resources needed to be released.
 </p></div>
+
+    </div>
+</div>
+
+
+<a id="getNativeInstance()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        long
+      </span>
+      <span class="sympad">getNativeInstance</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get native instance of this filter.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>native instance ptr or 0
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="readNative(java.nio.ByteBuffer, int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        int
+      </span>
+      <span class="sympad">readNative</span>
+      <span class="normal">(ByteBuffer buffer, int size)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Read filtered data from native side.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>buffer</th>
+          <td>buffer to store data</td>
+        </tr>
+        <tr>
+          <th>size</th>
+          <td>data size to read in bytes</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>read size
+</li></ul>
+  </div>
 
     </div>
 </div>

@@ -34,7 +34,6 @@ import com.ksyun.media.streamer.filter.imgtex.ImgTexFilterMgt;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexMixer;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexPreview;
 import com.ksyun.media.streamer.filter.imgtex.ImgTexScaleFilter;
-import com.ksyun.media.streamer.framework.AVBufFrame;
 import com.ksyun.media.streamer.framework.AVConst;
 import com.ksyun.media.streamer.framework.AudioBufFormat;
 import com.ksyun.media.streamer.logstats.StatsConstant;
@@ -45,7 +44,6 @@ import com.ksyun.media.streamer.publisher.PublisherMgt;
 import com.ksyun.media.streamer.publisher.RtmpPublisher;
 import com.ksyun.media.streamer.util.gles.GLRender;
 
-import java.nio.ByteBuffer;
 import java.util.concurrent.atomic.AtomicInteger;
 
 /**
@@ -88,6 +86,7 @@ public class KSYStreamer {
     private int mInitVideoBitrate = 600 * 1000;
     private int mMinVideoBitrate = 200 * 1000;
     private boolean mAutoAdjustVideoBitrate = true;
+    private int mBwEstStrategy = RtmpPublisher.BW_EST_STRATEGY_NORMAL;
     private int mAudioBitrate = 48 * 1000;
     protected int mAudioSampleRate = 44100;
     protected int mAudioChannels = 1;
@@ -123,6 +122,7 @@ public class KSYStreamer {
     private CameraCapture mCameraCapture;
     private WaterMarkCapture mWaterMarkCapture;
     private ImgTexScaleFilter mImgTexScaleFilter;
+    protected ImgTexMixer mImgTexPreviewMixer;
     protected ImgTexMixer mImgTexMixer;
     protected ImgTexFilterMgt mImgTexFilterMgt;
     protected ImgTexPreview mImgTexPreview;
@@ -167,13 +167,18 @@ public class KSYStreamer {
         mImgTexScaleFilter = new ImgTexScaleFilter(mGLRender);
         mImgTexFilterMgt = new ImgTexFilterMgt(mContext);
         mImgTexMixer = new ImgTexMixer(mGLRender);
+        mImgTexMixer.setScalingMode(mIdxCamera, ImgTexMixer.SCALING_MODE_CENTER_CROP);
+        mImgTexPreviewMixer = new ImgTexMixer(mGLRender);
         mImgTexPreview = new ImgTexPreview();
         mCameraCapture.mImgTexSrcPin.connect(mImgTexScaleFilter.getSinkPin());
         mImgTexScaleFilter.getSrcPin().connect(mImgTexFilterMgt.getSinkPin());
         mImgTexFilterMgt.getSrcPin().connect(mImgTexMixer.getSinkPin(mIdxCamera));
         mWaterMarkCapture.mLogoTexSrcPin.connect(mImgTexMixer.getSinkPin(mIdxWmLogo));
         mWaterMarkCapture.mTimeTexSrcPin.connect(mImgTexMixer.getSinkPin(mIdxWmTime));
-        mImgTexMixer.getPreviewSrcPin().connect(mImgTexPreview.getSinkPin());
+        mImgTexFilterMgt.getSrcPin().connect(mImgTexPreviewMixer.getSinkPin(mIdxCamera));
+        mWaterMarkCapture.mLogoTexSrcPin.connect(mImgTexPreviewMixer.getSinkPin(mIdxWmLogo));
+        mWaterMarkCapture.mTimeTexSrcPin.connect(mImgTexPreviewMixer.getSinkPin(mIdxWmTime));
+        mImgTexPreviewMixer.getSrcPin().connect(mImgTexPreview.getSinkPin());
 
         // Audio preview
         mAudioPlayerCapture = new AudioPlayerCapture(mContext);
@@ -181,15 +186,15 @@ public class KSYStreamer {
         mAudioCapture.setAudioCaptureType(mAudioCaptureType);
         mAudioFilterMgt = new AudioFilterMgt();
         mAudioPreview = new AudioPreview(mContext);
-        mAudioMixer = new AudioMixer();
         mAudioResampleFilter = new AudioResampleFilter();
+        mAudioMixer = new AudioMixer();
         mAudioCapture.getSrcPin().connect(mAudioFilterMgt.getSinkPin());
         mAudioFilterMgt.getSrcPin().connect(mAudioPreview.getSinkPin());
-        mAudioPreview.getSrcPin().connect(mAudioMixer.getSinkPin(mIdxAudioMic));
+        mAudioPreview.getSrcPin().connect(mAudioResampleFilter.getSinkPin());
+        mAudioResampleFilter.getSrcPin().connect(mAudioMixer.getSinkPin(mIdxAudioMic));
         if (mEnableAudioMix) {
             mAudioPlayerCapture.mSrcPin.connect(mAudioMixer.getSinkPin(mIdxAudioBgm));
         }
-        mAudioMixer.getSrcPin().connect(mAudioResampleFilter.getSinkPin());
 
         // encoder
         mVideoEncoderMgt = new VideoEncoderMgt(mGLRender);
@@ -198,7 +203,7 @@ public class KSYStreamer {
         mWaterMarkCapture.mTimeBufSrcPin.connect(mVideoEncoderMgt.getImgBufMixer().getSinkPin(mIdxWmTime));
         mImgTexMixer.getSrcPin().connect(mVideoEncoderMgt.getImgTexSinkPin());
         mCameraCapture.mImgBufSrcPin.connect(mVideoEncoderMgt.getImgBufSinkPin());
-        mAudioResampleFilter.getSrcPin().connect(mAudioEncoderMgt.getSinkPin());
+        mAudioMixer.getSrcPin().connect(mAudioEncoderMgt.getSinkPin());
 
         // publisher
         mRtmpPublisher = new RtmpPublisher();
@@ -342,8 +347,9 @@ public class KSYStreamer {
                     case RtmpPublisher.INFO_CONNECTED:
                         if (!mAudioEncoderMgt.getEncoder().isEncoding()) {
                             mAudioEncoderMgt.getEncoder().start();
+                        } else {
+                            mRtmpPublisher.setAudioExtra(mAudioEncoderMgt.getEncoder().getExtra());
                         }
-                        mRtmpPublisher.setAudioExtra(mAudioEncoderMgt.getEncoder().getExtra());
                         if (mOnInfoListener != null) {
                             mOnInfoListener.onInfo(
                                     StreamerConstants.KSY_STREAMER_OPEN_STREAM_SUCCESS, 0, 0);
@@ -354,9 +360,11 @@ public class KSYStreamer {
                             // start video encoder after audio header got
                             if (!mVideoEncoderMgt.getEncoder().isEncoding()) {
                                 mVideoEncoderMgt.start();
+                            } else {
+                                mRtmpPublisher.setVideoExtra(mVideoEncoderMgt.
+                                        getEncoder().getExtra());
+                                mVideoEncoderMgt.getEncoder().forceKeyFrame();
                             }
-                            mRtmpPublisher.setVideoExtra(mVideoEncoderMgt.getEncoder().getExtra());
-                            mVideoEncoderMgt.getEncoder().forceKeyFrame();
                         }
                         break;
                     case RtmpPublisher.INFO_PACKET_SEND_SLOW:
@@ -368,26 +376,26 @@ public class KSYStreamer {
                         }
                         break;
                     case RtmpPublisher.INFO_EST_BW_RAISE:
-                        if (mIsAudioOnly) {
+                        if (mIsAudioOnly || !mAutoAdjustVideoBitrate) {
                             break;
                         }
-                        if (mAutoAdjustVideoBitrate) {
-                            Log.d(TAG, "Raise video bitrate to " + msg);
-                            mVideoEncoderMgt.getEncoder().adjustBitrate((int) msg);
-                        }
+                        msg = msg - mAudioBitrate;
+                        msg = Math.min(msg, mMaxVideoBitrate);
+                        Log.d(TAG, "Raise video bitrate to " + msg);
+                        mVideoEncoderMgt.getEncoder().adjustBitrate((int) msg);
                         if (mOnInfoListener != null) {
                             mOnInfoListener.onInfo(
                                     StreamerConstants.KSY_STREAMER_EST_BW_RAISE, (int) msg, 0);
                         }
                         break;
                     case RtmpPublisher.INFO_EST_BW_DROP:
-                        if (mIsAudioOnly) {
+                        if (mIsAudioOnly || !mAutoAdjustVideoBitrate) {
                             break;
                         }
-                        if (mAutoAdjustVideoBitrate) {
-                            Log.d(TAG, "Drop video bitrate to " + msg);
-                            mVideoEncoderMgt.getEncoder().adjustBitrate((int) msg);
-                        }
+                        msg -= mAudioBitrate;
+                        msg = Math.max(msg, mMinVideoBitrate);
+                        Log.d(TAG, "Drop video bitrate to " + msg);
+                        mVideoEncoderMgt.getEncoder().adjustBitrate((int) msg);
                         if (mOnInfoListener != null) {
                             mOnInfoListener.onInfo(
                                     StreamerConstants.KSY_STREAMER_EST_BW_DROP, (int) msg, 0);
@@ -443,8 +451,9 @@ public class KSYStreamer {
                         //start audio encoder first
                         if (!mAudioEncoderMgt.getEncoder().isEncoding()) {
                             mAudioEncoderMgt.getEncoder().start();
+                        } else {
+                            mFilePublisher.setAudioExtra(mAudioEncoderMgt.getEncoder().getExtra());
                         }
-                        mFilePublisher.setAudioExtra(mAudioEncoderMgt.getEncoder().getExtra());
                         if (mOnInfoListener != null) {
                             mOnInfoListener.onInfo(
                                     StreamerConstants.KSY_STREAMER_OPEN_FILE_SUCCESS, 0, 0);
@@ -455,9 +464,11 @@ public class KSYStreamer {
                             // start video encoder after audio header got
                             if (!mVideoEncoderMgt.getEncoder().isEncoding()) {
                                 mVideoEncoderMgt.start();
+                            } else {
+                                mFilePublisher.setVideoExtra(mVideoEncoderMgt.
+                                        getEncoder().getExtra());
+                                mVideoEncoderMgt.getEncoder().forceKeyFrame();
                             }
-                            mFilePublisher.setVideoExtra(mVideoEncoderMgt.getEncoder().getExtra());
-                            mVideoEncoderMgt.getEncoder().forceKeyFrame();
                         }
                         break;
                     default:
@@ -555,13 +566,26 @@ public class KSYStreamer {
         return mAudioFilterMgt;
     }
 
+    public AudioFilterMgt getBGMAudioFilterMgt() {
+        return mAudioPlayerCapture.getAudioFilterMgt();
+    }
+
     /**
-     * Get {@link ImgTexMixer} instance which could handle PIP related operations.
+     * Get {@link ImgTexMixer} instance which could handle PIP related operations for streaming.
      *
      * @return ImgTexMixer instance.
      */
     public ImgTexMixer getImgTexMixer() {
         return mImgTexMixer;
+    }
+
+    /**
+     * Get {@link ImgTexMixer} instance which could handle PIP related operations for preview.
+     *
+     * @return ImgTexMixer instance.
+     */
+    public ImgTexMixer getImgTexPreviewMixer() {
+        return mImgTexPreviewMixer;
     }
 
     /**
@@ -716,10 +740,54 @@ public class KSYStreamer {
     }
 
     /**
-     * Set preview resolution.<br/>
+     * Set camera capture resolution.<br/>
      * <p>
      * The set resolution would take effect on next {@link #startCameraPreview()}
      * {@link #startCameraPreview(int)} call.<br/>
+     * <p>
+     * Both of the set width and height must be greater than 0.
+     *
+     * @param width  capture width
+     * @param height capture height
+     * @throws IllegalArgumentException
+     */
+    public void setCameraCaptureResolution(int width, int height) throws IllegalArgumentException {
+        if (width <= 0 || height <= 0) {
+            throw new IllegalArgumentException("Invalid resolution");
+        }
+        mCameraCapture.setPreviewSize(width, height);
+    }
+
+    /**
+     * Set camera capture resolution.<br/>
+     * <p>
+     * The set resolution would take effect on next {@link #startCameraPreview()}
+     * {@link #startCameraPreview(int)} call.<br/>
+     *
+     * @param idx Resolution index.<br/>
+     * @throws IllegalArgumentException
+     * @see StreamerConstants#VIDEO_RESOLUTION_360P
+     * @see StreamerConstants#VIDEO_RESOLUTION_480P
+     * @see StreamerConstants#VIDEO_RESOLUTION_540P
+     * @see StreamerConstants#VIDEO_RESOLUTION_720P
+     * @see StreamerConstants#VIDEO_RESOLUTION_1080P
+     */
+    public void setCameraCaptureResolution(int idx) throws IllegalArgumentException {
+        if (idx < StreamerConstants.VIDEO_RESOLUTION_360P ||
+                idx > StreamerConstants.VIDEO_RESOLUTION_1080P) {
+            throw new IllegalArgumentException("Invalid resolution index");
+        }
+        int height = getShortEdgeLength(idx);
+        int width = height * 16 / 9;
+        mCameraCapture.setPreviewSize(width, height);
+    }
+
+    /**
+     * Set preview resolution.<br/>
+     * <p>
+     * The set resolution would take effect on next {@link #startCameraPreview()}
+     * {@link #startCameraPreview(int)} call, if called not in previewing mode.<br/>
+     * If called in previewing mode, it would take effect immediately.<br/>
      * <p>
      * The set width and height must not be 0 at same time.
      * If one of the params is 0, the other would calculated by the actual preview view size
@@ -739,6 +807,7 @@ public class KSYStreamer {
         if (mScreenRenderWidth != 0 && mScreenRenderHeight != 0) {
             calResolution();
             mImgTexScaleFilter.setTargetSize(mPreviewWidth, mPreviewHeight);
+            mImgTexPreviewMixer.setTargetSize(mPreviewWidth, mPreviewHeight);
         }
     }
 
@@ -746,7 +815,8 @@ public class KSYStreamer {
      * Set preview resolution index.<br/>
      * <p>
      * The set resolution would take effect on next {@link #startCameraPreview()}
-     * {@link #startCameraPreview(int)} call.
+     * {@link #startCameraPreview(int)} call, if called not in previewing mode.<br/>
+     * If called in previewing mode, it would take effect immediately.<br/>
      *
      * @param idx Resolution index.<br/>
      * @throws IllegalArgumentException
@@ -754,10 +824,11 @@ public class KSYStreamer {
      * @see StreamerConstants#VIDEO_RESOLUTION_480P
      * @see StreamerConstants#VIDEO_RESOLUTION_540P
      * @see StreamerConstants#VIDEO_RESOLUTION_720P
+     * @see StreamerConstants#VIDEO_RESOLUTION_1080P
      */
     public void setPreviewResolution(int idx) throws IllegalArgumentException {
         if (idx < StreamerConstants.VIDEO_RESOLUTION_360P ||
-                idx > StreamerConstants.VIDEO_RESOLUTION_720P) {
+                idx > StreamerConstants.VIDEO_RESOLUTION_1080P) {
             throw new IllegalArgumentException("Invalid resolution index");
         }
         mPreviewResolution = idx;
@@ -767,6 +838,7 @@ public class KSYStreamer {
         if (mScreenRenderWidth != 0 && mScreenRenderHeight != 0) {
             calResolution();
             mImgTexScaleFilter.setTargetSize(mPreviewWidth, mPreviewHeight);
+            mImgTexPreviewMixer.setTargetSize(mPreviewWidth, mPreviewHeight);
         }
     }
 
@@ -794,7 +866,7 @@ public class KSYStreamer {
      * The set fps would take effect on next {@link #startCameraPreview()}
      * {@link #startCameraPreview(int)} call.<br/>
      * <p>
-     * The actual preview fps is depend on device, may be different with the set value.
+     * The actual preview fps depends on the running device, may be different with the set value.
      *
      * @param fps frame rate to be set.
      * @throws IllegalArgumentException
@@ -829,8 +901,9 @@ public class KSYStreamer {
      * @see StreamerConstants#ENCODE_METHOD_SOFTWARE_COMPAT
      * @see StreamerConstants#ENCODE_METHOD_HARDWARE
      */
-    public void setEncodeMethod(int encodeMethod) throws IllegalStateException, IllegalArgumentException {
-        if (!isVaildEncodeMethod(encodeMethod)) {
+    public void setEncodeMethod(int encodeMethod)
+            throws IllegalStateException, IllegalArgumentException {
+        if (!isValidEncodeMethod(encodeMethod)) {
             throw new IllegalArgumentException();
         }
         setVideoEncodeMethod(encodeMethod);
@@ -847,8 +920,9 @@ public class KSYStreamer {
      * @see StreamerConstants#ENCODE_METHOD_SOFTWARE_COMPAT
      * @see StreamerConstants#ENCODE_METHOD_HARDWARE
      */
-    public void setVideoEncodeMethod(int encodeMethod) throws IllegalStateException, IllegalArgumentException {
-        if (!isVaildEncodeMethod(encodeMethod)) {
+    public void setVideoEncodeMethod(int encodeMethod)
+            throws IllegalStateException, IllegalArgumentException {
+        if (!isValidEncodeMethod(encodeMethod)) {
             throw new IllegalArgumentException();
         }
 
@@ -879,8 +953,9 @@ public class KSYStreamer {
      * @see StreamerConstants#ENCODE_METHOD_SOFTWARE
      * @see StreamerConstants#ENCODE_METHOD_HARDWARE
      */
-    public void setAudioEncodeMethod(int encodeMethod) throws IllegalStateException, IllegalArgumentException  {
-        if (!isVaildEncodeMethod(encodeMethod)) {
+    public void setAudioEncodeMethod(int encodeMethod)
+            throws IllegalStateException, IllegalArgumentException  {
+        if (!isValidEncodeMethod(encodeMethod)) {
             throw new IllegalArgumentException();
         }
 
@@ -901,7 +976,7 @@ public class KSYStreamer {
         return mAudioEncoderMgt.getEncodeMethod();
     }
 
-    private boolean isVaildEncodeMethod(int encodeMethod) {
+    private boolean isValidEncodeMethod(int encodeMethod) {
         if (encodeMethod != StreamerConstants.ENCODE_METHOD_SOFTWARE &&
                 encodeMethod != StreamerConstants.ENCODE_METHOD_SOFTWARE_COMPAT &&
                 encodeMethod != StreamerConstants.ENCODE_METHOD_HARDWARE) {
@@ -948,10 +1023,11 @@ public class KSYStreamer {
      * @see StreamerConstants#VIDEO_RESOLUTION_480P
      * @see StreamerConstants#VIDEO_RESOLUTION_540P
      * @see StreamerConstants#VIDEO_RESOLUTION_720P
+     * @see StreamerConstants#VIDEO_RESOLUTION_1080P
      */
     public void setTargetResolution(int idx) throws IllegalArgumentException {
         if (idx < StreamerConstants.VIDEO_RESOLUTION_360P ||
-                idx > StreamerConstants.VIDEO_RESOLUTION_720P) {
+                idx > StreamerConstants.VIDEO_RESOLUTION_1080P) {
             throw new IllegalArgumentException("Invalid resolution index");
         }
         mTargetResolution = idx;
@@ -986,7 +1062,7 @@ public class KSYStreamer {
     /**
      * Set streaming fps.<br/>
      * <p>
-     * The set fps would take effect immediately if streaming started.<br/>
+     * The set fps would take effect after next streaming started.<br/>
      * <p>
      * If actual preview fps is larger than set value,
      * the extra frames will be dropped before encoding,
@@ -1064,7 +1140,7 @@ public class KSYStreamer {
      * @throws IllegalArgumentException
      */
     public void setVideoKBitrate(int kBitrate) throws IllegalArgumentException {
-        setVideoBitrate(kBitrate * 1024);
+        setVideoBitrate(kBitrate * 1000);
     }
 
     /**
@@ -1078,8 +1154,11 @@ public class KSYStreamer {
      */
     public void setVideoBitrate(int initVideoBitrate, int maxVideoBitrate, int minVideoBitrate)
             throws IllegalArgumentException {
-        if (initVideoBitrate <= 0 || maxVideoBitrate <= 0 || minVideoBitrate <= 0) {
-            throw new IllegalArgumentException("the VideoBitrate must > 0");
+        if (initVideoBitrate <= 0 || maxVideoBitrate <= 0) {
+            throw new IllegalArgumentException("the initial and max VideoBitrate must > 0");
+        }
+        if (minVideoBitrate < 0) {
+            throw new IllegalArgumentException("the min VideoBitrate must >= 0");
         }
 
         mInitVideoBitrate = initVideoBitrate;
@@ -1101,9 +1180,32 @@ public class KSYStreamer {
                                  int maxVideoKBitrate,
                                  int minVideoKBitrate)
             throws IllegalArgumentException {
-        setVideoBitrate(initVideoKBitrate * 1024,
-                maxVideoKBitrate * 1024,
-                minVideoKBitrate * 1024);
+        setVideoBitrate(initVideoKBitrate * 1000,
+                maxVideoKBitrate * 1000,
+                minVideoKBitrate * 1000);
+    }
+
+    /**
+     * Set streaming bandwidth estimate strategy.<br/>
+     * Would take effect on next {@link #startStream()} call.
+     *
+     * @param strategy strategy to set
+     * @see RtmpPublisher#BW_EST_STRATEGY_NORMAL
+     * @see RtmpPublisher#BW_EST_STRATEGY_NEGATIVE
+     */
+    public void setBwEstStrategy(int strategy) {
+        mBwEstStrategy = strategy;
+    }
+
+    /**
+     * Get current streaming bandwidth estimate strategy.<br/>
+     *
+     * @return strategy in use.
+     * @see RtmpPublisher#BW_EST_STRATEGY_NORMAL
+     * @see RtmpPublisher#BW_EST_STRATEGY_NEGATIVE
+     */
+    public int getBwEstStrategy() {
+        return mBwEstStrategy;
     }
 
     /**
@@ -1270,7 +1372,7 @@ public class KSYStreamer {
      * @throws IllegalArgumentException
      */
     public void setAudioKBitrate(int kBitrate) throws IllegalArgumentException {
-        setAudioBitrate(kBitrate * 1024);
+        setAudioBitrate(kBitrate * 1000);
     }
 
     /**
@@ -1450,6 +1552,8 @@ public class KSYStreamer {
                 return 540;
             case StreamerConstants.VIDEO_RESOLUTION_720P:
                 return 720;
+            case StreamerConstants.VIDEO_RESOLUTION_1080P:
+                return 1080;
             default:
                 return 720;
         }
@@ -1515,13 +1619,13 @@ public class KSYStreamer {
         mWaterMarkCapture.setPreviewSize(mPreviewWidth, mPreviewHeight);
         mWaterMarkCapture.setTargetSize(mTargetWidth, mTargetHeight);
         mCameraCapture.setOrientation(mRotateDegrees);
-        mCameraCapture.setPreviewSize(mPreviewWidth, mPreviewHeight);
         if (mPreviewFps == 0) {
             mPreviewFps = CameraCapture.DEFAULT_PREVIEW_FPS;
         }
         mCameraCapture.setPreviewFps(mPreviewFps);
 
         mImgTexScaleFilter.setTargetSize(mPreviewWidth, mPreviewHeight);
+        mImgTexPreviewMixer.setTargetSize(mPreviewWidth, mPreviewHeight);
         mImgTexMixer.setTargetSize(mTargetWidth, mTargetHeight);
 
         setAudioParams();
@@ -1541,12 +1645,18 @@ public class KSYStreamer {
         videoEncodeFormat.setProfile(mEncodeProfile);
         mVideoEncoderMgt.setEncodeFormat(videoEncodeFormat);
 
+        // AAC-HE, AAC-HEv2 force use SOFT_ENCODING
+        if (mAudioProfile != AVConst.PROFILE_AAC_LOW) {
+            mAudioEncoderMgt.setEncodeMethod(AudioEncoderMgt.METHOD_SOFTWARE);
+        }
+
         AudioEncodeFormat audioEncodeFormat = new AudioEncodeFormat(AVConst.CODEC_ID_AAC,
                 AVConst.AV_SAMPLE_FMT_S16, mAudioSampleRate, mAudioChannels, mAudioBitrate);
         audioEncodeFormat.setProfile(mAudioProfile);
         mAudioEncoderMgt.setEncodeFormat(audioEncodeFormat);
 
         RtmpPublisher.BwEstConfig bwEstConfig = new RtmpPublisher.BwEstConfig();
+        bwEstConfig.strategy = mBwEstStrategy;
         bwEstConfig.initAudioBitrate = mAudioBitrate;
         bwEstConfig.initVideoBitrate = mInitVideoBitrate;
         bwEstConfig.minVideoBitrate = mMinVideoBitrate;
@@ -1982,7 +2092,7 @@ public class KSYStreamer {
      * @param volume volume in 0~1.0f, greater than 1.0f also acceptable.
      */
     public void setVoiceVolume(float volume) {
-        mAudioMixer.setInputVolume(mIdxAudioMic, volume);
+        mAudioCapture.setVolume(volume);
     }
 
     /**
@@ -1991,7 +2101,7 @@ public class KSYStreamer {
      * @return volume in 0~1.0f, also could be greater than 1.0.
      */
     public float getVoiceVolume() {
-        return mAudioMixer.getInputVolume(mIdxAudioMic);
+        return mAudioCapture.getVolume();
     }
 
     /**
@@ -2152,6 +2262,7 @@ public class KSYStreamer {
         alpha = Math.max(0.0f, alpha);
         alpha = Math.min(alpha, 1.0f);
         mImgTexMixer.setRenderRect(mIdxWmLogo, x, y, w, h, alpha);
+        mImgTexPreviewMixer.setRenderRect(mIdxWmLogo, x, y, w, h, alpha);
         mVideoEncoderMgt.getImgBufMixer().setRenderRect(1, x, y, w, h, alpha);
         mWaterMarkCapture.showLogo(mContext, path, w, h);
     }
@@ -2172,6 +2283,7 @@ public class KSYStreamer {
         alpha = Math.max(0.0f, alpha);
         alpha = Math.min(alpha, 1.0f);
         mImgTexMixer.setRenderRect(mIdxWmLogo, x, y, w, h, alpha);
+        mImgTexPreviewMixer.setRenderRect(mIdxWmLogo, x, y, w, h, alpha);
         mVideoEncoderMgt.getImgBufMixer().setRenderRect(1, x, y, w, h, alpha);
         mWaterMarkCapture.showLogo(bitmap, w, h);
     }
@@ -2197,6 +2309,7 @@ public class KSYStreamer {
         alpha = Math.max(0.0f, alpha);
         alpha = Math.min(alpha, 1.0f);
         mImgTexMixer.setRenderRect(mIdxWmTime, x, y, w, 0, alpha);
+        mImgTexPreviewMixer.setRenderRect(mIdxWmTime, x, y, w, 0, alpha);
         mVideoEncoderMgt.getImgBufMixer().setRenderRect(2, x, y, w, 0, alpha);
         mWaterMarkCapture.showTime(color, "yyyy-MM-dd HH:mm:ss", w, 0);
     }
@@ -2243,7 +2356,7 @@ public class KSYStreamer {
      * @param screenShotListener the listener to be called when bitmap of the screen shot available
      */
     public void requestScreenShot(GLRender.ScreenShotListener screenShotListener) {
-        mImgTexMixer.requestScreenShot(screenShotListener);
+        mImgTexPreviewMixer.requestScreenShot(screenShotListener);
     }
 
     /**
@@ -2253,7 +2366,7 @@ public class KSYStreamer {
      * @param screenShotListener the listener to be called when bitmap of the screen shot available
      */
     public void requestScreenShot(float scaleFactor, GLRender.ScreenShotListener screenShotListener) {
-        mImgTexMixer.requestScreenShot(scaleFactor, screenShotListener);
+        mImgTexPreviewMixer.requestScreenShot(scaleFactor, screenShotListener);
     }
 
     public interface OnInfoListener {

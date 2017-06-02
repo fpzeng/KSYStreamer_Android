@@ -6,10 +6,11 @@
             android:layout_margin="18dp"
             tools:context=".DemoActivity">
 
-    <RelativeLayout
+    <LinearLayout
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:orientation="vertical"
         android:focusable="true"
         android:focusableInTouchMode="true">
 
@@ -33,40 +34,137 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:layout_below="@id/rtmpUrl"
             android:text="准备直播" />
 
+        <TextView
+            android:id="@+id/captureTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="采集分辨率"
+            android:textSize="14sp" />
+
         <RadioGroup
-            android:id="@+id/resolution_group"
+            android:id="@+id/capture_res_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/connectBT"
+            android:layout_marginLeft="10dp"
             android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <RadioButton
-                android:id="@+id/radiobutton1"
+                android:id="@+id/cap_360"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:text="360P" />
 
             <RadioButton
-                android:id="@+id/radiobutton2"
+                android:id="@+id/cap_480"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="480P" />
 
             <RadioButton
-                android:id="@+id/radiobutton3"
+                android:id="@+id/cap_720"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="720P" />
+
+            <RadioButton
+                android:id="@+id/cap_1080"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="1080P" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/previewTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="预览分辨率"
+            android:textSize="14sp" />
+
+        <RadioGroup
+            android:id="@+id/preview_res_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/preview_360"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="360P" />
+
+            <RadioButton
+                android:id="@+id/preview_480"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="480P" />
+
+            <RadioButton
+                android:id="@+id/preview_720"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="720P" />
+
+            <RadioButton
+                android:id="@+id/preview_1080"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="1080P" />
+        </RadioGroup>
+
+        <TextView
+            android:id="@+id/targetTxt"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text="推流分辨率"
+            android:textSize="14sp" />
+
+        <RadioGroup
+            android:id="@+id/target_res_group"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/target_360"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="360P" />
+
+            <RadioButton
+                android:id="@+id/target_480"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="480P" />
+
+            <RadioButton
+                android:id="@+id/target_540"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
                 android:text="540P" />
 
             <RadioButton
-                android:id="@+id/radiobutton4"
+                android:id="@+id/target_720"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:checked="false"
@@ -77,8 +175,7 @@
             android:id="@+id/orientation_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/resolution_group"
-            android:layout_marginTop="5dp"
+            android:layout_marginTop="10dp"
             android:orientation="horizontal">
 
             <RadioButton
@@ -107,7 +204,6 @@
             android:id="@+id/encode_type"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/orientation_group"
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
@@ -130,7 +226,6 @@
             android:id="@+id/encode_group"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/encode_type"
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
@@ -160,7 +255,6 @@
             android:id="@+id/encode_scene"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/encode_group"
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
@@ -190,7 +284,6 @@
             android:id="@+id/encode_profile"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/encode_scene"
             android:layout_marginTop="5dp"
             android:orientation="horizontal">
 
@@ -220,9 +313,16 @@
             android:id="@+id/init_group"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/encode_profile"
             android:orientation="vertical">
-            
+
+            <CheckBox
+                android:id="@+id/stereo_stream"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:checked="false"
+                android:text="双声道推流" />
+
             <CheckBox
                 android:id="@+id/autoStart"
                 android:layout_width="wrap_content"
@@ -243,8 +343,7 @@
         <LinearLayout
             android:id="@+id/frameRate"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/init_group">
+            android:layout_height="wrap_content">
 
             <TextView
                 android:layout_width="wrap_content"
@@ -263,7 +362,6 @@
             android:id="@+id/videoBitrate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/frameRate"
             android:orientation="horizontal">
 
             <TextView
@@ -283,7 +381,6 @@
             android:id="@+id/audioBitrate"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@id/videoBitrate"
             android:orientation="horizontal">
 
             <TextView
@@ -299,6 +396,5 @@
                 android:text="48" />
         </LinearLayout>
 
-
-    </RelativeLayout>
+    </LinearLayout>
 </ScrollView>

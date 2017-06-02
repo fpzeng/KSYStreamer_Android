@@ -1004,16 +1004,34 @@ Summary:
             
             
             
-            void
+            boolean
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/FilePublisher.html#doHandleAVFrame(com.ksyun.media.streamer.framework.AVBufFrame)">doHandleAVFrame</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> frame)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/FilePublisher.html#IsAddExtraForVideoKeyFrame()">IsAddExtraForVideoKeyFrame</a></span>()
         
+        <div class="jd-descrdiv">Should this publisher add SPS/PPS data to video key frame.</div>
+  
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            synchronized
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/FilePublisher.html#handleAVFrame(com.ksyun.media.streamer.framework.AVBufFrame)">handleAVFrame</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> frame)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1063,6 +1081,24 @@ From class
 	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#IsAddExtraForVideoKeyFrame()">IsAddExtraForVideoKeyFrame</a></span>()
+        
+        <div class="jd-descrdiv">Should this publisher add SPS/PPS data to video key frame.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
             
             
             
@@ -1077,7 +1113,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1095,7 +1131,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1111,39 +1147,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            abstract
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#doHandleAVFrame(com.ksyun.media.streamer.framework.AVBufFrame)">doHandleAVFrame</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> frame)
-        
-  </td></tr>
-
-
-	 
     <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#doHandleAVFrame(com.ksyun.media.streamer.framework.AVBufFrame, boolean)">doHandleAVFrame</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> frame, boolean sendExtraForVideoKeyFrame)
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1159,7 +1163,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1175,7 +1179,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1191,7 +1195,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1207,7 +1211,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1223,7 +1227,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1241,7 +1245,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1257,7 +1261,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1273,7 +1277,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1291,7 +1295,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1307,7 +1311,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1318,6 +1322,22 @@ From class
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getVideoSink()">getVideoSink</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            synchronized
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#handleAVFrame(com.ksyun.media.streamer.framework.AVBufFrame)">handleAVFrame</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> frame)
         
   </td></tr>
 
@@ -2345,7 +2365,7 @@ From class
 
 
 
-<a id="doHandleAVFrame(com.ksyun.media.streamer.framework.AVBufFrame)"></a>
+<a id="IsAddExtraForVideoKeyFrame()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2355,9 +2375,46 @@ From class
          
          
          
+        boolean
+      </span>
+      <span class="sympad">IsAddExtraForVideoKeyFrame</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Should this publisher add SPS/PPS data to video key frame.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>Publisher would add SPS/PPS to video key frame if returned true,
+ keep key frame as is if returned false.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="handleAVFrame(com.ksyun.media.streamer.framework.AVBufFrame)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+        synchronized 
         void
       </span>
-      <span class="sympad">doHandleAVFrame</span>
+      <span class="sympad">handleAVFrame</span>
       <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> frame)</span>
     </h4>
       <div class="api-level">

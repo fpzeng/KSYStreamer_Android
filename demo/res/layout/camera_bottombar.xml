@@ -15,22 +15,38 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="32dp"
             android:layout_marginBottom="5dp"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:weightSum="4">
 
-            <CheckBox
-                android:id="@+id/audio_ld"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#11123456"
-                android:checked="false"
+            <TextView
+                android:id="@+id/bgm_filter"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
                 android:layout_marginLeft="10dp"
                 android:layout_weight="1"
-                android:text="AudioLD"
+                android:gravity="center"
+                android:background="#11123456"
+                android:text="bgm升降调"
                 android:textColor="@color/font_color_35"
                 android:textSize="@dimen/font_size_28px">
-            </CheckBox>
+            </TextView>
+
+            <TextView
+                android:id="@+id/click_to_select_audio_filter"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:background="#11123456"
+                android:text="@string/audio_filter_selected"
+                android:textColor="@color/font_color_35"
+                android:textSize="@dimen/font_size_28px">
+            </TextView>
 
         </LinearLayout>
 
@@ -83,15 +99,14 @@
             </CheckBox>
 
             <CheckBox
-                android:id="@+id/click_to_select_audio_filter"
+                android:id="@+id/audio_ld"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="1"
                 android:background="#11123456"
                 android:checked="false"
-                android:text="@string/audio_filter_selected"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:text="AudioLD"
                 android:textColor="@color/font_color_35"
                 android:textSize="@dimen/font_size_28px">
             </CheckBox>
