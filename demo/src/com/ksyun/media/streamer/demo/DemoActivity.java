@@ -29,6 +29,17 @@ public class DemoActivity extends Activity
     private EditText mFrameRateEditText;
     private EditText mVideoBitRateEditText;
     private EditText mAudioBitRateEditText;
+
+    private RadioButton mCap360Button;
+    private RadioButton mCap480Button;
+    private RadioButton mCap720Button;
+    private RadioButton mCap1080Button;
+
+    private RadioButton mPreview360Button;
+    private RadioButton mPreview480Button;
+    private RadioButton mPreview720Button;
+    private RadioButton mPreview1080Button;
+
     private RadioButton mRes360Button;
     private RadioButton mRes480Button;
     private RadioButton mRes540Button;
@@ -55,6 +66,7 @@ public class DemoActivity extends Activity
     private RadioButton mProfileBalanceButton;
     private RadioButton mProfileHighPerfButton;
 
+    private CheckBox mStereoStreamCheckBox;
     private CheckBox mAutoStartCheckBox;
     private CheckBox mShowDebugInfoCheckBox;
 
@@ -77,10 +89,18 @@ public class DemoActivity extends Activity
         mVideoBitRateEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
         mAudioBitRateEditText = (EditText) findViewById(R.id.audioBitratePicker);
         mAudioBitRateEditText.setInputType(InputType.TYPE_CLASS_NUMBER);
-        mRes360Button = (RadioButton) findViewById(R.id.radiobutton1);
-        mRes480Button = (RadioButton) findViewById(R.id.radiobutton2);
-        mRes540Button = (RadioButton) findViewById(R.id.radiobutton3);
-        mRes720Button = (RadioButton) findViewById(R.id.radiobutton4);
+        mCap360Button = (RadioButton) findViewById(R.id.cap_360);
+        mCap480Button = (RadioButton) findViewById(R.id.cap_480);
+        mCap720Button = (RadioButton) findViewById(R.id.cap_720);
+        mCap1080Button = (RadioButton) findViewById(R.id.cap_1080);
+        mPreview360Button = (RadioButton) findViewById(R.id.preview_360);
+        mPreview480Button = (RadioButton) findViewById(R.id.preview_480);
+        mPreview720Button = (RadioButton) findViewById(R.id.preview_720);
+        mPreview1080Button = (RadioButton) findViewById(R.id.preview_1080);
+        mRes360Button = (RadioButton) findViewById(R.id.target_360);
+        mRes480Button = (RadioButton) findViewById(R.id.target_480);
+        mRes540Button = (RadioButton) findViewById(R.id.target_540);
+        mRes720Button = (RadioButton) findViewById(R.id.target_720);
         mLandscapeButton = (RadioButton) findViewById(R.id.orientationbutton1);
         mPortraitButton = (RadioButton) findViewById(R.id.orientationbutton2);
         mEncodeGroup = (RadioGroup) findViewById(R.id.encode_group);
@@ -98,6 +118,7 @@ public class DemoActivity extends Activity
         mProfileLowPowerButton = (RadioButton) findViewById(R.id.encode_profile_low_power);
         mProfileBalanceButton = (RadioButton) findViewById(R.id.encode_profile_balance);
         mProfileHighPerfButton = (RadioButton) findViewById(R.id.encode_profile_high_perf);
+        mStereoStreamCheckBox = (CheckBox) findViewById(R.id.stereo_stream);
         mAutoStartCheckBox = (CheckBox) findViewById(R.id.autoStart);
         mShowDebugInfoCheckBox = (CheckBox) findViewById(R.id.print_debug_info);
 
@@ -158,12 +179,15 @@ public class DemoActivity extends Activity
                 int frameRate = 0;
                 int videoBitRate = 0;
                 int audioBitRate = 0;
-                int videoResolution;
+                int captureResolution;
+                int previewResolution;
+                int targetResolution;
                 int encodeType;
                 int encodeMethod;
                 int encodeScene;
                 int encodeProfile;
                 int orientation;
+                boolean stereoStream;
                 boolean startAuto;
                 boolean showDebugInfo;
 
@@ -184,14 +208,34 @@ public class DemoActivity extends Activity
                                 .toString());
                     }
 
-                    if (mRes360Button.isChecked()) {
-                        videoResolution = StreamerConstants.VIDEO_RESOLUTION_360P;
-                    } else if (mRes480Button.isChecked()) {
-                        videoResolution = StreamerConstants.VIDEO_RESOLUTION_480P;
-                    } else if (mRes540Button.isChecked()) {
-                        videoResolution = StreamerConstants.VIDEO_RESOLUTION_540P;
+                    if (mCap360Button.isChecked()) {
+                        captureResolution = StreamerConstants.VIDEO_RESOLUTION_360P;
+                    } else if (mCap480Button.isChecked()) {
+                        captureResolution = StreamerConstants.VIDEO_RESOLUTION_480P;
+                    } else if (mCap720Button.isChecked()) {
+                        captureResolution = StreamerConstants.VIDEO_RESOLUTION_720P;
                     } else {
-                        videoResolution = StreamerConstants.VIDEO_RESOLUTION_720P;
+                        captureResolution = StreamerConstants.VIDEO_RESOLUTION_1080P;
+                    }
+
+                    if (mPreview360Button.isChecked()) {
+                        previewResolution = StreamerConstants.VIDEO_RESOLUTION_360P;
+                    } else if (mPreview480Button.isChecked()) {
+                        previewResolution = StreamerConstants.VIDEO_RESOLUTION_480P;
+                    } else if (mPreview720Button.isChecked()) {
+                        previewResolution = StreamerConstants.VIDEO_RESOLUTION_720P;
+                    } else {
+                        previewResolution = StreamerConstants.VIDEO_RESOLUTION_1080P;
+                    }
+
+                    if (mRes360Button.isChecked()) {
+                        targetResolution = StreamerConstants.VIDEO_RESOLUTION_360P;
+                    } else if (mRes480Button.isChecked()) {
+                        targetResolution = StreamerConstants.VIDEO_RESOLUTION_480P;
+                    } else if (mRes540Button.isChecked()) {
+                        targetResolution = StreamerConstants.VIDEO_RESOLUTION_540P;
+                    } else {
+                        targetResolution = StreamerConstants.VIDEO_RESOLUTION_720P;
                     }
 
                     if (mEncodeWithH265.isChecked()) {
@@ -235,13 +279,15 @@ public class DemoActivity extends Activity
                         orientation = ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR;
                     }
 
+                    stereoStream = mStereoStreamCheckBox.isChecked();
                     startAuto = mAutoStartCheckBox.isChecked();
                     showDebugInfo = mShowDebugInfoCheckBox.isChecked();
 
                     CameraActivity.startActivity(getApplicationContext(), 0,
                             mUrlEditText.getText().toString(), frameRate, videoBitRate,
-                            audioBitRate, videoResolution, orientation, encodeType, encodeMethod,
-                            encodeScene, encodeProfile, startAuto, showDebugInfo);
+                            audioBitRate, captureResolution, previewResolution, targetResolution,
+                            orientation, encodeType, encodeMethod, encodeScene, encodeProfile,
+                            stereoStream, startAuto, showDebugInfo);
                 }
                 break;
             default:

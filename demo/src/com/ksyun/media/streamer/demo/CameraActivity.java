@@ -26,7 +26,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.OrientationEventListener;
 import android.view.Surface;
-import android.view.TextureView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -45,6 +44,7 @@ import com.ksyun.media.streamer.capture.CameraCapture;
 import com.ksyun.media.streamer.capture.camera.CameraTouchHelper;
 import com.ksyun.media.streamer.filter.audio.AudioFilterBase;
 import com.ksyun.media.streamer.filter.audio.AudioReverbFilter;
+import com.ksyun.media.streamer.filter.audio.KSYAudioEffectFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgBeautyProFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgBeautySpecialEffectsFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgBeautyToneCurveFilter;
@@ -70,6 +70,12 @@ import java.util.Locale;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import static com.ksyun.media.streamer.filter.audio.KSYAudioEffectFilter.AUDIO_EFFECT_TYPE_FEMALE;
+import static com.ksyun.media.streamer.filter.audio.KSYAudioEffectFilter.AUDIO_EFFECT_TYPE_HEROIC;
+import static com.ksyun.media.streamer.filter.audio.KSYAudioEffectFilter.AUDIO_EFFECT_TYPE_MALE;
+import static com.ksyun.media.streamer.filter.audio.KSYAudioEffectFilter.AUDIO_EFFECT_TYPE_PITCH;
+import static com.ksyun.media.streamer.filter.audio.KSYAudioEffectFilter.AUDIO_EFFECT_TYPE_ROBOT;
+
 public class CameraActivity extends Activity implements
         ActivityCompat.OnRequestPermissionsResultCallback {
 
@@ -89,9 +95,10 @@ public class CameraActivity extends Activity implements
     private CheckBox mAudioLDCheckBox;
     private CheckBox mWaterMarkCheckBox;
     private CheckBox mBeautyCheckBox;
-    private CheckBox mReverbCheckBox;
     private CheckBox mAudioPreviewCheckBox;
     private CheckBox mBgmCheckBox;
+    private TextView mAudioFilterText;
+    private TextView mBgmFilterText;
     private CheckBox mMuteCheckBox;
     private CheckBox mAudioOnlyCheckBox;
     private CheckBox mFrontMirrorCheckBox;
@@ -145,21 +152,26 @@ public class CameraActivity extends Activity implements
     public final static String FRAME_RATE = "framerate";
     public final static String VIDEO_BITRATE = "video_bitrate";
     public final static String AUDIO_BITRATE = "audio_bitrate";
+    public final static String CAP_RESOLUTION = "cap_resolution";
+    public final static String PREVIEW_RESOLUTION = "preview_resolution";
     public final static String VIDEO_RESOLUTION = "video_resolution";
     public final static String ORIENTATION = "orientation";
     public final static String ENCODE_TYPE = "encode_type";
     public final static String ENCODE_METHOD = "encode_method";
     public final static String ENCODE_SCENE = "encode_scene";
     public final static String ENCODE_PROFILE = "encode_profile";
+    public final static String STEREO_STREAM = "stereo_stream";
     public final static String START_AUTO = "start_auto";
     public static final String SHOW_DEBUGINFO = "show_debuginfo";
 
     public static void startActivity(Context context, int fromType,
                                      String rtmpUrl, int frameRate,
                                      int videoBitrate, int audioBitrate,
-                                     int videoResolution, int orientation,
+                                     int capResolution, int previewResolution,
+                                     int targetResolution, int orientation,
                                      int encodeType, int encodeMethod,
                                      int encodeScene, int encodeProfile,
+                                     boolean stereoStream,
                                      boolean startAuto, boolean showDebugInfo) {
         Intent intent = new Intent(context, CameraActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
@@ -168,12 +180,15 @@ public class CameraActivity extends Activity implements
         intent.putExtra(FRAME_RATE, frameRate);
         intent.putExtra(VIDEO_BITRATE, videoBitrate);
         intent.putExtra(AUDIO_BITRATE, audioBitrate);
-        intent.putExtra(VIDEO_RESOLUTION, videoResolution);
+        intent.putExtra(CAP_RESOLUTION, capResolution);
+        intent.putExtra(PREVIEW_RESOLUTION, previewResolution);
+        intent.putExtra(VIDEO_RESOLUTION, targetResolution);
         intent.putExtra(ORIENTATION, orientation);
         intent.putExtra(ENCODE_TYPE, encodeType);
         intent.putExtra(ENCODE_METHOD, encodeMethod);
         intent.putExtra(ENCODE_SCENE, encodeScene);
         intent.putExtra(ENCODE_PROFILE, encodeProfile);
+        intent.putExtra(STEREO_STREAM, stereoStream);
         intent.putExtra(START_AUTO, startAuto);
         intent.putExtra(SHOW_DEBUGINFO, showDebugInfo);
         context.startActivity(intent);
@@ -215,10 +230,12 @@ public class CameraActivity extends Activity implements
         mCheckBoxObserver = new CheckBoxObserver();
         mBeautyCheckBox = (CheckBox) findViewById(R.id.click_to_switch_beauty);
         mBeautyCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
-        mReverbCheckBox = (CheckBox) findViewById(R.id.click_to_select_audio_filter);
-        mReverbCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
+        mAudioFilterText = (TextView) findViewById(R.id.click_to_select_audio_filter);
+        mAudioFilterText.setOnClickListener(mObserverButton);
         mBgmCheckBox = (CheckBox) findViewById(R.id.bgm);
         mBgmCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
+        mBgmFilterText = (TextView) findViewById(R.id.bgm_filter);
+        mBgmFilterText.setOnClickListener(mObserverButton);
         mAudioPreviewCheckBox = (CheckBox) findViewById(R.id.ear_mirror);
         mAudioPreviewCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
         mMuteCheckBox = (CheckBox) findViewById(R.id.mute);
@@ -271,8 +288,13 @@ public class CameraActivity extends Activity implements
                 mStreamer.setAudioKBitrate(audioBitrate);
             }
 
+            int capResolution = bundle.getInt(CAP_RESOLUTION, 0);
+            mStreamer.setCameraCaptureResolution(capResolution);
+
+            int previewResolution = bundle.getInt(PREVIEW_RESOLUTION, 0);
+            mStreamer.setPreviewResolution(previewResolution);
+
             int videoResolution = bundle.getInt(VIDEO_RESOLUTION, 0);
-            mStreamer.setPreviewResolution(videoResolution);
             mStreamer.setTargetResolution(videoResolution);
 
             int encode_type = bundle.getInt(ENCODE_TYPE);
@@ -286,6 +308,9 @@ public class CameraActivity extends Activity implements
 
             int encodeProfile = bundle.getInt(ENCODE_PROFILE);
             mStreamer.setVideoEncodeProfile(encodeProfile);
+
+            boolean stereoStream = bundle.getBoolean(STEREO_STREAM);
+            mStreamer.setAudioChannels(stereoStream ? 2 : 1);
 
             int orientation = bundle.getInt(ORIENTATION, ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
             if (orientation == ActivityInfo.SCREEN_ORIENTATION_FULL_SENSOR) {
@@ -919,14 +944,16 @@ public class CameraActivity extends Activity implements
         }
     }
 
-    private boolean[] mChooseFilter = {false, false};
+    private boolean[] mChooseFilter = {false, false, false, false
+            ,false ,false, false, false, false, false};
 
     private void showChooseAudioFilter() {
         AlertDialog alertDialog;
         alertDialog = new AlertDialog.Builder(this)
                 .setTitle("请选择音频滤镜")
                 .setMultiChoiceItems(
-                        new String[]{"REVERB", "DEMO",}, mChooseFilter,
+                        new String[]{"REVERB", "DEMO", "萝莉",
+                                "大叔","庄严","机器人"}, mChooseFilter,
                         new DialogInterface.OnMultiChoiceClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which, boolean isChecked) {
@@ -938,22 +965,66 @@ public class CameraActivity extends Activity implements
                 ).setPositiveButton("确定", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        if (mChooseFilter[0] && mChooseFilter[1]) {
-                            List<AudioFilterBase> filters = new LinkedList<>();
+                        List<AudioFilterBase> filters = new LinkedList<>();
+                        if (mChooseFilter[0]) {
                             AudioReverbFilter reverbFilter = new AudioReverbFilter();
-                            DemoAudioFilter demofilter = new DemoAudioFilter();
                             filters.add(reverbFilter);
-                            filters.add(demofilter);
-                            mStreamer.getAudioFilterMgt().setFilter(filters);
-                        } else if (mChooseFilter[0]) {
-                            AudioReverbFilter reverbFilter = new AudioReverbFilter();
-                            mStreamer.getAudioFilterMgt().setFilter(reverbFilter);
-                        } else if (mChooseFilter[1]) {
-                            DemoAudioFilter demofilter = new DemoAudioFilter();
-                            mStreamer.getAudioFilterMgt().setFilter(demofilter);
-                        } else {
-                            mStreamer.getAudioFilterMgt().setFilter((AudioFilterBase) null);
                         }
+                        if (mChooseFilter[1]) {
+                            DemoAudioFilter demofilter = new DemoAudioFilter();
+                            filters.add(demofilter);
+                        }
+                        if (mChooseFilter[2]) {
+                            KSYAudioEffectFilter audioEffect = new KSYAudioEffectFilter(AUDIO_EFFECT_TYPE_FEMALE);
+                            filters.add(audioEffect);
+                        }
+                        if (mChooseFilter[3]) {
+                            KSYAudioEffectFilter audioEffect = new KSYAudioEffectFilter(AUDIO_EFFECT_TYPE_MALE);
+                            filters.add(audioEffect);
+                        }
+                        if (mChooseFilter[4]) {
+                            KSYAudioEffectFilter audioEffect = new KSYAudioEffectFilter(AUDIO_EFFECT_TYPE_HEROIC);
+                            filters.add(audioEffect);
+                        }
+                        if (mChooseFilter[5]) {
+                            KSYAudioEffectFilter audioEffect = new KSYAudioEffectFilter(AUDIO_EFFECT_TYPE_ROBOT);
+                            filters.add(audioEffect);
+                        }
+
+                        if (!mChooseFilter[0] && !mChooseFilter[1] && !mChooseFilter[2] &&
+                                !mChooseFilter[3] && !mChooseFilter[4] && !mChooseFilter[5]) {
+                            filters = null;
+                        }
+                        mStreamer.getAudioFilterMgt().setFilter(filters);
+
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        alertDialog.setCancelable(false);
+        alertDialog.show();
+    }
+
+    private int mChooseBGMFilter = 3;
+    private String[] mBGMFilterName = {"-3", "-2", "-1", "0", "1", "2", "3"};
+
+    private void onChooseBGMFilter() {
+        AlertDialog alertDialog;
+        alertDialog = new AlertDialog.Builder(this)
+                .setTitle("请选择背景音乐变调等级")
+                .setSingleChoiceItems(mBGMFilterName, mChooseBGMFilter, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        mChooseBGMFilter = which;
+                    }
+                })
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        int level = Integer.parseInt(mBGMFilterName[mChooseBGMFilter]);
+                        KSYAudioEffectFilter audioEffect = new KSYAudioEffectFilter(AUDIO_EFFECT_TYPE_PITCH);
+                        audioEffect.setPitchLevel(level);
+                        mStreamer.getBGMAudioFilterMgt().setFilter(audioEffect);
                         dialog.dismiss();
                     }
                 })
@@ -971,10 +1042,6 @@ public class CameraActivity extends Activity implements
         } else {
             mBeautyChooseView.setVisibility(isChecked ? View.VISIBLE : View.INVISIBLE);
         }
-    }
-
-    private void onAudioFilterChecked(boolean isChecked) {
-        showChooseAudioFilter();
     }
 
     private void onBgmChecked(boolean isChecked) {
@@ -1094,6 +1161,12 @@ public class CameraActivity extends Activity implements
                 case R.id.click_to_capture_screenshot:
                     onCaptureScreenShotClick();
                     break;
+                case R.id.bgm_filter:
+                    onChooseBGMFilter();
+                    break;
+                case R.id.click_to_select_audio_filter:
+                    showChooseAudioFilter();
+                    break;
                 default:
                     break;
             }
@@ -1107,9 +1180,6 @@ public class CameraActivity extends Activity implements
             switch (buttonView.getId()) {
                 case R.id.click_to_switch_beauty:
                     onBeautyChecked(isChecked);
-                    break;
-                case R.id.click_to_select_audio_filter:
-                    onAudioFilterChecked(isChecked);
                     break;
                 case R.id.bgm:
                     onBgmChecked(isChecked);
