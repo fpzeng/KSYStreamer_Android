@@ -37,6 +37,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Filter[内置美声]
 * [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Filter[自定义音频滤镜] (new)**
 * [x] https://github.com/ksvc/KSYStreamer_Android/wiki/Audio_Mixer[背景音乐功能], 支持 https://github.com/ksvc/KSYStreamer_Android/wiki/Ear_Mirror[耳返]
+* [x] **音频升降调(new)**
 * [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/Ear_Mirror[低延迟耳返] (new)**
 * [x] https://github.com/ksvc/KSYStreamer_Android/wiki/WaterMark[支持图片及时间戳水印]
 * [x] 开放KSYStreamer类的实现，开发者可自行组装各个模块 (new)
@@ -48,7 +49,6 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] https://github.com/ksvc/KSYDiversityLive_Android/tree/master/KSYFaceunityAndroid[相芯动态贴纸]
 * [x] https://github.com/ksvc/KSYStreamer_Android/wiki/FloatingView[悬浮窗推流]  
 * [x] **https://github.com/ksvc/KSYMediaEditorKit_Android[短视频编辑] (new) **
-* [x] 音频升降调
 
 == 运行环境
 
