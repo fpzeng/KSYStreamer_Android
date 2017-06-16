@@ -28,7 +28,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/dynamic_rotate[支持动态横竖屏推流]（new）**
 * [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/Front_Back_Switch[支持后台音频推流、后台音视频正常推流] (new)**
 * [x] 支持前、后置摄像头动态切换
-* [x] 前置摄像头镜像功能
+* [x] https://github.com/ksvc/KSYStreamer_Android/wiki/front_camera_mirror[前置摄像头镜像功能]
 * [x] 闪光灯：开/关
 * [x] https://github.com/ksvc/KSYStreamer_Android/wiki/AutoFocus&Zoom[支持触摸对焦（手动对焦）及测光]
 * [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/AutoFocus&Zoom[支持变焦功能] (new)**
@@ -55,7 +55,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * 最低支持版本为Android 4.0 (API level 15)
 * 支持的CPU架构：armv7, arm64, x86
 
-.软硬编部分功能对系统版本的要求及相关限制
+.软硬编部分功能对Android系统版本的要求及相关限制
 |===
 |           |软编     |硬编         |软编兼容模式
 |基础推流   |4.4 (19)   |4.3 (18)   |4.0 (15)
