@@ -137,12 +137,12 @@ allprojects {
 
 dependencies {
     # required, enough for most devices.
-    compile 'com.ksyun.media:libksylive-java:2.3.0'
-    compile 'com.ksyun.media:libksylive-armv7a:2.3.0'
+    compile 'com.ksyun.media:libksylive-java:2.3.3'
+    compile 'com.ksyun.media:libksylive-armv7a:2.3.3'
 
     # Other ABIs: optional
-    compile 'com.ksyun.media:libksylive-arm64:2.3.0'
-    compile 'com.ksyun.media:libksylive-x86:2.3.0'
+    compile 'com.ksyun.media:libksylive-arm64:2.3.3'
+    compile 'com.ksyun.media:libksylive-x86:2.3.3'
 }
 ----
 +
