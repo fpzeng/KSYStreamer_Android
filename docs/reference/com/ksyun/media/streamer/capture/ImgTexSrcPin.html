@@ -187,10 +187,13 @@
       <ul>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/AudioCapture.html">AudioCapture</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.html">AudioPlayerCapture</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.PlayRanges.html">AudioPlayerCapture.PlayRanges</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/CameraCapture.html">CameraCapture</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/CameraCapture.Size.html">CameraCapture.Size</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/ImageCapture.html">ImageCapture</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/ImgBufSrcPin.html">ImgBufSrcPin</a></li>
           <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html">ImgTexSrcPin</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/ViewCapture.html">ViewCapture</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/WaterMarkCapture.html">WaterMarkCapture</a></li>
       </ul>
     </li>
@@ -535,6 +538,42 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#release()">release</a></span>()
         
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#repeatFrame()">repeatFrame</a></span>()
+        
+        <div class="jd-descrdiv">Repeat to send current image frame with current system time as new pts.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#repeatFrame(long)">repeatFrame</a></span>(long pts)
+        
+        <div class="jd-descrdiv">Repeat to send current image frame, do nothing if no frame uploaded yet.</div>
+  
   </td></tr>
 
 
@@ -1133,6 +1172,80 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="repeatFrame()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">repeatFrame</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Repeat to send current image frame with current system time as new pts.
+ Do nothing if no frame uploaded yet.
+</p></div>
+
+    </div>
+</div>
+
+
+<a id="repeatFrame(long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">repeatFrame</span>
+      <span class="normal">(long pts)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Repeat to send current image frame, do nothing if no frame uploaded yet.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>pts</th>
+          <td>new pts to set
+</td>
+        </tr>
+      </table>
+  </div>
 
     </div>
 </div>

@@ -41,6 +41,7 @@ import android.widget.Toast;
 
 import com.ksyun.media.player.IMediaPlayer;
 import com.ksyun.media.streamer.capture.CameraCapture;
+import com.ksyun.media.streamer.capture.ViewCapture;
 import com.ksyun.media.streamer.capture.camera.CameraTouchHelper;
 import com.ksyun.media.streamer.filter.audio.AudioFilterBase;
 import com.ksyun.media.streamer.filter.audio.AudioReverbFilter;
@@ -57,6 +58,7 @@ import com.ksyun.media.streamer.kit.OnPreviewFrameListener;
 import com.ksyun.media.streamer.kit.StreamerConstants;
 import com.ksyun.media.streamer.logstats.StatsLogReport;
 import com.ksyun.media.streamer.util.gles.GLRender;
+import com.lht.paintview.PaintView;
 
 import java.io.BufferedOutputStream;
 import java.io.FileNotFoundException;
@@ -84,6 +86,7 @@ public class CameraActivity extends Activity implements
     private GLSurfaceView mCameraPreviewView;
     //private TextureView mCameraPreviewView;
     private CameraHintView mCameraHintView;
+    private PaintView mPaintView;
     private Chronometer mChronometer;
     private View mDeleteView;
     private View mSwitchCameraView;
@@ -104,6 +107,8 @@ public class CameraActivity extends Activity implements
     private CheckBox mFrontMirrorCheckBox;
     private TextView mUrlTextView;
     private TextView mDebugInfoTextView;
+    private CheckBox mPaintCheckBox;
+    private CheckBox mBgImageCheckBox;
 
     private View mBeautyChooseView;
     private AppCompatSpinner mBeautySpinner;
@@ -123,6 +128,7 @@ public class CameraActivity extends Activity implements
     private ButtonObserver mObserverButton;
     private CheckBoxObserver mCheckBoxObserver;
 
+    private ViewCapture mPaintViewCapture;
     private KSYStreamer mStreamer;
     private Handler mMainHandler;
     private Timer mTimer;
@@ -137,6 +143,7 @@ public class CameraActivity extends Activity implements
     private String mDebugInfo = "";
     private String mBgmPath = "/sdcard/test.mp3";
     private String mLogoPath = "file:///sdcard/test.png";
+    private String mBgImagePath = "assets://bg.jpg";
     private String mRecordUrl = "/sdcard/rec_test.mp4";
 
     private boolean mHWEncoderUnsupported;
@@ -210,6 +217,7 @@ public class CameraActivity extends Activity implements
         mUrlTextView = (TextView) findViewById(R.id.url);
         mChronometer = (Chronometer) findViewById(R.id.chronometer);
         mDebugInfoTextView = (TextView) findViewById(R.id.debuginfo);
+        mPaintView = (PaintView) findViewById(R.id.view_paint);
 
         mObserverButton = new ButtonObserver();
         mShootingText = (TextView) findViewById(R.id.click_to_shoot);
@@ -248,6 +256,10 @@ public class CameraActivity extends Activity implements
         mAudioOnlyCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
         mAudioLDCheckBox = (CheckBox) findViewById(R.id.audio_ld);
         mAudioLDCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
+        mPaintCheckBox = (CheckBox) findViewById(R.id.paint);
+        mPaintCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
+        mBgImageCheckBox = (CheckBox) findViewById(R.id.bg_image);
+        mBgImageCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
 
         mBeautyChooseView = findViewById(R.id.beauty_choose);
         mBeautySpinner = (AppCompatSpinner) findViewById(R.id.beauty_spin);
@@ -328,8 +340,8 @@ public class CameraActivity extends Activity implements
                             Log.d(TAG, "Rotation changed " + mLastRotation + "->" + rotation);
                             mIsLandscape = (rotation % 180) != 0;
                             mStreamer.setRotateDegrees(rotation);
-                            hideWaterMark();
                             if (mWaterMarkCheckBox.isChecked()) {
+                                hideWaterMark();
                                 showWaterMark();
                             }
                             mLastRotation = rotation;
@@ -393,19 +405,16 @@ public class CameraActivity extends Activity implements
         // set CameraHintView to show focus rect and zoom ratio
         cameraTouchHelper.setCameraHintView(mCameraHintView);
 
-        startCameraPreviewWithPermCheck();
+        startCameraPreviewWithPermCheck(true);
         if (mWaterMarkCheckBox.isChecked()) {
             showWaterMark();
-        }
-        if (mAutoStart) {
-            startStream();
         }
     }
 
     private void initBeautyUI() {
         String[] items = new String[]{"DISABLE", "BEAUTY_SOFT", "SKIN_WHITEN", "BEAUTY_ILLUSION",
-                "BEAUTY_DENOISE", "BEAUTY_SMOOTH", "BEAUTY_PRO", "DEMO_FILTER", "GROUP_FILTER",
-                "ToneCurve", "复古", "胶片"};
+                "BEAUTY_DENOISE", "BEAUTY_SMOOTH", "BEAUTY_PRO", "BEAUTY_PRO2", "BEAUTY_PRO3",
+                "BEAUTY_PRO4", "DEMO_FILTER", "GROUP_FILTER", "ToneCurve", "复古", "胶片"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -426,9 +435,18 @@ public class CameraActivity extends Activity implements
                     mStreamer.getImgTexFilterMgt().setFilter(mStreamer.getGLRender(),
                             ImgTexFilterMgt.KSY_FILTER_BEAUTY_PRO);
                 } else if (position == 7) {
+                    mStreamer.getImgTexFilterMgt().setFilter(mStreamer.getGLRender(),
+                            ImgTexFilterMgt.KSY_FILTER_BEAUTY_PRO2);
+                } else if (position == 8) {
+                    mStreamer.getImgTexFilterMgt().setFilter(mStreamer.getGLRender(),
+                            ImgTexFilterMgt.KSY_FILTER_BEAUTY_PRO3);
+                } else if (position == 9) {
+                    mStreamer.getImgTexFilterMgt().setFilter(mStreamer.getGLRender(),
+                            ImgTexFilterMgt.KSY_FILTER_BEAUTY_PRO4);
+                } else if (position == 10) {
                     mStreamer.getImgTexFilterMgt().setFilter(
                             new DemoFilter(mStreamer.getGLRender()));
-                } else if (position == 8) {
+                } else if (position == 11) {
                     List<ImgFilterBase> groupFilter = new LinkedList<>();
                     groupFilter.add(new DemoFilter2(mStreamer.getGLRender()));
                     groupFilter.add(new DemoFilter3(mStreamer.getGLRender()));
@@ -437,19 +455,19 @@ public class CameraActivity extends Activity implements
                             CameraActivity.this,
                             ImgBeautySpecialEffectsFilter.KSY_SPECIAL_EFFECT_BLUE));
                     mStreamer.getImgTexFilterMgt().setFilter(groupFilter);
-                } else if (position == 9) {
+                } else if (position == 12) {
                     ImgBeautyToneCurveFilter acvFilter = new ImgBeautyToneCurveFilter(mStreamer.getGLRender());
                     acvFilter.setFromCurveFileInputStream(
                             CameraActivity.this.getResources().openRawResource(R.raw.tone_cuver_sample));
 
                     mStreamer.getImgTexFilterMgt().setFilter(acvFilter);
-                } else if (position == 10) {
+                } else if (position == 13) {
                     ImgBeautyToneCurveFilter acvFilter = new ImgBeautyToneCurveFilter(mStreamer.getGLRender());
                     acvFilter.setFromCurveFileInputStream(
                             CameraActivity.this.getResources().openRawResource(R.raw.fugu));
 
                     mStreamer.getImgTexFilterMgt().setFilter(acvFilter);
-                } else if (position == 11) {
+                } else if (position == 14) {
                     ImgBeautyToneCurveFilter acvFilter = new ImgBeautyToneCurveFilter(mStreamer.getGLRender());
                     acvFilter.setFromCurveFileInputStream(
                             CameraActivity.this.getResources().openRawResource(R.raw.jiaopian));
@@ -532,8 +550,10 @@ public class CameraActivity extends Activity implements
         mStreamer.onResume();
         mCameraHintView.hideAll();
 
-        // camera may be occupied by other app in background
-        startCameraPreviewWithPermCheck();
+        if (!mBgImageCheckBox.isChecked()) {
+            // camera may be occupied by other app in background
+            startCameraPreviewWithPermCheck(false);
+        }
 
         // re-enable audio low delay in foreground
         if (mAudioLDCheckBox.isChecked()) {
@@ -558,6 +578,8 @@ public class CameraActivity extends Activity implements
     @Override
     public void onDestroy() {
         super.onDestroy();
+        // stop paint view capture if needed
+        stopPaintViewCapture();
         if (mMainHandler != null) {
             mMainHandler.removeCallbacksAndMessages(null);
             mMainHandler = null;
@@ -629,6 +651,7 @@ public class CameraActivity extends Activity implements
     }
 
     private void stopStream() {
+        // stop stream
         mStreamer.stopStream();
         mShootingText.setText(START_STRING);
         mShootingText.postInvalidate();
@@ -1070,14 +1093,7 @@ public class CameraActivity extends Activity implements
     }
 
     private void onAudioPreviewChecked(boolean isChecked) {
-        if(isChecked != mStreamer.isAudioPreviewing()) {
-            // 若没有插入耳机，该接口会设置失败，因此设置完毕后需要判断一下，进行状态复归
-            mStreamer.setEnableAudioPreview(isChecked);
-            if (isChecked != mStreamer.isAudioPreviewing()) {
-                Toast.makeText(this, "设置耳返失败，您需要插入耳机", Toast.LENGTH_SHORT).show();
-                mAudioPreviewCheckBox.setChecked(mStreamer.isAudioPreviewing());
-            }
-        }
+        mStreamer.setEnableAudioPreview(isChecked);
     }
 
     private void onMuteChecked(boolean isChecked) {
@@ -1101,6 +1117,69 @@ public class CameraActivity extends Activity implements
 
     private void onAudioLDChecked(boolean isChecked) {
         mStreamer.setEnableAudioLowDelay(isChecked);
+    }
+
+    private void onPaintChecked(boolean isChecked) {
+        if (isChecked) {
+            // config paint view
+            mPaintView.setVisibility(View.VISIBLE);
+            mPaintView.setColor(Color.RED);
+            mPaintView.setBgColor(Color.TRANSPARENT);
+            mPaintView.setStrokeWidth(4);
+            mPaintView.setGestureEnable(false);
+
+            if (mPaintViewCapture == null) {
+                mPaintViewCapture = new ViewCapture(mStreamer.getGLRender());
+                // connect to the empty last sink pin of graph mixer
+                mPaintViewCapture.getSrcPin().connect(mStreamer.getImgTexMixer().getSinkPin(7));
+                // set render position relative to the video
+                mStreamer.getImgTexMixer().setRenderRect(7, 0, 0, 1, 1, 1);
+
+                // restart PaintViewCapture while view layout changed
+                mPaintView.addOnLayoutChangeListener(new View.OnLayoutChangeListener() {
+                    @Override
+                    public void onLayoutChange(View v, int left, int top, int right, int bottom,
+                                               int oldLeft, int oldTop, int oldRight, int oldBottom) {
+                        int oldW = oldRight - oldLeft;
+                        int oldH = oldBottom - oldTop;
+                        if (mPaintCheckBox.isChecked() && (oldW * oldH != 0)) {
+                            stopPaintViewCapture();
+                            startPaintViewCapture();
+                        }
+                    }
+                });
+            }
+            startPaintViewCapture();
+        } else {
+            stopPaintViewCapture();
+            mPaintView.clear();
+            mPaintView.setVisibility(View.GONE);
+        }
+    }
+
+    private void onBgImageChecked(boolean isChecked) {
+        if (isChecked) {
+            mStreamer.stopCameraPreview();
+            mStreamer.startImageCapture(mBgImagePath);
+        } else {
+            mStreamer.stopImageCapture();
+            mStreamer.startCameraPreview();
+        }
+    }
+
+    private void startPaintViewCapture() {
+        if (mPaintViewCapture != null) {
+            mPaintViewCapture.setTargetResolution(mStreamer.getTargetWidth(),
+                    mStreamer.getTargetHeight());
+            mPaintViewCapture.setUpdateFps(mStreamer.getTargetFps());
+            mPaintViewCapture.start(mPaintView);
+        }
+    }
+
+    private void stopPaintViewCapture() {
+        if (mPaintViewCapture != null) {
+            mPaintViewCapture.stop();
+        }
     }
 
     private void onCaptureScreenShotClick() {
@@ -1202,18 +1281,24 @@ public class CameraActivity extends Activity implements
                 case R.id.audio_ld:
                     onAudioLDChecked(isChecked);
                     break;
+                case R.id.paint:
+                    onPaintChecked(isChecked);
+                    break;
+                case R.id.bg_image:
+                    onBgImageChecked(isChecked);
+                    break;
                 default:
                     break;
             }
         }
     }
 
-    private void startCameraPreviewWithPermCheck() {
+    private void startCameraPreviewWithPermCheck(boolean request) {
         int cameraPerm = ActivityCompat.checkSelfPermission(this, Manifest.permission.CAMERA);
         int audioPerm = ActivityCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO);
         if (cameraPerm != PackageManager.PERMISSION_GRANTED ||
                 audioPerm != PackageManager.PERMISSION_GRANTED) {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M || !request) {
                 Log.e(TAG, "No CAMERA or AudioRecord permission, please check");
                 Toast.makeText(this, "No CAMERA or AudioRecord permission, please check",
                         Toast.LENGTH_LONG).show();
@@ -1226,6 +1311,10 @@ public class CameraActivity extends Activity implements
             }
         } else {
             mStreamer.startCameraPreview();
+            if (mAutoStart) {
+                mAutoStart = false;
+                startStream();
+            }
         }
     }
 
@@ -1238,6 +1327,10 @@ public class CameraActivity extends Activity implements
                 if (grantResults.length > 0
                         && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                     mStreamer.startCameraPreview();
+                    if (mAutoStart) {
+                        mAutoStart = false;
+                        startStream();
+                    }
                 } else {
                     Log.e(TAG, "No CAMERA or AudioRecord permission");
                     Toast.makeText(this, "No CAMERA or AudioRecord permission",

@@ -48,6 +48,34 @@
                 android:textSize="@dimen/font_size_28px">
             </TextView>
 
+            <CheckBox
+                android:id="@+id/paint"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#11123456"
+                android:checked="false"
+                android:text="手绘"
+                android:textColor="@color/font_color_35"
+                android:textSize="@dimen/font_size_28px">
+            </CheckBox>
+
+            <CheckBox
+                android:id="@+id/bg_image"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#11123456"
+                android:checked="false"
+                android:text="背景图推流"
+                android:textColor="@color/font_color_35"
+                android:textSize="@dimen/font_size_28px">
+            </CheckBox>
+
         </LinearLayout>
 
         <LinearLayout
