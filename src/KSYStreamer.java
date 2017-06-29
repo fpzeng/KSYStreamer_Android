@@ -18,6 +18,7 @@ import android.view.TextureView;
 import com.ksyun.media.streamer.capture.AudioCapture;
 import com.ksyun.media.streamer.capture.AudioPlayerCapture;
 import com.ksyun.media.streamer.capture.CameraCapture;
+import com.ksyun.media.streamer.capture.ImageCapture;
 import com.ksyun.media.streamer.capture.WaterMarkCapture;
 import com.ksyun.media.streamer.encoder.AVCodecAudioEncoder;
 import com.ksyun.media.streamer.encoder.AudioEncodeFormat;
@@ -42,6 +43,7 @@ import com.ksyun.media.streamer.publisher.FilePublisher;
 import com.ksyun.media.streamer.publisher.Publisher;
 import com.ksyun.media.streamer.publisher.PublisherMgt;
 import com.ksyun.media.streamer.publisher.RtmpPublisher;
+import com.ksyun.media.streamer.util.BitmapLoader;
 import com.ksyun.media.streamer.util.gles.GLRender;
 
 import java.util.concurrent.atomic.AtomicInteger;
@@ -65,29 +67,29 @@ public class KSYStreamer {
     protected int mIdxAudioMic = 0;
     protected int mIdxAudioBgm = 1;
 
-    private String mUri;
-    private String mRecordUri;
-    private int mScreenRenderWidth = 0;
-    private int mScreenRenderHeight = 0;
-    private int mPreviewResolution = StreamerConstants.VIDEO_RESOLUTION_360P;
+    protected String mUri;
+    protected String mRecordUri;
+    protected int mScreenRenderWidth = 0;
+    protected int mScreenRenderHeight = 0;
+    protected int mPreviewResolution = StreamerConstants.VIDEO_RESOLUTION_360P;
     protected int mPreviewWidth = 0;
     protected int mPreviewHeight = 0;
-    private float mPreviewFps = 0;
-    private int mTargetResolution = StreamerConstants.VIDEO_RESOLUTION_360P;
+    protected float mPreviewFps = 0;
+    protected int mTargetResolution = StreamerConstants.VIDEO_RESOLUTION_360P;
     protected int mTargetWidth = 0;
-    private int mTargetHeight = 0;
-    private float mTargetFps = 0;
-    private float mIFrameInterval = 3.0f;
-    private int mVideoCodecId = AVConst.CODEC_ID_AVC;
-    private int mEncodeScene = VideoEncodeFormat.ENCODE_SCENE_SHOWSELF;
-    private int mEncodeProfile = VideoEncodeFormat.ENCODE_PROFILE_LOW_POWER;
+    protected int mTargetHeight = 0;
+    protected float mTargetFps = 0;
+    protected float mIFrameInterval = 3.0f;
+    protected int mVideoCodecId = AVConst.CODEC_ID_AVC;
+    protected int mEncodeScene = VideoEncodeFormat.ENCODE_SCENE_SHOWSELF;
+    protected int mEncodeProfile = VideoEncodeFormat.ENCODE_PROFILE_LOW_POWER;
     protected int mRotateDegrees = 0;
-    private int mMaxVideoBitrate = 800 * 1000;
-    private int mInitVideoBitrate = 600 * 1000;
-    private int mMinVideoBitrate = 200 * 1000;
-    private boolean mAutoAdjustVideoBitrate = true;
-    private int mBwEstStrategy = RtmpPublisher.BW_EST_STRATEGY_NORMAL;
-    private int mAudioBitrate = 48 * 1000;
+    protected int mMaxVideoBitrate = 800 * 1000;
+    protected int mInitVideoBitrate = 600 * 1000;
+    protected int mMinVideoBitrate = 200 * 1000;
+    protected boolean mAutoAdjustVideoBitrate = true;
+    protected int mBwEstStrategy = RtmpPublisher.BW_EST_STRATEGY_NORMAL;
+    protected int mAudioBitrate = 48 * 1000;
     protected int mAudioSampleRate = 44100;
     protected int mAudioChannels = 1;
     protected int mAudioProfile = AVConst.PROFILE_AAC_HE;
@@ -98,46 +100,47 @@ public class KSYStreamer {
 
     protected boolean mIsRecording = false;
     protected boolean mIsFileRecording = false;
-    private boolean mIsCaptureStarted = false;
-    private boolean mIsAudioOnly = false;
+    protected boolean mIsCaptureStarted = false;
+    protected boolean mIsAudioOnly = false;
     protected boolean mIsAudioPreviewing = false;
     protected boolean mIsEnableAudioPreview = false;
-    private boolean mDelayedStartCameraPreview = false;
-    private boolean mDelayedStartStreaming = false;
-    private boolean mDelayedStartRecording = false;
-    private boolean mEnableDebugLog = false;
-    private boolean mEnableAudioMix = false;
-    private boolean mEnableRepeatLastFrame = true;
-    private boolean mUseDummyAudioCapture = false;
-    private boolean mEnableAudioLowDelay = false;
-    private boolean mAutoRestart = false;
-    private int mAutoRestartInterval = 3000;
+    protected boolean mDelayedStartCameraPreview = false;
+    protected boolean mDelayedStartStreaming = false;
+    protected boolean mDelayedStartRecording = false;
+    protected boolean mEnableDebugLog = false;
+    protected boolean mEnableAudioMix = false;
+    protected boolean mEnableRepeatLastFrame = true;
+    protected boolean mUseDummyAudioCapture = false;
+    protected boolean mEnableAudioLowDelay = false;
+    protected boolean mAutoRestart = false;
+    protected int mAutoRestartInterval = 3000;
 
-    private AtomicInteger mAudioUsingCount;
+    protected AtomicInteger mAudioUsingCount;
 
     private OnInfoListener mOnInfoListener;
     private OnErrorListener mOnErrorListener;
 
     protected GLRender mGLRender;
-    private CameraCapture mCameraCapture;
-    private WaterMarkCapture mWaterMarkCapture;
-    private ImgTexScaleFilter mImgTexScaleFilter;
+    protected CameraCapture mCameraCapture;
+    protected WaterMarkCapture mWaterMarkCapture;
+    protected ImageCapture mImageCapture;
+    protected ImgTexScaleFilter mImgTexScaleFilter;
     protected ImgTexMixer mImgTexPreviewMixer;
     protected ImgTexMixer mImgTexMixer;
     protected ImgTexFilterMgt mImgTexFilterMgt;
     protected ImgTexPreview mImgTexPreview;
     protected AudioCapture mAudioCapture;
-    private VideoEncoderMgt mVideoEncoderMgt;
-    private AudioEncoderMgt mAudioEncoderMgt;
-    private RtmpPublisher mRtmpPublisher;
+    protected VideoEncoderMgt mVideoEncoderMgt;
+    protected AudioEncoderMgt mAudioEncoderMgt;
+    protected RtmpPublisher mRtmpPublisher;
 
     protected AudioResampleFilter mAudioResampleFilter;
     protected AudioFilterMgt mAudioFilterMgt;
-    private AudioPlayerCapture mAudioPlayerCapture;
+    protected AudioPlayerCapture mAudioPlayerCapture;
     protected AudioMixer mAudioMixer;
-    private AudioPreview mAudioPreview;
-    private FilePublisher mFilePublisher;
-    private PublisherMgt mPublisherMgt;
+    protected AudioPreview mAudioPreview;
+    protected FilePublisher mFilePublisher;
+    protected PublisherMgt mPublisherMgt;
 
     private HeadSetReceiver mHeadSetReceiver;
     protected boolean mHeadSetPluged = false;
@@ -161,6 +164,8 @@ public class KSYStreamer {
 
         // Watermark capture
         mWaterMarkCapture = new WaterMarkCapture(mGLRender);
+        // Image capture
+        mImageCapture = new ImageCapture(mGLRender);
 
         // Camera preview
         mCameraCapture = new CameraCapture(mContext, mGLRender);
@@ -169,6 +174,7 @@ public class KSYStreamer {
         mImgTexMixer = new ImgTexMixer(mGLRender);
         mImgTexMixer.setScalingMode(mIdxCamera, ImgTexMixer.SCALING_MODE_CENTER_CROP);
         mImgTexPreviewMixer = new ImgTexMixer(mGLRender);
+        mImgTexPreviewMixer.setScalingMode(mIdxCamera, ImgTexMixer.SCALING_MODE_CENTER_CROP);
         mImgTexPreview = new ImgTexPreview();
         mCameraCapture.mImgTexSrcPin.connect(mImgTexScaleFilter.getSinkPin());
         mImgTexScaleFilter.getSrcPin().connect(mImgTexFilterMgt.getSinkPin());
@@ -954,7 +960,7 @@ public class KSYStreamer {
      * @see StreamerConstants#ENCODE_METHOD_HARDWARE
      */
     public void setAudioEncodeMethod(int encodeMethod)
-            throws IllegalStateException, IllegalArgumentException  {
+            throws IllegalStateException, IllegalArgumentException {
         if (!isValidEncodeMethod(encodeMethod)) {
             throw new IllegalArgumentException();
         }
@@ -1251,7 +1257,7 @@ public class KSYStreamer {
      * @see AVConst#CODEC_ID_AVC
      * @see AVConst#CODEC_ID_HEVC
      */
-    public void setVideoCodecId(int codecId) throws IllegalArgumentException{
+    public void setVideoCodecId(int codecId) throws IllegalArgumentException {
         if (codecId != AVConst.CODEC_ID_AVC &&
                 codecId != AVConst.CODEC_ID_HEVC) {
             throw new IllegalArgumentException("input video codecid error");
@@ -2322,6 +2328,51 @@ public class KSYStreamer {
     }
 
     /**
+     * Start still image capture, usually to take place of CameraCapture.
+     *
+     * @param path Image file path.
+     *             prefix "file://" for absolute path,
+     *             and prefix "assets://" for image resource in assets folder.
+     */
+    public void startImageCapture(String path) {
+        Bitmap bitmap = BitmapLoader.loadBitmap(mContext, path);
+        startImageCapture(bitmap, true);
+    }
+
+    /**
+     * Start still image capture, usually to take place of CameraCapture.
+     * <p>
+     * Same as {@link #startImageCapture(Bitmap, boolean), startImageCapture(bitmap, false)}
+     *
+     * @param bitmap bitmap to be set.
+     */
+    public void startImageCapture(Bitmap bitmap) {
+        startImageCapture(bitmap, false);
+    }
+
+    /**
+     * Start still image capture, usually to take place of CameraCapture.
+     *
+     * @param bitmap  bitmap to be set.
+     * @param recycle should this bitmap to be recycled automatically by sdk.
+     */
+    public void startImageCapture(Bitmap bitmap, boolean recycle) {
+        mImageCapture.getSrcPin().connect(mImgTexPreviewMixer.getSinkPin(mIdxCamera));
+        mImageCapture.getSrcPin().connect(mImgTexMixer.getSinkPin(mIdxCamera));
+        mImageCapture.setRepeatFps(mPreviewFps);
+        mImageCapture.start(bitmap, recycle);
+    }
+
+    /**
+     * Stop image capture.
+     */
+    public void stopImageCapture() {
+        mImageCapture.getSrcPin().disconnect(mImgTexPreviewMixer.getSinkPin(mIdxCamera), false);
+        mImageCapture.getSrcPin().disconnect(mImgTexMixer.getSinkPin(mIdxCamera), false);
+        mImageCapture.stop();
+    }
+
+    /**
      * Get current sdk version.
      *
      * @return version number as 1.0.0.0
@@ -2340,6 +2391,7 @@ public class KSYStreamer {
         }
 
         synchronized (mReleaseObject) {
+            mImageCapture.release();
             mWaterMarkCapture.release();
             mAudioPlayerCapture.release();
             mCameraCapture.release();
@@ -2356,7 +2408,7 @@ public class KSYStreamer {
      * @param screenShotListener the listener to be called when bitmap of the screen shot available
      */
     public void requestScreenShot(GLRender.ScreenShotListener screenShotListener) {
-        mImgTexPreviewMixer.requestScreenShot(screenShotListener);
+        mImgTexMixer.requestScreenShot(screenShotListener);
     }
 
     /**
@@ -2366,7 +2418,7 @@ public class KSYStreamer {
      * @param screenShotListener the listener to be called when bitmap of the screen shot available
      */
     public void requestScreenShot(float scaleFactor, GLRender.ScreenShotListener screenShotListener) {
-        mImgTexPreviewMixer.requestScreenShot(scaleFactor, screenShotListener);
+        mImgTexMixer.requestScreenShot(scaleFactor, screenShotListener);
     }
 
     public interface OnInfoListener {

@@ -187,10 +187,13 @@
       <ul>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/AudioCapture.html">AudioCapture</a></li>
           <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.html">AudioPlayerCapture</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.PlayRanges.html">AudioPlayerCapture.PlayRanges</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/CameraCapture.html">CameraCapture</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/CameraCapture.Size.html">CameraCapture.Size</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/ImageCapture.html">ImageCapture</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/ImgBufSrcPin.html">ImgBufSrcPin</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html">ImgTexSrcPin</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/ViewCapture.html">ViewCapture</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/capture/WaterMarkCapture.html">WaterMarkCapture</a></li>
       </ul>
     </li>
@@ -248,11 +251,14 @@
 
 Summary:
 
+  <a href="#nestedclasses">Nested Classes</a>
+  
 
 
 
 
-  <a href="#constants">Constants</a>
+
+  &#124; <a href="#constants">Constants</a>
   
 
 
@@ -374,6 +380,27 @@ Summary:
 
 <h2>Summary</h2>
 
+
+
+<!-- ======== NESTED CLASS SUMMARY ======== -->
+<table id="nestedclasses" class="jd-sumtable"><tr><th colspan="12">Nested Classes</th></tr>
+
+
+  
+    <tr class="alt-color api apilevel-" >
+      <td class="jd-typecol">
+        
+         
+         
+        
+        class</td>
+      <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.PlayRanges.html">AudioPlayerCapture.PlayRanges</a></td>
+      <td class="jd-descrcol" width="100%">&nbsp;</td>
+    </tr>
+    
+    
+
+</table>
 
 
 
@@ -513,10 +540,42 @@ Summary:
             
             
             
+            <a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.PlayRanges.html">AudioPlayerCapture.PlayRanges</a>
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.html#getPlayableRanges()">getPlayableRanges</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             void
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.html#release()">release</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.html#restart()">restart</a></span>()
         
   </td></tr>
 
@@ -628,7 +687,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.html#setVolume(float)">setVolume</a></span>(float vol)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.html#setPlayableRanges(long, long)">setPlayableRanges</a></span>(long startTime, long endTime)
         
   </td></tr>
 
@@ -644,13 +703,29 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.html#start(java.lang.String, boolean)">start</a></span>(String path, boolean loop)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.html#setVolume(float)">setVolume</a></span>(float vol)
         
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.html#start(java.lang.String, boolean)">start</a></span>(String path, boolean loop)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1147,6 +1222,37 @@ From class
 </div>
 
 
+<a id="getPlayableRanges()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        <a href="../../../../../com/ksyun/media/streamer/capture/AudioPlayerCapture.PlayRanges.html">AudioPlayerCapture.PlayRanges</a>
+      </span>
+      <span class="sympad">getPlayableRanges</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="release()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1160,6 +1266,37 @@ From class
         void
       </span>
       <span class="sympad">release</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="restart()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">restart</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -1347,6 +1484,37 @@ From class
       </span>
       <span class="sympad">setOnPreparedListener</span>
       <span class="normal">(IMediaPlayer.OnPreparedListener listener)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="setPlayableRanges(long, long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setPlayableRanges</span>
+      <span class="normal">(long startTime, long endTime)</span>
     </h4>
       <div class="api-level">
         <div>
