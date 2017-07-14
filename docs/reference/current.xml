@@ -371,6 +371,17 @@
  visibility="public"
 >
 </method>
+<method name="getFileDuration"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getMediaPlayer"
  return="KSYMediaPlayer"
  abstract="false"
@@ -384,6 +395,17 @@
 </method>
 <method name="getPlayableRanges"
  return="com.ksyun.media.streamer.capture.AudioPlayerCapture.PlayRanges"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getVolume"
+ return="float"
  abstract="false"
  native="false"
  synchronized="false"
@@ -4879,6 +4901,440 @@
 </package>
 <package name="com.ksyun.media.streamer.filter.audio"
 >
+<class name="APMFilter"
+ extends="com.ksyun.media.streamer.filter.audio.AudioFilterBase"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="APMFilter"
+ type="com.ksyun.media.streamer.filter.audio.APMFilter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="doFilter"
+ return="com.ksyun.media.streamer.framework.AudioBufFrame"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+</parameter>
+</method>
+<method name="doFormatChanged"
+ return="com.ksyun.media.streamer.framework.AudioBufFormat"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
+</parameter>
+</method>
+<method name="enableNs"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="enable" type="boolean">
+</parameter>
+</method>
+<method name="setNsLevel"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="level" type="int">
+</parameter>
+</method>
+</class>
+<class name="APMWrapper"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="APMWrapper"
+ type="com.ksyun.media.streamer.filter.audio.APMWrapper"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="attachTo"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="idx" type="int">
+</parameter>
+<parameter name="ptr" type="long">
+</parameter>
+<parameter name="detach" type="boolean">
+</parameter>
+</method>
+<method name="config"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="samplerate" type="int">
+</parameter>
+<parameter name="channels" type="int">
+</parameter>
+</method>
+<method name="enableNs"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="enable" type="boolean">
+</parameter>
+</method>
+<method name="getAPMFormate"
+ return="com.ksyun.media.streamer.framework.AudioBufFormat"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getNativeInstance"
+ return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="processStream"
+ return="java.nio.ByteBuffer"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="data" type="java.nio.ByteBuffer">
+</parameter>
+</method>
+<method name="read"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="buffer" type="java.nio.ByteBuffer">
+</parameter>
+<parameter name="size" type="int">
+</parameter>
+</method>
+<method name="release"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setNsLevel"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="level" type="int">
+</parameter>
+</method>
+<field name="APM_CHANNEL_NUM"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="APM_SAMPLE_FORMAT"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="APM_SAMPLE_RATE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="48000"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="NS_LEVEL_HIGH"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="NS_LEVEL_LOW"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="NS_LEVEL_MODERATE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="NS_LEVEL_VERYHIGH"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="mNativeLibraryLoad"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="AudioAPMFilterMgt"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="AudioAPMFilterMgt"
+ type="com.ksyun.media.streamer.filter.audio.AudioAPMFilterMgt"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="doRelease"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getNSState"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSinkPin"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSrcPin"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="release"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setAudioNSLevel"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="nsLevel" type="int">
+</parameter>
+</method>
+<method name="setEnableAudioNS"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="enable" type="boolean">
+</parameter>
+</method>
+<field name="AUDIO_NS_LEVEL_0"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="AUDIO_NS_LEVEL_1"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="AUDIO_NS_LEVEL_2"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="AUDIO_NS_LEVEL_3"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
 <class name="AudioFilterBase"
  extends="java.lang.Object"
  abstract="true"
@@ -9486,6 +9942,16 @@
  visibility="public"
 >
 </constructor>
+<field name="avPacketOpaque"
+ type="long"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="buf"
  type="java.nio.ByteBuffer"
  transient="false"
@@ -9652,6 +10118,17 @@
  transient="false"
  volatile="false"
  value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="CODEC_ID_GIF"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
  static="true"
  final="true"
  deprecated="not deprecated"
@@ -10021,6 +10498,28 @@
  transient="false"
  volatile="false"
  value="256"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="FMT_BGR8"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="6"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="FMT_GIF"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="258"
  static="true"
  final="true"
  deprecated="not deprecated"
@@ -11468,6 +11967,19 @@
 <exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
 </exception>
 </method>
+<method name="setAudioNSLevel"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="level" type="int">
+</parameter>
+</method>
 <method name="setAudioOnly"
  return="void"
  abstract="false"
@@ -11605,6 +12117,19 @@
 </parameter>
 </method>
 <method name="setEnableAudioMix"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="enable" type="boolean">
+</parameter>
+</method>
+<method name="setEnableAudioNS"
  return="void"
  abstract="false"
  native="false"
@@ -12477,6 +13002,16 @@
 <parameter name="url" type="java.lang.String">
 </parameter>
 </method>
+<field name="mAudioAPMFilterMgt"
+ type="com.ksyun.media.streamer.filter.audio.AudioAPMFilterMgt"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
 <field name="mAudioBitrate"
  type="int"
  transient="false"
@@ -13338,6 +13873,50 @@
  visibility="public"
 >
 </constructor>
+<field name="AUDIO_NS_LEVEL_0"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="AUDIO_NS_LEVEL_1"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="AUDIO_NS_LEVEL_2"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="AUDIO_NS_LEVEL_3"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="CODEC_ID_AAC"
  type="int"
  transient="false"
@@ -14232,6 +14811,19 @@
  visibility="protected"
 >
 </method>
+<method name="setForceVideoFrameFirst"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="forceVideoFrameFirst" type="boolean">
+</parameter>
+</method>
 <method name="startRecording"
  return="void"
  abstract="false"
@@ -14565,6 +15157,17 @@
  visibility="public"
 >
 </method>
+<method name="isUseFFmpeg"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
 <method name="isVideoOnly"
  return="boolean"
  abstract="false"
@@ -14821,6 +15424,8 @@
  visibility="public"
 >
 <parameter name="type" type="int">
+</parameter>
+<parameter name="avPacket" type="long">
 </parameter>
 <parameter name="data" type="java.nio.ByteBuffer">
 </parameter>
@@ -15568,6 +16173,8 @@
  visibility="public"
 >
 <parameter name="type" type="int">
+</parameter>
+<parameter name="avPacket" type="long">
 </parameter>
 <parameter name="data" type="java.nio.ByteBuffer">
 </parameter>

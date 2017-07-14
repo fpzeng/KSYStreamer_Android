@@ -113,6 +113,20 @@
             </CheckBox>
 
             <CheckBox
+                android:id="@+id/ns"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginLeft="10dp"
+                android:layout_weight="1"
+                android:background="#11123456"
+                android:checked="false"
+                android:text="降噪"
+                android:textColor="@color/font_color_35"
+                android:textSize="@dimen/font_size_28px">
+            </CheckBox>
+
+            <CheckBox
                 android:id="@+id/bgm"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
