@@ -43,6 +43,7 @@ import com.ksyun.media.player.IMediaPlayer;
 import com.ksyun.media.streamer.capture.CameraCapture;
 import com.ksyun.media.streamer.capture.ViewCapture;
 import com.ksyun.media.streamer.capture.camera.CameraTouchHelper;
+import com.ksyun.media.streamer.filter.audio.APMFilter;
 import com.ksyun.media.streamer.filter.audio.AudioFilterBase;
 import com.ksyun.media.streamer.filter.audio.AudioReverbFilter;
 import com.ksyun.media.streamer.filter.audio.KSYAudioEffectFilter;
@@ -109,6 +110,7 @@ public class CameraActivity extends Activity implements
     private TextView mDebugInfoTextView;
     private CheckBox mPaintCheckBox;
     private CheckBox mBgImageCheckBox;
+    private CheckBox mNSCheckBox;
 
     private View mBeautyChooseView;
     private AppCompatSpinner mBeautySpinner;
@@ -260,6 +262,8 @@ public class CameraActivity extends Activity implements
         mPaintCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
         mBgImageCheckBox = (CheckBox) findViewById(R.id.bg_image);
         mBgImageCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
+        mNSCheckBox = (CheckBox) findViewById(R.id.ns);
+        mNSCheckBox.setOnCheckedChangeListener(mCheckBoxObserver);
 
         mBeautyChooseView = findViewById(R.id.beauty_choose);
         mBeautySpinner = (AppCompatSpinner) findViewById(R.id.beauty_spin);
@@ -1167,6 +1171,10 @@ public class CameraActivity extends Activity implements
         }
     }
 
+    private void OnNSChecked(boolean isChecked){
+        mStreamer.setEnableAudioNS(isChecked);
+    }
+
     private void startPaintViewCapture() {
         if (mPaintViewCapture != null) {
             mPaintViewCapture.setTargetResolution(mStreamer.getTargetWidth(),
@@ -1286,6 +1294,9 @@ public class CameraActivity extends Activity implements
                     break;
                 case R.id.bg_image:
                     onBgImageChecked(isChecked);
+                    break;
+                case R.id.ns:
+                    OnNSChecked(isChecked);
                     break;
                 default:
                     break;

@@ -1322,7 +1322,7 @@ Summary:
             int
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#writeFrame(int, java.nio.ByteBuffer, long, long, int)">writeFrame</a></span>(int type, ByteBuffer data, long dts, long pts, int flags)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#writeFrame(int, long, java.nio.ByteBuffer, long, long, int)">writeFrame</a></span>(int type, long avPacket, ByteBuffer data, long dts, long pts, int flags)
         
   </td></tr>
 
@@ -1444,11 +1444,13 @@ Summary:
             
             
             
-            void
+            boolean
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#postError(int, long)">postError</a></span>(int err, long msg)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#isUseFFmpeg()">isUseFFmpeg</a></span>()
         
+        <div class="jd-descrdiv">Does current publisher using ffmpeg.</div>
+  
   </td></tr>
 
 
@@ -1463,7 +1465,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#postError(int)">postError</a></span>(int err)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#postError(int, long)">postError</a></span>(int err, long msg)
         
   </td></tr>
 
@@ -1479,13 +1481,29 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#postInfo(int, long)">postInfo</a></span>(int type, long msg)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#postError(int)">postError</a></span>(int err)
         
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#postInfo(int, long)">postInfo</a></span>(int type, long msg)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -3962,7 +3980,7 @@ From class
 </div>
 
 
-<a id="writeFrame(int, java.nio.ByteBuffer, long, long, int)"></a>
+<a id="writeFrame(int, long, java.nio.ByteBuffer, long, long, int)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3975,7 +3993,7 @@ From class
         int
       </span>
       <span class="sympad">writeFrame</span>
-      <span class="normal">(int type, ByteBuffer data, long dts, long pts, int flags)</span>
+      <span class="normal">(int type, long avPacket, ByteBuffer data, long dts, long pts, int flags)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -4189,6 +4207,42 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="isUseFFmpeg()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">isUseFFmpeg</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Does current publisher using ffmpeg.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>true if used, false otherwise.
+</li></ul>
+  </div>
 
     </div>
 </div>

@@ -731,7 +731,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/AVCodecVideoEncoder.html#onEncoded(java.nio.ByteBuffer, long, long, int)">onEncoded</a></span>(ByteBuffer data, long dts, long pts, int flags)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/AVCodecVideoEncoder.html#onEncoded(long, java.nio.ByteBuffer, long, long, int)">onEncoded</a></span>(long avPacket, ByteBuffer data, long dts, long pts, int flags)
         
   </td></tr>
 
@@ -1767,7 +1767,7 @@ From class
 
 
 
-<a id="onEncoded(java.nio.ByteBuffer, long, long, int)"></a>
+<a id="onEncoded(long, java.nio.ByteBuffer, long, long, int)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1780,7 +1780,7 @@ From class
         void
       </span>
       <span class="sympad">onEncoded</span>
-      <span class="normal">(ByteBuffer data, long dts, long pts, int flags)</span>
+      <span class="normal">(long avPacket, ByteBuffer data, long dts, long pts, int flags)</span>
     </h4>
       <div class="api-level">
         <div>

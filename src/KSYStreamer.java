@@ -27,6 +27,7 @@ import com.ksyun.media.streamer.encoder.Encoder;
 import com.ksyun.media.streamer.encoder.MediaCodecAudioEncoder;
 import com.ksyun.media.streamer.encoder.VideoEncodeFormat;
 import com.ksyun.media.streamer.encoder.VideoEncoderMgt;
+import com.ksyun.media.streamer.filter.audio.AudioAPMFilterMgt;
 import com.ksyun.media.streamer.filter.audio.AudioFilterMgt;
 import com.ksyun.media.streamer.filter.audio.AudioMixer;
 import com.ksyun.media.streamer.filter.audio.AudioPreview;
@@ -135,6 +136,7 @@ public class KSYStreamer {
     protected RtmpPublisher mRtmpPublisher;
 
     protected AudioResampleFilter mAudioResampleFilter;
+    protected AudioAPMFilterMgt mAudioAPMFilterMgt;
     protected AudioFilterMgt mAudioFilterMgt;
     protected AudioPlayerCapture mAudioPlayerCapture;
     protected AudioMixer mAudioMixer;
@@ -194,6 +196,8 @@ public class KSYStreamer {
         mAudioPreview = new AudioPreview(mContext);
         mAudioResampleFilter = new AudioResampleFilter();
         mAudioMixer = new AudioMixer();
+        mAudioAPMFilterMgt = new AudioAPMFilterMgt();
+
         mAudioCapture.getSrcPin().connect(mAudioFilterMgt.getSinkPin());
         mAudioFilterMgt.getSrcPin().connect(mAudioPreview.getSinkPin());
         mAudioPreview.getSrcPin().connect(mAudioResampleFilter.getSinkPin());
@@ -214,11 +218,11 @@ public class KSYStreamer {
         // publisher
         mRtmpPublisher = new RtmpPublisher();
         mFilePublisher = new FilePublisher();
+        mFilePublisher.setForceVideoFrameFirst(true);
 
         mPublisherMgt = new PublisherMgt();
         mAudioEncoderMgt.getSrcPin().connect(mPublisherMgt.getAudioSink());
         mVideoEncoderMgt.getSrcPin().connect(mPublisherMgt.getVideoSink());
-        mPublisherMgt.addPublisher(mFilePublisher);
         mPublisherMgt.addPublisher(mRtmpPublisher);
 
         // set listeners
@@ -476,6 +480,9 @@ public class KSYStreamer {
                                 mVideoEncoderMgt.getEncoder().forceKeyFrame();
                             }
                         }
+                        break;
+                    case FilePublisher.INFO_STOPPED:
+                        mPublisherMgt.removePublisher(mFilePublisher);
                         break;
                     default:
                         break;
@@ -1135,6 +1142,8 @@ public class KSYStreamer {
             throw new IllegalArgumentException("the VideoBitrate must > 0");
         }
         mInitVideoBitrate = bitrate;
+        mMaxVideoBitrate = bitrate;
+        mMinVideoBitrate = bitrate;
         mAutoAdjustVideoBitrate = false;
     }
 
@@ -1724,8 +1733,10 @@ public class KSYStreamer {
             mScreenRenderHeight = DEFAULT_PREVIEW_HEIGHT;
         }
         mIsFileRecording = true;
-        startCapture();
         mFilePublisher.startRecording(recordUrl);
+        // should connect FilePublisher after startRecord called
+        mPublisherMgt.addPublisher(mFilePublisher);
+        startCapture();
         return true;
     }
 
@@ -1733,9 +1744,13 @@ public class KSYStreamer {
         if (!mIsFileRecording) {
             return;
         }
+
+        if (mIsRecording) {
+            mFilePublisher.stop();
+        } else {
+            stopCapture();
+        }
         mIsFileRecording = false;
-        mFilePublisher.stop();
-        stopCapture();
     }
 
     protected void startCapture() {
@@ -1753,15 +1768,16 @@ public class KSYStreamer {
         if (!mIsCaptureStarted) {
             return;
         }
-        if (mIsRecording || mIsFileRecording) {
-            return;
-        }
         mIsCaptureStarted = false;
         stopAudioCapture();
         if (mCameraCapture.isRecording()) {
             mCameraCapture.stopRecord();
         }
 
+        if (!mIsRecording) {
+            mVideoEncoderMgt.getEncoder().flush();
+            mAudioEncoderMgt.getEncoder().flush();
+        }
         mVideoEncoderMgt.stop();
         mAudioEncoderMgt.getEncoder().stop();
     }
@@ -1775,8 +1791,10 @@ public class KSYStreamer {
         if (!mIsRecording) {
             return false;
         }
+        if (!mIsFileRecording) {
+            stopCapture();
+        }
         mIsRecording = false;
-        stopCapture();
         mRtmpPublisher.disconnect();
         return true;
     }
@@ -2399,6 +2417,9 @@ public class KSYStreamer {
             mGLRender.release();
             setOnLogEventListener(null);
             unregisterHeadsetPlugReceiver();
+            if (!mAudioAPMFilterMgt.getNSState()) {
+                mAudioAPMFilterMgt.release();
+            }
         }
     }
 
@@ -2588,5 +2609,38 @@ public class KSYStreamer {
 
     public OnInfoListener getOnInfoListener() {
         return mOnInfoListener;
+    }
+
+    /**
+     * Set audio NoiseSuppression level, default AUDIO_NS_LEVEL_1.
+     *
+     * @param level ns level to be set (AUDIO_NS_LEVEL_0~AUDIO_NS_LEVEL_3 define in StreamerConstants)
+     */
+    public void setAudioNSLevel(int level) {
+        if (level < StreamerConstants.AUDIO_NS_LEVEL_0 || level > StreamerConstants.AUDIO_NS_LEVEL_3) {
+            throw new IllegalArgumentException("the NS level must be between 0 and 3");
+        }
+        mAudioAPMFilterMgt.setAudioNSLevel(level);
+    }
+
+    /**
+     * set if enable use the NoiseSuppression
+     *
+     * @param enable true to enable, false to disable.
+     */
+    public void setEnableAudioNS(boolean enable) {
+        if (mAudioAPMFilterMgt.getNSState() == enable) {
+            return;
+        }
+        if (enable) {
+            mAudioCapture.getSrcPin().disconnect(mAudioFilterMgt.getSinkPin(), false);
+            mAudioCapture.getSrcPin().connect(mAudioAPMFilterMgt.getSinkPin());
+            mAudioAPMFilterMgt.getSrcPin().connect(mAudioFilterMgt.getSinkPin());
+        } else {
+            mAudioCapture.getSrcPin().disconnect(mAudioAPMFilterMgt.getSinkPin(), false);
+            mAudioAPMFilterMgt.getSrcPin().disconnect(mAudioFilterMgt.getSinkPin(), false);
+            mAudioCapture.getSrcPin().connect(mAudioFilterMgt.getSinkPin());
+        }
+        mAudioAPMFilterMgt.setEnableAudioNS(enable);
     }
 }
