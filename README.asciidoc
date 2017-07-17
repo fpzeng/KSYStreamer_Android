@@ -117,9 +117,7 @@ ARMv5 ARMv6 设备计算性能较差，金山云不保证该芯片设备上的�
 * demo: 示例工程，演示本SDK主要接口功能的使用
 * libs: 集成SDK需要的所有库文件
 ** `libs/[armeabi-v7a|arm64-v8a|x86]`: 各平台的so库
-** `libs/ksylive.jar`: 推流SDK jar包
-** `libs/libksyplayer.jar`: 播放SDK jar包
-** `libs/libksystat.jar`: 金山云统计模块
+** `libs/ksylive.jar`: 融合SDK jar包
 
 === 配置项目
 
