@@ -42,7 +42,7 @@ KSY Streamer Android SDK是金山云推出的 Android 平台上使用的软件�
 * [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/Ear_Mirror[低延迟耳返] (new)**
 * [x] https://github.com/ksvc/KSYStreamer_Android/wiki/WaterMark[支持图片及时间戳水印]
 * [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/bgp_streaming[背景图推流] (new)**
-* [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/View_Streaming[画笔推流(View合成推流)] (new)**
+* [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/View_Streaming[画笔推流(自定义android.view.View合成推流)] (new)**
 * [x] 开放KSYStreamer类的实现，开发者可自行组装各个模块 (new)
 * [x] **https://github.com/ksvc/KSYStreamer_Android/wiki/liveScene[软编模式下支持场景编码]（new）**
 * [x] https://github.com/ksvc/KSYRTCLive_Android[连麦]
