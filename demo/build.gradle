@@ -17,6 +17,9 @@ dependencies {
     compile fileTree(dir: 'libs', include: '*.jar')
     compile 'com.android.support:appcompat-v7:25.3.1'
     compile 'com.lht:paintview:1.16'
+    compile 'com.facebook.fresco:fresco:1.4.0'
+    compile 'com.facebook.fresco:animated-gif:1.4.0'
+    compile 'com.facebook.fresco:animated-webp:1.4.0'
 }
 
 android {
