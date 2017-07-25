@@ -19,6 +19,18 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentTop="true" />
 
+    <com.ksyun.media.streamer.demo.VerticalSeekBar
+        android:id="@+id/exposure_seekBar"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="100dp"
+        android:progressBackgroundTint="#9b9b9b"
+        android:progressTint="@color/font_color_35"
+        android:thumbTint="#C0303030"
+        android:visibility="gone"/>
+
     <com.lht.paintview.PaintView
         android:id="@+id/view_paint"
         android:layout_width="match_parent"

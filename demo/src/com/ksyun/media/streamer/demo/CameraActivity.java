@@ -43,7 +43,6 @@ import com.ksyun.media.player.IMediaPlayer;
 import com.ksyun.media.streamer.capture.CameraCapture;
 import com.ksyun.media.streamer.capture.ViewCapture;
 import com.ksyun.media.streamer.capture.camera.CameraTouchHelper;
-import com.ksyun.media.streamer.filter.audio.APMFilter;
 import com.ksyun.media.streamer.filter.audio.AudioFilterBase;
 import com.ksyun.media.streamer.filter.audio.AudioReverbFilter;
 import com.ksyun.media.streamer.filter.audio.KSYAudioEffectFilter;
@@ -93,6 +92,7 @@ public class CameraActivity extends Activity implements
     private View mSwitchCameraView;
     private View mFlashView;
     private View mAddView;
+    private View mExposureView;
     private TextView mShootingText;
     private TextView mRecordingText;
     private TextView mCaptureSceenShot;
@@ -123,6 +123,7 @@ public class CameraActivity extends Activity implements
     private LinearLayout mBeautyRuddyLayout;
     private TextView mRuddyText;
     private AppCompatSeekBar mRuddySeekBar;
+    private VerticalSeekBar mExposureSeekBar;
 
     private int mLastRotation;
     private OrientationEventListener mOrientationEventListener;
@@ -135,6 +136,10 @@ public class CameraActivity extends Activity implements
     private Handler mMainHandler;
     private Timer mTimer;
 
+    // Animated logo support
+    private AnimatedImageCapture mAnimatedImageCapture;
+    private boolean mShowAnimatedLogo;
+
     private boolean mAutoStart;
     private boolean mIsLandscape;
     private boolean mPrintDebugInfo = false;
@@ -145,6 +150,7 @@ public class CameraActivity extends Activity implements
     private String mDebugInfo = "";
     private String mBgmPath = "/sdcard/test.mp3";
     private String mLogoPath = "file:///sdcard/test.png";
+    private String mAnimatedLogoPath = "assets://ksyun.webp";
     private String mBgImagePath = "assets://bg.jpg";
     private String mRecordUrl = "/sdcard/rec_test.mp4";
 
@@ -236,6 +242,8 @@ public class CameraActivity extends Activity implements
         mFlashView.setOnClickListener(mObserverButton);
         mAddView = findViewById(R.id.add);
         mAddView.setOnClickListener(mObserverButton);
+        mExposureView = findViewById(R.id.exposure);
+        mExposureView.setOnClickListener(mObserverButton);
 
         mCheckBoxObserver = new CheckBoxObserver();
         mBeautyCheckBox = (CheckBox) findViewById(R.id.click_to_switch_beauty);
@@ -276,6 +284,10 @@ public class CameraActivity extends Activity implements
         mBeautyRuddyLayout = (LinearLayout) findViewById(R.id.beauty_ruddy);
         mRuddyText = (TextView) findViewById(R.id.ruddy_text);
         mRuddySeekBar = (AppCompatSeekBar) findViewById(R.id.ruddy_seek_bar);
+        mExposureSeekBar = (VerticalSeekBar) findViewById(R.id.exposure_seekBar);
+        mExposureSeekBar.setProgress(50);
+        mExposureSeekBar.setSecondaryProgress(50);
+        mExposureSeekBar.setOnSeekBarChangeListener(getVerticalSeekListener());
 
         mMainHandler = new Handler();
         mStreamer = new KSYStreamer(this);
@@ -408,6 +420,9 @@ public class CameraActivity extends Activity implements
         mCameraPreviewView.setOnTouchListener(cameraTouchHelper);
         // set CameraHintView to show focus rect and zoom ratio
         cameraTouchHelper.setCameraHintView(mCameraHintView);
+
+        // animated logo support
+        mAnimatedImageCapture = new AnimatedImageCapture(mStreamer.getGLRender());
 
         startCameraPreviewWithPermCheck(true);
         if (mWaterMarkCheckBox.isChecked()) {
@@ -584,6 +599,8 @@ public class CameraActivity extends Activity implements
         super.onDestroy();
         // stop paint view capture if needed
         stopPaintViewCapture();
+        // stop animated logo if needed
+        mAnimatedImageCapture.stop();
         if (mMainHandler != null) {
             mMainHandler.removeCallbacksAndMessages(null);
             mMainHandler = null;
@@ -632,6 +649,10 @@ public class CameraActivity extends Activity implements
 
     //start recording to a local file
     private void startRecord() {
+        if(mIsFileRecording) {
+            return;
+        }
+        //录制开始成功后会发送StreamerConstants.KSY_STREAMER_OPEN_FILE_SUCCESS消息
         mStreamer.startRecord(mRecordUrl);
         mRecordingText.setText(STOP_RECORDING);
         mRecordingText.postInvalidate();
@@ -639,11 +660,9 @@ public class CameraActivity extends Activity implements
     }
 
     private void stopRecord() {
+        //录制结束为异步接口，录制结束后，
+        //会发送StreamerConstants.KSY_STREAMER_FILE_RECORD_STOPPED消息，在这里再处理UI恢复工作
         mStreamer.stopRecord();
-        mRecordingText.setText(START_RECORDING);
-        mRecordingText.postInvalidate();
-        mIsFileRecording = false;
-        stopChronometer();
     }
 
     private void stopChronometer() {
@@ -698,17 +717,41 @@ public class CameraActivity extends Activity implements
     //show watermark in specific location
     private void showWaterMark() {
         if (!mIsLandscape) {
-            mStreamer.showWaterMarkLogo(mLogoPath, 0.08f, 0.04f, 0.20f, 0, 0.8f);
+            if (!mShowAnimatedLogo) {
+                mStreamer.showWaterMarkLogo(mLogoPath, 0.08f, 0.04f, 0.20f, 0, 0.8f);
+            } else {
+                showAnimatedWaterMark(mAnimatedLogoPath, 0.08f, 0.04f, 0.25f, 0, 0.8f);
+            }
             mStreamer.showWaterMarkTime(0.03f, 0.01f, 0.35f, Color.WHITE, 1.0f);
         } else {
-            mStreamer.showWaterMarkLogo(mLogoPath, 0.05f, 0.09f, 0, 0.20f, 0.8f);
+            if (!mShowAnimatedLogo) {
+                mStreamer.showWaterMarkLogo(mLogoPath, 0.05f, 0.09f, 0, 0.20f, 0.8f);
+            } else {
+                showAnimatedWaterMark(mAnimatedLogoPath, 0.05f, 0.09f, 0, 0.25f, 0.8f);
+            }
             mStreamer.showWaterMarkTime(0.01f, 0.03f, 0.22f, Color.WHITE, 1.0f);
         }
+        mShowAnimatedLogo = !mShowAnimatedLogo;
     }
 
     private void hideWaterMark() {
         mStreamer.hideWaterMarkLogo();
         mStreamer.hideWaterMarkTime();
+        hideAnimatedWaterMark();
+    }
+
+    // show animated watermark logo, support gif/webp, not valid in SOFTWARE_COMPAT mode
+    private void showAnimatedWaterMark(String url, float x, float y, float w, float h, float a) {
+        mAnimatedImageCapture.getSrcPin().connect(mStreamer.getImgTexPreviewMixer().getSinkPin(3));
+        mAnimatedImageCapture.getSrcPin().connect(mStreamer.getImgTexMixer().getSinkPin(3));
+        mStreamer.getImgTexPreviewMixer().setRenderRect(3, x, y, w, h, a);
+        mStreamer.getImgTexMixer().setRenderRect(3, x, y, w, h, a);
+        mAnimatedImageCapture.start(this, url);
+    }
+
+    private void hideAnimatedWaterMark() {
+        mAnimatedImageCapture.stop();
+        mAnimatedImageCapture.getSrcPin().disconnect(false);
     }
 
     // Example to handle camera related operation
@@ -739,6 +782,13 @@ public class CameraActivity extends Activity implements
                     Log.d(TAG, "KSY_STREAMER_OPEN_FILE_SUCCESS");
                     mChronometer.setBase(SystemClock.elapsedRealtime());
                     mChronometer.start();
+                    break;
+                case StreamerConstants.KSY_STREAMER_FILE_RECORD_STOPPED:
+                    Log.d(TAG, "KSY_STREAMER_FILE_RECORD_STOPPED");
+                    mRecordingText.setText(START_RECORDING);
+                    mRecordingText.postInvalidate();
+                    mIsFileRecording = false;
+                    stopChronometer();
                     break;
                 case StreamerConstants.KSY_STREAMER_FRAME_SEND_SLOW:
                     Log.d(TAG, "KSY_STREAMER_FRAME_SEND_SLOW " + msg1 + "ms");
@@ -859,13 +909,24 @@ public class CameraActivity extends Activity implements
                 case StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNKNOWN:
                 {
                     handleEncodeError();
-                    stopStream();
-                    mMainHandler.postDelayed(new Runnable() {
-                        @Override
-                        public void run() {
-                            startStream();
-                        }
-                    }, 3000);
+                    if (mRecording) {
+                        stopStream();
+                        mMainHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startStream();
+                            }
+                        }, 3000);
+                    }
+                    if (mIsFileRecording) {
+                        stopRecord();
+                        mMainHandler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                startRecord();
+                            }
+                        }, 50);
+                    }
                 }
                 break;
                 default:
@@ -1254,6 +1315,9 @@ public class CameraActivity extends Activity implements
                 case R.id.click_to_select_audio_filter:
                     showChooseAudioFilter();
                     break;
+                case R.id.exposure:
+                    onExposureClick();
+                    break;
                 default:
                     break;
             }
@@ -1350,5 +1414,48 @@ public class CameraActivity extends Activity implements
                 break;
             }
         }
+    }
+
+    /**
+     * 曝光度调节
+     */
+    private void onExposureClick() {
+        if (mExposureSeekBar.getVisibility() == View.VISIBLE) {
+            mExposureSeekBar.setVisibility(View.GONE);
+        } else {
+            mExposureSeekBar.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private VerticalSeekBar.OnSeekBarChangeListener getVerticalSeekListener() {
+        VerticalSeekBar.OnSeekBarChangeListener listener = new VerticalSeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(VerticalSeekBar seekBar, int progress, boolean fromUser) {
+                Camera.Parameters parameters = mStreamer.getCameraCapture().getCameraParameters();
+                if (parameters != null) {
+                    int minValue = parameters.getMinExposureCompensation();
+                    int maxValue = parameters.getMaxExposureCompensation();
+                    int range = 100 / (maxValue - minValue);
+                    parameters.setExposureCompensation(progress / range - maxValue);
+                }
+                mStreamer.getCameraCapture().setCameraParameters(parameters);
+            }
+
+            @Override
+            public void onStartTrackingTouch(VerticalSeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onStopTrackingTouch(VerticalSeekBar seekBar) {
+
+            }
+
+            @Override
+            public void onRequestDisallowInterceptTouchEvent(boolean enable) {
+
+            }
+        };
+        return listener;
     }
 }

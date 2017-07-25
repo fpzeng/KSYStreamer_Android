@@ -42,4 +42,15 @@
         android:layout_toLeftOf="@id/flash"
         android:background="@drawable/recorder_add_icon"/>
 
+    <ImageView
+        android:id="@+id/exposure"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="3dp"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="8dp"
+        android:layout_toLeftOf="@id/add"
+        android:background="@drawable/exposure">
+    </ImageView>
+
 </RelativeLayout>

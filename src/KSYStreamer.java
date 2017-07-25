@@ -100,7 +100,7 @@ public class KSYStreamer {
     protected int mCameraFacing = CameraCapture.FACING_FRONT;
 
     protected boolean mIsRecording = false;
-    protected boolean mIsFileRecording = false;
+    protected volatile boolean mIsFileRecording = false;
     protected boolean mIsCaptureStarted = false;
     protected boolean mIsAudioOnly = false;
     protected boolean mIsAudioPreviewing = false;
@@ -456,6 +456,7 @@ public class KSYStreamer {
 
             @Override
             public void onInfo(int type, long msg) {
+                Log.d(TAG, "file publisher info:" + type);
                 switch (type) {
                     case FilePublisher.INFO_OPENED:
                         //start audio encoder first
@@ -483,6 +484,11 @@ public class KSYStreamer {
                         break;
                     case FilePublisher.INFO_STOPPED:
                         mPublisherMgt.removePublisher(mFilePublisher);
+                        mIsFileRecording = false;
+                        if (mOnInfoListener != null) {
+                            mOnInfoListener.onInfo(
+                                    StreamerConstants.KSY_STREAMER_FILE_RECORD_STOPPED, 0, 0);
+                        }
                         break;
                     default:
                         break;
@@ -1745,12 +1751,12 @@ public class KSYStreamer {
             return;
         }
 
-        if (mIsRecording) {
+        if (mIsRecording || !mVideoEncoderMgt.getEncoder().isEncoding() ||
+                !mAudioEncoderMgt.getEncoder().isEncoding()) {
             mFilePublisher.stop();
         } else {
             stopCapture();
         }
-        mIsFileRecording = false;
     }
 
     protected void startCapture() {
