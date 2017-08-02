@@ -157,6 +157,7 @@ public class KSYStreamer {
         }
         mContext = context.getApplicationContext();
         mMainHandler = new Handler(Looper.getMainLooper());
+        StatsLogReport.getInstance().setContext(mContext);
         initModules();
     }
 
