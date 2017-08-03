@@ -3472,6 +3472,28 @@
  visibility="public"
 >
 </field>
+<field name="ENCODER_STATE_FLUSHED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="5"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ENCODER_STATE_FLUSHING"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="ENCODER_STATE_IDLE"
  type="int"
  transient="false"
@@ -14577,6 +14599,19 @@
  visibility="public"
 >
 <parameter name="bwEstStrategy" type="int">
+</parameter>
+</method>
+<method name="setContext"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="context" type="Context">
 </parameter>
 </method>
 <method name="setEnableDebugLog"
