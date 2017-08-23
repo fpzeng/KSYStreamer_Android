@@ -146,6 +146,10 @@
   <a href="../../../../../com/ksyun/media/streamer/capture/audio/package-summary.html">com.ksyun.media.streamer.capture.audio</a></li>
     <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/capture/camera/package-summary.html">com.ksyun.media.streamer.capture.camera</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../com/ksyun/media/streamer/decoder/package-summary.html">com.ksyun.media.streamer.decoder</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../com/ksyun/media/streamer/demuxer/package-summary.html">com.ksyun.media.streamer.demuxer</a></li>
     <li class="selected api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/encoder/package-summary.html">com.ksyun.media.streamer.encoder</a></li>
     <li class="api apilevel-">
@@ -912,6 +916,24 @@ Summary:
 
 	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecAudioEncoder.html#updateEncodeFormat(java.lang.Object, java.lang.Object)">updateEncodeFormat</a></span>(Object src, Object dst)
+        
+        <div class="jd-descrdiv">Update encode format with input frame format.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2125,6 +2147,55 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>true if handled by child, and Encoder would ignore this frame, false otherwise.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="updateEncodeFormat(java.lang.Object, java.lang.Object)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">updateEncodeFormat</span>
+      <span class="normal">(Object src, Object dst)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Update encode format with input frame format.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>src</th>
+          <td>input frame format</td>
+        </tr>
+        <tr>
+          <th>dst</th>
+          <td>encode format to be updated</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>true if success, false otherwise
 </li></ul>
   </div>
 

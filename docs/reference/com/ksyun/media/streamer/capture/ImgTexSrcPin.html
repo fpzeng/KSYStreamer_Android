@@ -147,6 +147,10 @@
     <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/capture/camera/package-summary.html">com.ksyun.media.streamer.capture.camera</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../com/ksyun/media/streamer/decoder/package-summary.html">com.ksyun.media.streamer.decoder</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../com/ksyun/media/streamer/demuxer/package-summary.html">com.ksyun.media.streamer.demuxer</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/encoder/package-summary.html">com.ksyun.media.streamer.encoder</a></li>
     <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/filter/audio/package-summary.html">com.ksyun.media.streamer.filter.audio</a></li>
@@ -588,7 +592,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#setUseSyncMode(boolean)">setUseSyncMode</a></span>(boolean mSyncMode)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#reset()">reset</a></span>()
         
   </td></tr>
 
@@ -604,7 +608,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(Bitmap, boolean)">updateFrame</a></span>(Bitmap img, boolean recycle)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#setUseSyncMode(boolean)">setUseSyncMode</a></span>(boolean mSyncMode)
         
   </td></tr>
 
@@ -636,7 +640,43 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(java.nio.ByteBuffer, int, int, int, long)">updateFrame</a></span>(ByteBuffer buf, int stride, int width, int height, long pts)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(java.nio.ByteBuffer, int, int, int, int, long)">updateFrame</a></span>(ByteBuffer buf, int stride, int width, int height, int rotate, long pts)
+        
+        <div class="jd-descrdiv">Update image frame with RGBA ByteBuffer.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(Bitmap, int, long, boolean)">updateFrame</a></span>(Bitmap img, int rotate, long pts, boolean recycle)
+        
+        <div class="jd-descrdiv">Update image with Bitmap.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(Bitmap, boolean)">updateFrame</a></span>(Bitmap img, boolean recycle)
         
   </td></tr>
 
@@ -652,10 +692,8 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(java.nio.ByteBuffer, int, int, int, int, long)">updateFrame</a></span>(ByteBuffer buf, int stride, int width, int height, int rotate, long pts)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(java.nio.ByteBuffer, int, int, int, long)">updateFrame</a></span>(ByteBuffer buf, int stride, int width, int height, long pts)
         
-        <div class="jd-descrdiv">Update image frame with RGBA ByteBuffer.</div>
-  
   </td></tr>
 
 
@@ -686,9 +724,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateFrame(Bitmap, int, long, boolean)">updateFrame</a></span>(Bitmap img, int rotate, long pts, boolean recycle)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/capture/ImgTexSrcPin.html#updateYUVFrame(java.nio.ByteBuffer, int[], int, int, int, long)">updateYUVFrame</a></span>(ByteBuffer buf, int[] strides, int width, int height, int rotate, long pts)
         
-        <div class="jd-descrdiv">Update image with Bitmap.</div>
+        <div class="jd-descrdiv">Update image frame with YUV420P ByteBuffer.</div>
   
   </td></tr>
 
@@ -1251,6 +1289,37 @@ From class
 </div>
 
 
+<a id="reset()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">reset</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="setUseSyncMode(boolean)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1282,37 +1351,6 @@ From class
 </div>
 
 
-<a id="updateFrame(Bitmap, boolean)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">updateFrame</span>
-      <span class="normal">(Bitmap img, boolean recycle)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
 <a id="updateFrame(java.nio.ByteBuffer, int, int, int)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1327,37 +1365,6 @@ From class
       </span>
       <span class="sympad">updateFrame</span>
       <span class="normal">(ByteBuffer buf, int stride, int width, int height)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<a id="updateFrame(java.nio.ByteBuffer, int, int, int, long)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">updateFrame</span>
-      <span class="normal">(ByteBuffer buf, int stride, int width, int height, long pts)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -1436,37 +1443,6 @@ From class
 </div>
 
 
-<a id="updateFrame(Bitmap, long, boolean)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">updateFrame</span>
-      <span class="normal">(Bitmap img, long pts, boolean recycle)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
 <a id="updateFrame(Bitmap, int, long, boolean)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1511,6 +1487,160 @@ From class
         <tr>
           <th>recycle</th>
           <td>should be recycled
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="updateFrame(Bitmap, boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">updateFrame</span>
+      <span class="normal">(Bitmap img, boolean recycle)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="updateFrame(java.nio.ByteBuffer, int, int, int, long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">updateFrame</span>
+      <span class="normal">(ByteBuffer buf, int stride, int width, int height, long pts)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="updateFrame(Bitmap, long, boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">updateFrame</span>
+      <span class="normal">(Bitmap img, long pts, boolean recycle)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="updateYUVFrame(java.nio.ByteBuffer, int[], int, int, int, long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">updateYUVFrame</span>
+      <span class="normal">(ByteBuffer buf, int[] strides, int width, int height, int rotate, long pts)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Update image frame with YUV420P ByteBuffer.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>buf</th>
+          <td>image ByteBuffer with I420 data</td>
+        </tr>
+        <tr>
+          <th>strides</th>
+          <td>strides of each planar</td>
+        </tr>
+        <tr>
+          <th>width</th>
+          <td>width of frame</td>
+        </tr>
+        <tr>
+          <th>height</th>
+          <td>height of frame</td>
+        </tr>
+        <tr>
+          <th>rotate</th>
+          <td>rotate degrees, only 0, 90, 180, 270 valid</td>
+        </tr>
+        <tr>
+          <th>pts</th>
+          <td>pts of current frame
 </td>
         </tr>
       </table>

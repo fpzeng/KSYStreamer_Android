@@ -147,6 +147,10 @@
     <li class="api apilevel-">
   <a href="../../../../../../com/ksyun/media/streamer/capture/camera/package-summary.html">com.ksyun.media.streamer.capture.camera</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../com/ksyun/media/streamer/decoder/package-summary.html">com.ksyun.media.streamer.decoder</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../com/ksyun/media/streamer/demuxer/package-summary.html">com.ksyun.media.streamer.demuxer</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../com/ksyun/media/streamer/encoder/package-summary.html">com.ksyun.media.streamer.encoder</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../com/ksyun/media/streamer/filter/audio/package-summary.html">com.ksyun.media.streamer.filter.audio</a></li>
@@ -196,6 +200,7 @@
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySpecialEffectsFilter.html">ImgBeautySpecialEffectsFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautyToneCurveFilter.html">ImgBeautyToneCurveFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">ImgFilterBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgStyleBaseFilter.html">ImgStyleBaseFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html">ImgTexBufFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilter.html">ImgTexFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html">ImgTexFilterBase</a></li>
@@ -483,6 +488,13 @@ Summary:
     
     
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexMixer.html#SCALING_MODE_CROP">SCALING_MODE_CROP</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexMixer.html#SCALING_MODE_FULL_FILL">SCALING_MODE_FULL_FILL</a></td>
         <td class="jd-descrcol" width="100%"></td>
@@ -830,13 +842,29 @@ Summary:
             RectF
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexMixer.html#getRenderRect(int)">getRenderRect</a></span>(int idx)
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexMixer.html#getRectForCrop(int)">getRectForCrop</a></span>(int idx)
         
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            RectF
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexMixer.html#getRenderRect(int)">getRenderRect</a></span>(int idx)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -854,7 +882,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -872,7 +900,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -890,7 +918,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -908,7 +936,43 @@ Summary:
 
 
 	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexMixer.html#setRectForCrop(int, float, float, float, float)">setRectForCrop</a></span>(int idx, float x, float y, float w, float h)
+        
+        <div class="jd-descrdiv">the crop rect for</div>
+  
+  </td></tr>
+
+
+	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexMixer.html#setRectForCrop(int, RectF)">setRectForCrop</a></span>(int idx, RectF rect)
+        
+        <div class="jd-descrdiv">the crop rect for</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -926,7 +990,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -944,7 +1008,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -962,7 +1026,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1925,6 +1989,46 @@ From class
 
 
 
+<a id="SCALING_MODE_CROP"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        SCALING_MODE_CROP
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                3
+                (0x00000003)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
 <a id="SCALING_MODE_FULL_FILL"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -2180,6 +2284,37 @@ From class
 
 
 
+<a id="getRectForCrop(int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        RectF
+      </span>
+      <span class="sympad">getRectForCrop</span>
+      <span class="normal">(int idx)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="getRenderRect(int)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -2372,6 +2507,118 @@ From class
 </td>
         </tr>
       </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setRectForCrop(int, float, float, float, float)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setRectForCrop</span>
+      <span class="normal">(int idx, float x, float y, float w, float h)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>the crop rect for</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>idx</th>
+          <td>dedicated sink pin index</td>
+        </tr>
+        <tr>
+          <th>x</th>
+          <td>x position for left top of frame from this pin, should be 0~1</td>
+        </tr>
+        <tr>
+          <th>y</th>
+          <td>y position for left top of frame from this pin, should be 0~1</td>
+        </tr>
+        <tr>
+          <th>w</th>
+          <td>width for frame from this pin to show, should be 0~1</td>
+        </tr>
+        <tr>
+          <th>h</th>
+          <td>height for frame from this pin to show, should be 0~1
+</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexMixer.html#SCALING_MODE_CROP">SCALING_MODE_CROP</a></code></li>
+      </ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setRectForCrop(int, RectF)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setRectForCrop</span>
+      <span class="normal">(int idx, RectF rect)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>the crop rect for</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>idx</th>
+          <td>dedicated sink pin index</td>
+        </tr>
+        <tr>
+          <th>rect</th>
+          <td>crop rect for this pin, should be in (0, 0, 1, 1)
+</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">See Also</h5>
+      <ul class="nolist"><li><code><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexMixer.html#SCALING_MODE_CROP">SCALING_MODE_CROP</a></code></li>
+      </ul>
   </div>
 
     </div>
