@@ -425,7 +425,7 @@ public class KSYStreamer {
                 }
 
                 if (mOnErrorListener != null) {
-                    int status;
+                    int status = err;
                     switch (err) {
                         case RtmpPublisher.ERROR_CONNECT_BREAKED:
                             status = StreamerConstants.KSY_STREAMER_ERROR_CONNECT_BREAKED;
@@ -443,7 +443,6 @@ public class KSYStreamer {
                             status = StreamerConstants.KSY_STREAMER_ERROR_AV_ASYNC;
                             break;
                         default:
-                            status = StreamerConstants.KSY_STREAMER_ERROR_PUBLISH_FAILED;
                             break;
                     }
                     mOnErrorListener.onError(status, (int) msg, 0);

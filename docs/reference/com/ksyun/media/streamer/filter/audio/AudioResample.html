@@ -147,6 +147,10 @@
     <li class="api apilevel-">
   <a href="../../../../../../com/ksyun/media/streamer/capture/camera/package-summary.html">com.ksyun.media.streamer.capture.camera</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../com/ksyun/media/streamer/decoder/package-summary.html">com.ksyun.media.streamer.decoder</a></li>
+    <li class="api apilevel-">
+  <a href="../../../../../../com/ksyun/media/streamer/demuxer/package-summary.html">com.ksyun.media.streamer.demuxer</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../com/ksyun/media/streamer/encoder/package-summary.html">com.ksyun.media.streamer.encoder</a></li>
     <li class="selected api apilevel-">
   <a href="../../../../../../com/ksyun/media/streamer/filter/audio/package-summary.html">com.ksyun.media.streamer.filter.audio</a></li>
@@ -467,7 +471,7 @@ Summary:
             int
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResample.html#config(int, int)">config</a></span>(int sampleRate, int channels)
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResample.html#config(int, int, int)">config</a></span>(int sampleFormat, int sampleRate, int channels)
         
         <div class="jd-descrdiv">Set input audio format, and start resample.</div>
   
@@ -551,7 +555,7 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResample.html#setOutputFormat(int, int)">setOutputFormat</a></span>(int sampleRate, int channels)
         
-        <div class="jd-descrdiv">Set output audio format, must set before <code><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResample.html#config(int, int)">config(int, int)</a></code>.</div>
+        <div class="jd-descrdiv">Set output audio format, must set before <code><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResample.html#config(int, int, int)">config(int, int, int)</a></code>.</div>
   
   </td></tr>
 
@@ -914,7 +918,7 @@ From class
 </div>
 
 
-<a id="config(int, int)"></a>
+<a id="config(int, int, int)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -927,7 +931,7 @@ From class
         int
       </span>
       <span class="sympad">config</span>
-      <span class="normal">(int sampleRate, int channels)</span>
+      <span class="normal">(int sampleFormat, int sampleRate, int channels)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -943,6 +947,10 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
+        <tr>
+          <th>sampleFormat</th>
+          <td>input sample format</td>
+        </tr>
         <tr>
           <th>sampleRate</th>
           <td>input sample rate</td>
@@ -1112,7 +1120,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Set output audio format, must set before <code><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResample.html#config(int, int)">config(int, int)</a></code>.</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Set output audio format, must set before <code><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioResample.html#config(int, int, int)">config(int, int, int)</a></code>.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">

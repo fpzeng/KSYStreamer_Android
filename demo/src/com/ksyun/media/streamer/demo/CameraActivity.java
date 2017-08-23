@@ -433,7 +433,9 @@ public class CameraActivity extends Activity implements
     private void initBeautyUI() {
         String[] items = new String[]{"DISABLE", "BEAUTY_SOFT", "SKIN_WHITEN", "BEAUTY_ILLUSION",
                 "BEAUTY_DENOISE", "BEAUTY_SMOOTH", "BEAUTY_PRO", "BEAUTY_PRO2", "BEAUTY_PRO3",
-                "BEAUTY_PRO4", "DEMO_FILTER", "GROUP_FILTER", "ToneCurve", "复古", "胶片"};
+                "BEAUTY_PRO4", "DEMO_FILTER", "GROUP_FILTER", "ToneCurve", "复古", "胶片","Amatorka",
+                "ELEGANCE","1977","Amaro","Brannan","EarlyBird","Hefe","Hudson","ink",
+                "Lomo","LordKelvin","Nash","Rise","Sierra","Sutro","Toaster","Valencia","Walden","XproII"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -492,6 +494,20 @@ public class CameraActivity extends Activity implements
                             CameraActivity.this.getResources().openRawResource(R.raw.jiaopian));
 
                     mStreamer.getImgTexFilterMgt().setFilter(acvFilter);
+                }else if (position == 15) {
+                    ImgBeautySpecialEffectsFilter acvFilter= new ImgBeautySpecialEffectsFilter(mStreamer.getGLRender(),
+                            CameraActivity.this,
+                            ImgBeautySpecialEffectsFilter.KSY_SPECIAL_EFFECT_AMATORKA);
+                    mStreamer.getImgTexFilterMgt().setFilter(acvFilter);
+                }else if (position == 16){
+                    ImgBeautySpecialEffectsFilter acvFilter= new ImgBeautySpecialEffectsFilter(mStreamer.getGLRender(),
+                            CameraActivity.this,
+                            ImgBeautySpecialEffectsFilter.KSY_SPECIAL_EFFECT_ELEGANCE);
+                    mStreamer.getImgTexFilterMgt().setFilter(acvFilter);
+                }else if (position >= 17 && position <= 33){
+                    int diff = position - 17;
+                    mStreamer.getImgTexFilterMgt().setFilter(mStreamer.getGLRender(),
+                            ImgTexFilterMgt.KSY_FILTER_BEAUTY_1977 + diff);
                 }
                 List<ImgFilterBase> filters = mStreamer.getImgTexFilterMgt().getFilter();
                 if (filters != null && !filters.isEmpty()) {
