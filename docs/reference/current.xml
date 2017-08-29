@@ -3938,6 +3938,19 @@
  visibility="protected"
 >
 </method>
+<method name="onFrameAvailable"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="frame" type="com.ksyun.media.streamer.framework.ImgBufFrame">
+</parameter>
+</method>
 </class>
 <class name="AudioEncodeFormat"
  extends="java.lang.Object"

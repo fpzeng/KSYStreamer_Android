@@ -872,6 +872,24 @@ Summary:
             boolean
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/AVCodecVideoEncoder.html#onFrameAvailable(com.ksyun.media.streamer.framework.ImgBufFrame)">onFrameAvailable</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a> frame)
+        
+        <div class="jd-descrdiv">Give child class a chance to handle onFrameAvailable</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/AVCodecVideoEncoder.html#updateEncodeFormat(java.lang.Object, java.lang.Object)">updateEncodeFormat</a></span>(Object src, Object dst)
         
         <div class="jd-descrdiv">Update encode format with input frame format.</div>
@@ -2006,6 +2024,51 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="onFrameAvailable(com.ksyun.media.streamer.framework.ImgBufFrame)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">onFrameAvailable</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a> frame)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Give child class a chance to handle onFrameAvailable</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>frame</th>
+          <td>frame</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>true if handled by child, and Encoder would ignore this frame, false otherwise.
+</li></ul>
+  </div>
 
     </div>
 </div>
