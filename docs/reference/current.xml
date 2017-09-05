@@ -3739,6 +3739,19 @@
 <parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
 </parameter>
 </method>
+<method name="doFrameDropped"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+</parameter>
+</method>
 <method name="doStart"
  return="int"
  abstract="false"
@@ -3903,6 +3916,19 @@
 </method>
 <method name="doFrameAvailable"
  return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="frame" type="com.ksyun.media.streamer.framework.ImgBufFrame">
+</parameter>
+</method>
+<method name="doFrameDropped"
+ return="void"
  abstract="false"
  native="false"
  synchronized="false"
