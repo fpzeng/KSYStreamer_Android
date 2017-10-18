@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#ff000000" >
+
+    <android.opengl.GLSurfaceView
+        android:id="@+id/gl_surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true" />
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
+        android:format="%s"
+        android:gravity="center"
+        android:textColor="@color/font_color_35"
+        android:textSize="@dimen/font_size_38px" />
+
+    <include
+        android:id="@+id/actionbar"
+        android:layout_width="wrap_content"
+        android:layout_height="46dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp"
+        layout="@layout/float_camera_actionbar" />
+
+    <TextView
+        android:id="@+id/url"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/actionbar"
+        android:layout_marginTop="4dp"
+        android:gravity="center"
+        android:textColor="@color/font_color_35"
+        android:textSize="@dimen/font_size_36px" />
+
+    <TextView
+        android:id="@+id/debug_info"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/url"
+        android:layout_marginTop="8dp"
+        android:gravity="left"
+        android:textColor="@color/font_color_41"
+        android:textSize="@dimen/font_size_22px" />
+
+    <TextView
+        android:id="@+id/start_stream_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:gravity="center"
+        android:background="#11123456"
+        android:text="@string/click_to_shoot"
+        android:textColor="@color/font_color_35"
+        android:textSize="@dimen/font_size_36px">
+    </TextView>
+</RelativeLayout>

@@ -194,6 +194,7 @@
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/AVCodecVideoDecoder.html">AVCodecVideoDecoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/AVDecoderWrapper.html">AVDecoderWrapper</a></li>
           <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html">Decoder</a>&lt;I,&nbsp;O&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecVideoDecoder.html">MediaCodecVideoDecoder</a></li>
       </ul>
     </li>
               
@@ -362,7 +363,9 @@ Summary:
             
               <a href="../../../../../com/ksyun/media/streamer/decoder/AVCodecAudioDecoder.html">AVCodecAudioDecoder</a>,
             
-              <a href="../../../../../com/ksyun/media/streamer/decoder/AVCodecVideoDecoder.html">AVCodecVideoDecoder</a>
+              <a href="../../../../../com/ksyun/media/streamer/decoder/AVCodecVideoDecoder.html">AVCodecVideoDecoder</a>,
+            
+              <a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecVideoDecoder.html">MediaCodecVideoDecoder</a>
             
           
       </div>
@@ -378,6 +381,11 @@ Summary:
         <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/decoder/AVCodecVideoDecoder.html">AVCodecVideoDecoder</a></td>
               <td class="jd-descrcol" width="100%">Video software decoder
+&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecVideoDecoder.html">MediaCodecVideoDecoder</a></td>
+              <td class="jd-descrcol" width="100%">Video hardware decoder
 &nbsp;</td>
           </tr>
   </table>
@@ -579,11 +587,33 @@ Summary:
     
       <tr class="alt-color api apilevel-" >
           <td class="jd-typecol">
+          protected
+          
+          
+          long</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html#mPtsOffSet">mPtsOffSet</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol">
           public
           
           
           <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&gt;</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html#mSinkPin">mSinkPin</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          float</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html#mSpeed">mSpeed</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -815,6 +845,22 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html#setSpeed(float)">setSpeed</a></span>(float speed)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html#start()">start</a></span>()
         
         <div class="jd-descrdiv">Start decode.</div>
@@ -823,7 +869,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1693,6 +1739,36 @@ From class
 
 
 
+<a id="mPtsOffSet"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        long
+      </span>
+        mPtsOffSet
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <a id="mSinkPin"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1704,6 +1780,36 @@ From class
         <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&gt;
       </span>
         mSinkPin
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mSpeed"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        float
+      </span>
+        mSpeed
     </h4>
       <div class="api-level">
         
@@ -2147,6 +2253,37 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>set AVCodecContext C pointer int_ptr</p></div>
+
+    </div>
+</div>
+
+
+<a id="setSpeed(float)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setSpeed</span>
+      <span class="normal">(float speed)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>

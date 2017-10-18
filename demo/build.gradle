@@ -3,7 +3,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.1'
+        classpath 'com.android.tools.build:gradle:2.3.3'
     }
 }
 allprojects {
@@ -20,6 +20,10 @@ dependencies {
     compile 'com.facebook.fresco:fresco:1.4.0'
     compile 'com.facebook.fresco:animated-gif:1.4.0'
     compile 'com.facebook.fresco:animated-webp:1.4.0'
+    compile 'com.google.code.gson:gson:2.7'
+    compile 'com.jakewharton:butterknife:8.8.1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
+    compile 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:0.7.2'
 }
 
 android {

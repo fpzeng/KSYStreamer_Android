@@ -18,7 +18,6 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.OrientationEventListener;
 import android.view.Surface;
-import android.view.TextureView;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
@@ -61,7 +60,7 @@ public class FloatViewActivity extends Activity {
         Log.d(TAG, "onCreate");
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.goods_activity);
+        setContentView(R.layout.float_view_activity);
         mObserverButton = new ButtonObserver();
         mLastRotation = getDisplayRotation();
         mFloatBack = (ImageView) findViewById(R.id.float_back);
@@ -266,6 +265,15 @@ public class FloatViewActivity extends Activity {
         return 0;
     }
 
+    private void addFloatView() {
+        initSurfaceWindow();
+        addSurfaceWindow();
+
+        int rotation = getDisplayRotation();
+        Log.d(TAG, "InitialRotate: " + rotation);
+        KSYGlobalStreamer.getInstance().setRotateDegrees(rotation);
+    }
+
     private void addFloatViewWithPermCheck() {
         // 6.0 需要检查overlay权限
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M && !Settings.canDrawOverlays(this)) {
@@ -273,8 +281,7 @@ public class FloatViewActivity extends Activity {
                     Uri.parse("package:" + getPackageName()));
             startActivityForResult(intent, OVERLAY_PERMISSION_RESULT_CODE);
         } else {
-            initSurfaceWindow();
-            addSurfaceWindow();
+            addFloatView();
         }
     }
 
@@ -294,8 +301,7 @@ public class FloatViewActivity extends Activity {
                     Toast.makeText(FloatViewActivity.this, "SYSTEM_ALERT_WINDOW not granted",
                             Toast.LENGTH_SHORT).show();
                 } else {
-                    initSurfaceWindow();
-                    addSurfaceWindow();
+                    addFloatView();
                 }
             }
         }
