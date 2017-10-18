@@ -23,7 +23,7 @@
         android:layout_alignParentRight="true"
         android:layout_gravity="center_vertical"
         android:layout_marginRight="10dp"
-        android:background="@drawable/recorder_rotate_icon" />
+        android:background="@drawable/camera_switch_icon" />
 
     <ImageView
         android:id="@+id/flash"
@@ -31,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_toLeftOf="@id/switch_cam"
-        android:background="@drawable/recorder_flash_icon" >
+        android:background="@drawable/camera_flash_icon" >
     </ImageView>
 
     <ImageView
@@ -40,7 +40,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_vertical"
         android:layout_toLeftOf="@id/flash"
-        android:background="@drawable/recorder_add_icon"/>
+        android:background="@drawable/view_add_icon"/>
 
     <ImageView
         android:id="@+id/exposure"
@@ -50,7 +50,7 @@
         android:layout_gravity="center_vertical"
         android:layout_marginRight="8dp"
         android:layout_toLeftOf="@id/add"
-        android:background="@drawable/exposure">
+        android:background="@drawable/camera_exposure_icon">
     </ImageView>
 
 </RelativeLayout>

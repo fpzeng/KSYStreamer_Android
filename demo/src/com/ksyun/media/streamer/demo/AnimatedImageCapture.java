@@ -91,6 +91,11 @@ public class AnimatedImageCapture {
         mImgTexSrcPin.updateFrame(null, false);
     }
 
+    public void release() {
+        stop();
+        mImgTexSrcPin.release();
+    }
+
     private void updateFrame() {
         if (mCloseableReference == null) {
             return;

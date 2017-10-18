@@ -11,7 +11,7 @@
     <string name="start_recording">开始录制</string>
     <string name="capture_thumbnail">截屏</string>
     <string name="beauty_switcher">美颜</string>
-    <string name="watermark">水印</string>
+    <string name="watermark">开启水印</string>
     <string name="mute">静音</string>
     <string name="bgm">BGM</string>
     <string name="audio_filter_selected">音频滤镜</string>

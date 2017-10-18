@@ -182,7 +182,8 @@
               
     <li><h2>Interfaces</h2>
       <ul>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.OnMuxerFormatDetected.html">AVDemuxerCapture.OnMuxerFormatDetected</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.OnVideoPtsChangedListener.html">AVDemuxerCapture.OnVideoPtsChangedListener</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerMultiCapture.OnMuxerFormatDetected.html">AVDemuxerMultiCapture.OnMuxerFormatDetected</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.OnDemuxed.html">AVDemuxerWrapper.OnDemuxed</a></li>
       </ul>
     </li>
@@ -190,6 +191,7 @@
     <li><h2>Classes</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html">AVDemuxerCapture</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerMultiCapture.html">AVDemuxerMultiCapture</a></li>
           <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html">AVDemuxerWrapper</a></li>
       </ul>
     </li>
@@ -253,6 +255,9 @@ Summary:
 
 
 
+
+  &#124; <a href="#constants">Constants</a>
+  
 
 
 
@@ -403,6 +408,120 @@ Summary:
 
 
 
+<!-- =========== ENUM CONSTANT SUMMARY =========== -->
+<table id="constants" class="jd-sumtable"><tr><th colspan="12">Constants</th></tr>
+
+
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_AUDIO_AVCODEC_CONTEXT_POINTER">EXTRACTOR_AUDIO_AVCODEC_CONTEXT_POINTER</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_AUDIO_BITRATE">EXTRACTOR_AUDIO_BITRATE</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_AUDIO_CHANNELS">EXTRACTOR_AUDIO_CHANNELS</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_AUDIO_SAMPLE_FORMAT">EXTRACTOR_AUDIO_SAMPLE_FORMAT</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_AUDIO_SAMPLE_RATE">EXTRACTOR_AUDIO_SAMPLE_RATE</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_AVFORMAT_CONTEXT_POINTER">EXTRACTOR_AVFORMAT_CONTEXT_POINTER</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_VIDEO_AVCODEC_CONTEXT_POINTER">EXTRACTOR_VIDEO_AVCODEC_CONTEXT_POINTER</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_VIDEO_BITRATE">EXTRACTOR_VIDEO_BITRATE</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_VIDEO_DURATION">EXTRACTOR_VIDEO_DURATION</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_VIDEO_FRAME_RATE">EXTRACTOR_VIDEO_FRAME_RATE</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_VIDEO_HEIGHT">EXTRACTOR_VIDEO_HEIGHT</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_VIDEO_ORIENTATION">EXTRACTOR_VIDEO_ORIENTATION</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_VIDEO_PIXEL_FORMAT">EXTRACTOR_VIDEO_PIXEL_FORMAT</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_VIDEO_VIDEO_CODEC_ID">EXTRACTOR_VIDEO_VIDEO_CODEC_ID</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#EXTRACTOR_VIDEO_WIDTH">EXTRACTOR_VIDEO_WIDTH</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+
+</table>
+
+
 
 
 
@@ -471,10 +590,74 @@ Summary:
             
             
             
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#getPropertyInt(int)">getPropertyInt</a></span>(int property)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            long
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#getPropertyLong(int)">getPropertyLong</a></span>(int property)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            String
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#getPropertyString(int)">getPropertyString</a></span>(int property)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
             void
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#release()">release</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.html#setDemuxRanges(long, long)">setDemuxRanges</a></span>(long start, long end)
         
   </td></tr>
 
@@ -766,6 +949,613 @@ From class
 <!-- Constants -->
 
 
+<!-- ========= ENUM CONSTANTS DETAIL ======== -->
+<h2>Constants</h2>
+
+
+
+
+<a id="EXTRACTOR_AUDIO_AVCODEC_CONTEXT_POINTER"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_AUDIO_AVCODEC_CONTEXT_POINTER
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                15
+                (0x0000000f)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_AUDIO_BITRATE"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_AUDIO_BITRATE
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                2
+                (0x00000002)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_AUDIO_CHANNELS"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_AUDIO_CHANNELS
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                5
+                (0x00000005)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_AUDIO_SAMPLE_FORMAT"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_AUDIO_SAMPLE_FORMAT
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                4
+                (0x00000004)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_AUDIO_SAMPLE_RATE"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_AUDIO_SAMPLE_RATE
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                3
+                (0x00000003)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_AVFORMAT_CONTEXT_POINTER"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_AVFORMAT_CONTEXT_POINTER
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                1
+                (0x00000001)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_VIDEO_AVCODEC_CONTEXT_POINTER"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_VIDEO_AVCODEC_CONTEXT_POINTER
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                14
+                (0x0000000e)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_VIDEO_BITRATE"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_VIDEO_BITRATE
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                6
+                (0x00000006)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_VIDEO_DURATION"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_VIDEO_DURATION
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                12
+                (0x0000000c)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_VIDEO_FRAME_RATE"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_VIDEO_FRAME_RATE
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                7
+                (0x00000007)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_VIDEO_HEIGHT"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_VIDEO_HEIGHT
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                9
+                (0x00000009)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_VIDEO_ORIENTATION"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_VIDEO_ORIENTATION
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                11
+                (0x0000000b)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_VIDEO_PIXEL_FORMAT"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_VIDEO_PIXEL_FORMAT
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                10
+                (0x0000000a)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_VIDEO_VIDEO_CODEC_ID"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_VIDEO_VIDEO_CODEC_ID
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                13
+                (0x0000000d)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="EXTRACTOR_VIDEO_WIDTH"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        EXTRACTOR_VIDEO_WIDTH
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                8
+                (0x00000008)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+
 <!-- Fields -->
 
 
@@ -854,6 +1644,99 @@ From class
 </div>
 
 
+<a id="getPropertyInt(int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        int
+      </span>
+      <span class="sympad">getPropertyInt</span>
+      <span class="normal">(int property)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getPropertyLong(int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        long
+      </span>
+      <span class="sympad">getPropertyLong</span>
+      <span class="normal">(int property)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="getPropertyString(int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        String
+      </span>
+      <span class="sympad">getPropertyString</span>
+      <span class="normal">(int property)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="release()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -868,6 +1751,37 @@ From class
       </span>
       <span class="sympad">release</span>
       <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="setDemuxRanges(long, long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        int
+      </span>
+      <span class="sympad">setDemuxRanges</span>
+      <span class="normal">(long start, long end)</span>
     </h4>
       <div class="api-level">
         <div>

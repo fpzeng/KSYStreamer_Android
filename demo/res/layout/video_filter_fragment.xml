@@ -3,35 +3,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="wrap_content"
-              android:background="#C0303030">
-
-    <LinearLayout
-        android:orientation="horizontal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_marginTop="5dp"
-        android:layout_marginBottom="5dp"
-        android:gravity="center">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="美颜类型："
-            android:textColor="@color/font_color_35"
-            android:textSize="16sp"/>
-
-        <android.support.v7.widget.AppCompatSpinner
-            android:id="@+id/beauty_spin"
-            android:layout_width="wrap_content"
-            android:layout_height="32dp"
-            android:layout_marginLeft="28dp"
-            android:text="none"
-            android:textSize="14sp">
-        </android.support.v7.widget.AppCompatSpinner>
-    </LinearLayout>
+              android:background="#11123456">
 
     <LinearLayout
         android:id="@+id/beauty_grind"
@@ -40,6 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
         android:gravity="center">
 
         <TextView
@@ -49,9 +22,9 @@
             android:gravity="center"
             android:text="磨皮"
             android:textColor="@color/font_color_35"
-            android:textSize="14sp"/>
+            android:textSize="16sp"/>
 
-        <android.support.v7.widget.AppCompatSeekBar
+        <SeekBar
             android:id="@+id/grind_seek_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -64,6 +37,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
         android:gravity="center">
 
         <TextView
@@ -73,9 +47,9 @@
             android:gravity="center"
             android:text="美白"
             android:textColor="@color/font_color_35"
-            android:textSize="14sp"/>
+            android:textSize="16sp"/>
 
-        <android.support.v7.widget.AppCompatSeekBar
+        <SeekBar
             android:id="@+id/whiten_seek_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
@@ -88,7 +62,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:layout_marginBottom="10dp"
+        android:layout_marginTop="10dp"
         android:gravity="center">
 
         <TextView
@@ -98,12 +72,40 @@
             android:gravity="center"
             android:text="红润"
             android:textColor="@color/font_color_35"
-            android:textSize="14sp"/>
+            android:textSize="16sp"/>
 
-        <android.support.v7.widget.AppCompatSeekBar
+        <SeekBar
             android:id="@+id/ruddy_seek_bar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
     </LinearLayout>
 
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        android:gravity="center">
+
+        <Spinner
+            android:id="@+id/filter_idx_spin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:textSize="14sp">
+        </Spinner>
+
+        <Spinner
+            android:id="@+id/filter_spin"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="7"
+            android:layout_marginLeft="5dp"
+            android:layout_marginStart="5dp"
+            android:textSize="14sp">
+        </Spinner>
+    </LinearLayout>
 </LinearLayout>

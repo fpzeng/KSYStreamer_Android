@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/bgm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="#11123456"
+            android:checked="false"
+            android:text="背景音乐"
+            android:textColor="@color/font_color_35"
+            android:textSize="@dimen/font_size_28px">
+        </CheckBox>
+
+        <TextView
+            android:id="@+id/bgm_filter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#11123456"
+            android:text="bgm升降调"
+            android:textColor="@color/font_color_35"
+            android:textSize="@dimen/font_size_28px">
+        </TextView>
+
+        <TextView
+            android:id="@+id/audio_filter"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:background="#11123456"
+            android:text="@string/audio_filter_selected"
+            android:textColor="@color/font_color_35"
+            android:textSize="@dimen/font_size_28px">
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="5dp"
+        android:orientation="horizontal">
+
+        <CheckBox
+            android:id="@+id/audio_preview"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="#11123456"
+            android:checked="false"
+            android:text="耳返"
+            android:textColor="@color/font_color_35"
+            android:textSize="@dimen/font_size_28px">
+        </CheckBox>
+
+        <CheckBox
+            android:id="@+id/mute"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="#11123456"
+            android:checked="false"
+            android:text="静音"
+            android:textColor="@color/font_color_35"
+            android:textSize="@dimen/font_size_28px">
+        </CheckBox>
+
+        <CheckBox
+            android:id="@+id/ns"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="#11123456"
+            android:checked="false"
+            android:text="降噪"
+            android:textColor="@color/font_color_35"
+            android:textSize="@dimen/font_size_28px">
+        </CheckBox>
+
+        <CheckBox
+            android:id="@+id/audio_ld"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1"
+            android:background="#11123456"
+            android:checked="false"
+            android:text="低延迟"
+            android:textColor="@color/font_color_35"
+            android:textSize="@dimen/font_size_28px">
+        </CheckBox>
+    </LinearLayout>
+</LinearLayout>

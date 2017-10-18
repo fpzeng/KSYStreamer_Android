@@ -1,0 +1,541 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="初始摄像头"
+        android:textSize="14sp" />
+
+    <RadioGroup
+        android:id="@+id/camera_face_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/camera_face_front"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="前置" />
+
+        <RadioButton
+            android:id="@+id/camera_face_rear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="后置" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/captureTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="采集分辨率"
+        android:textSize="14sp" />
+
+    <RadioGroup
+        android:id="@+id/capture_res_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/cap_360"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="360P" />
+
+        <RadioButton
+            android:id="@+id/cap_480"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="480P" />
+
+        <RadioButton
+            android:id="@+id/cap_720"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="720P" />
+
+        <RadioButton
+            android:id="@+id/cap_1080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="1080P" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/previewTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="预览分辨率"
+        android:textSize="14sp" />
+
+    <RadioGroup
+        android:id="@+id/preview_res_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/preview_360"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="360P" />
+
+        <RadioButton
+            android:id="@+id/preview_480"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="480P" />
+
+        <RadioButton
+            android:id="@+id/preview_720"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="720P" />
+
+        <RadioButton
+            android:id="@+id/preview_1080"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="1080P" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/targetTxt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="推流分辨率"
+        android:textSize="14sp" />
+
+    <RadioGroup
+        android:id="@+id/target_res_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/target_360"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="360P" />
+
+        <RadioButton
+            android:id="@+id/target_480"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="480P" />
+
+        <RadioButton
+            android:id="@+id/target_540"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="540P" />
+
+        <RadioButton
+            android:id="@+id/target_720"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="720P" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/preview_view_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="预览View"
+        android:textSize="14sp" />
+
+    <RadioGroup
+        android:id="@+id/preview_view_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/preview_GLSurfaceView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="GLSurfaceView" />
+
+        <RadioButton
+            android:id="@+id/preview_TextureView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="TextureView" />
+
+        <RadioButton
+            android:id="@+id/preview_offscreen"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="离屏" />
+    </RadioGroup>
+
+    <TextView
+        android:id="@+id/background_switch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="前后台切换"
+        android:textSize="14sp" />
+
+    <RadioGroup
+        android:id="@+id/background_switch_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/bg_keep_streaming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="正常推流" />
+
+        <RadioButton
+            android:id="@+id/bg_keep_last_frame"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="保留最后一帧" />
+
+        <RadioButton
+            android:id="@+id/bg_image_streaming"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="背景图推流" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/orientation_group"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/orientation_landscape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="横屏" />
+
+        <RadioButton
+            android:id="@+id/orientation_portrait"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="竖屏" />
+
+        <RadioButton
+            android:id="@+id/orientation_auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="动态" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/video_codec_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/codec_h264"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="H264" />
+
+        <RadioButton
+            android:id="@+id/codec_h265"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="H265" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/encode_method"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/encode_auto"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="自动(白名单)" />
+
+        <RadioButton
+            android:id="@+id/encode_hw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="硬编" />
+
+        <RadioButton
+            android:id="@+id/encode_sw"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="软编" />
+
+        <RadioButton
+            android:id="@+id/encode_sw1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="软编1" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="场景编码"
+        android:textSize="14sp" />
+
+    <RadioGroup
+        android:id="@+id/encode_scene"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/encode_scene_default"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="通用模式" />
+
+        <RadioButton
+            android:id="@+id/encode_scene_show_self"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="秀场模式" />
+
+        <RadioButton
+            android:id="@+id/encode_scene_game"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="游戏模式" />
+    </RadioGroup>
+
+    <RadioGroup
+        android:id="@+id/encode_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/encode_profile_low_power"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="低功耗" />
+
+        <RadioButton
+            android:id="@+id/encode_profile_balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="平衡" />
+
+        <RadioButton
+            android:id="@+id/encode_profile_high_perf"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="高性能" />
+    </RadioGroup>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="音频编码"
+        android:textSize="14sp" />
+
+    <RadioGroup
+        android:id="@+id/aac_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/aac_lc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="AAC LC" />
+
+        <RadioButton
+            android:id="@+id/aac_he"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="AAC HE" />
+
+        <RadioButton
+            android:id="@+id/aac_he_v2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="AAC HEv2" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/init_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/zoom_touch_focus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:checked="true"
+            android:text="手势缩放，触摸对焦" />
+
+        <CheckBox
+            android:id="@+id/stereo_stream"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:checked="false"
+            android:text="双声道推流" />
+
+        <CheckBox
+            android:id="@+id/bluetooth_mic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:checked="true"
+            android:text="蓝牙麦克风优先" />
+
+        <CheckBox
+            android:id="@+id/autoStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:checked="false"
+            android:text="初始化完成后启动推流" />
+
+        <CheckBox
+            android:id="@+id/print_debug_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:checked="true"
+            android:text="显示调试信息" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/frameRate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="视频帧率"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/frameRatePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/videoBitrate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="视频码率(Max)"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/videoBitratePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="800" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/audioBitrate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="音频码率"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/audioBitratePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="48" />
+    </LinearLayout>
+</LinearLayout>

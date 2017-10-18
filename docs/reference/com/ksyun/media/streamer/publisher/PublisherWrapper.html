@@ -778,7 +778,7 @@ Summary:
             int
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html#addAudioTrack(int, int, int, int, int, java.nio.ByteBuffer)">addAudioTrack</a></span>(int codecId, int sampleFmt, int sampleRate, int channels, int bitrate, ByteBuffer extra)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html#addAudioTrack(int, int, int, int, int, java.nio.ByteBuffer, long)">addAudioTrack</a></span>(int codecId, int sampleFmt, int sampleRate, int channels, int bitrate, ByteBuffer extra, long avCodecContextPtr)
         
   </td></tr>
 
@@ -810,7 +810,7 @@ Summary:
             int
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html#addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer)">addVideoTrack</a></span>(int codecId, int width, int height, float fps, int bitrate, ByteBuffer extra)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html#addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer, long)">addVideoTrack</a></span>(int codecId, int width, int height, float fps, int bitrate, ByteBuffer extra, long avCodecContextPtr)
         
   </td></tr>
 
@@ -922,7 +922,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html#setOnPubEvent(com.ksyun.media.streamer.publisher.PublisherWrapper.OnPubEvent)">setOnPubEvent</a></span>(<a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.OnPubEvent.html">PublisherWrapper.OnPubEvent</a> event)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html#setEnableMp4FastStart(boolean)">setEnableMp4FastStart</a></span>(boolean enable)
         
   </td></tr>
 
@@ -938,7 +938,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html#setVideoOnly(boolean)">setVideoOnly</a></span>(boolean videoOnly)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html#setOnPubEvent(com.ksyun.media.streamer.publisher.PublisherWrapper.OnPubEvent)">setOnPubEvent</a></span>(<a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.OnPubEvent.html">PublisherWrapper.OnPubEvent</a> event)
         
   </td></tr>
 
@@ -951,10 +951,10 @@ Summary:
             
             
             
-            int
+            void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html#start(java.lang.String)">start</a></span>(String uri)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html#setVideoOnly(boolean)">setVideoOnly</a></span>(boolean videoOnly)
         
   </td></tr>
 
@@ -970,13 +970,29 @@ Summary:
             int
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html#stop()">stop</a></span>()
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html#start(java.lang.String)">start</a></span>(String uri)
         
   </td></tr>
 
 
 	 
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/PublisherWrapper.html#stop()">stop</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -2965,7 +2981,7 @@ From class
 </div>
 
 
-<a id="addAudioTrack(int, int, int, int, int, java.nio.ByteBuffer)"></a>
+<a id="addAudioTrack(int, int, int, int, int, java.nio.ByteBuffer, long)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2978,7 +2994,7 @@ From class
         int
       </span>
       <span class="sympad">addAudioTrack</span>
-      <span class="normal">(int codecId, int sampleFmt, int sampleRate, int channels, int bitrate, ByteBuffer extra)</span>
+      <span class="normal">(int codecId, int sampleFmt, int sampleRate, int channels, int bitrate, ByteBuffer extra, long avCodecContextPtr)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3027,7 +3043,7 @@ From class
 </div>
 
 
-<a id="addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer)"></a>
+<a id="addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer, long)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3040,7 +3056,7 @@ From class
         int
       </span>
       <span class="sympad">addVideoTrack</span>
-      <span class="normal">(int codecId, int width, int height, float fps, int bitrate, ByteBuffer extra)</span>
+      <span class="normal">(int codecId, int width, int height, float fps, int bitrate, ByteBuffer extra, long avCodecContextPtr)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3227,6 +3243,37 @@ From class
       </span>
       <span class="sympad">setBwEstConfig</span>
       <span class="normal">(int initAudioBitrate, int initVideoBitrate, int minVideoBitrate, int maxVideoBitrate, int strategy)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="setEnableMp4FastStart(boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setEnableMp4FastStart</span>
+      <span class="normal">(boolean enable)</span>
     </h4>
       <div class="api-level">
         <div>

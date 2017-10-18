@@ -358,7 +358,7 @@ public class KSYStreamer {
                     case RtmpPublisher.INFO_CONNECTED:
                         if (!mAudioEncoderMgt.getEncoder().isEncoding()) {
                             mAudioEncoderMgt.getEncoder().start();
-                        } else {
+                        } else if (!mRtmpPublisher.isAudioExtraGot()) {
                             mRtmpPublisher.setAudioExtra(mAudioEncoderMgt.getEncoder().getExtra());
                         }
                         if (mOnInfoListener != null) {
@@ -371,7 +371,7 @@ public class KSYStreamer {
                             // start video encoder after audio header got
                             if (!mVideoEncoderMgt.getEncoder().isEncoding()) {
                                 mVideoEncoderMgt.start();
-                            } else {
+                            } else if (!mRtmpPublisher.isVideoExtraGot()) {
                                 mRtmpPublisher.setVideoExtra(mVideoEncoderMgt.
                                         getEncoder().getExtra());
                                 mVideoEncoderMgt.getEncoder().forceKeyFrame();
@@ -462,7 +462,7 @@ public class KSYStreamer {
                         //start audio encoder first
                         if (!mAudioEncoderMgt.getEncoder().isEncoding()) {
                             mAudioEncoderMgt.getEncoder().start();
-                        } else {
+                        } else if (!mFilePublisher.isAudioExtraGot()) {
                             mFilePublisher.setAudioExtra(mAudioEncoderMgt.getEncoder().getExtra());
                         }
                         if (mOnInfoListener != null) {
@@ -475,7 +475,7 @@ public class KSYStreamer {
                             // start video encoder after audio header got
                             if (!mVideoEncoderMgt.getEncoder().isEncoding()) {
                                 mVideoEncoderMgt.start();
-                            } else {
+                            } else if (!mFilePublisher.isVideoExtraGot()) {
                                 mFilePublisher.setVideoExtra(mVideoEncoderMgt.
                                         getEncoder().getExtra());
                                 mVideoEncoderMgt.getEncoder().forceKeyFrame();
@@ -907,6 +907,15 @@ public class KSYStreamer {
      */
     public float getPreviewFps() {
         return mPreviewFps;
+    }
+
+    /**
+     * Get current camera preview frame rate.
+     *
+     * @return current camera preview frame rate
+     */
+    public float getCurrentPreviewFps() {
+        return mCameraCapture.getCurrentPreviewFps();
     }
 
     /**
@@ -1524,6 +1533,27 @@ public class KSYStreamer {
      */
     public int getCameraFacing() {
         return mCameraFacing;
+    }
+
+    /**
+     * Run a second pass moving the index (moov atom) to the beginning of the mp4 file.
+     *
+     * This operation can take a while, and will not work in various situations such as
+     * fragmented output, thus it is not enabled by default.
+     *
+     * @param enable true to enable, false to disable
+     */
+    public void setEnableMp4FastStart(boolean enable) {
+        mFilePublisher.setEnableMp4FastStart(enable);
+    }
+
+    /**
+     * Get if mp4 fast start feature enabled.
+     *
+     * @return true if enabled, false if disabled.
+     */
+    public boolean isMp4FastStartEnabled() {
+        return mFilePublisher.isMp4FastStartEnabled();
     }
 
     /**
@@ -2420,6 +2450,7 @@ public class KSYStreamer {
             mAudioPlayerCapture.release();
             mCameraCapture.release();
             mAudioCapture.release();
+            mFilePublisher.release();
             mGLRender.release();
             setOnLogEventListener(null);
             unregisterHeadsetPlugReceiver();
