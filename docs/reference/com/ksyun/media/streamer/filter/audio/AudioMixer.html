@@ -519,13 +519,31 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioMixer.html#getInputVolume(int)">getInputVolume</a></span>(int idx)
         
-        <div class="jd-descrdiv">return input audio source volume</div>
+        <div class="jd-descrdiv">return input audio source left channel volume</div>
   
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            float
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioMixer.html#getInputVolume(int, boolean)">getInputVolume</a></span>(int idx, boolean isLeftChannel)
+        
+        <div class="jd-descrdiv">return input audio source volume</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -543,6 +561,24 @@ Summary:
 
 
 	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            float
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioMixer.html#getOutputVolume(boolean)">getOutputVolume</a></span>(boolean isLeftChannel)
+        
+        <div class="jd-descrdiv">Get output audio volume.</div>
+  
+  </td></tr>
+
+
+	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
@@ -555,7 +591,7 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioMixer.html#getOutputVolume()">getOutputVolume</a></span>()
         
-        <div class="jd-descrdiv">Get output audio volume.</div>
+        <div class="jd-descrdiv">Get output audio volume.If mono, return left channel volume</div>
   
   </td></tr>
 
@@ -659,6 +695,25 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioMixer.html#setInputVolume(int, float, float)">setInputVolume</a></span>(int idx, float leftVol, float rightVol)
+        
+        <div class="jd-descrdiv">Set input audio source volume for left and right channel,
+ the source audio data would multiply this value before mix.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioMixer.html#setInputVolume(int, float)">setInputVolume</a></span>(int idx, float vol)
         
         <div class="jd-descrdiv">Set input audio source volume,
@@ -668,7 +723,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -686,7 +741,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -704,7 +759,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -717,6 +772,25 @@ Summary:
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioMixer.html#setOutputVolume(float)">setOutputVolume</a></span>(float vol)
         
         <div class="jd-descrdiv">Set output audio volume, the mixer result would multiply this value.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/audio/AudioMixer.html#setOutputVolume(float, float)">setOutputVolume</a></span>(float leftVol, float rightVol)
+        
+        <div class="jd-descrdiv">Set output audio volume for left and right channel, the mixer result would multiply this
+ value.</div>
   
   </td></tr>
 
@@ -1241,7 +1315,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>return input audio source volume</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>return input audio source left channel volume</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
@@ -1253,7 +1327,56 @@ From class
   </div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>volume in [0.0f-1.0f]
+      <ul class="nolist"><li>volume in [0.0f-1.0f], null if idx if out of range
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getInputVolume(int, boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        float
+      </span>
+      <span class="sympad">getInputVolume</span>
+      <span class="normal">(int idx, boolean isLeftChannel)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>return input audio source volume</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>idx</th>
+          <td>SinkPin index</td>
+        </tr>
+        <tr>
+          <th>isLeftChannel</th>
+          <td>is left channel or right channel</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>volume in [0.0f-1.0f], null if idx if out of range
 </li></ul>
   </div>
 
@@ -1297,6 +1420,51 @@ From class
 </div>
 
 
+<a id="getOutputVolume(boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        float
+      </span>
+      <span class="sympad">getOutputVolume</span>
+      <span class="normal">(boolean isLeftChannel)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get output audio volume.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>isLeftChannel</th>
+          <td>left or right channel</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>output volume, default value 1.0f
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="getOutputVolume()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1322,7 +1490,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Get output audio volume.</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Get output audio volume.If mono, return left channel volume</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>output volume, default value 1.0f
@@ -1522,6 +1690,56 @@ From class
 </div>
 
 
+<a id="setInputVolume(int, float, float)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setInputVolume</span>
+      <span class="normal">(int idx, float leftVol, float rightVol)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Set input audio source volume for left and right channel,
+ the source audio data would multiply this value before mix.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>idx</th>
+          <td>SinkPin index</td>
+        </tr>
+        <tr>
+          <th>leftVol</th>
+          <td>left channel volume in [0.0f-1.0f]</td>
+        </tr>
+        <tr>
+          <th>rightVol</th>
+          <td>right channel volume in [0.0f-1.0f]
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
 <a id="setInputVolume(int, float)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1682,6 +1900,52 @@ From class
         <tr>
           <th>vol</th>
           <td>volume in [0.0f-1.0f]
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setOutputVolume(float, float)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setOutputVolume</span>
+      <span class="normal">(float leftVol, float rightVol)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Set output audio volume for left and right channel, the mixer result would multiply this
+ value.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>leftVol</th>
+          <td>left channel volume</td>
+        </tr>
+        <tr>
+          <th>rightVol</th>
+          <td>right channel volume
 </td>
         </tr>
       </table>
