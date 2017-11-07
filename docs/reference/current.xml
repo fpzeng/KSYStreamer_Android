@@ -8156,6 +8156,21 @@
 <parameter name="idx" type="int">
 </parameter>
 </method>
+<method name="getInputVolume"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="idx" type="int">
+</parameter>
+<parameter name="isLeftChannel" type="boolean">
+</parameter>
+</method>
 <method name="getMute"
  return="boolean"
  abstract="false"
@@ -8177,6 +8192,19 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="getOutputVolume"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="isLeftChannel" type="boolean">
+</parameter>
 </method>
 <method name="getSinkPin"
  return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
@@ -8252,6 +8280,23 @@
 <parameter name="vol" type="float">
 </parameter>
 </method>
+<method name="setInputVolume"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="idx" type="int">
+</parameter>
+<parameter name="leftVol" type="float">
+</parameter>
+<parameter name="rightVol" type="float">
+</parameter>
+</method>
 <method name="setMainSinkPinIndex"
  return="void"
  abstract="false"
@@ -8289,6 +8334,21 @@
  visibility="public"
 >
 <parameter name="vol" type="float">
+</parameter>
+</method>
+<method name="setOutputVolume"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="leftVol" type="float">
+</parameter>
+<parameter name="rightVol" type="float">
 </parameter>
 </method>
 </class>
