@@ -1,6 +1,6 @@
 = 金山云直播推流Android SDK使用说明
 :numbered:
-//:toc: left
+:toc: left
 :icons: font
 :source-highlighter: pygments
 
