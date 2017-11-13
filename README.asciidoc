@@ -391,10 +391,13 @@ public class CameraActivity extends Activity {
 |=====
 
 === 联系方式
-* 主页： http://www.ksyun.com[金山云]
-* 邮箱： zengfanping@kingsoft.com
-* QQ讨论群：574179720 [视频云技术交流群] 
-* Issues:  https://github.com/ksvc/KSYStreamer_Android/issues
+- 主页： http://www.ksyun.com[金山云]
+- 邮箱： zengfanping@kingsoft.com
+- QQ讨论群：
+  1. 574179720 [视频云技术交流群]
+  1. 620036233 [视频云Android技术交流]
+  1. 以上两个加一个QQ群即可   
+- Issues:  https://github.com/ksvc/KSYStreamer_Android/issues
 
 image::https://raw.githubusercontent.com/wiki/ksvc/KSYLive_Android/images/logo.png[金山云计算, link=http://www.ksyun.com/]
 
