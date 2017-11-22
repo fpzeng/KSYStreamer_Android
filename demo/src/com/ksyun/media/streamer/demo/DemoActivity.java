@@ -31,7 +31,7 @@ public class DemoActivity extends Activity {
         ButterKnife.bind(this);
 
         Spinner demoTypeSpinner = (Spinner) findViewById(R.id.demo_type);
-        String[] items = new String[]{"基础Demo", "标准Demo", "悬浮窗Demo"};
+        String[] items = new String[]{"基础Demo", "标准Demo", "悬浮窗Demo", "纯音频推流"};
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_spinner_item, items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -49,6 +49,9 @@ public class DemoActivity extends Activity {
                         break;
                     case 2:
                         mDemoFragment = new FloatDemoFragment();
+                        break;
+                    case 3:
+                        mDemoFragment = new AudioDemoFragment();
                         break;
                     default:
                         break;

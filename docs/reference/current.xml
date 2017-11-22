@@ -2784,7 +2784,7 @@
 >
 </constructor>
 <method name="close"
- return="int"
+ return="void"
  abstract="false"
  native="false"
  synchronized="false"
@@ -2823,7 +2823,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="formatContext" type="long">
+<parameter name="avCodecPar" type="long">
 </parameter>
 </method>
 <method name="openVideo"
@@ -2836,7 +2836,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="formatContext" type="long">
+<parameter name="avCodecPar" type="long">
 </parameter>
 </method>
 <method name="release"
@@ -3077,19 +3077,6 @@
 <parameter name="infoListener" type="com.ksyun.media.streamer.decoder.Decoder.DecoderInfoListener">
 </parameter>
 </method>
-<method name="setFormatPtr"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="formatContext" type="long">
-</parameter>
-</method>
 <method name="setSpeed"
  return="void"
  abstract="false"
@@ -3206,6 +3193,28 @@
  visibility="public"
 >
 </field>
+<field name="ERROR_UNKNOWN"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ERROR_UNSUPPORTED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="INFO_STARTED"
  type="int"
  transient="false"
@@ -3228,17 +3237,6 @@
  visibility="public"
 >
 </field>
-<field name="UNINIT"
- type="int"
- transient="false"
- volatile="false"
- value="-1"
- static="true"
- final="true"
- deprecated="not deprecated"
- visibility="protected"
->
-</field>
 <field name="VERBOSE"
  type="boolean"
  transient="false"
@@ -3252,16 +3250,6 @@
 </field>
 <field name="mDecodeFormat"
  type="java.lang.Object"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-</field>
-<field name="mFormatPtr"
- type="long"
  transient="false"
  volatile="false"
  static="false"
@@ -3480,17 +3468,6 @@
  visibility="public"
 >
 </constructor>
-<method name="getAVFormatContextPtr"
- return="long"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
 <method name="getAudioBitrate"
  return="int"
  abstract="false"
@@ -3502,7 +3479,7 @@
  visibility="public"
 >
 </method>
-<method name="getAudioCodecContextPtr"
+<method name="getAudioCodecParPtr"
  return="long"
  abstract="false"
  native="false"
@@ -3623,7 +3600,7 @@
  visibility="public"
 >
 </method>
-<method name="getVideoCodecContextPtr"
+<method name="getVideoCodecParPtr"
  return="long"
  abstract="false"
  native="false"
@@ -3957,7 +3934,7 @@
  visibility="public"
 >
 </method>
-<method name="getAudioCodecContexPtr"
+<method name="getAudioCodecParPtr"
  return="long"
  abstract="false"
  native="false"
@@ -4078,7 +4055,7 @@
  visibility="public"
 >
 </method>
-<method name="getVideoCodecContexPtr"
+<method name="getVideoCodecParPtr"
  return="long"
  abstract="false"
  native="false"
@@ -4511,7 +4488,7 @@
  visibility="public"
 >
 </method>
-<field name="EXTRACTOR_AUDIO_AVCODEC_CONTEXT_POINTER"
+<field name="EXTRACTOR_AUDIO_AVCODEC_PAR_POINTER"
  type="int"
  transient="false"
  volatile="false"
@@ -4577,7 +4554,7 @@
  visibility="public"
 >
 </field>
-<field name="EXTRACTOR_VIDEO_AVCODEC_CONTEXT_POINTER"
+<field name="EXTRACTOR_VIDEO_AVCODEC_PAR_POINTER"
  type="int"
  transient="false"
  volatile="false"
@@ -6695,6 +6672,17 @@
  visibility="public"
 >
 </method>
+<method name="getBitrateMode"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getCodecId"
  return="int"
  abstract="false"
@@ -6816,6 +6804,19 @@
  visibility="public"
 >
 <parameter name="bitrate" type="int">
+</parameter>
+</method>
+<method name="setBitrateMode"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="bitrateMode" type="int">
 </parameter>
 </method>
 <method name="setCodecId"
@@ -6948,6 +6949,39 @@
 <parameter name="width" type="int">
 </parameter>
 </method>
+<field name="ENCODE_BITRATE_MODE_CBR"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ENCODE_BITRATE_MODE_CQ"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ENCODE_BITRATE_MODE_VBR"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="ENCODE_PROFILE_BALANCE"
  type="int"
  transient="false"
@@ -11636,6 +11670,17 @@
 <parameter name="uniformName" type="java.lang.String">
 </parameter>
 </method>
+<method name="getVertexCoords"
+ return="java.nio.FloatBuffer"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
 <method name="init"
  return="void"
  abstract="false"
@@ -12962,6 +13007,19 @@
 <parameter name="format" type="com.ksyun.media.streamer.framework.ImgTexFormat">
 </parameter>
 </method>
+<method name="setScalingMode"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="mode" type="int">
+</parameter>
+</method>
 <method name="setTargetSize"
  return="void"
  abstract="false"
@@ -12977,6 +13035,39 @@
 <parameter name="h" type="int">
 </parameter>
 </method>
+<field name="SCALING_MODE_BEST_FIT"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SCALING_MODE_CENTER_CROP"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="SCALING_MODE_FULL_FILL"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 </class>
 <class name="RGBABufFilter"
  extends="com.ksyun.media.streamer.filter.imgtex.ImgTexBufFilter"
@@ -13484,7 +13575,7 @@
 <parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
 </parameter>
 </method>
-<field name="avCodecContexPtr"
+<field name="avCodecParPtr"
  type="long"
  transient="false"
  volatile="false"
@@ -13748,7 +13839,7 @@
  visibility="public"
 >
 </field>
-<field name="avCodecContexPtr"
+<field name="avCodecParPtr"
  type="long"
  transient="false"
  volatile="false"
@@ -14559,6 +14650,17 @@
 </method>
 <method name="getEncodedFrames"
  return="long"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getFilePublisher"
+ return="com.ksyun.media.streamer.publisher.FilePublisher"
  abstract="false"
  native="false"
  synchronized="false"
@@ -18772,19 +18874,6 @@
 <parameter name="audioBitrate" type="int">
 </parameter>
 </method>
-<method name="setAudioCodecPtr"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="codecContext" type="long">
-</parameter>
-</method>
 <method name="setAudioExtra"
  return="void"
  abstract="false"
@@ -18887,19 +18976,6 @@
  visibility="public"
 >
 <parameter name="videoBitrate" type="int">
-</parameter>
-</method>
-<method name="setVideoCodecPtr"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="codecContext" type="long">
 </parameter>
 </method>
 <method name="setVideoExtra"
@@ -19139,8 +19215,8 @@
  visibility="protected"
 >
 </field>
-<field name="mAudioAVCodecContextPtr"
- type="long"
+<field name="mAudioBitrate"
+ type="int"
  transient="false"
  volatile="false"
  static="false"
@@ -19149,8 +19225,8 @@
  visibility="protected"
 >
 </field>
-<field name="mAudioBitrate"
- type="int"
+<field name="mAudioCodecParPtr"
+ type="long"
  transient="false"
  volatile="false"
  static="false"
@@ -19319,8 +19395,8 @@
  visibility="protected"
 >
 </field>
-<field name="mVideoAVCodecContextPtr"
- type="long"
+<field name="mVideoBitrate"
+ type="int"
  transient="false"
  volatile="false"
  static="false"
@@ -19329,8 +19405,8 @@
  visibility="protected"
 >
 </field>
-<field name="mVideoBitrate"
- type="int"
+<field name="mVideoCodecParPtr"
+ type="long"
  transient="false"
  volatile="false"
  static="false"
@@ -19588,7 +19664,7 @@
 </parameter>
 <parameter name="extra" type="java.nio.ByteBuffer">
 </parameter>
-<parameter name="avCodecContextPtr" type="long">
+<parameter name="avCodecParPtr" type="long">
 </parameter>
 </method>
 <method name="getPropertyInt"
