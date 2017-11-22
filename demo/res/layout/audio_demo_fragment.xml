@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="音频编码"
+        android:textSize="14sp" />
+
+    <RadioGroup
+        android:id="@+id/aac_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal">
+
+        <RadioButton
+            android:id="@+id/aac_lc"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="true"
+            android:text="AAC LC" />
+
+        <RadioButton
+            android:id="@+id/aac_he"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="AAC HE" />
+
+        <RadioButton
+            android:id="@+id/aac_he_v2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:checked="false"
+            android:text="AAC HEv2" />
+    </RadioGroup>
+
+    <LinearLayout
+        android:id="@+id/init_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <CheckBox
+            android:id="@+id/stereo_stream"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:checked="false"
+            android:text="双声道推流" />
+
+        <CheckBox
+            android:id="@+id/autoStart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:checked="false"
+            android:text="初始化完成后启动推流" />
+
+        <CheckBox
+            android:id="@+id/print_debug_info"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:checked="true"
+            android:text="显示调试信息" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/audioBitrate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="音频码率"
+            android:textSize="16sp" />
+
+        <EditText
+            android:id="@+id/audioBitratePicker"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:inputType="number"
+            android:text="48" />
+    </LinearLayout>
+</LinearLayout>

@@ -653,6 +653,15 @@ public class KSYStreamer {
     }
 
     /**
+     * Get {@link FilePublisher} instance which publish encoded a/v frames to local files.
+     *
+     * @return FilePublisher instance.
+     */
+    public FilePublisher getFilePublisher() {
+        return mFilePublisher;
+    }
+
+    /**
      * Set GLSurfaceView as camera previewer.<br/>
      * Must set once before the GLSurfaceView created.
      *
@@ -1865,14 +1874,14 @@ public class KSYStreamer {
             if (mIsRecording) {
                 mVideoEncoderMgt.getEncoder().stop();
             }
-            mPublisherMgt.setAudioOnly(true);
         } else {
             mVideoEncoderMgt.getSrcPin().connect(mPublisherMgt.getVideoSink());
-            mPublisherMgt.setAudioOnly(false);
             if (mIsRecording) {
                 mVideoEncoderMgt.getEncoder().start();
             }
         }
+        mRtmpPublisher.setAudioOnly(audioOnly);
+        mFilePublisher.setAudioOnly(audioOnly);
         mIsAudioOnly = audioOnly;
     }
 

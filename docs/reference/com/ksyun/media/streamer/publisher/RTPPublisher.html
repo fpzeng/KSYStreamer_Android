@@ -597,8 +597,8 @@ Summary:
           protected
           
           
-          long</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mAudioAVCodecContextPtr">mAudioAVCodecContextPtr</a></td>
+          int</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mAudioBitrate">mAudioBitrate</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -608,8 +608,8 @@ Summary:
           protected
           
           
-          int</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mAudioBitrate">mAudioBitrate</a></td>
+          long</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mAudioCodecParPtr">mAudioCodecParPtr</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -795,8 +795,8 @@ Summary:
           protected
           
           
-          long</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mVideoAVCodecContextPtr">mVideoAVCodecContextPtr</a></td>
+          int</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mVideoBitrate">mVideoBitrate</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -806,8 +806,8 @@ Summary:
           protected
           
           
-          int</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mVideoBitrate">mVideoBitrate</a></td>
+          long</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mVideoCodecParPtr">mVideoCodecParPtr</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -1442,31 +1442,13 @@ From class
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setAudioCodecPtr(long)">setAudioCodecPtr</a></span>(long codecContext)
-        
-        <div class="jd-descrdiv">set AVCodecContext C pointer int_ptr</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setAudioExtra(com.ksyun.media.streamer.framework.AVBufFrame)">setAudioExtra</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> audioExtra)
         
   </td></tr>
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1484,7 +1466,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1502,7 +1484,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1520,7 +1502,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1536,7 +1518,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1552,7 +1534,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1570,7 +1552,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1583,24 +1565,6 @@ From class
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setVideoBitrate(int)">setVideoBitrate</a></span>(int videoBitrate)
         
         <div class="jd-descrdiv">Set encoded video bitrate</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setVideoCodecPtr(long)">setVideoCodecPtr</a></span>(long codecContext)
-        
-        <div class="jd-descrdiv">set AVCodecContext C pointer int_ptr</div>
   
   </td></tr>
 
