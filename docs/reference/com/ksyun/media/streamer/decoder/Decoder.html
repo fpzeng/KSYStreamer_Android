@@ -193,7 +193,8 @@
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/AVCodecAudioDecoder.html">AVCodecAudioDecoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/AVCodecVideoDecoder.html">AVCodecVideoDecoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/AVDecoderWrapper.html">AVDecoderWrapper</a></li>
-          <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html">Decoder</a>&lt;I,&nbsp;O&gt;</li>
+          <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html">Decoder</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecAudioDecoder.html">MediaCodecAudioDecoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecVideoDecoder.html">MediaCodecVideoDecoder</a></li>
       </ul>
     </li>
@@ -338,7 +339,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
-        <td colspan="1" class="jd-inheritance-class-cell">com.ksyun.media.streamer.decoder.Decoder&lt;I,&nbsp;O&gt;</td>
+        <td colspan="1" class="jd-inheritance-class-cell">com.ksyun.media.streamer.decoder.Decoder&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">com.ksyun.media.streamer.framework.AVPacketBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">com.ksyun.media.streamer.framework.AVFrameBase</a>&gt;</td>
     </tr>
     
 
@@ -365,6 +366,8 @@ Summary:
             
               <a href="../../../../../com/ksyun/media/streamer/decoder/AVCodecVideoDecoder.html">AVCodecVideoDecoder</a>,
             
+              <a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecAudioDecoder.html">MediaCodecAudioDecoder</a>,
+            
               <a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecVideoDecoder.html">MediaCodecVideoDecoder</a>
             
           
@@ -384,6 +387,11 @@ Summary:
 &nbsp;</td>
           </tr>
         <tr class="alt-color api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecAudioDecoder.html">MediaCodecAudioDecoder</a></td>
+              <td class="jd-descrcol" width="100%">Audio hardware decoder
+&nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecVideoDecoder.html">MediaCodecVideoDecoder</a></td>
               <td class="jd-descrcol" width="100%">Video hardware decoder
 &nbsp;</td>
@@ -597,7 +605,7 @@ Summary:
           public
           
           
-          <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&gt;</td>
+          <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>&gt;</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html#mSinkPin">mSinkPin</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -619,7 +627,7 @@ Summary:
           public
           
           
-          <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;O&gt;</td>
+          <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html#mSrcPin">mSrcPin</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -1765,7 +1773,7 @@ From class
         public 
          
          
-        <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&gt;
+        <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>&gt;
       </span>
         mSinkPin
     </h4>
@@ -1825,7 +1833,7 @@ From class
         public 
          
          
-        <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;O&gt;
+        <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;
       </span>
         mSrcPin
     </h4>
@@ -2127,7 +2135,7 @@ From class
   <div class="jd-tagdata jd-tagdescr"><p>Set if encoder start/stop by input frames.
 
  For example, onFormatChanged would start decode if decoder not started,
- and frame with <code><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#FLAG_END_OF_STREAM">FLAG_END_OF_STREAM</a></code> would stop encoding.</p></div>
+ and frame with <code><a href="../../../../../com/ksyun/media/streamer/framework/AVConst.html#FLAG_END_OF_STREAM">FLAG_END_OF_STREAM</a></code> would stop encoding.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">

@@ -185,16 +185,21 @@
       <ul>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioCodecFormat.html">AudioCodecFormat</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVConst.html">AVConst</a></li>
           <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html">ImgBufFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgTexFormat.html">ImgTexFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/PinAdapter.html">PinAdapter</a>&lt;T&gt;</li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;T&gt;</li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/PinAdapter.html">PinAdapter</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/VideoCodecFormat.html">VideoCodecFormat</a></li>
       </ul>
     </li>
               
@@ -354,6 +359,8 @@ Summary:
             
               <a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a>,
             
+              <a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>,
+            
               <a href="../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a>
             
           
@@ -367,6 +374,10 @@ Summary:
               <td class="jd-descrcol" width="100%">Base class of a/v buf frame.&nbsp;</td>
           </tr>
         <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a></td>
+              <td class="jd-descrcol" width="100%">Base class of encoded a/v data.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a></td>
               <td class="jd-descrcol" width="100%">Image texture frame definition.&nbsp;</td>
           </tr>
@@ -393,7 +404,11 @@ Summary:
             
               <a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>,
             
-              <a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a>
+              <a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a>,
+            
+              <a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a>,
+            
+              <a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a>
             
           
       </div>
@@ -407,9 +422,17 @@ Summary:
 &nbsp;</td>
           </tr>
         <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a></td>
+              <td class="jd-descrcol" width="100%">Audio packet definition.&nbsp;</td>
+          </tr>
+        <tr class="alt-color api apilevel-" >
               <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a></td>
               <td class="jd-descrcol" width="100%">Image buffer frame definition
 &nbsp;</td>
+          </tr>
+        <tr class=" api apilevel-" >
+              <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a></td>
+              <td class="jd-descrcol" width="100%">Encoded video packet definition.&nbsp;</td>
           </tr>
   </table>
       </div>
@@ -421,7 +444,7 @@ Summary:
 
 
 <h2>Class Overview</h2>
-<p>Base class of all a/v frame.
+<p>Base class of all a/v frame/packet.
 </p>
 
 
@@ -477,27 +500,18 @@ Summary:
     <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#FLAG_DETACH_NATIVE_MODULE">FLAG_DETACH_NATIVE_MODULE</a></td>
-        <td class="jd-descrcol" width="100%">Audio native module destroying
-</td>
+        <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
     <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#FLAG_DUMMY_VIDEO_FRAME">FLAG_DUMMY_VIDEO_FRAME</a></td>
-        <td class="jd-descrcol" width="100%">Dummy video frame to show the init video pts
-</td>
-    </tr>
-    
-    
-    <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#FLAG_END_OF_STREAM">FLAG_END_OF_STREAM</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#FLAG_KEY_FRAME">FLAG_KEY_FRAME</a></td>
         <td class="jd-descrcol" width="100%"></td>
@@ -523,26 +537,14 @@ Summary:
           public
           
           
-          long</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#dts">dts</a></td>
-          <td class="jd-descrcol" width="100%">Frame decode timestamp
+          int</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#flags">flags</a></td>
+          <td class="jd-descrcol" width="100%">Frame flags, AVConst.FLAG_XXX
 </td>
       </tr>
       
     
       <tr class=" api apilevel-" >
-          <td class="jd-typecol">
-          public
-          
-          
-          int</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#flags">flags</a></td>
-          <td class="jd-descrcol" width="100%">Frame flags, FLAG_XXX
-</td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol">
           public
           
@@ -895,8 +897,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Audio native module destroying
-</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     
         <div class="jd-tagdata">
@@ -905,47 +906,6 @@ From class
             
                 65536
                 (0x00010000)
-            
-        </span>
-        </div>
-    
-    </div>
-</div>
-
-
-
-<a id="FLAG_DUMMY_VIDEO_FRAME"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-        final 
-        int
-      </span>
-        FLAG_DUMMY_VIDEO_FRAME
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Dummy video frame to show the init video pts
-</p></div>
-
-    
-        <div class="jd-tagdata">
-        <span class="jd-tagtitle">Constant Value: </span>
-        <span>
-            
-                131072
-                (0x00020000)
             
         </span>
         </div>
@@ -1045,37 +1005,6 @@ From class
 
 
 
-<a id="dts"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-        long
-      </span>
-        dts
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Frame decode timestamp
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
 <a id="flags"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1098,7 +1027,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Frame flags, FLAG_XXX
+  <div class="jd-tagdata jd-tagdescr"><p>Frame flags, AVConst.FLAG_XXX
 </p></div>
 
     

@@ -200,7 +200,11 @@
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautySpecialEffectsFilter.html">ImgBeautySpecialEffectsFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautyStylizeFilter.html">ImgBeautyStylizeFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautyToneCurveFilter.html">ImgBeautyToneCurveFilter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgEffectFilterBase.html">ImgEffectFilterBase</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">ImgFilterBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgShakeColorFilter.html">ImgShakeColorFilter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgShakeShockWaveFilter.html">ImgShakeShockWaveFilter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgShakeZoomFilter.html">ImgShakeZoomFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html">ImgTexBufFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilter.html">ImgTexFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html">ImgTexFilterBase</a></li>
@@ -611,6 +615,8 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterMgt.html#getExtraFilters()">getExtraFilters</a></span>()
         
+        <div class="jd-descrdiv">Get current set extra filters.</div>
+  
   </td></tr>
 
 
@@ -713,6 +719,24 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterMgt.html#replaceFilter(com.ksyun.media.streamer.filter.imgtex.ImgFilterBase, com.ksyun.media.streamer.filter.imgtex.ImgFilterBase, boolean)">replaceFilter</a></span>(<a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">ImgFilterBase</a> replaced, <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">ImgFilterBase</a> filter, boolean autoRelease)
+        
+        <div class="jd-descrdiv">Replace the filter in filter list to new one.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterMgt.html#setExtraFilter(com.ksyun.media.streamer.filter.imgtex.ImgFilterBase)">setExtraFilter</a></span>(<a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">ImgFilterBase</a> filter)
         
         <div class="jd-descrdiv">Set extra filter, which would be added after the filters set by setFilter.</div>
@@ -721,7 +745,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -739,7 +763,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -758,7 +782,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -776,7 +800,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -795,7 +819,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -813,7 +837,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1827,7 +1851,12 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Get current set extra filters.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>current set extra filters.
+</li></ul>
+  </div>
 
     </div>
 </div>
@@ -1997,6 +2026,62 @@ From class
       </div>
     <div class="jd-details-descr">
       
+  <div class="jd-tagdata jd-tagdescr"><p>Replace the filter in filter list to new one.
+
+ The replaced filter will be auto released after this call, and should not be reused.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>replaced</th>
+          <td>filter to be replaced, must not be null</td>
+        </tr>
+        <tr>
+          <th>filter</th>
+          <td>filter to replace, null means disable the previous filter</td>
+        </tr>
+      </table>
+  </div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Throws</h5>
+      <table class="jd-tagtable">  
+        <tr>
+            <th>InvalidParameterException</td>
+            <td>the filter to be replaced not found
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="replaceFilter(com.ksyun.media.streamer.filter.imgtex.ImgFilterBase, com.ksyun.media.streamer.filter.imgtex.ImgFilterBase, boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">replaceFilter</span>
+      <span class="normal">(<a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">ImgFilterBase</a> replaced, <a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">ImgFilterBase</a> filter, boolean autoRelease)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
   <div class="jd-tagdata jd-tagdescr"><p>Replace the filter in filter list to new one.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
@@ -2008,6 +2093,11 @@ From class
         <tr>
           <th>filter</th>
           <td>filter to replace, null means disable the previous filter</td>
+        </tr>
+        <tr>
+          <th>autoRelease</th>
+          <td>should the replaced filter be auto released.
+                    If set to false, the replaced filter should be released by user.</td>
         </tr>
       </table>
   </div>
@@ -2051,7 +2141,9 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Set extra filter, which would be added after the filters set by setFilter.</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Set extra filter, which would be added after the filters set by setFilter.
+
+ The previous extra filters will be auto released, and should not be used again.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
@@ -2092,7 +2184,9 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Set extra filters, which would be added after the filters set by setFilter.</p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>Set extra filters, which would be added after the filters set by setFilter.
+
+ The previous extra filters will be auto released, and should not be used again.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">

@@ -185,16 +185,21 @@
       <ul>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioCodecFormat.html">AudioCodecFormat</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVConst.html">AVConst</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html">ImgBufFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgTexFormat.html">ImgTexFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/PinAdapter.html">PinAdapter</a>&lt;T&gt;</li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;T&gt;</li>
-          <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/PinAdapter.html">PinAdapter</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/VideoCodecFormat.html">VideoCodecFormat</a></li>
       </ul>
     </li>
               
@@ -329,7 +334,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
-        <td colspan="1" class="jd-inheritance-class-cell">com.ksyun.media.streamer.framework.SrcPin&lt;T&gt;</td>
+        <td colspan="1" class="jd-inheritance-class-cell">com.ksyun.media.streamer.framework.SrcPin&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">com.ksyun.media.streamer.framework.AVFrameBase</a>&gt;</td>
     </tr>
     
 
@@ -449,7 +454,18 @@ Summary:
           protected
           
           
-          List&lt;<a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;T&gt;&gt;</td>
+          Map&lt;<a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>,&nbsp;Boolean&gt;</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html#isFormatChangedMap">isFormatChangedMap</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          List&lt;<a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;&gt;</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html#sinkPins">sinkPins</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -876,6 +892,36 @@ From class
 
 
 
+<a id="isFormatChangedMap"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        Map&lt;<a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>,&nbsp;Boolean&gt;
+      </span>
+        isFormatChangedMap
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <a id="sinkPins"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -884,7 +930,7 @@ From class
         protected 
          
          
-        List&lt;<a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;T&gt;&gt;
+        List&lt;<a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;&gt;
       </span>
         sinkPins
     </h4>

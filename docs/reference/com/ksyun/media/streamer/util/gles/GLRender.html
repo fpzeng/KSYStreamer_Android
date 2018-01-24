@@ -183,6 +183,10 @@
     <li><h2>Interfaces</h2>
       <ul>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.GLRenderListener.html">GLRender.GLRenderListener</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnDrawFrameListener.html">GLRender.OnDrawFrameListener</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReadyListener.html">GLRender.OnReadyListener</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReleasedListener.html">GLRender.OnReleasedListener</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnSizeChangedListener.html">GLRender.OnSizeChangedListener</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.ScreenShotListener.html">GLRender.ScreenShotListener</a></li>
       </ul>
     </li>
@@ -389,7 +393,60 @@ Summary:
         
         interface</td>
       <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.GLRenderListener.html">GLRender.GLRenderListener</a></td>
-      <td class="jd-descrcol" width="100%">GLRender listener interface.&nbsp;</td>
+      <td class="jd-descrcol" width="100%">
+      <em>
+  This interface is deprecated.
+      use separated <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReadyListener.html">GLRender.OnReadyListener</a></code> <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnSizeChangedListener.html">GLRender.OnSizeChangedListener</a></code>
+ <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnDrawFrameListener.html">GLRender.OnDrawFrameListener</a></code> <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReleasedListener.html">GLRender.OnReleasedListener</a></code> instead.
+</em>&nbsp;</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+      <td class="jd-typecol">
+        
+         
+         
+        
+        interface</td>
+      <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnDrawFrameListener.html">GLRender.OnDrawFrameListener</a></td>
+      <td class="jd-descrcol" width="100%">&nbsp;</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+      <td class="jd-typecol">
+        
+         
+         
+        
+        interface</td>
+      <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReadyListener.html">GLRender.OnReadyListener</a></td>
+      <td class="jd-descrcol" width="100%">&nbsp;</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+      <td class="jd-typecol">
+        
+         
+         
+        
+        interface</td>
+      <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReleasedListener.html">GLRender.OnReleasedListener</a></td>
+      <td class="jd-descrcol" width="100%">&nbsp;</td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+      <td class="jd-typecol">
+        
+         
+         
+        
+        interface</td>
+      <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnSizeChangedListener.html">GLRender.OnSizeChangedListener</a></td>
+      <td class="jd-descrcol" width="100%">&nbsp;</td>
     </tr>
     
     
@@ -548,7 +605,79 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#addListener(com.ksyun.media.streamer.util.gles.GLRender.OnSizeChangedListener)">addListener</a></span>(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnSizeChangedListener.html">GLRender.OnSizeChangedListener</a> listener)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#addListener(com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener)">addListener</a></span>(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.GLRenderListener.html">GLRender.GLRenderListener</a> listener)
+        
+        <div class="jd-descrdiv">
+      <em>
+  This method is deprecated.
+      Use separated <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#addListener(com.ksyun.media.streamer.util.gles.GLRender.OnReadyListener)">addListener(OnReadyListener)</a></code>
+ <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#addListener(com.ksyun.media.streamer.util.gles.GLRender.OnSizeChangedListener)">addListener(OnSizeChangedListener)</a></code> <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#addListener(com.ksyun.media.streamer.util.gles.GLRender.OnDrawFrameListener)">addListener(OnDrawFrameListener)</a></code>
+ <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#addListener(com.ksyun.media.streamer.util.gles.GLRender.OnReleasedListener)">addListener(OnReleasedListener)</a></code> instead.
+</em></div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#addListener(com.ksyun.media.streamer.util.gles.GLRender.OnReadyListener)">addListener</a></span>(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReadyListener.html">GLRender.OnReadyListener</a> listener)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#addListener(com.ksyun.media.streamer.util.gles.GLRender.OnReleasedListener)">addListener</a></span>(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReleasedListener.html">GLRender.OnReleasedListener</a> listener)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#addListener(com.ksyun.media.streamer.util.gles.GLRender.OnDrawFrameListener)">addListener</a></span>(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnDrawFrameListener.html">GLRender.OnDrawFrameListener</a> listener)
         
   </td></tr>
 
@@ -660,9 +789,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#init(GLSurfaceView)">init</a></span>(GLSurfaceView glSurfaceView)
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#init(int, int)">init</a></span>(int width, int height)
         
-        <div class="jd-descrdiv">Init GLRender manager, must be called before GLSurfaceView created.</div>
+        <div class="jd-descrdiv">Init GLRender manager with offscreen surface.</div>
   
   </td></tr>
 
@@ -678,9 +807,9 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#init(int, int)">init</a></span>(int width, int height)
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#init(GLSurfaceView)">init</a></span>(GLSurfaceView glSurfaceView)
         
-        <div class="jd-descrdiv">Init GLRender manager with offscreen surface.</div>
+        <div class="jd-descrdiv">Init GLRender manager, must be called before GLSurfaceView created.</div>
   
   </td></tr>
 
@@ -810,7 +939,79 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnDrawFrameListener)">removeListener</a></span>(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnDrawFrameListener.html">GLRender.OnDrawFrameListener</a> listener)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener)">removeListener</a></span>(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.GLRenderListener.html">GLRender.GLRenderListener</a> listener)
+        
+        <div class="jd-descrdiv">
+      <em>
+  This method is deprecated.
+      Use separated <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnReadyListener)">removeListener(OnReadyListener)</a></code>
+ <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnSizeChangedListener)">removeListener(OnSizeChangedListener)</a></code> <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnDrawFrameListener)">removeListener(OnDrawFrameListener)</a></code>
+ <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnReleasedListener)">removeListener(OnReleasedListener)</a></code> instead.
+</em></div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnReadyListener)">removeListener</a></span>(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReadyListener.html">GLRender.OnReadyListener</a> listener)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnSizeChangedListener)">removeListener</a></span>(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnSizeChangedListener.html">GLRender.OnSizeChangedListener</a> listener)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnReleasedListener)">removeListener</a></span>(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReleasedListener.html">GLRender.OnReleasedListener</a> listener)
         
   </td></tr>
 
@@ -1461,6 +1662,37 @@ From class
 
 
 
+<a id="addListener(com.ksyun.media.streamer.util.gles.GLRender.OnSizeChangedListener)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">addListener</span>
+      <span class="normal">(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnSizeChangedListener.html">GLRender.OnSizeChangedListener</a> listener)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="addListener(com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1475,6 +1707,117 @@ From class
       </span>
       <span class="sympad">addListener</span>
       <span class="normal">(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.GLRenderListener.html">GLRender.GLRenderListener</a> listener)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      <p>
+  <p class="caution">
+      <strong>
+  This method is deprecated.</strong><br/> Use separated <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#addListener(com.ksyun.media.streamer.util.gles.GLRender.OnReadyListener)">addListener(OnReadyListener)</a></code>
+ <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#addListener(com.ksyun.media.streamer.util.gles.GLRender.OnSizeChangedListener)">addListener(OnSizeChangedListener)</a></code> <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#addListener(com.ksyun.media.streamer.util.gles.GLRender.OnDrawFrameListener)">addListener(OnDrawFrameListener)</a></code>
+ <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#addListener(com.ksyun.media.streamer.util.gles.GLRender.OnReleasedListener)">addListener(OnReleasedListener)</a></code> instead.
+
+  </p>
+  <div class="jd-tagdata jd-tagdescr"><p>Add GLRenderListener to current GLRender.
+
+ Should be removed by calling <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener)">removeListener(GLRenderListener)</a></code>.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>listener</th>
+          <td>listener to be added</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="addListener(com.ksyun.media.streamer.util.gles.GLRender.OnReadyListener)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">addListener</span>
+      <span class="normal">(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReadyListener.html">GLRender.OnReadyListener</a> listener)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="addListener(com.ksyun.media.streamer.util.gles.GLRender.OnReleasedListener)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">addListener</span>
+      <span class="normal">(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReleasedListener.html">GLRender.OnReleasedListener</a> listener)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="addListener(com.ksyun.media.streamer.util.gles.GLRender.OnDrawFrameListener)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">addListener</span>
+      <span class="normal">(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnDrawFrameListener.html">GLRender.OnDrawFrameListener</a> listener)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -1678,47 +2021,6 @@ From class
 </div>
 
 
-<a id="init(GLSurfaceView)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">init</span>
-      <span class="normal">(GLSurfaceView glSurfaceView)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Init GLRender manager, must be called before GLSurfaceView created.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>glSurfaceView</th>
-          <td>dedicated GLSurfaceView
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
 <a id="init(int, int)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1755,6 +2057,47 @@ From class
         <tr>
           <th>height</th>
           <td>offscreen height
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="init(GLSurfaceView)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">init</span>
+      <span class="normal">(GLSurfaceView glSurfaceView)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Init GLRender manager, must be called before GLSurfaceView created.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>glSurfaceView</th>
+          <td>dedicated GLSurfaceView
 </td>
         </tr>
       </table>
@@ -1991,6 +2334,37 @@ From class
 </div>
 
 
+<a id="removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnDrawFrameListener)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">removeListener</span>
+      <span class="normal">(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnDrawFrameListener.html">GLRender.OnDrawFrameListener</a> listener)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="removeListener(com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -2005,6 +2379,115 @@ From class
       </span>
       <span class="sympad">removeListener</span>
       <span class="normal">(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.GLRenderListener.html">GLRender.GLRenderListener</a> listener)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      <p>
+  <p class="caution">
+      <strong>
+  This method is deprecated.</strong><br/> Use separated <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnReadyListener)">removeListener(OnReadyListener)</a></code>
+ <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnSizeChangedListener)">removeListener(OnSizeChangedListener)</a></code> <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnDrawFrameListener)">removeListener(OnDrawFrameListener)</a></code>
+ <code><a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html#removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnReleasedListener)">removeListener(OnReleasedListener)</a></code> instead.
+
+  </p>
+  <div class="jd-tagdata jd-tagdescr"><p>Remove GLRenderListener.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>listener</th>
+          <td>listener to be removed.</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnReadyListener)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">removeListener</span>
+      <span class="normal">(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReadyListener.html">GLRender.OnReadyListener</a> listener)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnSizeChangedListener)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">removeListener</span>
+      <span class="normal">(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnSizeChangedListener.html">GLRender.OnSizeChangedListener</a> listener)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="removeListener(com.ksyun.media.streamer.util.gles.GLRender.OnReleasedListener)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">removeListener</span>
+      <span class="normal">(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.OnReleasedListener.html">GLRender.OnReleasedListener</a> listener)</span>
     </h4>
       <div class="api-level">
         <div>

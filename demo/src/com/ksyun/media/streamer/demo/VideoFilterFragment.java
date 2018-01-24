@@ -4,6 +4,7 @@ import android.app.Fragment;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +15,7 @@ import android.widget.LinearLayout;
 import android.widget.SeekBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.ksyun.media.streamer.filter.imgtex.ImgBeautyDenoiseFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgBeautyIllusionFilter;
@@ -25,10 +27,25 @@ import com.ksyun.media.streamer.filter.imgtex.ImgBeautySpecialEffectsFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgBeautyStylizeFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgBeautyToneCurveFilter;
 import com.ksyun.media.streamer.filter.imgtex.ImgFilterBase;
+import com.ksyun.media.streamer.filter.imgtex.ImgTexFilterBase;
 import com.ksyun.media.streamer.kit.KSYStreamer;
+
+import java.security.InvalidParameterException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import jp.co.cyberagent.android.gpuimage.GPUImageEmbossFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageGaussianBlurFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageGlassSphereFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageSepiaFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageSmoothToonFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageThresholdEdgeDetection;
+import jp.co.cyberagent.android.gpuimage.GPUImageToneCurveFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageToonFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageVignetteFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageWeakPixelInclusionFilter;
+import jp.co.cyberagent.android.gpuimage.GPUImageWhiteBalanceFilter;
 
 /**
  * Video filter choose fragment.
@@ -66,7 +83,8 @@ public class VideoFilterFragment extends Fragment {
             "小清新", "青春靓丽", "甜美可人", "怀旧", "蓝调", "老照片", "樱花", "樱花(暗光)",
             "红润(暗光)", "阳光(暗光)", "红润", "阳光", "自然", "恋人", "高雅",
             "1977", "Amaro", "Brannan", "EarlyBird", "Hefe", "Hudson", "ink", "Lomo", "LordKelvin",
-            "Nash", "Rise", "Sierra", "Sutro", "Toaster", "Valencia", "Walden", "XproII"
+            "Nash", "Rise", "Sierra", "Sutro", "Toaster", "Valencia", "Walden", "XproII",
+            "鱼眼", "浮雕", "高斯模糊", "水彩画", "素描",
     };
     protected int mFilterPos = 0;
     protected ImgFilterBase[] mFilterArray = new ImgFilterBase[mFilterIdxs.length];
@@ -86,6 +104,30 @@ public class VideoFilterFragment extends Fragment {
     }
 
     protected void initBeautyUI() {
+        // 重新配置视频滤镜的错误处理函数
+        mStreamer.getImgTexFilterMgt().setOnErrorListener(new ImgTexFilterBase.OnErrorListener() {
+            @Override
+            public void onError(ImgTexFilterBase filter, int errno) {
+                Toast.makeText(mActivity, "当前机型不支持该滤镜", Toast.LENGTH_SHORT).show();
+                mStreamer.getImgTexFilterMgt().replaceFilter(filter, null);
+
+                // 找到对应的报错filter, 并根据需要更新UI
+                int i = 0;
+                for (; i < mFilterArray.length; i++) {
+                    if (mFilterArray[i] == filter) {
+                        break;
+                    }
+                }
+                if (i < mFilterArray.length) {
+                    mFilterArray[i] = null;
+                    mFilterIdxArray[i] = 0;
+                    if (i == mFilterPos) {
+                        mFilterSpinner.setSelection(0);
+                    }
+                }
+            }
+        });
+
         mUIFirstInit = true;
         mFilterIdxArray[0] = 8;
         ArrayAdapter<String> filterIdxAdapter = new ArrayAdapter<>(mActivity,
@@ -133,7 +175,18 @@ public class VideoFilterFragment extends Fragment {
                 if (mUIFirstInit || mFilterIdxArray[mFilterPos] != position) {
                     mUIFirstInit = false;
                     mFilterIdxArray[mFilterPos] = position;
-                    setFilter();
+                    try {
+                        setFilter();
+                    } catch (InvalidParameterException e) {
+                        Log.e(TAG, "fatal error, clear all filters");
+                        for (int i = 0; i < mFilterIdxArray.length; i++) {
+                            mFilterIdxArray[i] = 0;
+                        }
+                        for (int i = 0; i < mFilterArray.length; i++) {
+                            mFilterArray[i] = null;
+                        }
+                        mFilterSpinner.setSelection(0);
+                    }
                 }
 
                 final ImgFilterBase curFilter = mFilterArray[mFilterPos];
@@ -320,6 +373,26 @@ public class VideoFilterFragment extends Fragment {
             case 47:
                 filter = new ImgBeautyStylizeFilter(mStreamer.getGLRender(),
                         mActivity, idx - 31);
+                break;
+            case 48:
+                GPUImageGlassSphereFilter glassSphereFilter = new GPUImageGlassSphereFilter();
+                filter = new ImgTexGPUImageFilter(mStreamer.getGLRender(), glassSphereFilter);
+                break;
+            case 49:
+                GPUImageEmbossFilter embossFilter = new GPUImageEmbossFilter();
+                filter = new ImgTexGPUImageFilter(mStreamer.getGLRender(), embossFilter);
+                break;
+            case 50:
+                GPUImageGaussianBlurFilter gaussianBlurFilter = new GPUImageGaussianBlurFilter();
+                filter = new ImgTexGPUImageFilter(mStreamer.getGLRender(), gaussianBlurFilter);
+                break;
+            case 51:
+                GPUImageSmoothToonFilter smoothToonFilter = new GPUImageSmoothToonFilter();
+                filter = new ImgTexGPUImageFilter(mStreamer.getGLRender(), smoothToonFilter);
+                break;
+            case 52:
+                GPUImageThresholdEdgeDetection edgeDetection = new GPUImageThresholdEdgeDetection();
+                filter = new ImgTexGPUImageFilter(mStreamer.getGLRender(), edgeDetection);
                 break;
             default:
                 filter = null;

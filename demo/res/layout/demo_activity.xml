@@ -50,7 +50,7 @@
             android:id="@+id/rtmpUrl"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="rtmp://test.uplive.ks-cdn.com/live/androidtest" />
+            android:text="rtmp://mobile.kscvbu.cn/live/androidtest" />
 
         <Button
             android:id="@+id/connectBT"

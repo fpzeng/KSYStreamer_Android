@@ -91,7 +91,7 @@ public class StdCameraActivity extends BaseCameraActivity {
     protected AudioFuncFragment mAudioFuncFragment;
     protected VideoFilterFragment mVideoFilterFragment;
 
-    protected boolean mRecording;
+    protected volatile boolean mRecording;
     protected int mLastRotation;
     protected OrientationEventListener mOrientationEventListener;
     protected BluetoothHeadsetUtils mBluetoothHelper;

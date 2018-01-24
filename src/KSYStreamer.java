@@ -21,11 +21,11 @@ import com.ksyun.media.streamer.capture.CameraCapture;
 import com.ksyun.media.streamer.capture.ImageCapture;
 import com.ksyun.media.streamer.capture.WaterMarkCapture;
 import com.ksyun.media.streamer.encoder.AVCodecAudioEncoder;
-import com.ksyun.media.streamer.encoder.AudioEncodeFormat;
+import com.ksyun.media.streamer.framework.AudioCodecFormat;
 import com.ksyun.media.streamer.encoder.AudioEncoderMgt;
 import com.ksyun.media.streamer.encoder.Encoder;
 import com.ksyun.media.streamer.encoder.MediaCodecAudioEncoder;
-import com.ksyun.media.streamer.encoder.VideoEncodeFormat;
+import com.ksyun.media.streamer.framework.VideoCodecFormat;
 import com.ksyun.media.streamer.encoder.VideoEncoderMgt;
 import com.ksyun.media.streamer.filter.audio.AudioAPMFilterMgt;
 import com.ksyun.media.streamer.filter.audio.AudioFilterMgt;
@@ -82,8 +82,8 @@ public class KSYStreamer {
     protected float mTargetFps = 0;
     protected float mIFrameInterval = 3.0f;
     protected int mVideoCodecId = AVConst.CODEC_ID_AVC;
-    protected int mEncodeScene = VideoEncodeFormat.ENCODE_SCENE_SHOWSELF;
-    protected int mEncodeProfile = VideoEncodeFormat.ENCODE_PROFILE_LOW_POWER;
+    protected int mEncodeScene = VideoCodecFormat.ENCODE_SCENE_SHOWSELF;
+    protected int mEncodeProfile = VideoCodecFormat.ENCODE_PROFILE_LOW_POWER;
     protected int mRotateDegrees = 0;
     protected int mMaxVideoBitrate = 800 * 1000;
     protected int mInitVideoBitrate = 600 * 1000;
@@ -204,7 +204,7 @@ public class KSYStreamer {
         mAudioPreview.getSrcPin().connect(mAudioResampleFilter.getSinkPin());
         mAudioResampleFilter.getSrcPin().connect(mAudioMixer.getSinkPin(mIdxAudioMic));
         if (mEnableAudioMix) {
-            mAudioPlayerCapture.mSrcPin.connect(mAudioMixer.getSinkPin(mIdxAudioBgm));
+            mAudioPlayerCapture.getSrcPin().connect(mAudioMixer.getSinkPin(mIdxAudioBgm));
         }
 
         // encoder
@@ -219,7 +219,7 @@ public class KSYStreamer {
         // publisher
         mRtmpPublisher = new RtmpPublisher();
         mFilePublisher = new FilePublisher();
-        mFilePublisher.setForceVideoFrameFirst(true);
+        mFilePublisher.setAutoWork(true);
 
         mPublisherMgt = new PublisherMgt();
         mAudioEncoderMgt.getSrcPin().connect(mPublisherMgt.getAudioSink());
@@ -227,22 +227,10 @@ public class KSYStreamer {
         mPublisherMgt.addPublisher(mRtmpPublisher);
 
         // set listeners
-        mGLRender.addListener(new GLRender.GLRenderListener() {
+        mGLRender.addListener(new GLRender.OnReadyListener() {
             @Override
             public void onReady() {
                 mImgTexPreview.setEGL10Context(mGLRender.getEGL10Context());
-            }
-
-            @Override
-            public void onSizeChanged(int width, int height) {
-            }
-
-            @Override
-            public void onDrawFrame() {
-            }
-
-            @Override
-            public void onReleased() {
             }
         });
 
@@ -669,7 +657,7 @@ public class KSYStreamer {
      */
     public void setDisplayPreview(GLSurfaceView surfaceView) {
         mImgTexPreview.setDisplayPreview(surfaceView);
-        mImgTexPreview.getGLRender().addListener(mGLRenderListener);
+        mImgTexPreview.getGLRender().addListener(mPreviewSizeChangedListener);
     }
 
     /**
@@ -680,7 +668,7 @@ public class KSYStreamer {
      */
     public void setDisplayPreview(TextureView textureView) {
         mImgTexPreview.setDisplayPreview(textureView);
-        mImgTexPreview.getGLRender().addListener(mGLRenderListener);
+        mImgTexPreview.getGLRender().addListener(mPreviewSizeChangedListener);
     }
 
     /**
@@ -1313,10 +1301,10 @@ public class KSYStreamer {
      * Only valid in ENCODE_METHOD_SOFTWARE and ENCODE_METHOD_SOFTWARE_COMPAT mode.
      *
      * @param scene scene mode to be set,
-     *              default value {@link VideoEncodeFormat#ENCODE_SCENE_SHOWSELF}
-     * @see VideoEncodeFormat#ENCODE_SCENE_DEFAULT
-     * @see VideoEncodeFormat#ENCODE_SCENE_SHOWSELF
-     * @see VideoEncodeFormat#ENCODE_SCENE_GAME
+     *              default value {@link VideoCodecFormat#ENCODE_SCENE_SHOWSELF}
+     * @see VideoCodecFormat#ENCODE_SCENE_DEFAULT
+     * @see VideoCodecFormat#ENCODE_SCENE_SHOWSELF
+     * @see VideoCodecFormat#ENCODE_SCENE_GAME
      */
     public void setVideoEncodeScene(int scene) {
         mEncodeScene = scene;
@@ -1337,10 +1325,10 @@ public class KSYStreamer {
      * Only valid in ENCODE_METHOD_SOFTWARE and ENCODE_METHOD_SOFTWARE_COMPAT mode.
      *
      * @param profile encode profile mode to be set,
-     *                default value {@link VideoEncodeFormat#ENCODE_PROFILE_LOW_POWER}
-     * @see VideoEncodeFormat#ENCODE_PROFILE_LOW_POWER
-     * @see VideoEncodeFormat#ENCODE_PROFILE_BALANCE
-     * @see VideoEncodeFormat#ENCODE_PROFILE_HIGH_PERFORMANCE
+     *                default value {@link VideoCodecFormat#ENCODE_PROFILE_LOW_POWER}
+     * @see VideoCodecFormat#ENCODE_PROFILE_LOW_POWER
+     * @see VideoCodecFormat#ENCODE_PROFILE_BALANCE
+     * @see VideoCodecFormat#ENCODE_PROFILE_HIGH_PERFORMANCE
      */
     public void setVideoEncodeProfile(int profile) {
         mEncodeProfile = profile;
@@ -1694,26 +1682,26 @@ public class KSYStreamer {
     protected void setRecordingParams() {
         calResolution();
         mImgTexMixer.setTargetSize(mTargetWidth, mTargetHeight);
-        VideoEncodeFormat videoEncodeFormat = new VideoEncodeFormat(mVideoCodecId,
+        VideoCodecFormat videoCodecFormat = new VideoCodecFormat(mVideoCodecId,
                 mTargetWidth, mTargetHeight, mInitVideoBitrate);
         if (mTargetFps == 0) {
             mTargetFps = CameraCapture.DEFAULT_PREVIEW_FPS;
         }
-        videoEncodeFormat.setFramerate(mTargetFps);
-        videoEncodeFormat.setIframeinterval(mIFrameInterval);
-        videoEncodeFormat.setScene(mEncodeScene);
-        videoEncodeFormat.setProfile(mEncodeProfile);
-        mVideoEncoderMgt.setEncodeFormat(videoEncodeFormat);
+        videoCodecFormat.frameRate = mTargetFps;
+        videoCodecFormat.iFrameInterval = mIFrameInterval;
+        videoCodecFormat.scene = mEncodeScene;
+        videoCodecFormat.profile = mEncodeProfile;
+        mVideoEncoderMgt.setEncodeFormat(videoCodecFormat);
 
         // AAC-HE, AAC-HEv2 force use SOFT_ENCODING
         if (mAudioProfile != AVConst.PROFILE_AAC_LOW) {
             mAudioEncoderMgt.setEncodeMethod(AudioEncoderMgt.METHOD_SOFTWARE);
         }
 
-        AudioEncodeFormat audioEncodeFormat = new AudioEncodeFormat(AVConst.CODEC_ID_AAC,
+        AudioCodecFormat audioCodecFormat = new AudioCodecFormat(AVConst.CODEC_ID_AAC,
                 AVConst.AV_SAMPLE_FMT_S16, mAudioSampleRate, mAudioChannels, mAudioBitrate);
-        audioEncodeFormat.setProfile(mAudioProfile);
-        mAudioEncoderMgt.setEncodeFormat(audioEncodeFormat);
+        audioCodecFormat.profile = mAudioProfile;
+        mAudioEncoderMgt.setEncodeFormat(audioCodecFormat);
 
         RtmpPublisher.BwEstConfig bwEstConfig = new RtmpPublisher.BwEstConfig();
         bwEstConfig.strategy = mBwEstStrategy;
@@ -1779,7 +1767,7 @@ public class KSYStreamer {
         }
         mIsFileRecording = true;
         mFilePublisher.startRecording(recordUrl);
-        // should connect FilePublisher after startRecord called
+        // should connect FilePublisher after startRecord called in auto work mode
         mPublisherMgt.addPublisher(mFilePublisher);
         startCapture();
         return true;
@@ -2140,9 +2128,9 @@ public class KSYStreamer {
     public void setEnableAudioMix(boolean enable) {
         mEnableAudioMix = enable;
         if (mEnableAudioMix) {
-            mAudioPlayerCapture.mSrcPin.connect(mAudioMixer.getSinkPin(mIdxAudioBgm));
+            mAudioPlayerCapture.getSrcPin().connect(mAudioMixer.getSinkPin(mIdxAudioBgm));
         } else {
-            mAudioPlayerCapture.mSrcPin.disconnect(mAudioMixer.getSinkPin(mIdxAudioBgm), false);
+            mAudioPlayerCapture.getSrcPin().disconnect(mAudioMixer.getSinkPin(mIdxAudioBgm), false);
         }
     }
 
@@ -2496,11 +2484,8 @@ public class KSYStreamer {
         void onError(int what, int msg1, int msg2);
     }
 
-    private GLRender.GLRenderListener mGLRenderListener = new GLRender.GLRenderListener() {
-        @Override
-        public void onReady() {
-        }
-
+    private GLRender.OnSizeChangedListener mPreviewSizeChangedListener =
+            new GLRender.OnSizeChangedListener() {
         @Override
         public void onSizeChanged(int width, int height) {
             mScreenRenderWidth = width;
@@ -2519,14 +2504,6 @@ public class KSYStreamer {
                 startRecord(mRecordUri);
                 mDelayedStartRecording = false;
             }
-        }
-
-        @Override
-        public void onDrawFrame() {
-        }
-
-        @Override
-        public void onReleased() {
         }
     };
 
