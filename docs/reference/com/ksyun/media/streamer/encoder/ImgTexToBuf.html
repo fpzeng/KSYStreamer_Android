@@ -195,10 +195,10 @@
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/AVCodecAudioEncoder.html">AVCodecAudioEncoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/AVCodecSurfaceEncoder.html">AVCodecSurfaceEncoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/AVCodecVideoEncoder.html">AVCodecVideoEncoder</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html">Encoder</a>&lt;I,&nbsp;O&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html">Encoder</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>&gt;</li>
           <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/ImgTexToBuf.html">ImgTexToBuf</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecAudioEncoder.html">MediaCodecAudioEncoder</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html">MediaCodecEncoderBase</a>&lt;I,&nbsp;O&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html">MediaCodecEncoderBase</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>&gt;</li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecSurfaceEncoder.html">MediaCodecSurfaceEncoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/VideoEncodeFormat.html">VideoEncodeFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/VideoEncoderMgt.html">VideoEncoderMgt</a></li>
@@ -1524,13 +1524,13 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p>Set output color format.
- Only ImgBufFormat.FMT_RGBA , ImgBufFormat.FMT_I420 and Img.FMT_BGR8 supported.</p></div>
+ Only AVConst.PIX_FMT_RGBA, AVConst.PIX_FMT_I420 and AVConst.PIX_FMT_BGR8 supported.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
           <th>colorFormat</th>
-          <td>color format to set, default is FMT_I420</td>
+          <td>color format to set, default is AVConst.PIX_FMT_I420</td>
         </tr>
       </table>
   </div>

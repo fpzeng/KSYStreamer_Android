@@ -195,10 +195,10 @@
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/AVCodecAudioEncoder.html">AVCodecAudioEncoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/AVCodecSurfaceEncoder.html">AVCodecSurfaceEncoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/AVCodecVideoEncoder.html">AVCodecVideoEncoder</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html">Encoder</a>&lt;I,&nbsp;O&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html">Encoder</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>&gt;</li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/ImgTexToBuf.html">ImgTexToBuf</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecAudioEncoder.html">MediaCodecAudioEncoder</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html">MediaCodecEncoderBase</a>&lt;I,&nbsp;O&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html">MediaCodecEncoderBase</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>&gt;</li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecSurfaceEncoder.html">MediaCodecSurfaceEncoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/VideoEncodeFormat.html">VideoEncodeFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/VideoEncoderMgt.html">VideoEncoderMgt</a></li>
@@ -516,7 +516,7 @@ Summary:
             
             
             
-            <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
+            <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a>&gt;
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/AudioEncoderMgt.html#getSrcPin()">getSrcPin</a></span>()
@@ -535,13 +535,37 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/AudioEncoderMgt.html#setEncodeFormat(com.ksyun.media.streamer.encoder.AudioEncodeFormat)">setEncodeFormat</a></span>(<a href="../../../../../com/ksyun/media/streamer/encoder/AudioEncodeFormat.html">AudioEncodeFormat</a> format)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/AudioEncoderMgt.html#setEncodeFormat(com.ksyun.media.streamer.framework.AudioCodecFormat)">setEncodeFormat</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AudioCodecFormat.html">AudioCodecFormat</a> format)
         
+        <div class="jd-descrdiv">Configure encode params.</div>
+  
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            synchronized
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/AudioEncoderMgt.html#setEncodeFormat(com.ksyun.media.streamer.encoder.AudioEncodeFormat)">setEncodeFormat</a></span>(<a href="../../../../../com/ksyun/media/streamer/encoder/AudioEncodeFormat.html">AudioEncodeFormat</a> format)
+        
+        <div class="jd-descrdiv">
+      <em>
+  This method is deprecated.
+      use <code><a href="../../../../../com/ksyun/media/streamer/encoder/AudioEncoderMgt.html#setEncodeFormat(com.ksyun.media.streamer.framework.AudioCodecFormat)">setEncodeFormat(AudioCodecFormat)</a></code> instead
+</em></div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             synchronized
@@ -557,7 +581,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             synchronized
@@ -1058,7 +1082,7 @@ From class
          
          
          
-        <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
+        <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a>&gt;
       </span>
       <span class="sympad">getSrcPin</span>
       <span class="normal">()</span>
@@ -1074,6 +1098,47 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="setEncodeFormat(com.ksyun.media.streamer.framework.AudioCodecFormat)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+        synchronized 
+        void
+      </span>
+      <span class="sympad">setEncodeFormat</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AudioCodecFormat.html">AudioCodecFormat</a> format)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Configure encode params.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>format</th>
+          <td>encode params to be set
+</td>
+        </tr>
+      </table>
+  </div>
 
     </div>
 </div>
@@ -1103,8 +1168,22 @@ From class
 
       </div>
     <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+      <p>
+  <p class="caution">
+      <strong>
+  This method is deprecated.</strong><br/> use <code><a href="../../../../../com/ksyun/media/streamer/encoder/AudioEncoderMgt.html#setEncodeFormat(com.ksyun.media.streamer.framework.AudioCodecFormat)">setEncodeFormat(AudioCodecFormat)</a></code> instead
+
+  </p>
+  <div class="jd-tagdata jd-tagdescr"><p>Configure encode params.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>format</th>
+          <td>encode params to be set</td>
+        </tr>
+      </table>
+  </div>
 
     </div>
 </div>

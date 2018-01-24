@@ -404,6 +404,17 @@
  visibility="public"
 >
 </method>
+<method name="getSrcPin"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getVolume"
  return="float"
  abstract="false"
@@ -2649,7 +2660,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
+<parameter name="packet" type="com.ksyun.media.streamer.framework.AudioPacket">
 </parameter>
 </method>
 <method name="doStart"
@@ -2722,7 +2733,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.ImgBufFrame">
+<parameter name="packet" type="com.ksyun.media.streamer.framework.ImgPacket">
 </parameter>
 </method>
 <method name="doStart"
@@ -3367,6 +3378,58 @@
 </parameter>
 </method>
 </interface>
+<class name="MediaCodecAudioDecoder"
+ extends="com.ksyun.media.streamer.decoder.Decoder"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="MediaCodecAudioDecoder"
+ type="com.ksyun.media.streamer.decoder.MediaCodecAudioDecoder"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<method name="doFrameAvailable"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="packet" type="com.ksyun.media.streamer.framework.AudioPacket">
+</parameter>
+</method>
+<method name="doStart"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="doStop"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+</class>
 <class name="MediaCodecVideoDecoder"
  extends="com.ksyun.media.streamer.decoder.Decoder"
  abstract="false"
@@ -3385,19 +3448,6 @@
 <parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
-<method name="awaitNewImage"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="pts" type="long">
-</parameter>
-</method>
 <method name="doFrameAvailable"
  return="int"
  abstract="false"
@@ -3408,7 +3458,7 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.ImgBufFrame">
+<parameter name="packet" type="com.ksyun.media.streamer.framework.ImgPacket">
 </parameter>
 </method>
 <method name="doStart"
@@ -3491,7 +3541,7 @@
 >
 </method>
 <method name="getAudioSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AudioPacket&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -3612,7 +3662,7 @@
 >
 </method>
 <method name="getVideoSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgBufFrame&gt;"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgPacket&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -3624,6 +3674,17 @@
 </method>
 <method name="getWidth"
  return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="isPause"
+ return="boolean"
  abstract="false"
  native="false"
  synchronized="false"
@@ -3667,6 +3728,17 @@
  visibility="public"
 >
 </method>
+<method name="pause"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="release"
  return="void"
  abstract="false"
@@ -3677,6 +3749,41 @@
  deprecated="not deprecated"
  visibility="public"
 >
+</method>
+<method name="reset"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="resume"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setAutoStart"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="autoStart" type="boolean">
+</parameter>
 </method>
 <method name="setAvDemuxerCaptureRanges"
  return="void"
@@ -3691,6 +3798,32 @@
 <parameter name="startTimeMs" type="long">
 </parameter>
 <parameter name="endTimeMs" type="long">
+</parameter>
+</method>
+<method name="setDataSource"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="url" type="java.lang.String">
+</parameter>
+</method>
+<method name="setOnAudioPtsChangedListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="com.ksyun.media.streamer.demuxer.AVDemuxerCapture.OnAudioPtsChangedListener">
 </parameter>
 </method>
 <method name="setOnErrorListener"
@@ -3732,19 +3865,6 @@
 <parameter name="listener" type="com.ksyun.media.streamer.demuxer.AVDemuxerCapture.OnVideoPtsChangedListener">
 </parameter>
 </method>
-<method name="setSpeed"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="speed" type="float">
-</parameter>
-</method>
 <method name="start"
  return="void"
  abstract="false"
@@ -3755,8 +3875,6 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="url" type="java.lang.String">
-</parameter>
 </method>
 <method name="stop"
  return="void"
@@ -3780,7 +3898,18 @@
  visibility="public"
 >
 </field>
-<field name="AV_DEMUXER_CAPTURE_START"
+<field name="AV_DEMUXER_CAPTURE_OPEN_FAIlED"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="AV_DEMUXER_CAPTURE_STARTED"
  type="int"
  transient="false"
  volatile="false"
@@ -3833,7 +3962,48 @@
  visibility="public"
 >
 </field>
+<field name="mDemuxerHandler"
+ type="Handler"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mDemuxerThread"
+ type="HandlerThread"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
 </class>
+<interface name="AVDemuxerCapture.OnAudioPtsChangedListener"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="onAudioPtsChanged"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="pts" type="long">
+</parameter>
+</method>
+</interface>
 <interface name="AVDemuxerCapture.OnErrorListener"
  abstract="true"
  static="true"
@@ -3946,7 +4116,7 @@
 >
 </method>
 <method name="getAudioSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AudioPacket&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -4067,7 +4237,7 @@
 >
 </method>
 <method name="getVideoSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgBufFrame&gt;"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgPacket&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -4436,6 +4606,19 @@
  visibility="public"
 >
 </method>
+<method name="setDataSource"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="uri" type="java.lang.String">
+</parameter>
+</method>
 <method name="setDemuxRanges"
  return="int"
  abstract="false"
@@ -4474,8 +4657,6 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="uri" type="java.lang.String">
-</parameter>
 </method>
 <method name="stop"
  return="int"
@@ -4515,6 +4696,17 @@
  transient="false"
  volatile="false"
  value="5"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="EXTRACTOR_AUDIO_CODEC_ID"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="16"
  static="true"
  final="true"
  deprecated="not deprecated"
@@ -4778,17 +4970,6 @@
  visibility="protected"
 >
 </method>
-<method name="getAudioEncodeFormat"
- return="java.lang.Object"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
 <method name="onFrameAvailable"
  return="boolean"
  abstract="false"
@@ -4996,14 +5177,14 @@
  abstract="false"
  static="false"
  final="false"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 <constructor name="AudioEncodeFormat"
  type="com.ksyun.media.streamer.encoder.AudioEncodeFormat"
  static="false"
  final="false"
- deprecated="deprecated"
+ deprecated="not deprecated"
  visibility="public"
 >
 <parameter name="mime" type="java.lang.String">
@@ -5239,7 +5420,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.AudioPacket&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5256,10 +5437,23 @@
  synchronized="true"
  static="false"
  final="false"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 <parameter name="format" type="com.ksyun.media.streamer.encoder.AudioEncodeFormat">
+</parameter>
+</method>
+<method name="setEncodeFormat"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="format" type="com.ksyun.media.streamer.framework.AudioCodecFormat">
 </parameter>
 </method>
 <method name="setEncodeMethod"
@@ -5473,8 +5667,19 @@
  visibility="public"
 >
 </method>
+<method name="getEncodeFormat"
+ return="java.lang.Object"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="getExtra"
- return="com.ksyun.media.streamer.framework.AVBufFrame"
+ return="com.ksyun.media.streamer.framework.AVPacketBase"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5497,6 +5702,28 @@
 </method>
 <method name="getFrameEncoded"
  return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSinkPin"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;I&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getSrcPin"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;O&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -5628,19 +5855,6 @@
  visibility="public"
 >
 <parameter name="autoWork" type="boolean">
-</parameter>
-</method>
-<method name="setEnableTransWorkMode"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="enable" type="boolean">
 </parameter>
 </method>
 <method name="setEncoderInfoListener"
@@ -5966,16 +6180,6 @@
 </field>
 <field name="mState"
  type="java.util.concurrent.atomic.AtomicInteger"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-</field>
-<field name="mTransWorkMode"
- type="boolean"
  transient="false"
  volatile="false"
  static="false"
@@ -6338,7 +6542,7 @@
 >
 </method>
 <method name="getOutFrame"
- return="com.ksyun.media.streamer.framework.AudioBufFrame"
+ return="com.ksyun.media.streamer.framework.AudioPacket"
  abstract="false"
  native="false"
  synchronized="false"
@@ -6363,19 +6567,6 @@
  visibility="protected"
 >
 <parameter name="frame" type="com.ksyun.media.streamer.framework.AudioBufFrame">
-</parameter>
-</method>
-<method name="updateOutFormat"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-<parameter name="mediaFormat" type="MediaFormat">
 </parameter>
 </method>
 </class>
@@ -6421,6 +6612,21 @@
 <parameter name="endOfStream" type="boolean">
 </parameter>
 </method>
+<method name="drainEncoder"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="timeout" type="long">
+</parameter>
+<parameter name="endOfStream" type="boolean">
+</parameter>
+</method>
 <method name="fillEncoder"
  return="void"
  abstract="false"
@@ -6462,19 +6668,6 @@
  visibility="public"
 >
 </method>
-<method name="updateOutFormat"
- return="void"
- abstract="true"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-<parameter name="mediaFormat" type="MediaFormat">
-</parameter>
-</method>
 <field name="mBufferInfo"
  type="MediaCodec.BufferInfo"
  transient="false"
@@ -6497,16 +6690,6 @@
 </field>
 <field name="mForceEos"
  type="boolean"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-</field>
-<field name="mOutFormat"
- type="java.lang.Object"
  transient="false"
  volatile="false"
  static="false"
@@ -6585,7 +6768,7 @@
 >
 </method>
 <method name="getOutFrame"
- return="com.ksyun.media.streamer.framework.ImgBufFrame"
+ return="com.ksyun.media.streamer.framework.ImgPacket"
  abstract="false"
  native="false"
  synchronized="false"
@@ -6612,26 +6795,13 @@
 <parameter name="frame" type="com.ksyun.media.streamer.framework.ImgTexFrame">
 </parameter>
 </method>
-<method name="updateOutFormat"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-<parameter name="mediaFormat" type="MediaFormat">
-</parameter>
-</method>
 </class>
 <class name="VideoEncodeFormat"
  extends="java.lang.Object"
  abstract="false"
  static="false"
  final="false"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 <constructor name="VideoEncodeFormat"
@@ -7079,7 +7249,7 @@
 </parameter>
 </constructor>
 <method name="getEncodeFormat"
- return="com.ksyun.media.streamer.encoder.VideoEncodeFormat"
+ return="com.ksyun.media.streamer.framework.VideoCodecFormat"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7145,7 +7315,7 @@
 >
 </method>
 <method name="getSrcPin"
- return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgBufFrame&gt;"
+ return="com.ksyun.media.streamer.framework.SrcPin&lt;com.ksyun.media.streamer.framework.ImgPacket&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -7186,10 +7356,23 @@
  synchronized="true"
  static="false"
  final="false"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 <parameter name="format" type="com.ksyun.media.streamer.encoder.VideoEncodeFormat">
+</parameter>
+</method>
+<method name="setEncodeFormat"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="format" type="com.ksyun.media.streamer.framework.VideoCodecFormat">
 </parameter>
 </method>
 <method name="setEncodeMethod"
@@ -9229,6 +9412,25 @@
 <parameter name="type" type="int">
 </parameter>
 </constructor>
+<method name="addEffect"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="name" type="java.lang.String">
+</parameter>
+<parameter name="argc" type="int">
+</parameter>
+<parameter name="argv" type="java.lang.String[]">
+</parameter>
+<exception name="IllegalArgumentException" type="java.lang.IllegalArgumentException">
+</exception>
+</method>
 <method name="doFilter"
  return="com.ksyun.media.streamer.framework.AudioBufFrame"
  abstract="false"
@@ -9414,6 +9616,16 @@
 >
 </field>
 <field name="AUDIO_PITCH_LEVEL_7"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="Audio_EFFECT_TYPE_USER_DEFINE"
  type="int"
  transient="false"
  volatile="false"
@@ -10735,6 +10947,28 @@
  visibility="public"
 >
 </field>
+<field name="KSY_SPECIAL_EFFECT_KTV"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="17"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="KSY_SPECIAL_EFFECT_LIGHTING"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="16"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="KSY_SPECIAL_EFFECT_NATURE"
  type="int"
  transient="false"
@@ -11208,6 +11442,335 @@
 >
 </field>
 </class>
+<class name="ImgEffectFilterBase"
+ extends="com.ksyun.media.streamer.filter.imgtex.ImgTexFilter"
+ abstract="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ImgEffectFilterBase"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgEffectFilterBase"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+</parameter>
+</constructor>
+<method name="getGradientFactorType"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getGradientFactorValue"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getGradientValue"
+ return="float[]"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getMAXGradientFactorValue"
+ return="float"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getVSinkPin"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgTexFrame&gt;"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="index" type="int">
+</parameter>
+</method>
+<method name="getVSinkPinNum"
+ return="int"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="onDrawArraysAfter"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="onDrawArraysPre"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="onInitialized"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="onRelease"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="setEffectAuto"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="auto" type="boolean">
+</parameter>
+</method>
+<method name="setFragment"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="fragmentType" type="int">
+</parameter>
+</method>
+<method name="setFragment"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="fragment" type="java.lang.String">
+</parameter>
+</method>
+<method name="setGradientFactorFrameCount"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="framesCount" type="int">
+</parameter>
+</method>
+<method name="setGradientFactorType"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="type" type="int">
+</parameter>
+</method>
+<method name="setGradientFactorValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="value" type="float">
+</parameter>
+</method>
+<method name="setGradientName"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="gradientName" type="java.lang.String">
+</parameter>
+</method>
+<method name="setGradientType"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="type" type="int">
+</parameter>
+</method>
+<method name="setMAXGradientFactorValue"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="maxValue" type="float">
+</parameter>
+</method>
+<method name="setTimeInfoEffectDuration"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="duration" type="long">
+</parameter>
+</method>
+<method name="setVertex"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="vertex" type="java.lang.String">
+</parameter>
+</method>
+<field name="GRADIENT_FACTOR_TYPE_DOWN"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="GRADIENT_FACTOR_TYPE_UP"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="GRADIENT_FACTOR_TYPE_UP_DOWN"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="GRADIENT_TYPE_1"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="GRADIENT_TYPE_2"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
 <class name="ImgFilterBase"
  extends="java.lang.Object"
  abstract="true"
@@ -11338,6 +11901,17 @@
 </method>
 <method name="isWhitenRatioSupported"
  return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="release"
+ return="void"
  abstract="false"
  native="false"
  synchronized="false"
@@ -11486,6 +12060,129 @@
 </parameter>
 </method>
 </interface>
+<class name="ImgShakeColorFilter"
+ extends="com.ksyun.media.streamer.filter.imgtex.ImgEffectFilterBase"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ImgShakeColorFilter"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgShakeColorFilter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+</parameter>
+</constructor>
+<method name="getGradientValue"
+ return="float[]"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getVSinkPinNum"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+</class>
+<class name="ImgShakeShockWaveFilter"
+ extends="com.ksyun.media.streamer.filter.imgtex.ImgEffectFilterBase"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ImgShakeShockWaveFilter"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgShakeShockWaveFilter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+</parameter>
+</constructor>
+<method name="getGradientValue"
+ return="float[]"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getVSinkPinNum"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+</class>
+<class name="ImgShakeZoomFilter"
+ extends="com.ksyun.media.streamer.filter.imgtex.ImgEffectFilterBase"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ImgShakeZoomFilter"
+ type="com.ksyun.media.streamer.filter.imgtex.ImgShakeZoomFilter"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
+</parameter>
+</constructor>
+<method name="getGradientValue"
+ return="float[]"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+<method name="getVSinkPinNum"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</method>
+</class>
 <class name="ImgTexBufFilter"
  extends="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase"
  abstract="true"
@@ -11949,17 +12646,6 @@
  visibility="protected"
 >
 </method>
-<method name="isReuseFbo"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-</method>
 <method name="onDraw"
  return="void"
  abstract="true"
@@ -12008,17 +12694,6 @@
  final="false"
  deprecated="not deprecated"
  visibility="protected"
->
-</method>
-<method name="release"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
 >
 </method>
 <method name="requestScreenShot"
@@ -12075,19 +12750,6 @@
 <parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
 </parameter>
 </method>
-<method name="setReuseFbo"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="reuse" type="boolean">
-</parameter>
-</method>
 <field name="ERROR_LOAD_PROGRAM_FAILED"
  type="int"
  transient="false"
@@ -12132,26 +12794,6 @@
 </field>
 <field name="mMainHandler"
  type="Handler"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-</field>
-<field name="mOutTexture"
- type="int"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-</field>
-<field name="mReuseFbo"
- type="boolean"
  transient="false"
  volatile="false"
  static="false"
@@ -12290,6 +12932,23 @@
 <parameter name="replaced" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
 </parameter>
 <parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+</parameter>
+</method>
+<method name="replaceFilter"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="replaced" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+</parameter>
+<parameter name="filter" type="com.ksyun.media.streamer.filter.imgtex.ImgFilterBase">
+</parameter>
+<parameter name="autoRelease" type="boolean">
 </parameter>
 <exception name="InvalidParameterException" type="java.security.InvalidParameterException">
 </exception>
@@ -12994,6 +13653,17 @@
 <parameter name="glRender" type="com.ksyun.media.streamer.util.gles.GLRender">
 </parameter>
 </constructor>
+<method name="getSrcPinFormat"
+ return="com.ksyun.media.streamer.framework.ImgTexFormat"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
 <method name="onFormatChanged"
  return="void"
  abstract="false"
@@ -13179,16 +13849,6 @@
  visibility="public"
 >
 </constructor>
-<field name="avPacketOpaque"
- type="long"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
 <field name="buf"
  type="java.nio.ByteBuffer"
  transient="false"
@@ -13383,11 +14043,198 @@
  visibility="public"
 >
 </field>
+<field name="CODEC_ID_MPEG4"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
 <field name="CODEC_ID_NONE"
  type="int"
  transient="false"
  volatile="false"
  value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="FLAG_B_FRAME"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="16"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="FLAG_CODEC_CONFIG"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="FLAG_DETACH_NATIVE_MODULE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="65536"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="FLAG_END_OF_STREAM"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="FLAG_KEY_FRAME"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="FLAG_P_FRAME"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="8"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MEDIA_TYPE_AUDIO"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MEDIA_TYPE_NONE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="MEDIA_TYPE_VIDEO"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PIX_FMT_ARGB"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="4"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PIX_FMT_BGR8"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="6"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PIX_FMT_I420"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PIX_FMT_NONE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PIX_FMT_NV21"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PIX_FMT_RGBA"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="5"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="PIX_FMT_YV12"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
  static="true"
  final="true"
  deprecated="not deprecated"
@@ -13466,17 +14313,6 @@
  visibility="public"
 >
 </field>
-<field name="FLAG_DUMMY_VIDEO_FRAME"
- type="int"
- transient="false"
- volatile="false"
- value="131072"
- static="true"
- final="true"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
 <field name="FLAG_END_OF_STREAM"
  type="int"
  transient="false"
@@ -13499,16 +14335,6 @@
  visibility="public"
 >
 </field>
-<field name="dts"
- type="long"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
 <field name="flags"
  type="int"
  transient="false"
@@ -13520,6 +14346,53 @@
 >
 </field>
 <field name="pts"
+ type="long"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="AVPacketBase"
+ extends="com.ksyun.media.streamer.framework.AVFrameBase"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="AVPacketBase"
+ type="com.ksyun.media.streamer.framework.AVPacketBase"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</constructor>
+<field name="avPacketOpaque"
+ type="long"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="buf"
+ type="java.nio.ByteBuffer"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="dts"
  type="long"
  transient="false"
  volatile="false"
@@ -13575,27 +14448,7 @@
 <parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
 </parameter>
 </method>
-<field name="avCodecParPtr"
- type="long"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
 <field name="channels"
- type="int"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
-<field name="codecId"
  type="int"
  transient="false"
  volatile="false"
@@ -13679,6 +14532,166 @@
 >
 </field>
 </class>
+<class name="AudioCodecFormat"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="AudioCodecFormat"
+ type="com.ksyun.media.streamer.framework.AudioCodecFormat"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="codecId" type="int">
+</parameter>
+<parameter name="sampleFmt" type="int">
+</parameter>
+<parameter name="sampleRate" type="int">
+</parameter>
+<parameter name="channels" type="int">
+</parameter>
+<parameter name="bitrate" type="int">
+</parameter>
+</constructor>
+<constructor name="AudioCodecFormat"
+ type="com.ksyun.media.streamer.framework.AudioCodecFormat"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="format" type="com.ksyun.media.streamer.framework.AudioCodecFormat">
+</parameter>
+</constructor>
+<constructor name="AudioCodecFormat"
+ type="com.ksyun.media.streamer.framework.AudioCodecFormat"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="format" type="com.ksyun.media.streamer.encoder.AudioEncodeFormat">
+</parameter>
+</constructor>
+<field name="avCodecParPtr"
+ type="long"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="bitrate"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="channels"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="codecId"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="profile"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="sampleFmt"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="sampleRate"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="AudioPacket"
+ extends="com.ksyun.media.streamer.framework.AVPacketBase"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="AudioPacket"
+ type="com.ksyun.media.streamer.framework.AudioPacket"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="format" type="com.ksyun.media.streamer.framework.AudioCodecFormat">
+</parameter>
+<parameter name="buf" type="java.nio.ByteBuffer">
+</parameter>
+<parameter name="pts" type="long">
+</parameter>
+</constructor>
+<constructor name="AudioPacket"
+ type="com.ksyun.media.streamer.framework.AudioPacket"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="pkt" type="com.ksyun.media.streamer.framework.AudioPacket">
+</parameter>
+</constructor>
+<field name="format"
+ type="com.ksyun.media.streamer.framework.AudioCodecFormat"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
 <class name="ImgBufFormat"
  extends="java.lang.Object"
  abstract="false"
@@ -13694,7 +14707,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="int">
+<parameter name="pixFmt" type="int">
 </parameter>
 <parameter name="width" type="int">
 </parameter>
@@ -13710,7 +14723,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="format" type="int">
+<parameter name="pixFmt" type="int">
 </parameter>
 <parameter name="width" type="int">
 </parameter>
@@ -13740,44 +14753,11 @@
  visibility="public"
 >
 </field>
-<field name="FMT_AVC"
- type="int"
- transient="false"
- volatile="false"
- value="256"
- static="true"
- final="true"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
 <field name="FMT_BGR8"
  type="int"
  transient="false"
  volatile="false"
  value="6"
- static="true"
- final="true"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
-<field name="FMT_GIF"
- type="int"
- transient="false"
- volatile="false"
- value="258"
- static="true"
- final="true"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
-<field name="FMT_HEVC"
- type="int"
- transient="false"
- volatile="false"
- value="257"
  static="true"
  final="true"
  deprecated="not deprecated"
@@ -13839,26 +14819,6 @@
  visibility="public"
 >
 </field>
-<field name="avCodecParPtr"
- type="long"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
-<field name="format"
- type="int"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</field>
 <field name="height"
  type="int"
  transient="false"
@@ -13870,6 +14830,16 @@
 >
 </field>
 <field name="orientation"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="pixFmt"
  type="int"
  transient="false"
  volatile="false"
@@ -13945,6 +14915,51 @@
 </constructor>
 <field name="format"
  type="com.ksyun.media.streamer.framework.ImgBufFormat"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+</class>
+<class name="ImgPacket"
+ extends="com.ksyun.media.streamer.framework.AVPacketBase"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="ImgPacket"
+ type="com.ksyun.media.streamer.framework.ImgPacket"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="format" type="com.ksyun.media.streamer.framework.VideoCodecFormat">
+</parameter>
+<parameter name="buf" type="java.nio.ByteBuffer">
+</parameter>
+<parameter name="pts" type="long">
+</parameter>
+<parameter name="dts" type="long">
+</parameter>
+</constructor>
+<constructor name="ImgPacket"
+ type="com.ksyun.media.streamer.framework.ImgPacket"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="pkt" type="com.ksyun.media.streamer.framework.ImgPacket">
+</parameter>
+</constructor>
+<field name="format"
+ type="com.ksyun.media.streamer.framework.VideoCodecFormat"
  transient="false"
  volatile="false"
  static="false"
@@ -14062,6 +15077,16 @@
 <parameter name="texMatrix" type="float[]">
 </parameter>
 <parameter name="pts" type="long">
+</parameter>
+</constructor>
+<constructor name="ImgTexFrame"
+ type="com.ksyun.media.streamer.framework.ImgTexFrame"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="frame" type="com.ksyun.media.streamer.framework.ImgTexFrame">
 </parameter>
 </constructor>
 <field name="NO_TEXTURE"
@@ -14206,6 +15231,19 @@
  visibility="public"
 >
 </method>
+<method name="onConnected"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="srcPin" type="com.ksyun.media.streamer.framework.SrcPin&lt;T&gt;">
+</parameter>
+</method>
 <method name="onDisconnect"
  return="void"
  abstract="false"
@@ -14216,6 +15254,21 @@
  deprecated="not deprecated"
  visibility="public"
 >
+<parameter name="recursive" type="boolean">
+</parameter>
+</method>
+<method name="onDisconnect"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="srcPin" type="com.ksyun.media.streamer.framework.SrcPin&lt;T&gt;">
+</parameter>
 <parameter name="recursive" type="boolean">
 </parameter>
 </method>
@@ -14245,6 +15298,26 @@
 <parameter name="frame" type="T">
 </parameter>
 </method>
+<field name="mIsConnected"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mSrcPins"
+ type="java.util.List"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
 </class>
 <class name="SrcPin"
  extends="java.lang.Object"
@@ -14350,6 +15423,16 @@
  visibility="protected"
 >
 </field>
+<field name="isFormatChangedMap"
+ type="java.util.Map"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
 <field name="sinkPins"
  type="java.util.List"
  transient="false"
@@ -14358,6 +15441,301 @@
  final="false"
  deprecated="not deprecated"
  visibility="protected"
+>
+</field>
+</class>
+<class name="VideoCodecFormat"
+ extends="java.lang.Object"
+ abstract="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<constructor name="VideoCodecFormat"
+ type="com.ksyun.media.streamer.framework.VideoCodecFormat"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="codecId" type="int">
+</parameter>
+<parameter name="width" type="int">
+</parameter>
+<parameter name="height" type="int">
+</parameter>
+<parameter name="bitrate" type="int">
+</parameter>
+</constructor>
+<constructor name="VideoCodecFormat"
+ type="com.ksyun.media.streamer.framework.VideoCodecFormat"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="format" type="com.ksyun.media.streamer.framework.VideoCodecFormat">
+</parameter>
+</constructor>
+<constructor name="VideoCodecFormat"
+ type="com.ksyun.media.streamer.framework.VideoCodecFormat"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="format" type="com.ksyun.media.streamer.encoder.VideoEncodeFormat">
+</parameter>
+</constructor>
+<field name="ENCODE_BITRATE_MODE_CBR"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ENCODE_BITRATE_MODE_CQ"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ENCODE_BITRATE_MODE_VBR"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ENCODE_PROFILE_BALANCE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ENCODE_PROFILE_DEFAULT"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ENCODE_PROFILE_HIGH_PERFORMANCE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ENCODE_PROFILE_LOW_POWER"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="3"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ENCODE_SCENE_DEFAULT"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="0"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ENCODE_SCENE_GAME"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="2"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ENCODE_SCENE_SHOWSELF"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="1"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="avCodecParPtr"
+ type="long"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="bitrate"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="bitrateMode"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="codecId"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="crf"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="frameRate"
+ type="float"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="height"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="iFrameInterval"
+ type="float"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="liveStreaming"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="orientation"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="pixFmt"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="profile"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="scene"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="width"
+ type="int"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
 >
 </field>
 </class>
@@ -18369,7 +19747,7 @@
  visibility="public"
 >
 </constructor>
-<method name="IsAddExtraForVideoKeyFrame"
+<method name="isAddExtraForVideoKeyFrame"
  return="boolean"
  abstract="false"
  native="false"
@@ -18402,19 +19780,6 @@
  visibility="public"
 >
 <parameter name="enable" type="boolean">
-</parameter>
-</method>
-<method name="setForceVideoFrameFirst"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="forceVideoFrameFirst" type="boolean">
 </parameter>
 </method>
 <method name="startRecording"
@@ -18526,32 +19891,6 @@
 <parameter name="name" type="java.lang.String">
 </parameter>
 </constructor>
-<method name="IsAddExtraForVideoKeyFrame"
- return="boolean"
- abstract="true"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-</method>
-<method name="addAudioTrack"
- return="int"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="format" type="com.ksyun.media.streamer.framework.AudioBufFormat">
-</parameter>
-<parameter name="buffer" type="java.nio.ByteBuffer">
-</parameter>
-</method>
 <method name="addMetaOption"
  return="void"
  abstract="false"
@@ -18567,7 +19906,7 @@
 <parameter name="value" type="java.lang.String">
 </parameter>
 </method>
-<method name="addVideoTrack"
+<method name="doAddAudioTrack"
  return="int"
  abstract="false"
  native="false"
@@ -18575,19 +19914,22 @@
  static="false"
  final="false"
  deprecated="not deprecated"
- visibility="public"
+ visibility="protected"
 >
-<parameter name="codecId" type="int">
+<parameter name="packet" type="com.ksyun.media.streamer.framework.AudioPacket">
 </parameter>
-<parameter name="width" type="int">
-</parameter>
-<parameter name="height" type="int">
-</parameter>
-<parameter name="fps" type="float">
-</parameter>
-<parameter name="bitrate" type="int">
-</parameter>
-<parameter name="extra" type="java.nio.ByteBuffer">
+</method>
+<method name="doAddVideoTrack"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="packet" type="com.ksyun.media.streamer.framework.ImgPacket">
 </parameter>
 </method>
 <method name="doRelease"
@@ -18635,11 +19977,24 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="object" type="java.lang.Object">
+<parameter name="packet" type="com.ksyun.media.streamer.framework.AVPacketBase">
+</parameter>
+</method>
+<method name="doWriteFrame"
+ return="int"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+<parameter name="drop" type="boolean">
 </parameter>
 </method>
 <method name="getAudioSink"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.AudioPacket&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -18650,6 +20005,28 @@
 >
 </method>
 <method name="getAutoWork"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getBlockingMode"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+<method name="getForceVideoFrameFirst"
  return="boolean"
  abstract="false"
  native="false"
@@ -18682,17 +20059,6 @@
  visibility="public"
 >
 </method>
-<method name="getUseSyncMode"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-</method>
 <method name="getVideoCacheLength"
  return="int"
  abstract="false"
@@ -18705,7 +20071,7 @@
 >
 </method>
 <method name="getVideoSink"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgBufFrame&gt;"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgPacket&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -18725,8 +20091,19 @@
  deprecated="not deprecated"
  visibility="protected"
 >
-<parameter name="frame" type="com.ksyun.media.streamer.framework.AVBufFrame">
+<parameter name="inPacket" type="com.ksyun.media.streamer.framework.AVPacketBase">
 </parameter>
+</method>
+<method name="isAddExtraForVideoKeyFrame"
+ return="boolean"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
 </method>
 <method name="isAudioExtraGot"
  return="boolean"
@@ -18884,7 +20261,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="audioExtra" type="com.ksyun.media.streamer.framework.AVBufFrame">
+<parameter name="audioExtra" type="com.ksyun.media.streamer.framework.AVPacketBase">
 </parameter>
 </method>
 <method name="setAudioOnly"
@@ -18911,6 +20288,32 @@
  visibility="public"
 >
 <parameter name="autoWork" type="boolean">
+</parameter>
+</method>
+<method name="setBlockingMode"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="blockingMode" type="boolean">
+</parameter>
+</method>
+<method name="setForceVideoFrameFirst"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="forceVideoFrameFirst" type="boolean">
 </parameter>
 </method>
 <method name="setFramerate"
@@ -18952,19 +20355,6 @@
 <parameter name="url" type="java.lang.String">
 </parameter>
 </method>
-<method name="setUseSyncMode"
- return="void"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="public"
->
-<parameter name="useSyncMode" type="boolean">
-</parameter>
-</method>
 <method name="setVideoBitrate"
  return="void"
  abstract="false"
@@ -18988,7 +20378,7 @@
  deprecated="not deprecated"
  visibility="public"
 >
-<parameter name="videoExtra" type="com.ksyun.media.streamer.framework.AVBufFrame">
+<parameter name="videoExtra" type="com.ksyun.media.streamer.framework.AVPacketBase">
 </parameter>
 </method>
 <method name="setVideoOnly"
@@ -19036,7 +20426,7 @@
  static="false"
  final="false"
  deprecated="not deprecated"
- visibility="public"
+ visibility="protected"
 >
 <parameter name="type" type="int">
 </parameter>
@@ -19051,6 +20441,28 @@
 <parameter name="flags" type="int">
 </parameter>
 </method>
+<field name="CMD_ADD_AUDIO_TRACK"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="5"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="CMD_ADD_VIDEO_TRACK"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="6"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
 <field name="CMD_RELEASE"
  type="int"
  transient="false"
@@ -19100,6 +20512,17 @@
  transient="false"
  volatile="false"
  value="-2004"
+ static="true"
+ final="true"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</field>
+<field name="ERROR_INVALID_STATE"
+ type="int"
+ transient="false"
+ volatile="false"
+ value="-2010"
  static="true"
  final="true"
  deprecated="not deprecated"
@@ -19225,8 +20648,18 @@
  visibility="protected"
 >
 </field>
-<field name="mAudioCodecParPtr"
- type="long"
+<field name="mAudioFrameGot"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mAudioHeaderGot"
+ type="boolean"
  transient="false"
  volatile="false"
  static="false"
@@ -19236,6 +20669,16 @@
 >
 </field>
 <field name="mAudioTrackAdded"
+ type="boolean"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
+<field name="mForceVideoFrameFirst"
  type="boolean"
  transient="false"
  volatile="false"
@@ -19278,7 +20721,7 @@
 <field name="mIsPublishing"
  type="boolean"
  transient="false"
- volatile="false"
+ volatile="true"
  static="false"
  final="false"
  deprecated="not deprecated"
@@ -19375,6 +20818,16 @@
  visibility="protected"
 >
 </field>
+<field name="mUrl"
+ type="java.lang.String"
+ transient="false"
+ volatile="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
+>
+</field>
 <field name="mVFrameDroppedInner"
  type="int"
  transient="false"
@@ -19405,8 +20858,8 @@
  visibility="protected"
 >
 </field>
-<field name="mVideoCodecParPtr"
- type="long"
+<field name="mVideoHeaderGot"
+ type="boolean"
  transient="false"
  volatile="false"
  static="false"
@@ -19417,16 +20870,6 @@
 </field>
 <field name="mVideoKeyFrameGot"
  type="boolean"
- transient="false"
- volatile="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-</field>
-<field name="mVideoPts"
- type="long"
  transient="false"
  volatile="false"
  static="false"
@@ -19514,7 +20957,7 @@
 </parameter>
 </method>
 <method name="getAudioSink"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.AudioBufFrame&gt;"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.AudioPacket&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -19525,7 +20968,7 @@
 >
 </method>
 <method name="getVideoSink"
- return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgBufFrame&gt;"
+ return="com.ksyun.media.streamer.framework.SinkPin&lt;com.ksyun.media.streamer.framework.ImgPacket&gt;"
  abstract="false"
  native="false"
  synchronized="false"
@@ -19624,7 +21067,7 @@
 </parameter>
 <parameter name="extra" type="java.nio.ByteBuffer">
 </parameter>
-<parameter name="avCodecContextPtr" type="long">
+<parameter name="avCodecParPtr" type="long">
 </parameter>
 </method>
 <method name="addMetaOption"
@@ -20328,7 +21771,7 @@
  visibility="public"
 >
 </constructor>
-<method name="IsAddExtraForVideoKeyFrame"
+<method name="isAddExtraForVideoKeyFrame"
  return="boolean"
  abstract="false"
  native="false"
@@ -20356,17 +21799,6 @@
  visibility="public"
 >
 </constructor>
-<method name="IsAddExtraForVideoKeyFrame"
- return="boolean"
- abstract="false"
- native="false"
- synchronized="false"
- static="false"
- final="false"
- deprecated="not deprecated"
- visibility="protected"
->
-</method>
 <method name="connect"
  return="void"
  abstract="false"
@@ -20455,6 +21887,17 @@
  final="false"
  deprecated="not deprecated"
  visibility="public"
+>
+</method>
+<method name="isAddExtraForVideoKeyFrame"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="protected"
 >
 </method>
 <method name="setBwEstConfig"
@@ -21436,6 +22879,21 @@
 <parameter name="texture" type="int">
 </parameter>
 </method>
+<method name="lock"
+ return="boolean"
+ abstract="false"
+ native="false"
+ synchronized="true"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="texture" type="int">
+</parameter>
+<parameter name="count" type="int">
+</parameter>
+</method>
 <method name="remove"
  return="void"
  abstract="false"
@@ -21507,10 +22965,62 @@
  synchronized="false"
  static="false"
  final="false"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 <parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener">
+</parameter>
+</method>
+<method name="addListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.OnReadyListener">
+</parameter>
+</method>
+<method name="addListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.OnSizeChangedListener">
+</parameter>
+</method>
+<method name="addListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.OnDrawFrameListener">
+</parameter>
+</method>
+<method name="addListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.OnReleasedListener">
 </parameter>
 </method>
 <method name="getCurrentView"
@@ -21697,10 +23207,62 @@
  synchronized="false"
  static="false"
  final="false"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 <parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.GLRenderListener">
+</parameter>
+</method>
+<method name="removeListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.OnReadyListener">
+</parameter>
+</method>
+<method name="removeListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.OnSizeChangedListener">
+</parameter>
+</method>
+<method name="removeListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.OnDrawFrameListener">
+</parameter>
+</method>
+<method name="removeListener"
+ return="void"
+ abstract="false"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="listener" type="com.ksyun.media.streamer.util.gles.GLRender.OnReleasedListener">
 </parameter>
 </method>
 <method name="requestRender"
@@ -21809,7 +23371,7 @@
  abstract="true"
  static="true"
  final="false"
- deprecated="not deprecated"
+ deprecated="deprecated"
  visibility="public"
 >
 <method name="onDrawFrame"
@@ -21845,6 +23407,86 @@
  visibility="public"
 >
 </method>
+<method name="onSizeChanged"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<parameter name="width" type="int">
+</parameter>
+<parameter name="height" type="int">
+</parameter>
+</method>
+</interface>
+<interface name="GLRender.OnDrawFrameListener"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="onDrawFrame"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</interface>
+<interface name="GLRender.OnReadyListener"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="onReady"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</interface>
+<interface name="GLRender.OnReleasedListener"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+<method name="onReleased"
+ return="void"
+ abstract="true"
+ native="false"
+ synchronized="false"
+ static="false"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
+</method>
+</interface>
+<interface name="GLRender.OnSizeChangedListener"
+ abstract="true"
+ static="true"
+ final="false"
+ deprecated="not deprecated"
+ visibility="public"
+>
 <method name="onSizeChanged"
  return="void"
  abstract="true"

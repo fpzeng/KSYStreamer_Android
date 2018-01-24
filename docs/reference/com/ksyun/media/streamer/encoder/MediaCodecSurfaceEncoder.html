@@ -195,10 +195,10 @@
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/AVCodecAudioEncoder.html">AVCodecAudioEncoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/AVCodecSurfaceEncoder.html">AVCodecSurfaceEncoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/AVCodecVideoEncoder.html">AVCodecVideoEncoder</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html">Encoder</a>&lt;I,&nbsp;O&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html">Encoder</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>&gt;</li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/ImgTexToBuf.html">ImgTexToBuf</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecAudioEncoder.html">MediaCodecAudioEncoder</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html">MediaCodecEncoderBase</a>&lt;I,&nbsp;O&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html">MediaCodecEncoderBase</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>&gt;</li>
           <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecSurfaceEncoder.html">MediaCodecSurfaceEncoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/VideoEncodeFormat.html">VideoEncodeFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/encoder/VideoEncoderMgt.html">VideoEncoderMgt</a></li>
@@ -342,7 +342,7 @@ Summary:
   
 
   
-    extends <a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html">MediaCodecEncoderBase</a>&lt;I,&nbsp;O&gt;<br/>
+    extends <a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html">MediaCodecEncoderBase</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>&gt;<br/>
   
   
   
@@ -370,7 +370,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
-        <td colspan="3" class="jd-inheritance-class-cell"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html">com.ksyun.media.streamer.encoder.Encoder</a>&lt;I,&nbsp;O&gt;</td>
+        <td colspan="3" class="jd-inheritance-class-cell"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html">com.ksyun.media.streamer.encoder.Encoder</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">com.ksyun.media.streamer.framework.AVFrameBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">com.ksyun.media.streamer.framework.AVPacketBase</a>&gt;</td>
     </tr>
     
 
@@ -380,7 +380,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
-        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html">com.ksyun.media.streamer.encoder.MediaCodecEncoderBase</a>&lt;I,&nbsp;O&gt;</td>
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html">com.ksyun.media.streamer.encoder.MediaCodecEncoderBase</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">com.ksyun.media.streamer.framework.AVFrameBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">com.ksyun.media.streamer.framework.AVPacketBase</a>&gt;</td>
     </tr>
     
 
@@ -619,17 +619,6 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol">
-          protected
-          
-          
-          Object</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html#mOutFormat">mOutFormat</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
 </table>
   </div>
 </div>
@@ -747,7 +736,7 @@ Summary:
           public
           
           
-          <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&gt;</td>
+          <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#mSinkPin">mSinkPin</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -758,7 +747,7 @@ Summary:
           public
           
           
-          <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;O&gt;</td>
+          <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>&gt;</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#mSrcPin">mSrcPin</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -776,17 +765,6 @@ Summary:
       
     
       <tr class=" api apilevel-" >
-          <td class="jd-typecol">
-          protected
-          
-          
-          boolean</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#mTransWorkMode">mTransWorkMode</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -959,7 +937,7 @@ Summary:
             
             
             
-            <a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a>
+            <a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a>
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecSurfaceEncoder.html#getOutFrame(java.nio.ByteBuffer, MediaCodec.BufferInfo)">getOutFrame</a></span>(ByteBuffer buffer, MediaCodec.BufferInfo bufferInfo)
@@ -1000,22 +978,6 @@ Summary:
         
         <div class="jd-descrdiv">Update encode format with input frame format.</div>
   
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecSurfaceEncoder.html#updateOutFormat(MediaFormat)">updateOutFormat</a></span>(MediaFormat mediaFormat)
-        
   </td></tr>
 
 
@@ -1078,7 +1040,7 @@ From class
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html#drainEncoder(boolean)">drainEncoder</a></span>(boolean endOfStream)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html#drainEncoder(long, boolean)">drainEncoder</a></span>(long timeout, boolean endOfStream)
         
   </td></tr>
 
@@ -1094,13 +1056,29 @@ From class
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html#fillEncoder(java.nio.ByteBuffer, long)">fillEncoder</a></span>(ByteBuffer buffer, long ptsUs)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html#drainEncoder(boolean)">drainEncoder</a></span>(boolean endOfStream)
         
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html#fillEncoder(java.nio.ByteBuffer, long)">fillEncoder</a></span>(ByteBuffer buffer, long ptsUs)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             abstract
             
@@ -1116,7 +1094,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1133,22 +1111,6 @@ From class
  e.g: Google Glass
 </div>
   
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            abstract
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/MediaCodecEncoderBase.html#updateOutFormat(MediaFormat)">updateOutFormat</a></span>(MediaFormat mediaFormat)
-        
   </td></tr>
 
 
@@ -1386,7 +1348,25 @@ From class
             
             
             
-            <a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a>
+            Object
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#getEncodeFormat()">getEncodeFormat</a></span>()
+        
+        <div class="jd-descrdiv">Get encoder config format set by user.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#getExtra()">getExtra</a></span>()
@@ -1395,7 +1375,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1413,7 +1393,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1431,7 +1411,43 @@ From class
 
 
 	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#getSinkPin()">getSinkPin</a></span>()
+        
+        <div class="jd-descrdiv">Get sink pin.</div>
+  
+  </td></tr>
+
+
+	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;O&gt;
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#getSrcPin()">getSrcPin</a></span>()
+        
+        <div class="jd-descrdiv">Get source pin.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1449,7 +1465,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1467,7 +1483,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1485,7 +1501,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1503,7 +1519,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1521,7 +1537,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1539,7 +1555,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1555,7 +1571,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1571,7 +1587,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1587,7 +1603,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1601,22 +1617,6 @@ From class
         
         <div class="jd-descrdiv">Set if encoder start/stop by input frames.</div>
   
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/encoder/Encoder.html#setEnableTransWorkMode(boolean)">setEnableTransWorkMode</a></span>(boolean enable)
-        
   </td></tr>
 
 
@@ -2273,7 +2273,7 @@ From class
          
          
          
-        <a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a>
+        <a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a>
       </span>
       <span class="sympad">getOutFrame</span>
       <span class="normal">(ByteBuffer buffer, MediaCodec.BufferInfo bufferInfo)</span>
@@ -2383,37 +2383,6 @@ From class
       <ul class="nolist"><li>true if success, false otherwise
 </li></ul>
   </div>
-
-    </div>
-</div>
-
-
-<a id="updateOutFormat(MediaFormat)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">updateOutFormat</span>
-      <span class="normal">(MediaFormat mediaFormat)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>

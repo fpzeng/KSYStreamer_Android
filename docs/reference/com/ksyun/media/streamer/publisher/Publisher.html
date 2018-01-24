@@ -468,6 +468,20 @@ Summary:
     
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#CMD_ADD_AUDIO_TRACK">CMD_ADD_AUDIO_TRACK</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#CMD_ADD_VIDEO_TRACK">CMD_ADD_VIDEO_TRACK</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#CMD_RELEASE">CMD_RELEASE</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
@@ -503,61 +517,68 @@ Summary:
     
     <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#INFO_AUDIO_HEADER_GOT">INFO_AUDIO_HEADER_GOT</a></td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#ERROR_INVALID_STATE">ERROR_INVALID_STATE</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#INFO_AUDIO_HEADER_GOT">INFO_AUDIO_HEADER_GOT</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#INFO_STARTED">INFO_STARTED</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#INFO_STOPPED">INFO_STOPPED</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#INFO_VIDEO_HEADER_GOT">INFO_VIDEO_HEADER_GOT</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">long</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#INVALID_TS">INVALID_TS</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#STATE_IDLE">STATE_IDLE</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#STATE_PUBLISHING">STATE_PUBLISHING</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#STATE_STARTING">STATE_STARTING</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#STATE_STOPPING">STATE_STOPPING</a></td>
         <td class="jd-descrcol" width="100%"></td>
@@ -605,8 +626,8 @@ Summary:
           protected
           
           
-          long</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mAudioCodecParPtr">mAudioCodecParPtr</a></td>
+          boolean</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mAudioFrameGot">mAudioFrameGot</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -617,7 +638,29 @@ Summary:
           
           
           boolean</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mAudioHeaderGot">mAudioHeaderGot</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          boolean</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mAudioTrackAdded">mAudioTrackAdded</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          boolean</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mForceVideoFrameFirst">mForceVideoFrameFirst</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -770,13 +813,24 @@ Summary:
           protected
           
           
+          String</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mUrl">mUrl</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
           int</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mVFrameDroppedInner">mVFrameDroppedInner</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -787,7 +841,7 @@ Summary:
       </tr>
       
     
-      <tr class=" api apilevel-" >
+      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol">
           protected
           
@@ -798,24 +852,13 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
-          <td class="jd-typecol">
-          protected
-          
-          
-          long</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mVideoCodecParPtr">mVideoCodecParPtr</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
       <tr class=" api apilevel-" >
           <td class="jd-typecol">
           protected
           
           
           boolean</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mVideoKeyFrameGot">mVideoKeyFrameGot</a></td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mVideoHeaderGot">mVideoHeaderGot</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -825,8 +868,8 @@ Summary:
           protected
           
           
-          long</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mVideoPts">mVideoPts</a></td>
+          boolean</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#mVideoKeyFrameGot">mVideoKeyFrameGot</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -893,22 +936,6 @@ Summary:
             
             
             
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#addAudioTrack(com.ksyun.media.streamer.framework.AudioBufFormat, java.nio.ByteBuffer)">addAudioTrack</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a> format, ByteBuffer buffer)
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
             void
         </td>
         <td class="jd-linkcol" width="100%">
@@ -920,22 +947,6 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer)">addVideoTrack</a></span>(int codecId, int width, int height, float fps, int bitrate, ByteBuffer extra)
-        
-  </td></tr>
-
-
-	 
     <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
@@ -943,7 +954,7 @@ Summary:
             
             
             
-            <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
+            <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a>&gt;
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getAudioSink()">getAudioSink</a></span>()
@@ -965,6 +976,42 @@ Summary:
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getAutoWork()">getAutoWork</a></span>()
         
         <div class="jd-descrdiv">Get if publisher start/stop by input frames.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getBlockingMode()">getBlockingMode</a></span>()
+        
+        <div class="jd-descrdiv">Get if writing frames in blocking mode.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getForceVideoFrameFirst()">getForceVideoFrameFirst</a></span>()
+        
+        <div class="jd-descrdiv">Get if force video frame first feature enabled.</div>
   
   </td></tr>
 
@@ -1009,24 +1056,6 @@ Summary:
             
             
             
-            boolean
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getUseSyncMode()">getUseSyncMode</a></span>()
-        
-        <div class="jd-descrdiv">Get if writing frames in sync mode.</div>
-  
-  </td></tr>
-
-
-	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
             int
         </td>
         <td class="jd-linkcol" width="100%">
@@ -1036,14 +1065,14 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
             
             
             
-            <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a>&gt;
+            <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a>&gt;
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#getVideoSink()">getVideoSink</a></span>()
@@ -1052,7 +1081,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1068,7 +1097,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1084,7 +1113,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1100,7 +1129,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1116,7 +1145,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1132,7 +1161,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1148,7 +1177,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1166,7 +1195,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1176,13 +1205,13 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setAudioExtra(com.ksyun.media.streamer.framework.AVBufFrame)">setAudioExtra</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> audioExtra)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setAudioExtra(com.ksyun.media.streamer.framework.AVPacketBase)">setAudioExtra</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a> audioExtra)
         
   </td></tr>
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1200,7 +1229,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1218,7 +1247,43 @@ Summary:
 
 
 	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setBlockingMode(boolean)">setBlockingMode</a></span>(boolean blockingMode)
+        
+        <div class="jd-descrdiv">Set if writing frames in blocking mode.</div>
+  
+  </td></tr>
+
+
+	 
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setForceVideoFrameFirst(boolean)">setForceVideoFrameFirst</a></span>(boolean forceVideoFrameFirst)
+        
+        <div class="jd-descrdiv">Force first frame is video.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1236,7 +1301,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1252,7 +1317,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1264,24 +1329,6 @@ Summary:
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setUrl(java.lang.String)">setUrl</a></span>(String url)
         
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setUseSyncMode(boolean)">setUseSyncMode</a></span>(boolean useSyncMode)
-        
-        <div class="jd-descrdiv">Set if writing frames in sync mode.</div>
-  
   </td></tr>
 
 
@@ -1314,7 +1361,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setVideoExtra(com.ksyun.media.streamer.framework.AVBufFrame)">setVideoExtra</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> videoExtra)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#setVideoExtra(com.ksyun.media.streamer.framework.AVPacketBase)">setVideoExtra</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a> videoExtra)
         
   </td></tr>
 
@@ -1369,22 +1416,6 @@ Summary:
   </td></tr>
 
 
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            int
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#writeFrame(int, long, java.nio.ByteBuffer, long, long, int)">writeFrame</a></span>(int type, long avPacket, ByteBuffer data, long dts, long pts, int flags)
-        
-  </td></tr>
-
-
 
 </table>
 
@@ -1399,23 +1430,37 @@ Summary:
 	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
-            abstract
             
             
             
             
-            boolean
+            
+            int
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#IsAddExtraForVideoKeyFrame()">IsAddExtraForVideoKeyFrame</a></span>()
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#doAddAudioTrack(com.ksyun.media.streamer.framework.AudioPacket)">doAddAudioTrack</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a> packet)
         
-        <div class="jd-descrdiv">Should this publisher add SPS/PPS data to video key frame.</div>
-  
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#doAddVideoTrack(com.ksyun.media.streamer.framework.ImgPacket)">doAddVideoTrack</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a> packet)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1431,7 +1476,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1447,7 +1492,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1463,6 +1508,22 @@ Summary:
 
 
 	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#doWriteFrame(boolean)">doWriteFrame</a></span>(boolean drop)
+        
+  </td></tr>
+
+
+	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
@@ -1473,7 +1534,7 @@ Summary:
             int
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#doWriteFrame(java.lang.Object)">doWriteFrame</a></span>(Object object)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#doWriteFrame(com.ksyun.media.streamer.framework.AVPacketBase)">doWriteFrame</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a> packet)
         
   </td></tr>
 
@@ -1489,13 +1550,31 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#handleAVFrame(com.ksyun.media.streamer.framework.AVBufFrame)">handleAVFrame</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> frame)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#handleAVFrame(com.ksyun.media.streamer.framework.AVPacketBase)">handleAVFrame</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a> inPacket)
         
   </td></tr>
 
 
 	 
     <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            abstract
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#isAddExtraForVideoKeyFrame()">isAddExtraForVideoKeyFrame</a></span>()
+        
+        <div class="jd-descrdiv">Should this publisher add SPS/PPS data to video key frame.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1513,7 +1592,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1529,7 +1608,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1545,7 +1624,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1561,7 +1640,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1572,6 +1651,22 @@ Summary:
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#postInfo(int)">postInfo</a></span>(int type)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            int
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/publisher/Publisher.html#writeFrame(int, long, java.nio.ByteBuffer, long, long, int)">writeFrame</a></span>(int type, long avPacket, ByteBuffer data, long dts, long pts, int flags)
         
   </td></tr>
 
@@ -1819,6 +1914,86 @@ From class
 
 
 
+<a id="CMD_ADD_AUDIO_TRACK"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+        static 
+        final 
+        int
+      </span>
+        CMD_ADD_AUDIO_TRACK
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                5
+                (0x00000005)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="CMD_ADD_VIDEO_TRACK"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+        static 
+        final 
+        int
+      </span>
+        CMD_ADD_VIDEO_TRACK
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                6
+                (0x00000006)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
 <a id="CMD_RELEASE"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -2010,6 +2185,46 @@ From class
             
                 -2004
                 (0xfffff82c)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="ERROR_INVALID_STATE"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        ERROR_INVALID_STATE
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                -2010
+                (0xfffff826)
             
         </span>
         </div>
@@ -2449,7 +2664,7 @@ From class
 
 
 
-<a id="mAudioCodecParPtr"></a>
+<a id="mAudioFrameGot"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2457,9 +2672,39 @@ From class
         protected 
          
          
-        long
+        boolean
       </span>
-        mAudioCodecParPtr
+        mAudioFrameGot
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mAudioHeaderGot"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        boolean
+      </span>
+        mAudioHeaderGot
     </h4>
       <div class="api-level">
         
@@ -2490,6 +2735,36 @@ From class
         boolean
       </span>
         mAudioTrackAdded
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mForceVideoFrameFirst"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        boolean
+      </span>
+        mForceVideoFrameFirst
     </h4>
       <div class="api-level">
         
@@ -2899,6 +3174,36 @@ From class
 
 
 
+<a id="mUrl"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        String
+      </span>
+        mUrl
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 <a id="mVFrameDroppedInner"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -2989,7 +3294,7 @@ From class
 
 
 
-<a id="mVideoCodecParPtr"></a>
+<a id="mVideoHeaderGot"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2997,9 +3302,9 @@ From class
         protected 
          
          
-        long
+        boolean
       </span>
-        mVideoCodecParPtr
+        mVideoHeaderGot
     </h4>
       <div class="api-level">
         
@@ -3030,36 +3335,6 @@ From class
         boolean
       </span>
         mVideoKeyFrameGot
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
-<a id="mVideoPts"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        protected 
-         
-         
-        long
-      </span>
-        mVideoPts
     </h4>
       <div class="api-level">
         
@@ -3164,37 +3439,6 @@ From class
 
 
 
-<a id="addAudioTrack(com.ksyun.media.streamer.framework.AudioBufFormat, java.nio.ByteBuffer)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        int
-      </span>
-      <span class="sympad">addAudioTrack</span>
-      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a> format, ByteBuffer buffer)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
 <a id="addMetaOption(java.lang.String, java.lang.String)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -3240,37 +3484,6 @@ From class
 </div>
 
 
-<a id="addVideoTrack(int, int, int, float, int, java.nio.ByteBuffer)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        int
-      </span>
-      <span class="sympad">addVideoTrack</span>
-      <span class="normal">(int codecId, int width, int height, float fps, int bitrate, ByteBuffer extra)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
 <a id="getAudioSink()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -3281,7 +3494,7 @@ From class
          
          
          
-        <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
+        <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a>&gt;
       </span>
       <span class="sympad">getAudioSink</span>
       <span class="normal">()</span>
@@ -3331,6 +3544,78 @@ From class
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Returns</h5>
       <ul class="nolist"><li>is auto work
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getBlockingMode()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">getBlockingMode</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get if writing frames in blocking mode.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>blocking mode
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="getForceVideoFrameFirst()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">getForceVideoFrameFirst</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Get if force video frame first feature enabled.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>true for enabled, false for disabled
 </li></ul>
   </div>
 
@@ -3400,42 +3685,6 @@ From class
 </div>
 
 
-<a id="getUseSyncMode()"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        boolean
-      </span>
-      <span class="sympad">getUseSyncMode</span>
-      <span class="normal">()</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Get if writing frames in sync mode.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>sync mode
-</li></ul>
-  </div>
-
-    </div>
-</div>
-
-
 <a id="getVideoCacheLength()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -3477,7 +3726,7 @@ From class
          
          
          
-        <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a>&gt;
+        <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a>&gt;
       </span>
       <span class="sympad">getVideoSink</span>
       <span class="normal">()</span>
@@ -3725,7 +3974,7 @@ From class
 </div>
 
 
-<a id="setAudioExtra(com.ksyun.media.streamer.framework.AVBufFrame)"></a>
+<a id="setAudioExtra(com.ksyun.media.streamer.framework.AVPacketBase)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -3738,7 +3987,7 @@ From class
         void
       </span>
       <span class="sympad">setAudioExtra</span>
-      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> audioExtra)</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a> audioExtra)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -3825,13 +4074,95 @@ From class
   <div class="jd-tagdata jd-tagdescr"><p>Set if publisher start/stop by input frames.
  <p>
  For example, onFormatChanged would start publishing if publisher not started,
- and frame with <code><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#FLAG_END_OF_STREAM">FLAG_END_OF_STREAM</a></code> would stop publishing.</p></div>
+ and frame with <code><a href="../../../../../com/ksyun/media/streamer/framework/AVConst.html#FLAG_END_OF_STREAM">FLAG_END_OF_STREAM</a></code> would stop publishing.</p></div>
   <div class="jd-tagdata">
       <h5 class="jd-tagtitle">Parameters</h5>
       <table class="jd-tagtable">
         <tr>
           <th>autoWork</th>
           <td>true to enable, false to disable
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setBlockingMode(boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setBlockingMode</span>
+      <span class="normal">(boolean blockingMode)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Set if writing frames in blocking mode.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>blockingMode</th>
+          <td>true in blocking mode, false in non-blocking mode.
+</td>
+        </tr>
+      </table>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="setForceVideoFrameFirst(boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setForceVideoFrameFirst</span>
+      <span class="normal">(boolean forceVideoFrameFirst)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Force first frame is video.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Parameters</h5>
+      <table class="jd-tagtable">
+        <tr>
+          <th>forceVideoFrameFirst</th>
+          <td>true to enable, false to disable.
 </td>
         </tr>
       </table>
@@ -3944,47 +4275,6 @@ From class
 </div>
 
 
-<a id="setUseSyncMode(boolean)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setUseSyncMode</span>
-      <span class="normal">(boolean useSyncMode)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Set if writing frames in sync mode.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Parameters</h5>
-      <table class="jd-tagtable">
-        <tr>
-          <th>useSyncMode</th>
-          <td>true in sync mode, false in async mode.
-</td>
-        </tr>
-      </table>
-  </div>
-
-    </div>
-</div>
-
-
 <a id="setVideoBitrate(int)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -4026,7 +4316,7 @@ From class
 </div>
 
 
-<a id="setVideoExtra(com.ksyun.media.streamer.framework.AVBufFrame)"></a>
+<a id="setVideoExtra(com.ksyun.media.streamer.framework.AVPacketBase)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -4039,7 +4329,7 @@ From class
         void
       </span>
       <span class="sympad">setVideoExtra</span>
-      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> videoExtra)</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a> videoExtra)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -4160,20 +4450,29 @@ From class
 </div>
 
 
-<a id="writeFrame(int, long, java.nio.ByteBuffer, long, long, int)"></a>
+
+
+
+<!-- ========= METHOD DETAIL ======== -->
+
+<h2>Protected Methods</h2>
+
+
+
+<a id="doAddAudioTrack(com.ksyun.media.streamer.framework.AudioPacket)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
       <span class="normal">
-        public 
+        protected 
          
          
          
          
         int
       </span>
-      <span class="sympad">writeFrame</span>
-      <span class="normal">(int type, long avPacket, ByteBuffer data, long dts, long pts, int flags)</span>
+      <span class="sympad">doAddAudioTrack</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a> packet)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -4191,16 +4490,7 @@ From class
 </div>
 
 
-
-
-
-<!-- ========= METHOD DETAIL ======== -->
-
-<h2>Protected Methods</h2>
-
-
-
-<a id="IsAddExtraForVideoKeyFrame()"></a>
+<a id="doAddVideoTrack(com.ksyun.media.streamer.framework.ImgPacket)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -4208,12 +4498,12 @@ From class
         protected 
          
          
-        abstract 
          
-        boolean
+         
+        int
       </span>
-      <span class="sympad">IsAddExtraForVideoKeyFrame</span>
-      <span class="normal">()</span>
+      <span class="sympad">doAddVideoTrack</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a> packet)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -4225,13 +4515,7 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p>Should this publisher add SPS/PPS data to video key frame.</p></div>
-  <div class="jd-tagdata">
-      <h5 class="jd-tagtitle">Returns</h5>
-      <ul class="nolist"><li>Publisher would add SPS/PPS to video key frame if returned true,
- keep key frame as is if returned false.
-</li></ul>
-  </div>
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
@@ -4330,7 +4614,7 @@ From class
 </div>
 
 
-<a id="doWriteFrame(java.lang.Object)"></a>
+<a id="doWriteFrame(boolean)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -4343,7 +4627,7 @@ From class
         int
       </span>
       <span class="sympad">doWriteFrame</span>
-      <span class="normal">(Object object)</span>
+      <span class="normal">(boolean drop)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -4361,7 +4645,7 @@ From class
 </div>
 
 
-<a id="handleAVFrame(com.ksyun.media.streamer.framework.AVBufFrame)"></a>
+<a id="doWriteFrame(com.ksyun.media.streamer.framework.AVPacketBase)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -4371,10 +4655,10 @@ From class
          
          
          
-        void
+        int
       </span>
-      <span class="sympad">handleAVFrame</span>
-      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a> frame)</span>
+      <span class="sympad">doWriteFrame</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a> packet)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -4387,6 +4671,74 @@ From class
     <div class="jd-details-descr">
       
   <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="handleAVFrame(com.ksyun.media.streamer.framework.AVPacketBase)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">handleAVFrame</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a> inPacket)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="isAddExtraForVideoKeyFrame()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        abstract 
+         
+        boolean
+      </span>
+      <span class="sympad">isAddExtraForVideoKeyFrame</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Should this publisher add SPS/PPS data to video key frame.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>Publisher would add SPS/PPS to video key frame if returned true,
+ keep key frame as is if returned false.
+</li></ul>
+  </div>
 
     </div>
 </div>
@@ -4535,6 +4887,37 @@ From class
       </span>
       <span class="sympad">postInfo</span>
       <span class="normal">(int type)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="writeFrame(int, long, java.nio.ByteBuffer, long, long, int)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+         
+         
+        int
+      </span>
+      <span class="sympad">writeFrame</span>
+      <span class="normal">(int type, long avPacket, ByteBuffer data, long dts, long pts, int flags)</span>
     </h4>
       <div class="api-level">
         <div>

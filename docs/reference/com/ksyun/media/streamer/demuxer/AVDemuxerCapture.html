@@ -182,6 +182,7 @@
               
     <li><h2>Interfaces</h2>
       <ul>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.OnAudioPtsChangedListener.html">AVDemuxerCapture.OnAudioPtsChangedListener</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.OnVideoPtsChangedListener.html">AVDemuxerCapture.OnVideoPtsChangedListener</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerMultiCapture.OnMuxerFormatDetected.html">AVDemuxerMultiCapture.OnMuxerFormatDetected</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerWrapper.OnDemuxed.html">AVDemuxerWrapper.OnDemuxed</a></li>
@@ -404,6 +405,18 @@ Summary:
          
         
         interface</td>
+      <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.OnAudioPtsChangedListener.html">AVDemuxerCapture.OnAudioPtsChangedListener</a></td>
+      <td class="jd-descrcol" width="100%">&nbsp;</td>
+    </tr>
+    
+    
+    <tr class=" api apilevel-" >
+      <td class="jd-typecol">
+        
+         
+         
+        
+        interface</td>
       <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.OnVideoPtsChangedListener.html">AVDemuxerCapture.OnVideoPtsChangedListener</a></td>
       <td class="jd-descrcol" width="100%">&nbsp;</td>
     </tr>
@@ -437,19 +450,26 @@ Summary:
     
     <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#AV_DEMUXER_CAPTURE_START">AV_DEMUXER_CAPTURE_START</a></td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#AV_DEMUXER_CAPTURE_OPEN_FAIlED">AV_DEMUXER_CAPTURE_OPEN_FAIlED</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#AV_DEMUXER_CAPTURE_START_FAIlED">AV_DEMUXER_CAPTURE_START_FAIlED</a></td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#AV_DEMUXER_CAPTURE_STARTED">AV_DEMUXER_CAPTURE_STARTED</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">int</td>
+        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#AV_DEMUXER_CAPTURE_START_FAIlED">AV_DEMUXER_CAPTURE_START_FAIlED</a></td>
+        <td class="jd-descrcol" width="100%"></td>
+    </tr>
+    
+    
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#AV_DEMUXER_CAPTURE_STOP">AV_DEMUXER_CAPTURE_STOP</a></td>
         <td class="jd-descrcol" width="100%"></td>
@@ -488,6 +508,28 @@ Summary:
           
           long</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#mDemuxRangeStopTime">mDemuxRangeStopTime</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          Handler</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#mDemuxerHandler">mDemuxerHandler</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          HandlerThread</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#mDemuxerThread">mDemuxerThread</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
       
@@ -575,7 +617,7 @@ Summary:
             
             
             
-            <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
+            <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a>&gt;
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#getAudioSrcPin()">getAudioSrcPin</a></span>()
@@ -751,7 +793,7 @@ Summary:
             
             
             
-            <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a>&gt;
+            <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a>&gt;
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#getVideoSrcPin()">getVideoSrcPin</a></span>()
@@ -783,10 +825,10 @@ Summary:
             
             
             
-            void
+            boolean
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#onDemuxed(long, java.nio.ByteBuffer, long, long, int, int)">onDemuxed</a></span>(long avPacket, ByteBuffer data, long dts, long pts, int flags, int type)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#isPause()">isPause</a></span>()
         
   </td></tr>
 
@@ -802,8 +844,43 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#onDemuxed(long, java.nio.ByteBuffer, long, long, int, int)">onDemuxed</a></span>(long avPacket, ByteBuffer data, long dts, long pts, int flags, int type)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#onPrepared()">onPrepared</a></span>()
         
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#pause()">pause</a></span>()
+        
+        <div class="jd-descrdiv">pause demuxer
+</div>
+  
   </td></tr>
 
 
@@ -834,6 +911,57 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#reset()">reset</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#resume()">resume</a></span>()
+        
+        <div class="jd-descrdiv">resume demuxer
+</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#setAutoStart(boolean)">setAutoStart</a></span>(boolean autoStart)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#setAvDemuxerCaptureRanges(long, long)">setAvDemuxerCaptureRanges</a></span>(long startTimeMs, long endTimeMs)
         
         <div class="jd-descrdiv">set demux ranges</div>
@@ -842,7 +970,39 @@ Summary:
 
 
 	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#setDataSource(java.lang.String)">setDataSource</a></span>(String url)
+        
+  </td></tr>
+
+
+	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#setOnAudioPtsChangedListener(com.ksyun.media.streamer.demuxer.AVDemuxerCapture.OnAudioPtsChangedListener)">setOnAudioPtsChangedListener</a></span>(<a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.OnAudioPtsChangedListener.html">AVDemuxerCapture.OnAudioPtsChangedListener</a> listener)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -860,7 +1020,7 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -878,7 +1038,7 @@ Summary:
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -894,22 +1054,6 @@ Summary:
 
 
 	 
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#setSpeed(float)">setSpeed</a></span>(float speed)
-        
-  </td></tr>
-
-
-	 
     <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
@@ -920,7 +1064,7 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#start(java.lang.String)">start</a></span>(String url)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.html#start()">start</a></span>()
         
   </td></tr>
 
@@ -1284,7 +1428,7 @@ From interface
 
 
 
-<a id="AV_DEMUXER_CAPTURE_START"></a>
+<a id="AV_DEMUXER_CAPTURE_OPEN_FAIlED"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1294,7 +1438,47 @@ From interface
         final 
         int
       </span>
-        AV_DEMUXER_CAPTURE_START
+        AV_DEMUXER_CAPTURE_OPEN_FAIlED
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+        <div class="jd-tagdata">
+        <span class="jd-tagtitle">Constant Value: </span>
+        <span>
+            
+                -1
+                (0xffffffff)
+            
+        </span>
+        </div>
+    
+    </div>
+</div>
+
+
+
+<a id="AV_DEMUXER_CAPTURE_STARTED"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+        static 
+        final 
+        int
+      </span>
+        AV_DEMUXER_CAPTURE_STARTED
     </h4>
       <div class="api-level">
         
@@ -1474,6 +1658,66 @@ From interface
 
 
 
+<a id="mDemuxerHandler"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        Handler
+      </span>
+        mDemuxerHandler
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mDemuxerThread"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        HandlerThread
+      </span>
+        mDemuxerThread
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
 
 <!-- Public ctors -->
 
@@ -1601,7 +1845,7 @@ From interface
          
          
          
-        <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a>&gt;
+        <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a>&gt;
       </span>
       <span class="sympad">getAudioSrcPin</span>
       <span class="normal">()</span>
@@ -1942,7 +2186,7 @@ From interface
          
          
          
-        <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a>&gt;
+        <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;<a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a>&gt;
       </span>
       <span class="sympad">getVideoSrcPin</span>
       <span class="normal">()</span>
@@ -1976,6 +2220,37 @@ From interface
         int
       </span>
       <span class="sympad">getWidth</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="isPause()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">isPause</span>
       <span class="normal">()</span>
     </h4>
       <div class="api-level">
@@ -2056,6 +2331,38 @@ From interface
 </div>
 
 
+<a id="pause()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">pause</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>pause demuxer
+</p></div>
+
+    </div>
+</div>
+
+
 <a id="release()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -2070,6 +2377,100 @@ From interface
       </span>
       <span class="sympad">release</span>
       <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="reset()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">reset</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="resume()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">resume</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>resume demuxer
+</p></div>
+
+    </div>
+</div>
+
+
+<a id="setAutoStart(boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setAutoStart</span>
+      <span class="normal">(boolean autoStart)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -2127,6 +2528,68 @@ From interface
         </tr>
       </table>
   </div>
+
+    </div>
+</div>
+
+
+<a id="setDataSource(java.lang.String)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setDataSource</span>
+      <span class="normal">(String url)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="setOnAudioPtsChangedListener(com.ksyun.media.streamer.demuxer.AVDemuxerCapture.OnAudioPtsChangedListener)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">setOnAudioPtsChangedListener</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/demuxer/AVDemuxerCapture.OnAudioPtsChangedListener.html">AVDemuxerCapture.OnAudioPtsChangedListener</a> listener)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
 
     </div>
 </div>
@@ -2245,38 +2708,7 @@ From interface
 </div>
 
 
-<a id="setSpeed(float)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">setSpeed</span>
-      <span class="normal">(float speed)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
-<a id="start(java.lang.String)"></a>
+<a id="start()"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -2289,7 +2721,7 @@ From interface
         void
       </span>
       <span class="sympad">start</span>
-      <span class="normal">(String url)</span>
+      <span class="normal">()</span>
     </h4>
       <div class="api-level">
         <div>

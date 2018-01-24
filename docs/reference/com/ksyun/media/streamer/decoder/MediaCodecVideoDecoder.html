@@ -193,7 +193,8 @@
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/AVCodecAudioDecoder.html">AVCodecAudioDecoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/AVCodecVideoDecoder.html">AVCodecVideoDecoder</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/AVDecoderWrapper.html">AVDecoderWrapper</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html">Decoder</a>&lt;I,&nbsp;O&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html">Decoder</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecAudioDecoder.html">MediaCodecAudioDecoder</a></li>
           <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecVideoDecoder.html">MediaCodecVideoDecoder</a></li>
       </ul>
     </li>
@@ -322,7 +323,7 @@ Summary:
   
 
   
-    extends <a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html">Decoder</a>&lt;I,&nbsp;O&gt;<br/>
+    extends <a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html">Decoder</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;<br/>
   
   
   
@@ -350,7 +351,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
-        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html">com.ksyun.media.streamer.decoder.Decoder</a>&lt;I,&nbsp;O&gt;</td>
+        <td colspan="2" class="jd-inheritance-class-cell"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html">com.ksyun.media.streamer.decoder.Decoder</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">com.ksyun.media.streamer.framework.AVPacketBase</a>,&nbsp;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">com.ksyun.media.streamer.framework.AVFrameBase</a>&gt;</td>
     </tr>
     
 
@@ -586,7 +587,7 @@ Summary:
           public
           
           
-          <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&gt;</td>
+          <a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;I&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a>&gt;</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html#mSinkPin">mSinkPin</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -608,7 +609,7 @@ Summary:
           public
           
           
-          <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;O&gt;</td>
+          <a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;O&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/decoder/Decoder.html#mSrcPin">mSrcPin</a></td>
           <td class="jd-descrcol" width="100%"></td>
       </tr>
@@ -694,29 +695,13 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecVideoDecoder.html#awaitNewImage(long)">awaitNewImage</a></span>(long pts)
-        
-  </td></tr>
-
-
-	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecVideoDecoder.html#onFrameAvailable(SurfaceTexture)">onFrameAvailable</a></span>(SurfaceTexture surfaceTexture)
         
   </td></tr>
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -769,7 +754,7 @@ Summary:
             int
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecVideoDecoder.html#doFrameAvailable(com.ksyun.media.streamer.framework.ImgBufFrame)">doFrameAvailable</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a> frame)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/decoder/MediaCodecVideoDecoder.html#doFrameAvailable(com.ksyun.media.streamer.framework.ImgPacket)">doFrameAvailable</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a> packet)
         
   </td></tr>
 
@@ -1430,37 +1415,6 @@ From class
 
 
 
-<a id="awaitNewImage(long)"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-         
-         
-        void
-      </span>
-      <span class="sympad">awaitNewImage</span>
-      <span class="normal">(long pts)</span>
-    </h4>
-      <div class="api-level">
-        <div>
-
-</div>
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    </div>
-</div>
-
-
 <a id="onFrameAvailable(SurfaceTexture)"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1563,7 +1517,7 @@ From class
 </div>
 
 
-<a id="doFrameAvailable(com.ksyun.media.streamer.framework.ImgBufFrame)"></a>
+<a id="doFrameAvailable(com.ksyun.media.streamer.framework.ImgPacket)"></a>
 
 <div class="jd-details api apilevel-"> 
     <h4 class="jd-details-title">
@@ -1576,7 +1530,7 @@ From class
         int
       </span>
       <span class="sympad">doFrameAvailable</span>
-      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a> frame)</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a> packet)</span>
     </h4>
       <div class="api-level">
         <div>

@@ -185,16 +185,21 @@
       <ul>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioCodecFormat.html">AudioCodecFormat</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVConst.html">AVConst</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html">ImgBufFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgTexFormat.html">ImgTexFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/PinAdapter.html">PinAdapter</a>&lt;T&gt;</li>
-          <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;T&gt;</li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/PinAdapter.html">PinAdapter</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/VideoCodecFormat.html">VideoCodecFormat</a></li>
       </ul>
     </li>
               
@@ -257,9 +262,12 @@ Summary:
 
 
 
+  <a href="#lfields">Fields</a>
+  
 
 
-  <a href="#pubctors">Ctors</a>
+
+  &#124; <a href="#pubctors">Ctors</a>
   
 
 
@@ -326,7 +334,7 @@ Summary:
         
             <td class="jd-inheritance-space">&nbsp;&nbsp;&nbsp;&#x21b3;</td>
          	
-        <td colspan="1" class="jd-inheritance-class-cell">com.ksyun.media.streamer.framework.SinkPin&lt;T&gt;</td>
+        <td colspan="1" class="jd-inheritance-class-cell">com.ksyun.media.streamer.framework.SinkPin&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">com.ksyun.media.streamer.framework.AVFrameBase</a>&gt;</td>
     </tr>
     
 
@@ -386,6 +394,37 @@ Summary:
 
 
 
+
+
+<!-- =========== FIELD SUMMARY =========== -->
+<table id="lfields" class="jd-sumtable"><tr><th colspan="12">Fields</th></tr>
+
+
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          boolean</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html#mIsConnected">mIsConnected</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          List&lt;<a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;&gt;</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html#mSrcPins">mSrcPins</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+
+</table>
 
 
 
@@ -454,7 +493,39 @@ Summary:
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html#onConnected(com.ksyun.media.streamer.framework.SrcPin<T>)">onConnected</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&gt; srcPin)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            synchronized
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html#onConnected()">onConnected</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            synchronized
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html#onDisconnect(com.ksyun.media.streamer.framework.SrcPin<T>, boolean)">onDisconnect</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&gt; srcPin, boolean recursive)
         
   </td></tr>
 
@@ -751,6 +822,73 @@ From class
 <!-- Fields -->
 
 
+<!-- ========= FIELD DETAIL ======== -->
+<h2>Fields</h2>
+
+
+
+
+<a id="mIsConnected"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        boolean
+      </span>
+        mIsConnected
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="mSrcPins"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        protected 
+         
+         
+        List&lt;<a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;&gt;
+      </span>
+        mSrcPins
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    
+    </div>
+</div>
+
+
+
+
 <!-- Public ctors -->
 
 
@@ -836,6 +974,37 @@ From class
 </div>
 
 
+<a id="onConnected(com.ksyun.media.streamer.framework.SrcPin<T>)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+        synchronized 
+        void
+      </span>
+      <span class="sympad">onConnected</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&gt; srcPin)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="onConnected()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -850,6 +1019,37 @@ From class
       </span>
       <span class="sympad">onConnected</span>
       <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="onDisconnect(com.ksyun.media.streamer.framework.SrcPin<T>, boolean)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+        synchronized 
+        void
+      </span>
+      <span class="sympad">onDisconnect</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&gt; srcPin, boolean recursive)</span>
     </h4>
       <div class="api-level">
         <div>

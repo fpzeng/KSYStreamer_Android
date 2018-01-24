@@ -185,16 +185,21 @@
       <ul>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html">AudioBufFrame</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioCodecFormat.html">AudioCodecFormat</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AudioPacket.html">AudioPacket</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">AVBufFrame</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVConst.html">AVConst</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a></li>
           <li class="selected api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html">ImgBufFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFrame.html">ImgBufFrame</a></li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgPacket.html">ImgPacket</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgTexFormat.html">ImgTexFormat</a></li>
           <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame</a></li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/PinAdapter.html">PinAdapter</a>&lt;T&gt;</li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;T&gt;</li>
-          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/PinAdapter.html">PinAdapter</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SinkPin.html">SinkPin</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/SrcPin.html">SrcPin</a>&lt;T&nbsp;extends&nbsp;<a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">AVFrameBase</a>&gt;</li>
+          <li class="api apilevel-"><a href="../../../../../com/ksyun/media/streamer/framework/VideoCodecFormat.html">VideoCodecFormat</a></li>
       </ul>
     </li>
               
@@ -403,61 +408,40 @@ Summary:
     
     <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#FMT_AVC">FMT_AVC</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#FMT_BGR8">FMT_BGR8</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#FMT_GIF">FMT_GIF</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
     <tr class="alt-color api apilevel-" >
-        <td class="jd-typecol">int</td>
-        <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#FMT_HEVC">FMT_HEVC</a></td>
-        <td class="jd-descrcol" width="100%"></td>
-    </tr>
-    
-    
-    <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#FMT_I420">FMT_I420</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#FMT_NV21">FMT_NV21</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#FMT_OPAQUE">FMT_OPAQUE</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#FMT_RGBA">FMT_RGBA</a></td>
         <td class="jd-descrcol" width="100%"></td>
     </tr>
     
     
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">int</td>
         <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#FMT_YV12">FMT_YV12</a></td>
         <td class="jd-descrcol" width="100%"></td>
@@ -483,9 +467,9 @@ Summary:
           public
           
           
-          long</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#avCodecParPtr">avCodecParPtr</a></td>
-          <td class="jd-descrcol" width="100%">ptr of AVCodecParameters
+          int</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#height">height</a></td>
+          <td class="jd-descrcol" width="100%">image height
 </td>
       </tr>
       
@@ -496,8 +480,9 @@ Summary:
           
           
           int</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#format">format</a></td>
-          <td class="jd-descrcol" width="100%"></td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#orientation">orientation</a></td>
+          <td class="jd-descrcol" width="100%">orientation of current frame, 0/90/180/270 is valid value
+</td>
       </tr>
       
     
@@ -507,41 +492,21 @@ Summary:
           
           
           int</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#height">height</a></td>
-          <td class="jd-descrcol" width="100%"></td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#pixFmt">pixFmt</a></td>
+          <td class="jd-descrcol" width="100%">pixel format of current frame, AVConst.PIX_FMT_XXX
+</td>
       </tr>
       
     
       <tr class=" api apilevel-" >
-          <td class="jd-typecol">
-          public
-          
-          
-          int</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#orientation">orientation</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class="alt-color api apilevel-" >
           <td class="jd-typecol">
           public
           
           
           int[]</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#stride">stride</a></td>
-          <td class="jd-descrcol" width="100%"></td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol">
-          public
-          
-          
-          int</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#strideNum">strideNum</a></td>
-          <td class="jd-descrcol" width="100%"></td>
+          <td class="jd-descrcol" width="100%">stride of current image buffer
+</td>
       </tr>
       
     
@@ -551,8 +516,21 @@ Summary:
           
           
           int</td>
+          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#strideNum">strideNum</a></td>
+          <td class="jd-descrcol" width="100%">stride number
+</td>
+      </tr>
+      
+    
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol">
+          public
+          
+          
+          int</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#width">width</a></td>
-          <td class="jd-descrcol" width="100%"></td>
+          <td class="jd-descrcol" width="100%">image width
+</td>
       </tr>
       
     
@@ -581,7 +559,7 @@ Summary:
             
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#ImgBufFormat(int, int, int, int)">ImgBufFormat</a></span>(int format, int width, int height, int orientation)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#ImgBufFormat(int, int, int, int)">ImgBufFormat</a></span>(int pixFmt, int width, int height, int orientation)
         
   </td></tr>
 
@@ -597,7 +575,7 @@ Summary:
             
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#ImgBufFormat(int, int, int, int, int[])">ImgBufFormat</a></span>(int format, int width, int height, int orientation, int[] stride)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/ImgBufFormat.html#ImgBufFormat(int, int, int, int, int[])">ImgBufFormat</a></span>(int pixFmt, int width, int height, int orientation, int[] stride)
         
   </td></tr>
 
@@ -932,46 +910,6 @@ From class
 
 
 
-<a id="FMT_AVC"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-        final 
-        int
-      </span>
-        FMT_AVC
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-        <div class="jd-tagdata">
-        <span class="jd-tagtitle">Constant Value: </span>
-        <span>
-            
-                256
-                (0x00000100)
-            
-        </span>
-        </div>
-    
-    </div>
-</div>
-
-
-
 <a id="FMT_BGR8"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1003,86 +941,6 @@ From class
             
                 6
                 (0x00000006)
-            
-        </span>
-        </div>
-    
-    </div>
-</div>
-
-
-
-<a id="FMT_GIF"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-        final 
-        int
-      </span>
-        FMT_GIF
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-        <div class="jd-tagdata">
-        <span class="jd-tagtitle">Constant Value: </span>
-        <span>
-            
-                258
-                (0x00000102)
-            
-        </span>
-        </div>
-    
-    </div>
-</div>
-
-
-
-<a id="FMT_HEVC"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-        static 
-        final 
-        int
-      </span>
-        FMT_HEVC
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-        <div class="jd-tagdata">
-        <span class="jd-tagtitle">Constant Value: </span>
-        <span>
-            
-                257
-                (0x00000101)
             
         </span>
         </div>
@@ -1302,67 +1160,6 @@ From class
 
 
 
-<a id="avCodecParPtr"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-        long
-      </span>
-        avCodecParPtr
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>ptr of AVCodecParameters
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
-<a id="format"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-        int
-      </span>
-        format
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
-
-    
-    </div>
-</div>
-
-
-
 <a id="height"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1385,7 +1182,8 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>image height
+</p></div>
 
     
     </div>
@@ -1415,7 +1213,39 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>orientation of current frame, 0/90/180/270 is valid value
+</p></div>
+
+    
+    </div>
+</div>
+
+
+
+<a id="pixFmt"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+        int
+      </span>
+        pixFmt
+    </h4>
+      <div class="api-level">
+        
+
+
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>pixel format of current frame, AVConst.PIX_FMT_XXX
+</p></div>
 
     
     </div>
@@ -1445,7 +1275,8 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>stride of current image buffer
+</p></div>
 
     
     </div>
@@ -1475,7 +1306,8 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>stride number
+</p></div>
 
     
     </div>
@@ -1505,7 +1337,8 @@ From class
       </div>
     <div class="jd-details-descr">
       
-  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+  <div class="jd-tagdata jd-tagdescr"><p>image width
+</p></div>
 
     
     </div>
@@ -1535,7 +1368,7 @@ From class
         
       </span>
       <span class="sympad">ImgBufFormat</span>
-      <span class="normal">(int format, int width, int height, int orientation)</span>
+      <span class="normal">(int pixFmt, int width, int height, int orientation)</span>
     </h4>
       <div class="api-level">
         <div>
@@ -1566,7 +1399,7 @@ From class
         
       </span>
       <span class="sympad">ImgBufFormat</span>
-      <span class="normal">(int format, int width, int height, int orientation, int[] stride)</span>
+      <span class="normal">(int pixFmt, int width, int height, int orientation, int[] stride)</span>
     </h4>
       <div class="api-level">
         <div>
