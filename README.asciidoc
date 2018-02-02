@@ -142,12 +142,12 @@ allprojects {
 
 dependencies {
     # required, enough for most devices.
-    compile 'com.ksyun.media:libksylive-java:2.4.4'
-    compile 'com.ksyun.media:libksylive-armv7a:2.4.4'
+    compile 'com.ksyun.media:libksylive-java:3.0.0'
+    compile 'com.ksyun.media:libksylive-armv7a:3.0.0'
 
     # Other ABIs: optional
-    compile 'com.ksyun.media:libksylive-arm64:2.4.4'
-    compile 'com.ksyun.media:libksylive-x86:2.4.4'
+    compile 'com.ksyun.media:libksylive-arm64:3.0.0'
+    compile 'com.ksyun.media:libksylive-x86:3.0.0'
 }
 ----
 +
@@ -232,7 +232,7 @@ mStreamer = new KSYStreamer(this);
 // 设置预览View
 mStreamer.setDisplayPreview(mCameraPreview);
 // 设置推流url（需要向相关人员申请，测试地址并不稳定！）
-mStreamer.setUrl("rtmp://test.uplive.ksyun.com/live/{streamName}");
+mStreamer.setUrl("rtmp://mobile.kscvbu.cn/live/{streamName}");
 // 设置预览分辨率, 当一边为0时，SDK会根据另一边及实际预览View的尺寸进行计算
 mStreamer.setPreviewResolution(480, 0);
 // 设置推流分辨率，可以不同于预览分辨率（不应大于预览分辨率，否则推流会有画质损失）
