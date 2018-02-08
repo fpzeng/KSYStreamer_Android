@@ -319,7 +319,7 @@ public class StdCameraActivity extends BaseCameraActivity {
             case StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNSUPPORTED:
             case StreamerConstants.KSY_STREAMER_VIDEO_ENCODER_ERROR_UNKNOWN:
                 // 仅在编码出错时，切换编码方式后重试
-                if (mRecording) {
+                if (mRecording && mMainHandler != null) {
                     stopRecord();
                     mMainHandler.postDelayed(new Runnable() {
                         @Override
@@ -329,7 +329,7 @@ public class StdCameraActivity extends BaseCameraActivity {
                     }, 100);
                 }
             default:
-                if (mStreaming) {
+                if (mStreaming && mMainHandler != null) {
                     stopStream();
                     mMainHandler.postDelayed(new Runnable() {
                         @Override
@@ -493,14 +493,20 @@ public class StdCameraActivity extends BaseCameraActivity {
                 bitmap.compress(Bitmap.CompressFormat.JPEG, 90, bos);
                 runOnUiThread(new Runnable() {
                     public void run() {
-                        Toast.makeText(StdCameraActivity.this, "保存截图到 " +
+                        Toast.makeText(getApplicationContext(), "保存截图到 " +
                                 path, Toast.LENGTH_SHORT).show();
                     }
                 });
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
-            Toast.makeText(StdCameraActivity.this, "保存截图失败", Toast.LENGTH_SHORT).show();
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(getApplicationContext(), "保存截图失败",
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
         } finally {
             if (bos != null) try {
                 bos.close();

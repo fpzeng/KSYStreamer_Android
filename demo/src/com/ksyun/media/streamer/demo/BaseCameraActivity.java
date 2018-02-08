@@ -18,6 +18,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Chronometer;
@@ -133,6 +134,17 @@ public class BaseCameraActivity extends Activity implements
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 
+        // 4.4以上系统，自动隐藏导航栏
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+            getWindow().getDecorView().setSystemUiVisibility(
+                    View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                    | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                    | View.SYSTEM_UI_FLAG_FULLSCREEN
+                    | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+        }
+
         mMainHandler = new Handler();
         mStreamer = new KSYStreamer(this);
         mConfig = getConfig(getIntent().getExtras());
@@ -148,6 +160,23 @@ public class BaseCameraActivity extends Activity implements
         // 是否显示调试信息
         if (mConfig.mShowDebugInfo) {
             startDebugInfoTimer();
+        }
+    }
+
+    @Override
+    public void onWindowFocusChanged(boolean hasFocus) {
+        super.onWindowFocusChanged(hasFocus);
+        if (hasFocus) {
+            // 4.4以上系统，自动隐藏导航栏
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
+                getWindow().getDecorView().setSystemUiVisibility(
+                        View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                        | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
+                        | View.SYSTEM_UI_FLAG_FULLSCREEN
+                        | View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY);
+            }
         }
     }
 
@@ -298,7 +327,7 @@ public class BaseCameraActivity extends Activity implements
         mStreamer.getImgTexFilterMgt().setOnErrorListener(new ImgTexFilterBase.OnErrorListener() {
             @Override
             public void onError(ImgTexFilterBase filter, int errno) {
-                Toast.makeText(BaseCameraActivity.this, "当前机型不支持该滤镜",
+                Toast.makeText(getApplicationContext(), "当前机型不支持该滤镜",
                         Toast.LENGTH_SHORT).show();
                 mStreamer.getImgTexFilterMgt().setFilter(mStreamer.getGLRender(),
                         ImgTexFilterMgt.KSY_FILTER_BEAUTY_DISABLE);
@@ -407,7 +436,7 @@ public class BaseCameraActivity extends Activity implements
                 break;
             case StreamerConstants.KSY_STREAMER_FRAME_SEND_SLOW:
                 Log.d(TAG, "KSY_STREAMER_FRAME_SEND_SLOW " + msg1 + "ms");
-                Toast.makeText(BaseCameraActivity.this, "Network not good!",
+                Toast.makeText(getApplicationContext(), "Network not good!",
                         Toast.LENGTH_SHORT).show();
                 break;
             case StreamerConstants.KSY_STREAMER_EST_BW_RAISE:
@@ -492,7 +521,7 @@ public class BaseCameraActivity extends Activity implements
                 audioPerm != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                 Log.e(TAG, "No CAMERA or AudioRecord permission, please check");
-                Toast.makeText(this, "No CAMERA or AudioRecord permission, please check",
+                Toast.makeText(getApplicationContext(), "No CAMERA or AudioRecord permission, please check",
                         Toast.LENGTH_LONG).show();
             } else {
                 String[] permissions = {Manifest.permission.CAMERA,
@@ -518,7 +547,7 @@ public class BaseCameraActivity extends Activity implements
                     mStreamer.startCameraPreview();
                 } else {
                     Log.e(TAG, "No CAMERA or AudioRecord permission");
-                    Toast.makeText(this, "No CAMERA or AudioRecord permission",
+                    Toast.makeText(getApplicationContext(), "No CAMERA or AudioRecord permission",
                             Toast.LENGTH_LONG).show();
                 }
                 break;

@@ -1,10 +1,12 @@
 package com.ksyun.media.streamer.demo;
 
+import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.graphics.Point;
 import android.hardware.SensorManager;
 import android.net.Uri;
 import android.opengl.GLSurfaceView;
@@ -61,9 +63,11 @@ public class FloatViewActivity extends Activity {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.float_view_activity);
+        getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
+
         mObserverButton = new ButtonObserver();
         mLastRotation = getDisplayRotation();
-        mFloatBack = (ImageView) findViewById(R.id.float_back);
+        mFloatBack = findViewById(R.id.float_back);
         mFloatBack.setOnClickListener(mObserverButton);
 
         mOrientationEventListener = new OrientationEventListener(this,
@@ -83,6 +87,10 @@ public class FloatViewActivity extends Activity {
         }
 
         addFloatViewWithPermCheck();
+
+        // 重新绘制水印，避免横竖屏切换的影响
+        boolean isLandscape = (mLastRotation % 180) != 0;
+        updateWaterMark(isLandscape);
     }
 
     @Override
@@ -123,12 +131,16 @@ public class FloatViewActivity extends Activity {
     private void onBackoffClick() {
         KSYGlobalStreamer.getInstance().onPause();
         KSYGlobalStreamer.getInstance().setDisplayPreview((GLSurfaceView) null);
+        if (mOrientationEventListener != null) {
+            mOrientationEventListener.disable();
+        }
         FloatViewActivity.this.finish();
     }
 
     /**
      * 初始化悬浮窗口示例
      */
+    @SuppressLint("RtlHardcoded")
     private void initSurfaceWindow() {
         if (mWindowManager == null) {
             mWmParams = new WindowManager.LayoutParams();
@@ -136,7 +148,13 @@ public class FloatViewActivity extends Activity {
                     getSystemService(Application.WINDOW_SERVICE);
 
             //设置window type
-            mWmParams.type = WindowManager.LayoutParams.TYPE_TOAST;
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                mWmParams.type = WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY;
+            } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N_MR1) {
+                mWmParams.type = WindowManager.LayoutParams.TYPE_SYSTEM_ALERT;
+            } else {
+                mWmParams.type = WindowManager.LayoutParams.TYPE_TOAST;
+            }
 
             //设置图片格式，效果为背景透明
             mWmParams.format = PixelFormat.RGBA_8888;
@@ -145,20 +163,22 @@ public class FloatViewActivity extends Activity {
             mWmParams.flags = WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE;
             //开启硬件加速，以支持TextureView
             mWmParams.flags |= WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
-            //接收touch事件
-            mWmParams.flags |= WindowManager.LayoutParams.FLAG_WATCH_OUTSIDE_TOUCH;
-            //排版不受限制
-            mWmParams.flags |= WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS;
+            //将悬浮窗限制在屏幕内部
+            mWmParams.flags |= WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN;
+            //悬浮窗开启时，保持屏幕常亮
+            mWmParams.flags |= WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON;
             //调整悬浮窗显示的停靠位置为右侧底部
             mWmParams.gravity = Gravity.RIGHT | Gravity.BOTTOM;
 
-            // 以屏幕左上角为原点，设置x、y初始值，相对于gravity
+            // 以屏幕右下角为原点，设置x、y初始值，相对于gravity
             mWmParams.x = 0;
             mWmParams.y = 0;
 
             //设置悬浮窗口长宽数据(这里取屏幕长宽的等比率缩小值作为悬浮窗口的长宽)
-            int screenWidth = mWindowManager.getDefaultDisplay().getWidth();
-            int screenHeight = mWindowManager.getDefaultDisplay().getHeight();
+            Point screenPoint = new Point();
+            mWindowManager.getDefaultDisplay().getSize(screenPoint);
+            int screenWidth = screenPoint.x;
+            int screenHeight = screenPoint.y;
             int width;
             int height;
 
@@ -237,11 +257,6 @@ public class FloatViewActivity extends Activity {
 
     private void updateViewPosition() {
         if (mWmParams != null && mWindowManager != null) {
-            mWmParams.gravity = Gravity.RIGHT | Gravity.BOTTOM;
-
-            // 以屏幕左上角为原点，设置x、y初始值，相对于gravity
-            mWmParams.x = 0;
-            mWmParams.y = 0;
             mWindowManager.updateViewLayout(mFloatLayout, mWmParams);  //刷新显示
         }
     }
@@ -298,7 +313,7 @@ public class FloatViewActivity extends Activity {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
                 if (!Settings.canDrawOverlays(this)) {
                     // SYSTEM_ALERT_WINDOW permission not granted...
-                    Toast.makeText(FloatViewActivity.this, "SYSTEM_ALERT_WINDOW not granted",
+                    Toast.makeText(getApplicationContext(), "SYSTEM_ALERT_WINDOW not granted",
                             Toast.LENGTH_SHORT).show();
                 } else {
                     addFloatView();

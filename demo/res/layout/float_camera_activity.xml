@@ -60,7 +60,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="24dp"
         android:gravity="center"
         android:background="#11123456"
         android:text="@string/click_to_shoot"

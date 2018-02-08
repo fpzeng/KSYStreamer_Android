@@ -4,6 +4,7 @@ com.ksyun.media.streamer.capture.camera
 com.ksyun.media.streamer.decoder
 com.ksyun.media.streamer.demuxer
 com.ksyun.media.streamer.encoder
+com.ksyun.media.streamer.filter
 com.ksyun.media.streamer.filter.audio
 com.ksyun.media.streamer.filter.imgbuf
 com.ksyun.media.streamer.filter.imgtex

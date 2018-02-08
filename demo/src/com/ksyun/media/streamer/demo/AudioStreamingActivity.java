@@ -302,7 +302,7 @@ public class AudioStreamingActivity extends Activity implements
                 break;
             case StreamerConstants.KSY_STREAMER_FRAME_SEND_SLOW:
                 Log.d(TAG, "KSY_STREAMER_FRAME_SEND_SLOW " + msg1 + "ms");
-                Toast.makeText(AudioStreamingActivity.this, "Network not good!",
+                Toast.makeText(getApplicationContext(), "Network not good!",
                         Toast.LENGTH_SHORT).show();
                 break;
             case StreamerConstants.KSY_STREAMER_OPEN_FILE_SUCCESS:
@@ -326,7 +326,7 @@ public class AudioStreamingActivity extends Activity implements
         switch (what) {
             case StreamerConstants.KSY_STREAMER_AUDIO_RECORDER_ERROR_START_FAILED:
             case StreamerConstants.KSY_STREAMER_AUDIO_RECORDER_ERROR_UNKNOWN:
-                Toast.makeText(AudioStreamingActivity.this,
+                Toast.makeText(getApplicationContext(),
                         "Audio capture failed!",
                         Toast.LENGTH_SHORT).show();
                 stopStream();
@@ -384,7 +384,7 @@ public class AudioStreamingActivity extends Activity implements
         if (audioPerm != PackageManager.PERMISSION_GRANTED) {
             if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
                 Log.e(TAG, "No AudioRecord permission, please check");
-                Toast.makeText(this, "No AudioRecord permission, please check",
+                Toast.makeText(getApplicationContext(), "No AudioRecord permission, please check",
                         Toast.LENGTH_LONG).show();
             } else {
                 mDelayStartRecord = startRecord;
@@ -418,7 +418,7 @@ public class AudioStreamingActivity extends Activity implements
                     }
                 } else {
                     Log.e(TAG, "No AudioRecord permission");
-                    Toast.makeText(this, "No AudioRecord permission",
+                    Toast.makeText(getApplicationContext(), "No AudioRecord permission",
                             Toast.LENGTH_LONG).show();
                 }
                 break;

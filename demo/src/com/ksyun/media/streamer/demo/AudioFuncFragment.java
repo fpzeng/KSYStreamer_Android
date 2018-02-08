@@ -24,6 +24,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Fragment for audio settings.
@@ -34,6 +35,8 @@ public class AudioFuncFragment extends Fragment {
 
     @BindView(R.id.audio_ld)
     protected CheckBox mAudioLDCB;
+
+    protected Unbinder mUnbinder;
 
     protected StdCameraActivity mActivity;
     protected KSYStreamer mStreamer;
@@ -49,11 +52,17 @@ public class AudioFuncFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.audio_func_fragment, container, false);
-        ButterKnife.bind(this, view);
+        mUnbinder = ButterKnife.bind(this, view);
         mActivity = (StdCameraActivity) getActivity();
         mStreamer = mActivity.mStreamer;
         mBgmPath = mActivity.mSdcardPath + "/test.mp3";
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
     }
 
     @Override

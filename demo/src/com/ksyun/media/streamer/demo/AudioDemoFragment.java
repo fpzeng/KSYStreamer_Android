@@ -14,6 +14,7 @@ import com.ksyun.media.streamer.framework.AVConst;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * Audio streaming demo fragment.
@@ -34,13 +35,21 @@ public class AudioDemoFragment extends DemoFragment {
     @BindView(R.id.print_debug_info)
     protected CheckBox mShowDebugInfoCheckBox;
 
+    protected Unbinder mUnbinder;
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.audio_demo_fragment, container, false);
-        ButterKnife.bind(this, view);
+        mUnbinder = ButterKnife.bind(this, view);
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
     }
 
     protected void loadParams(AudioStreamingActivity.AudioStreamConfig config, String url) {
