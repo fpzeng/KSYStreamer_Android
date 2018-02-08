@@ -1,12 +1,11 @@
 package com.ksyun.media.streamer.demo;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.WindowManager;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 /**
@@ -14,12 +13,12 @@ import android.widget.RelativeLayout;
  */
 
 public class FloatView extends RelativeLayout {
+    private static final String TAG = "FloatView";
+
     private float mTouchStartX;
     private float mTouchStartY;
-    private float mLastX;
-    private float mLastY;
-    private float mMaxX = 0;
-    private float mMaxY = 0;
+    private int mOriginX;
+    private int mOriginY;
 
     private WindowManager mWindowManager;
     private WindowManager.LayoutParams mWmParams;
@@ -44,19 +43,29 @@ public class FloatView extends RelativeLayout {
     }
 
     @Override
+    public boolean performClick() {
+        super.performClick();
+        return true;
+    }
+
+    @Override
     public boolean onTouchEvent(MotionEvent event) {
-        //获取相对屏幕的坐标，即以屏幕左上角为原点
-        mLastX = event.getRawX();
-        mLastY = event.getRawY();
+        super.onTouchEvent(event);
 
         switch (event.getAction()) {
             case MotionEvent.ACTION_DOWN:
-                //获取相对View的坐标，即以此View左上角为原点
-                mTouchStartX = event.getX();
-                mTouchStartY = event.getY();
+                //获取相对屏幕的坐标，即以屏幕左上角为原点
+                mTouchStartX = event.getRawX();
+                mTouchStartY = event.getRawY();
+                //保存初始位置信息
+                if (mWmParams != null) {
+                    mOriginX = mWmParams.x;
+                    mOriginY = mWmParams.y;
+                }
+                performClick();
                 break;
             case MotionEvent.ACTION_MOVE:
-                updateViewPosition();
+                updateViewPosition(event.getRawX(), event.getRawY());
                 break;
             case MotionEvent.ACTION_UP:
                 mTouchStartX = 0;
@@ -71,38 +80,22 @@ public class FloatView extends RelativeLayout {
                 .getSystemService(Context.WINDOW_SERVICE);
     }
 
-    private void updateViewPosition() {
+    @SuppressLint("RtlHardcoded")
+    private void updateViewPosition(float x, float y) {
         if (mWmParams != null) {
-            mMaxX = mWindowManager.getDefaultDisplay().getWidth() - this.getWidth();
-            mMaxY = mWindowManager.getDefaultDisplay().getHeight() - this.getHeight();
-
-            //更新浮动窗口位置参数
-            float newX = (mLastX - mTouchStartX);
-            float newY = (mLastY - mTouchStartY);
-            //以屏幕左上角为原点
-            mWmParams.gravity = Gravity.LEFT | Gravity.TOP;
-
-            //不能移除屏幕最左边和最上边
-            if (newX < 0) {
-                newX = 0;
+            // 计算偏移量
+            float offX = x - mTouchStartX;
+            float offY = y - mTouchStartY;
+            if ((mWmParams.gravity & Gravity.RIGHT) != 0) {
+                offX = -offX;
             }
-
-            if (newY < 0) {
-                newY = 0;
+            if ((mWmParams.gravity & Gravity.BOTTOM) != 0) {
+                offY = -offY;
             }
-
-            //不能移出屏幕最右边和最下边
-            if (newX > mMaxX) {
-                newX = mMaxX;
-            }
-
-            if (newY > mMaxY) {
-                newY = mMaxY;
-            }
-            mWmParams.x = (int) newX;
-            mWmParams.y = (int) newY;
-            mWindowManager.updateViewLayout(this, mWmParams);  //刷新显示
-
+            // 配置参数，刷新显示
+            mWmParams.x = (int) (mOriginX + offX);
+            mWmParams.y = (int) (mOriginY + offY);
+            mWindowManager.updateViewLayout(this, mWmParams);
         }
     }
 }

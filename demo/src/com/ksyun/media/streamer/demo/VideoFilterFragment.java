@@ -34,6 +34,7 @@ import java.security.InvalidParameterException;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 import jp.co.cyberagent.android.gpuimage.GPUImageEmbossFilter;
 import jp.co.cyberagent.android.gpuimage.GPUImageFilter;
 import jp.co.cyberagent.android.gpuimage.GPUImageGaussianBlurFilter;
@@ -71,6 +72,8 @@ public class VideoFilterFragment extends Fragment {
     @BindView(R.id.ruddy_seek_bar)
     protected SeekBar mRuddySeekBar;
 
+    protected Unbinder mUnbinder;
+
     protected StdCameraActivity mActivity;
     protected KSYStreamer mStreamer;
 
@@ -96,11 +99,17 @@ public class VideoFilterFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.video_filter_fragment, container, false);
-        ButterKnife.bind(this, view);
+        mUnbinder = ButterKnife.bind(this, view);
         mActivity = (StdCameraActivity) getActivity();
         mStreamer = mActivity.mStreamer;
         initBeautyUI();
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
     }
 
     protected void initBeautyUI() {
@@ -108,7 +117,8 @@ public class VideoFilterFragment extends Fragment {
         mStreamer.getImgTexFilterMgt().setOnErrorListener(new ImgTexFilterBase.OnErrorListener() {
             @Override
             public void onError(ImgTexFilterBase filter, int errno) {
-                Toast.makeText(mActivity, "当前机型不支持该滤镜", Toast.LENGTH_SHORT).show();
+                Toast.makeText(mActivity.getApplicationContext(), "当前机型不支持该滤镜",
+                        Toast.LENGTH_SHORT).show();
                 mStreamer.getImgTexFilterMgt().replaceFilter(filter, null);
 
                 // 找到对应的报错filter, 并根据需要更新UI

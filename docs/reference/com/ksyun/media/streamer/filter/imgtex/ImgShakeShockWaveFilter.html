@@ -153,6 +153,8 @@
     <li class="api apilevel-">
   <a href="../../../../../../com/ksyun/media/streamer/encoder/package-summary.html">com.ksyun.media.streamer.encoder</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../../com/ksyun/media/streamer/filter/package-summary.html">com.ksyun.media.streamer.filter</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../../com/ksyun/media/streamer/filter/audio/package-summary.html">com.ksyun.media.streamer.filter.audio</a></li>
     <li class="api apilevel-">
   <a href="../../../../../../com/ksyun/media/streamer/filter/imgbuf/package-summary.html">com.ksyun.media.streamer.filter.imgbuf</a></li>
@@ -202,7 +204,10 @@
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgBeautyToneCurveFilter.html">ImgBeautyToneCurveFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgEffectFilterBase.html">ImgEffectFilterBase</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgFilterBase.html">ImgFilterBase</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgShaderXSingleFilter.html">ImgShaderXSingleFilter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgShake70sFilter.html">ImgShake70sFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgShakeColorFilter.html">ImgShakeColorFilter</a></li>
+          <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgShakeIllusionFilter.html">ImgShakeIllusionFilter</a></li>
           <li class="selected api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgShakeShockWaveFilter.html">ImgShakeShockWaveFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgShakeZoomFilter.html">ImgShakeZoomFilter</a></li>
           <li class="api apilevel-"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexBufFilter.html">ImgTexBufFilter</a></li>
@@ -851,6 +856,28 @@ Summary:
       </tr>
       
     
+      <tr class=" api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          int</td>
+          <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#mOutTexture">mOutTexture</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
+      <tr class="alt-color api apilevel-" >
+          <td class="jd-typecol">
+          protected
+          
+          
+          boolean</td>
+          <td class="jd-linkcol"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#mReuseFbo">mReuseFbo</a></td>
+          <td class="jd-descrcol" width="100%"></td>
+      </tr>
+      
+    
 </table>
   </div>
 </div>
@@ -1168,6 +1195,22 @@ From class
             void
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgEffectFilterBase.html#onDisconnect(boolean)">onDisconnect</a></span>(boolean recursive)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgEffectFilterBase.html#onDraw(com.ksyun.media.streamer.framework.ImgTexFrame[])">onDraw</a></span>(<a href="../../../../../../com/ksyun/media/streamer/framework/ImgTexFrame.html">ImgTexFrame[]</a> frames)
         
         <div class="jd-descrdiv">On draw</div>
@@ -1176,7 +1219,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1194,7 +1237,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1212,7 +1255,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1230,7 +1273,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1249,7 +1292,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1265,22 +1308,6 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
-        <td class="jd-typecol">
-            
-            
-            
-            
-            
-            void
-        </td>
-        <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgEffectFilterBase.html#setEffectAuto(boolean)">setEffectAuto</a></span>(boolean auto)
-        
-  </td></tr>
-
-
-	 
     <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
@@ -1291,7 +1318,7 @@ From class
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgEffectFilterBase.html#setFragment(java.lang.String)">setFragment</a></span>(String fragment)
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgEffectFilterBase.html#setEffectAuto(boolean)">setEffectAuto</a></span>(boolean auto)
         
   </td></tr>
 
@@ -1323,13 +1350,29 @@ From class
             void
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgEffectFilterBase.html#setGradientFactorFrameCount(int)">setGradientFactorFrameCount</a></span>(int framesCount)
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgEffectFilterBase.html#setFragment(java.lang.String)">setFragment</a></span>(String fragment)
         
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgEffectFilterBase.html#setGradientFactorFrameCount(int)">setGradientFactorFrameCount</a></span>(int framesCount)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1347,7 +1390,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1365,7 +1408,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1383,7 +1426,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1401,7 +1444,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1417,7 +1460,7 @@ From class
 
 
 	 
-    <tr class="alt-color api apilevel-" >
+    <tr class=" api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1433,7 +1476,7 @@ From class
 
 
 	 
-    <tr class=" api apilevel-" >
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -1820,6 +1863,38 @@ From class
 	 
     <tr class=" api apilevel-" >
         <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#isReuseFbo()">isReuseFbo</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#onDisconnect(boolean)">onDisconnect</a></span>(boolean recursive)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
             abstract
             
             
@@ -1965,6 +2040,22 @@ From class
         </td>
         <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#setGLRender(com.ksyun.media.streamer.util.gles.GLRender)">setGLRender</a></span>(<a href="../../../../../../com/ksyun/media/streamer/util/gles/GLRender.html">GLRender</a> glRender)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../../com/ksyun/media/streamer/filter/imgtex/ImgTexFilterBase.html#setReuseFbo(boolean)">setReuseFbo</a></span>(boolean reuse)
         
   </td></tr>
 

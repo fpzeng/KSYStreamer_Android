@@ -16,6 +16,7 @@ import com.lht.paintview.PaintView;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
+import butterknife.Unbinder;
 
 /**
  * Fragment for video settings.
@@ -30,6 +31,8 @@ public class StreamFuncFragment extends Fragment {
     @BindView(R.id.paint_streaming)
     protected CheckBox mPaintStreamingCB;
 
+    protected Unbinder mUnbinder;
+
     protected StdCameraActivity mActivity;
     protected KSYStreamer mStreamer;
     protected ViewCapture mPaintViewCapture;
@@ -40,11 +43,17 @@ public class StreamFuncFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.stream_func_fragment, container, false);
-        ButterKnife.bind(this, view);
+        mUnbinder = ButterKnife.bind(this, view);
         mActivity = (StdCameraActivity) getActivity();
         mStreamer = mActivity.mStreamer;
         mPaintView = mActivity.mPaintView;
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
     }
 
     @Override

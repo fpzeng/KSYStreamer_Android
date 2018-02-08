@@ -48,11 +48,13 @@ public class AnimatedImageCapture {
     private Bitmap mTempBitmap;
     private Timer mTimer;
     private CloseableReference<? extends CloseableImage> mCloseableReference;
+    private final Object mLock = new Object();
 
     private ImgTexSrcPin mImgTexSrcPin;
 
     public AnimatedImageCapture(GLRender glRender) {
         mImgTexSrcPin = new ImgTexSrcPin(glRender);
+        mImgTexSrcPin.setUseSyncMode(true);
     }
 
     public SrcPin<ImgTexFrame> getSrcPin() {
@@ -80,13 +82,15 @@ public class AnimatedImageCapture {
     }
 
     public void stop() {
-        if (mTimer != null) {
-            mTimer.cancel();
-            mTimer = null;
-        }
-        if (mCloseableReference != null) {
-            CloseableReference.closeSafely(mCloseableReference);
-            mCloseableReference = null;
+        synchronized (mLock) {
+            if (mTimer != null) {
+                mTimer.cancel();
+                mTimer = null;
+            }
+            if (mCloseableReference != null) {
+                CloseableReference.closeSafely(mCloseableReference);
+                mCloseableReference = null;
+            }
         }
         mImgTexSrcPin.updateFrame(null, false);
     }
@@ -97,78 +101,81 @@ public class AnimatedImageCapture {
     }
 
     private void updateFrame() {
-        if (mCloseableReference == null) {
-            return;
-        }
-        try {
-            CloseableImage closeableImage = mCloseableReference.get();
-            if (closeableImage instanceof CloseableBitmap) {
-                Bitmap bitmap = ((CloseableBitmap) closeableImage).getUnderlyingBitmap();
-                if (bitmap != null && !bitmap.isRecycled()) {
-                    mBitmap = Bitmap.createBitmap(bitmap);
-                    mImgTexSrcPin.updateFrame(mBitmap, false);
-                }
+        synchronized (mLock) {
+            if (mCloseableReference == null) {
                 return;
             }
-
-            if (!(closeableImage instanceof CloseableAnimatedImage)) {
-                return;
-            }
-            AnimatedImage animatedImage = ((CloseableAnimatedImage) closeableImage).getImage();
-            int w = animatedImage.getWidth();
-            int h = animatedImage.getHeight();
-            if (mBitmap == null || mBitmap.isRecycled()) {
-                Log.d(TAG, "Got animated image " + w + "x" + h);
-                mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-                mTempBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
-                mCanvas = new Canvas(mBitmap);
-            }
-            if (mIndex >= animatedImage.getFrameCount()) {
-                mRepeatCount++;
-                mIndex = 0;
-                int loopCount = animatedImage.getLoopCount();
-                if (loopCount > 0 && mRepeatCount >= loopCount) {
-                    Log.d(TAG, "repeat ended, repeat times: " + mRepeatCount);
+            try {
+                CloseableImage closeableImage = mCloseableReference.get();
+                if (closeableImage instanceof CloseableBitmap) {
+                    Bitmap bitmap = ((CloseableBitmap) closeableImage).getUnderlyingBitmap();
+                    if (bitmap != null && !bitmap.isRecycled()) {
+                        mBitmap = Bitmap.createBitmap(bitmap);
+                        mImgTexSrcPin.updateFrame(mBitmap, false);
+                    }
                     return;
                 }
-            }
 
-            AnimatedImageFrame imageFrame = animatedImage.getFrame(mIndex);
-            int duration = imageFrame.getDurationMs();
-            AnimatedDrawableFrameInfo frameInfo = animatedImage.getFrameInfo(mIndex);
-            imageFrame.renderFrame(frameInfo.width, frameInfo.height, mTempBitmap);
-            if (VERBOSE) {
-                Log.d(TAG, "blend: " + frameInfo.blendOperation.name() +
-                        " dispose: " + frameInfo.disposalMethod.name() +
-                        " x=" + frameInfo.xOffset + " y=" + frameInfo.yOffset +
-                        " " + frameInfo.width + "x" + frameInfo.height);
-            }
-            if (frameInfo.blendOperation == AnimatedDrawableFrameInfo.BlendOperation.NO_BLEND) {
-                mBitmap.eraseColor(Color.TRANSPARENT);
-            }
-            Rect srcRect = new Rect(0, 0, frameInfo.width, frameInfo.height);
-            Rect dstRect = new Rect(frameInfo.xOffset, frameInfo.yOffset,
-                    frameInfo.xOffset + frameInfo.width, frameInfo.yOffset + frameInfo.height);
-            mCanvas.drawBitmap(mTempBitmap, srcRect, dstRect, null);
-            if (VERBOSE) {
-                Log.d(TAG, "frame " + mIndex + " got, duration=" + duration);
-            }
-            mImgTexSrcPin.updateFrame(mBitmap, false);
-            imageFrame.dispose();
-
-            mIndex++;
-            if (mLastDate == null) {
-                mLastDate = new Date();
-            }
-            mLastDate = new Date(mLastDate.getTime() + duration);
-            mTimer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    updateFrame();
+                if (!(closeableImage instanceof CloseableAnimatedImage)) {
+                    return;
                 }
-            }, mLastDate);
-        } catch (Exception e) {
-            e.printStackTrace();
+                AnimatedImage animatedImage = ((CloseableAnimatedImage) closeableImage).getImage();
+                int w = animatedImage.getWidth();
+                int h = animatedImage.getHeight();
+                if (mBitmap == null || mBitmap.isRecycled()) {
+                    Log.d(TAG, "Got animated image " + w + "x" + h);
+                    mBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+                    mTempBitmap = Bitmap.createBitmap(w, h, Bitmap.Config.ARGB_8888);
+                    mCanvas = new Canvas(mBitmap);
+                }
+                if (mIndex >= animatedImage.getFrameCount()) {
+                    mRepeatCount++;
+                    mIndex = 0;
+                    int loopCount = animatedImage.getLoopCount();
+                    if (loopCount > 0 && mRepeatCount >= loopCount) {
+                        Log.d(TAG, "repeat ended, repeat times: " + mRepeatCount);
+                        return;
+                    }
+                }
+
+                AnimatedImageFrame imageFrame = animatedImage.getFrame(mIndex);
+                int duration = imageFrame.getDurationMs();
+                AnimatedDrawableFrameInfo frameInfo = animatedImage.getFrameInfo(mIndex);
+                imageFrame.renderFrame(frameInfo.width, frameInfo.height, mTempBitmap);
+                if (VERBOSE) {
+                    Log.d(TAG, "blend: " + frameInfo.blendOperation.name() +
+                            " dispose: " + frameInfo.disposalMethod.name() +
+                            " x=" + frameInfo.xOffset + " y=" + frameInfo.yOffset +
+                            " " + frameInfo.width + "x" + frameInfo.height);
+                }
+                if (frameInfo.blendOperation == AnimatedDrawableFrameInfo.BlendOperation.NO_BLEND) {
+                    mBitmap.eraseColor(Color.TRANSPARENT);
+                }
+                Rect srcRect = new Rect(0, 0, frameInfo.width, frameInfo.height);
+                Rect dstRect = new Rect(frameInfo.xOffset, frameInfo.yOffset,
+                        frameInfo.xOffset + frameInfo.width,
+                        frameInfo.yOffset + frameInfo.height);
+                mCanvas.drawBitmap(mTempBitmap, srcRect, dstRect, null);
+                if (VERBOSE) {
+                    Log.d(TAG, "frame " + mIndex + " got, duration=" + duration);
+                }
+                mImgTexSrcPin.updateFrame(mBitmap, false);
+                imageFrame.dispose();
+
+                mIndex++;
+                if (mLastDate == null) {
+                    mLastDate = new Date();
+                }
+                mLastDate = new Date(mLastDate.getTime() + duration);
+                mTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        updateFrame();
+                    }
+                }, mLastDate);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -182,25 +189,27 @@ public class AnimatedImageCapture {
                 return;
             }
 
-            // get ref
-            mCloseableReference = dataSource.getResult();
+            synchronized (mLock) {
+                // get ref
+                mCloseableReference = dataSource.getResult();
 
-            // reset
-            mIndex = 0;
-            mRepeatCount = 0;
-            mLastDate = null;
-            mBitmap = null;
-            mTempBitmap = null;
-            mCanvas = null;
+                // reset
+                mIndex = 0;
+                mRepeatCount = 0;
+                mLastDate = null;
+                mBitmap = null;
+                mTempBitmap = null;
+                mCanvas = null;
 
-            // create timer
-            mTimer = new Timer("AnimatedImage");
-            mTimer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    updateFrame();
-                }
-            }, 0);
+                // create timer
+                mTimer = new Timer("AnimatedImage");
+                mTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        updateFrame();
+                    }
+                }, 0);
+            }
         }
 
         @Override

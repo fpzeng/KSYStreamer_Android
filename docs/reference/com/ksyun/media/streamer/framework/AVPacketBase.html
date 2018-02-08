@@ -153,6 +153,8 @@
     <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/encoder/package-summary.html">com.ksyun.media.streamer.encoder</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../com/ksyun/media/streamer/filter/package-summary.html">com.ksyun.media.streamer.filter</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/filter/audio/package-summary.html">com.ksyun.media.streamer.filter.audio</a></li>
     <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/filter/imgbuf/package-summary.html">com.ksyun.media.streamer.filter.imgbuf</a></li>
@@ -244,6 +246,8 @@
 
 
   
+   
+  
   
    
   
@@ -286,6 +290,9 @@ Summary:
   
 
 
+
+  &#124; <a href="#pubmethods">Methods</a>
+  
 
 
 
@@ -531,18 +538,6 @@ Summary:
           public
           
           
-          long</td>
-          <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html#avPacketOpaque">avPacketOpaque</a></td>
-          <td class="jd-descrcol" width="100%">Native pointer to native av_packet,
- could be pass through from encoder to publisher.</td>
-      </tr>
-      
-    
-      <tr class=" api apilevel-" >
-          <td class="jd-typecol">
-          public
-          
-          
           ByteBuffer</td>
           <td class="jd-linkcol"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html#buf">buf</a></td>
           <td class="jd-descrcol" width="100%">A/V Packet buffer, must be direct buffer
@@ -550,7 +545,7 @@ Summary:
       </tr>
       
     
-      <tr class="alt-color api apilevel-" >
+      <tr class=" api apilevel-" >
           <td class="jd-typecol">
           public
           
@@ -645,6 +640,38 @@ Summary:
             
         </td>
         <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html#AVPacketBase(long)">AVPacketBase</a></span>(long avPacketOpaque)
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html#AVPacketBase(com.ksyun.media.streamer.framework.AVPacketBase)">AVPacketBase</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a> pkt)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            
+        </td>
+        <td class="jd-linkcol" width="100%">
         <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html#AVPacketBase()">AVPacketBase</a></span>()
         
   </td></tr>
@@ -658,6 +685,85 @@ Summary:
 
 
 
+<!-- ========== METHOD SUMMARY =========== -->
+<table id="pubmethods" class="jd-sumtable"><tr><th colspan="12">Public Methods</th></tr>
+
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            long
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html#getAvPacketOpaque()">getAvPacketOpaque</a></span>()
+        
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html#isRefCounted()">isRefCounted</a></span>()
+        
+        <div class="jd-descrdiv">Is this frame ref counted.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html#ref()">ref</a></span>()
+        
+        <div class="jd-descrdiv">Increase ref count if this frame is ref counted.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html#unref()">unref</a></span>()
+        
+        <div class="jd-descrdiv">Decrease ref count if this frame is ref counted.</div>
+  
+  </td></tr>
+
+
+
+</table>
+
+
 
 
 
@@ -668,6 +774,84 @@ Summary:
   <a href="#" class="toggle-all" onclick="return toggleAllInherited(this, null)">[Expand]</a>
   <div style="clear:left;">Inherited Methods</div></th></tr>
 
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.ksyun.media.streamer.framework.AVFrameBase" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-com.ksyun.media.streamer.framework.AVFrameBase-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  <a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">com.ksyun.media.streamer.framework.AVFrameBase</a>
+
+<div id="inherited-methods-com.ksyun.media.streamer.framework.AVFrameBase">
+  <div id="inherited-methods-com.ksyun.media.streamer.framework.AVFrameBase-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.ksyun.media.streamer.framework.AVFrameBase-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#isRefCounted()">isRefCounted</a></span>()
+        
+        <div class="jd-descrdiv">Is this frame ref counted.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#ref()">ref</a></span>()
+        
+        <div class="jd-descrdiv">Increase ref count if this frame is ref counted.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#unref()">unref</a></span>()
+        
+        <div class="jd-descrdiv">Decrease ref count if this frame is ref counted.</div>
+  
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
 
 
 
@@ -904,38 +1088,6 @@ From class
 
 
 
-<a id="avPacketOpaque"></a>
-
-<div class="jd-details api apilevel-"> 
-    <h4 class="jd-details-title">
-      <span class="normal">
-        public 
-         
-         
-        long
-      </span>
-        avPacketOpaque
-    </h4>
-      <div class="api-level">
-        
-
-
-        
-  
-
-      </div>
-    <div class="jd-details-descr">
-      
-  <div class="jd-tagdata jd-tagdescr"><p>Native pointer to native av_packet,
- could be pass through from encoder to publisher.
-</p></div>
-
-    
-    </div>
-</div>
-
-
-
 <a id="buf"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1007,6 +1159,68 @@ From class
 
 
 
+<a id="AVPacketBase(long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        
+      </span>
+      <span class="sympad">AVPacketBase</span>
+      <span class="normal">(long avPacketOpaque)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="AVPacketBase(com.ksyun.media.streamer.framework.AVPacketBase)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        
+      </span>
+      <span class="sympad">AVPacketBase</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AVPacketBase.html">AVPacketBase</a> pkt)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
 <a id="AVPacketBase()"></a>
 
 <div class="jd-details api apilevel-"> 
@@ -1048,6 +1262,143 @@ From class
 
 <!-- ========= METHOD DETAIL ======== -->
 <!-- Public methdos -->
+
+<h2>Public Methods</h2>
+
+
+
+<a id="getAvPacketOpaque()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        long
+      </span>
+      <span class="sympad">getAvPacketOpaque</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
+
+
+<a id="isRefCounted()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        boolean
+      </span>
+      <span class="sympad">isRefCounted</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Is this frame ref counted.</p></div>
+  <div class="jd-tagdata">
+      <h5 class="jd-tagtitle">Returns</h5>
+      <ul class="nolist"><li>true if ref counted false if not.
+</li></ul>
+  </div>
+
+    </div>
+</div>
+
+
+<a id="ref()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">ref</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Increase ref count if this frame is ref counted.
+</p></div>
+
+    </div>
+</div>
+
+
+<a id="unref()"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        void
+      </span>
+      <span class="sympad">unref</span>
+      <span class="normal">()</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p>Decrease ref count if this frame is ref counted.
+ When ref count decrease to zero, buffer in this frame would be freed.
+</p></div>
+
+    </div>
+</div>
+
+
 
 
 

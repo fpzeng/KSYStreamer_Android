@@ -153,6 +153,8 @@
     <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/encoder/package-summary.html">com.ksyun.media.streamer.encoder</a></li>
     <li class="api apilevel-">
+  <a href="../../../../../com/ksyun/media/streamer/filter/package-summary.html">com.ksyun.media.streamer.filter</a></li>
+    <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/filter/audio/package-summary.html">com.ksyun.media.streamer.filter.audio</a></li>
     <li class="api apilevel-">
   <a href="../../../../../com/ksyun/media/streamer/filter/imgbuf/package-summary.html">com.ksyun.media.streamer.filter.imgbuf</a></li>
@@ -244,12 +246,16 @@
 
 
   
+   
+  
   
   
    
   
   
 
+  
+   
   
   
    
@@ -645,13 +651,29 @@ Summary:
             
         </td>
         <td class="jd-linkcol" width="100%">
-        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html#AudioBufFrame(com.ksyun.media.streamer.framework.AudioBufFormat, java.nio.ByteBuffer, long)">AudioBufFrame</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a> format, ByteBuffer buf, long pts)
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html#AudioBufFrame(com.ksyun.media.streamer.framework.AudioBufFormat, com.ksyun.media.streamer.util.FrameBufferCache, java.nio.ByteBuffer, long)">AudioBufFrame</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a> format, <a href="../../../../../com/ksyun/media/streamer/util/FrameBufferCache.html">FrameBufferCache</a> bufferCache, ByteBuffer buf, long pts)
         
   </td></tr>
 
 
 	 
     <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFrame.html#AudioBufFrame(com.ksyun.media.streamer.framework.AudioBufFormat, java.nio.ByteBuffer, long)">AudioBufFrame</a></span>(<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a> format, ByteBuffer buf, long pts)
+        
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
         <td class="jd-typecol">
             
             
@@ -685,7 +707,163 @@ Summary:
   <div style="clear:left;">Inherited Methods</div></th></tr>
 
 
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.ksyun.media.streamer.framework.AVBufFrame" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-com.ksyun.media.streamer.framework.AVBufFrame-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
 
+  <a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html">com.ksyun.media.streamer.framework.AVBufFrame</a>
+
+<div id="inherited-methods-com.ksyun.media.streamer.framework.AVBufFrame">
+  <div id="inherited-methods-com.ksyun.media.streamer.framework.AVBufFrame-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.ksyun.media.streamer.framework.AVBufFrame-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html#isRefCounted()">isRefCounted</a></span>()
+        
+        <div class="jd-descrdiv">Is this frame ref counted.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            synchronized
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html#ref()">ref</a></span>()
+        
+        <div class="jd-descrdiv">Increase ref count if this frame is ref counted.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            synchronized
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVBufFrame.html#unref()">unref</a></span>()
+        
+        <div class="jd-descrdiv">Decrease ref count if this frame is ref counted.</div>
+  
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
+
+
+
+<tr class="api apilevel-" >
+<td colspan="12">
+  <a href="#" onclick="return toggleInherited(this, null)" id="inherited-methods-com.ksyun.media.streamer.framework.AVFrameBase" class="jd-expando-trigger closed"
+          ><img id="inherited-methods-com.ksyun.media.streamer.framework.AVFrameBase-trigger"
+          src="../../../../../../assets/images/triangle-closed.png"
+          class="jd-expando-trigger-img" /></a>
+From class
+
+  <a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html">com.ksyun.media.streamer.framework.AVFrameBase</a>
+
+<div id="inherited-methods-com.ksyun.media.streamer.framework.AVFrameBase">
+  <div id="inherited-methods-com.ksyun.media.streamer.framework.AVFrameBase-list"
+        class="jd-inheritedlinks">
+  </div>
+  <div id="inherited-methods-com.ksyun.media.streamer.framework.AVFrameBase-summary" style="display: none;">
+    <table class="jd-sumtable-expando">
+    
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            boolean
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#isRefCounted()">isRefCounted</a></span>()
+        
+        <div class="jd-descrdiv">Is this frame ref counted.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class=" api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#ref()">ref</a></span>()
+        
+        <div class="jd-descrdiv">Increase ref count if this frame is ref counted.</div>
+  
+  </td></tr>
+
+
+	 
+    <tr class="alt-color api apilevel-" >
+        <td class="jd-typecol">
+            
+            
+            
+            
+            
+            void
+        </td>
+        <td class="jd-linkcol" width="100%">
+        <span class="sympad"><a href="../../../../../com/ksyun/media/streamer/framework/AVFrameBase.html#unref()">unref</a></span>()
+        
+        <div class="jd-descrdiv">Decrease ref count if this frame is ref counted.</div>
+  
+  </td></tr>
+
+
+</table>
+  </div>
+</div>
+</td></tr>
 
 
 
@@ -960,6 +1138,37 @@ From class
 <!-- ========= CONSTRUCTOR DETAIL ======== -->
 <h2>Public Constructors</h2>
 
+
+
+<a id="AudioBufFrame(com.ksyun.media.streamer.framework.AudioBufFormat, com.ksyun.media.streamer.util.FrameBufferCache, java.nio.ByteBuffer, long)"></a>
+
+<div class="jd-details api apilevel-"> 
+    <h4 class="jd-details-title">
+      <span class="normal">
+        public 
+         
+         
+         
+         
+        
+      </span>
+      <span class="sympad">AudioBufFrame</span>
+      <span class="normal">(<a href="../../../../../com/ksyun/media/streamer/framework/AudioBufFormat.html">AudioBufFormat</a> format, <a href="../../../../../com/ksyun/media/streamer/util/FrameBufferCache.html">FrameBufferCache</a> bufferCache, ByteBuffer buf, long pts)</span>
+    </h4>
+      <div class="api-level">
+        <div>
+
+</div>
+        
+  
+
+      </div>
+    <div class="jd-details-descr">
+      
+  <div class="jd-tagdata jd-tagdescr"><p></p></div>
+
+    </div>
+</div>
 
 
 <a id="AudioBufFrame(com.ksyun.media.streamer.framework.AudioBufFormat, java.nio.ByteBuffer, long)"></a>

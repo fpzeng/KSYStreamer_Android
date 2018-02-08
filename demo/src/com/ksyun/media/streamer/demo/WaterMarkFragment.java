@@ -17,6 +17,7 @@ import com.ksyun.media.streamer.util.BitmapLoader;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
+import butterknife.Unbinder;
 
 /**
  * Watermark function switch.
@@ -34,6 +35,8 @@ public class WaterMarkFragment extends Fragment {
     @BindView(R.id.multi_watermark)
     protected CheckBox mMultiWatermarkCB;
 
+    protected Unbinder mUnbinder;
+
     protected String mAnimatedLogoPath = "assets://ksyun.webp";
     protected StdCameraActivity mActivity;
     protected KSYStreamer mStreamer;
@@ -45,7 +48,7 @@ public class WaterMarkFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.watermark_fragment, container, false);
-        ButterKnife.bind(this, view);
+        mUnbinder = ButterKnife.bind(this, view);
         mActivity = (StdCameraActivity) getActivity();
         mStreamer = mActivity.mStreamer;
         mAnimatedImageCapture = new AnimatedImageCapture(mStreamer.getGLRender());
@@ -54,10 +57,24 @@ public class WaterMarkFragment extends Fragment {
     }
 
     @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         mAnimatedImageCapture.release();
         mExtraWatermarkSrcPin.release();
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        // 重新绘制水印，避免切后台时横竖屏切换的影响
+        hideWatermark();
+        showWatermark();
     }
 
     @OnCheckedChanged(R.id.watermark)
