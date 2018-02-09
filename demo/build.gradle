@@ -1,38 +1,40 @@
 buildscript {
     repositories {
         jcenter()
+        google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.0.1'
     }
 }
 allprojects {
     repositories {
         jcenter()
+        google()
     }
 }
 apply plugin: 'com.android.application'
 
 dependencies {
-    compile fileTree(dir: 'libs', include: '*.jar')
-    compile 'com.android.support:appcompat-v7:25.3.1'
-    compile 'com.lht:paintview:1.16'
-    compile 'com.facebook.fresco:fresco:1.4.0'
-    compile 'com.facebook.fresco:animated-gif:1.4.0'
-    compile 'com.facebook.fresco:animated-webp:1.4.0'
-    compile 'com.google.code.gson:gson:2.7'
-    compile 'com.jakewharton:butterknife:8.8.1'
+    implementation fileTree(dir: 'libs', include: '*.jar')
+    implementation 'com.android.support:appcompat-v7:27.0.1'
+    implementation 'com.lht:paintview:1.17'
+    implementation 'com.facebook.fresco:fresco:1.4.0'
+    implementation 'com.facebook.fresco:animated-gif:1.4.0'
+    implementation 'com.facebook.fresco:animated-webp:1.4.0'
+    implementation 'com.google.code.gson:gson:2.8.0'
+    implementation 'com.jakewharton:butterknife:8.8.1'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
-    compile 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:0.7.2'
+    implementation 'com.h6ah4i.android.widget.verticalseekbar:verticalseekbar:0.7.2'
 }
 
 android {
-    compileSdkVersion 25
-    buildToolsVersion "25.0.0"
+    compileSdkVersion 27
+    buildToolsVersion "27.0.1"
 
     defaultConfig {
-        minSdkVersion 14
-        targetSdkVersion 25
+        minSdkVersion 15
+        targetSdkVersion 27
     }
 
     sourceSets {
